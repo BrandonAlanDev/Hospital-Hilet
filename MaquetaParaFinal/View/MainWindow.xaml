@@ -24,7 +24,7 @@
             <Grid HorizontalAlignment="Right">
 
                 <Button x:Name="btnMaxmin" Content="Maximizar" HorizontalAlignment="Right" Margin="0,0,80,0" Width="60" Height="25" Style="{StaticResource BotonSecundario}"/>
-                <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Right" Margin="0,0,10,0" Width="60" Height="25" Style="{StaticResource BotonSalir}"/>
+                <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Right" Margin="0,0,10,0" Width="60" Height="25" Style="{StaticResource BotonSalir}" Click="btnSalir_Click"/>
             </Grid>
         </DockPanel>
         <DockPanel x:Name="Body" Background="#FF222222" Margin="0,75,0,0" >

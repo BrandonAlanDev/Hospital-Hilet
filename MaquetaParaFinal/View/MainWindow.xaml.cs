@@ -25,6 +25,9 @@ namespace MaquetaParaFinal
             InitializeComponent();
         }
 
-   
+        private void btnSalir_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
