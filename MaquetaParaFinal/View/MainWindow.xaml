@@ -14,29 +14,22 @@
             <Label Content="HOSPITAL HILET" Foreground="#F0F0F0" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
         </DockPanel>
         <DockPanel x:Name="Menu" Background="#213555" Margin="0,50,0,0" VerticalAlignment="Top" Height="25" >
-            <Button x:Name="botonPrueba" Content="Button" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="25,0,0,0" Click="botonPrueba_Click"/>
-            <Button Content="Button" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-            <Button Content="Button" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-            <Button Content="Button" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-            <Button x:Name="PruebaVolver" Content="Button" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="10,0,0,0" Click="PruebaVolver_Click"/>
-            <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Right" Margin="0,0,10,0" Width="60" Height="25" Style="{StaticResource BotonSalir}"/>
-        </DockPanel>
-        <DockPanel x:Name="Body" Background="#FF222222" Margin="0,75,0,25" >
-            <Grid Width="125" Background="#4F709C" HorizontalAlignment="Left">
-                <StackPanel>
-
-                </StackPanel>
+            <Grid HorizontalAlignment="Left">
+                <Button x:Name="btnHome" Content="Home" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="25,0,0,0" Click="botonPrueba_Click"/>
+                <Button x:Name="btnIngresos" Content="Ingresos" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="95,0,0,0"/>
+                <Button x:Name="btnPacientes" Content="Pacientes" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="165,0,0,0"/>
+                <Button x:Name="btnMuestras" Content="Muestras" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="235,0,0,0"/>
+                <Button x:Name="btnMedicos" Content="Medicos" Style="{StaticResource BotonSecundario}" Width="60" HorizontalAlignment="Left" Margin="305,0,0,0" Click="PruebaVolver_Click"/>
             </Grid>
+            <Grid HorizontalAlignment="Right">
 
+                <Button x:Name="btnMaxmin" Content="Maximizar" HorizontalAlignment="Right" Margin="0,0,80,0" Width="60" Height="25" Style="{StaticResource BotonSecundario}"/>
+                <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Right" Margin="0,0,10,0" Width="60" Height="25" Style="{StaticResource BotonSalir}"/>
+            </Grid>
+        </DockPanel>
+        <DockPanel x:Name="Body" Background="#FF222222" Margin="0,75,0,0" >
             <Grid x:Name="ContenedorNav"  Background="#213555" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Frame x:Name="FrameNavegacion" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
-            </Grid>
-
-        </DockPanel>
-        <DockPanel x:Name="Footer" Background="#213555" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="25" >
-            <Grid>
-                <Button x:Name="btnAceptar" Content="Aceptar" HorizontalAlignment="Right" Margin="0,0,70,0" Width="60" Height="25" Style="{StaticResource BotonPrimario}"/>
-                <Button x:Name="btnCancelar" Content="Cancelar" HorizontalAlignment="Right" Margin="0,0,0,0" Width="60" Height="25" Style="{StaticResource BotonPrimario}"/>
             </Grid>
         </DockPanel>
     </Grid>
