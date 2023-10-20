@@ -13,6 +13,12 @@
         <DockPanel x:Name="Header" Margin="0" Background="#213555" VerticalAlignment="Top" Height="50" >
             <Image x:Name="Logo" Width="49" Height="49" HorizontalAlignment="Left" Margin="5,1,0,1" Source="/View/logo.png"/>
             <Label Content="HOSPITAL HILET" Foreground="#F0F0F0" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
+
+            <Grid HorizontalAlignment="Right">
+
+                <Button x:Name="btnMaxmin" Content="O" HorizontalAlignment="Right" Margin="0,0,50,0" Width="25" Height="25" Style="{StaticResource BotonPrimario}"/>
+                <Button x:Name="btnSalir" Content="X" HorizontalAlignment="Right" Margin="0,0,10,0" Width="25" Height="25" Style="{StaticResource BotonSalir}" Click="btnSalir_Click"/>
+            </Grid>
         </DockPanel>
         <DockPanel x:Name="Menu" Background="#213555" Margin="0,50,0,0" VerticalAlignment="Top" Height="25" >
             <Grid HorizontalAlignment="Left">
@@ -21,11 +27,6 @@
                 <Button x:Name="btnPacientes" Content="Pacientes" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="165,0,0,0" Click="LoadPacientes"/>
                 <Button x:Name="btnPracticas" Content="Practicas" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="235,0,0,0" Click="LoadPracticas"/>
                 <Button x:Name="btnMedicos" Content="Medicos" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="305,0,0,0" Click="LoadMedicos"/>
-            </Grid>
-            <Grid HorizontalAlignment="Right">
-
-                <Button x:Name="btnMaxmin" Content="Maximizar" HorizontalAlignment="Right" Margin="0,0,80,0" Width="60" Height="20" Style="{StaticResource BotonSecundario}"/>
-                <Button x:Name="btnSalir" Content="Salir" HorizontalAlignment="Right" Margin="0,0,10,0" Width="60" Height="20" Style="{StaticResource BotonSalir}" Click="btnSalir_Click"/>
             </Grid>
         </DockPanel>
         <DockPanel x:Name="Body" Background="#FF222222" Margin="0,75,0,0" >
