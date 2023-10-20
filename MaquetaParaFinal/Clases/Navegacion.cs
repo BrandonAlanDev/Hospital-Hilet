@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace MaquetaParaFinal
 {
@@ -11,11 +12,13 @@ namespace MaquetaParaFinal
     {
         private void LoadHome(object sender, RoutedEventArgs e)
         {
+            //Hacemos que el frame navegue a la page local Index, con una URI relativa, ya que no ponemos la ruta completa
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Index.xaml", UriKind.Relative));
         }
         private void LoadIngresos(object sender, RoutedEventArgs e)
         {
-            FrameNavegacion.NavigationService.Navigate(new Uri("View/Index.xaml", UriKind.Relative));
+            // ejemplo de uri absoluta
+            FrameNavegacion.NavigationService.Navigate(new Uri("https://www.useblackbox.io/", UriKind.Absolute));
         }
         private void LoadPacientes(object sender, RoutedEventArgs e)
         {
@@ -32,7 +35,22 @@ namespace MaquetaParaFinal
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            DoubleAnimation animation = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.2)));
+            animation.Completed += (s, _) => Close();
+            BeginAnimation(UIElement.OpacityProperty, animation);
+        }
+
+
+        private void btnMaxMin(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+            }
         }
     }
 }
