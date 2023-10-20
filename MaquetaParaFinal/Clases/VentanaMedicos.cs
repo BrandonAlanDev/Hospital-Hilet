@@ -10,11 +10,34 @@ namespace MaquetaParaFinal.View
 {
     public partial class Medicos : Page
     {
-        public event EventHandler VolverClicked;
-        private void VolverMenu_Click(object sender, RoutedEventArgs e)
+
+        private readonly Dictionary<string, string> medicos = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
-            Principal.Visibility = Visibility.Collapsed;
-            VolverClicked?.Invoke(this, EventArgs.Empty);
+            { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
+            { "Apellido", "txtApellido" },
+            { "Matrícula", "txtMatricula" }
+        };
+
+        private void LimpiarTxt(object sender, RoutedEventArgs e) // Uso el diccionario para no tener que hacer mil metodos para borrarlo, se tiene que usar como evento en el main.
+        {
+            if (sender is TextBox textBox)
+            {
+
+                if (medicos.ContainsKey(textBox.Text))
+                {
+                    textBox.Clear();
+                }
+            }
+        }
+        private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
+        {
+            if (sender is TextBox textBox)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = medicos.FirstOrDefault(pair => pair.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
+                }
+            }
         }
 
     }
