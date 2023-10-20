@@ -15,7 +15,7 @@ namespace MaquetaParaFinal.View
         {
             { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
             { "Apellido", "txtApellido" },
-            { "Matrícula", "tctMatricula" }
+            { "Matrícula", "txtMatricula" }
         };
 
         private void LimpiarTxt(object sender, RoutedEventArgs e) // Uso el diccionario para no tener que hacer mil metodos para borrarlo, se tiene que usar como evento en el main.
@@ -39,5 +39,6 @@ namespace MaquetaParaFinal.View
                 }
             }
         }
+
     }
 }
