@@ -19,7 +19,7 @@
                     </StackPanel>
                 </Grid>
 
-                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="125,0,150,0">
+                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="125,0,149,0">
                     <DataGrid x:Name="DataGrid" d:ItemsSource="{d:SampleData ItemCount=5}"/>
                 </Grid>
 
