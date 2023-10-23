@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,54 @@ namespace MaquetaParaFinal.View
         public Pacientes()
         {
             InitializeComponent();
+            txtNombre.GotFocus += LimpiarTxt;
+            txtApellido.GotFocus += LimpiarTxt;
+            txtDni.GotFocus += LimpiarTxt;
+            txtEmail.GotFocus += LimpiarTxt;
+            txtFecha_De_Nacimiento.GotFocus += LimpiarTxt;
+            txtTelefono.GotFocus += LimpiarTxt;
+            txtNro.GotFocus += LimpiarTxt;
+            txtPiso.GotFocus += LimpiarTxt;
+            txtCalle.GotFocus += LimpiarTxt;
+            txtLocalidad.GotFocus += LimpiarTxt;
+            txtCodPostas.GotFocus += LimpiarTxt;
+            txtNombre.LostFocus += RestaurarNombrePorDefecto;
+            txtApellido.LostFocus += RestaurarNombrePorDefecto;
+            txtDni.LostFocus += RestaurarNombrePorDefecto;
+            txtEmail.LostFocus += RestaurarNombrePorDefecto;
+            txtFecha_De_Nacimiento.LostFocus += RestaurarNombrePorDefecto;
+            txtTelefono.LostFocus += RestaurarNombrePorDefecto;
+            txtNro.LostFocus += RestaurarNombrePorDefecto;
+            txtPiso.LostFocus += RestaurarNombrePorDefecto;
+            txtCalle.LostFocus += RestaurarNombrePorDefecto;
+            txtLocalidad.LostFocus += RestaurarNombrePorDefecto;
+            txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
+        }
+
+        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TxtBoxes.IsEnabled = true;
+        }
+
+        private void btCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            TxtBoxes.IsEnabled = false;
+        }
+
+        private void btAceptar_Click(object sender, RoutedEventArgs e)
+        {
+            //GARGAR LOCALIDAD Y EXTRAER LA FK
+           // conectar.AgregarPaciente(txtNombre,txtApellido,txtFecha_De_Nacimiento,txtDni,txtEmail,txtTelefono,txtCalle,txtNro,txtPiso,"SinHacer");
         }
     }
 }

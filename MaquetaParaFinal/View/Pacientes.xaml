@@ -14,19 +14,34 @@
             
             <Grid x:Name="MenuPaciente">
                 <Grid Width="125" Background="#4F709C" HorizontalAlignment="Left">
-                    <StackPanel>
-
+                    <StackPanel x:Name="Botones">
+                        <Button x:Name="btAgregar" Content="Agregar" VerticalAlignment="Center" Margin="15,140,15,0" Click="Button_Click"/>
+                        <Button x:Name="btModificar" Content="Modificar" VerticalAlignment="Center" Margin="15,20,15,0" Click="Button_Click"/>
+                        <Button x:Name="btEliminar" Content="Eliminar" VerticalAlignment="Center" Margin="15,20,15,0"/>
                     </StackPanel>
                 </Grid>
 
                 <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="125,0,149,0">
-                    <DataGrid x:Name="DataGrid" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                    <DataGrid x:Name="DataGridPacientes" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" SelectionChanged="DataGridPacientes_SelectionChanged" Loaded="DataGridPacientes_Loaded"/>
                 </Grid>
 
-                <Grid x:Name="Botones" Width="150" HorizontalAlignment="Right" Background="#FFFFFF">
-                    <Button Content="Button" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Height="91" Width="100"/>
-
-                </Grid>
+                <StackPanel x:Name="TxtBoxes" IsEnabled="False" Width="150" HorizontalAlignment="Right" Background="#FFFFFF">
+                    <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Margin="15,40,15,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtApellido" HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Apellido" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtDni" HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Dni" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtFecha_De_Nacimiento"  HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Fecha De Nacimiento" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtTelefono" HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Telefono" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtCalle" HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Calle" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtNro" HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Nro" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtPiso" HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Piso" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtLocalidad" HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Localidad" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtCodPostas" HorizontalAlignment="Left" Margin="15,10,15,0" TextWrapping="Wrap" Text="Codigo Postal" VerticalAlignment="Top" Width="120"/>
+                    <DockPanel x:Name="BotonesAceptar_Canlar" VerticalAlignment="Bottom" Margin="0,30">
+                        <Button x:Name="btAceptar" Content="Aceptar" Margin="5" Width="62" Click="btAceptar_Click"/>
+                        <Button x:Name="btCancelar" Content="Cancelar" Margin="5" Width="62" Click="btCancelar_Click"/>
+                    </DockPanel>
+                </StackPanel>
             </Grid>
 
 
