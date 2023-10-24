@@ -14,7 +14,7 @@ namespace MaquetaParaFinal.View
         Conectar conectar = new Conectar();
         private void DataGridIngresos_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridIngresos.ItemsSource = conectar.Des
+            DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
         }
     }
 }

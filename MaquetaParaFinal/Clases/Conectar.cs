@@ -100,6 +100,26 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+        public DataTable DescargarTablaIngresos()
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = "SELECT p.Nombre_Paciente AS Paciente, " +
+                    "p.Apellido_Paciente AS Apellido, " +
+                    "p.Dni, i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
+                    "i.Fecha_Retiro AS 'Fecha De Retiro', " +
+                    "pro.Nombre_Profesional AS Medico, " +
+                    "pro.Apellido_Profesional AS 'Apellido Medico' FROM Ingresos AS i " +
+                    "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
+                    "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
+                    "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+
+        }
         public void AgregarPaciente(string nombre,string apellido,string Fecha_De_Nacimiento,string Dni, string Email, string Telefono, string Calle, string Numero, string Piso,int fk_id) 
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
