@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,10 @@ namespace MaquetaParaFinal.View
 {
     public partial class Practicas : Page
     {
-        public event EventHandler VolverClicked;
-        private void VolverMenu_Click(object sender, RoutedEventArgs e)
+        Conectar conectar = new Conectar();
+        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            Principal.Visibility = Visibility.Collapsed;
-            VolverClicked?.Invoke(this, EventArgs.Empty);
+            DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
         }
 
     }

@@ -82,7 +82,24 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
-
+        public DataTable DescargarTablaPracticas() 
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = "SELECT p.Nombre_Practica AS Nombre, " +
+                    "p.Fecha_Realizacion AS 'Fecha De Realizacion', " +
+                    "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
+                    "e.Nombre_Especialidad AS Especialidades " +
+                    "FROM Practicas AS p " +
+                    "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
+                    "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
+                    "ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
         public void AgregarPaciente(string nombre,string apellido,string Fecha_De_Nacimiento,string Dni, string Email, string Telefono, string Calle, string Numero, string Piso,int fk_id) 
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
