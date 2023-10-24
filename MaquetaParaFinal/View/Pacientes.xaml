@@ -22,7 +22,7 @@
                 </Grid>
 
                 <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="125,0,149,0">
-                    <DataGrid x:Name="DataGridPacientes" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" SelectionChanged="DataGridPacientes_SelectionChanged" Loaded="DataGridPacientes_Loaded"/>
+                    <DataGrid x:Name="DataGridPacientes" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" SelectionChanged="DataGridPacientes_SelectionChanged" Loaded="DataGridPacientes_Loaded" AutoGeneratingColumn="DataGridPacientes_AutoGeneratingColumn"/>
                 </Grid>
 
                 <StackPanel x:Name="TxtBoxes" IsEnabled="False" Width="150" HorizontalAlignment="Right" Background="#FFFFFF">
