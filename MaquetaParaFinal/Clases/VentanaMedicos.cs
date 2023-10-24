@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace MaquetaParaFinal.View
 {
     public partial class Medicos : Page
     {
+        Conectar conectar = new Conectar();
 
         private readonly Dictionary<string, string> medicos = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
@@ -39,6 +41,9 @@ namespace MaquetaParaFinal.View
                 }
             }
         }
-
+        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+        }
     }
 }

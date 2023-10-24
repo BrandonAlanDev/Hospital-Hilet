@@ -9,13 +9,12 @@ using System.Windows.Controls;
 
 namespace MaquetaParaFinal.View
 {
-    public partial class Practicas : Page
+    public partial class Ingresos : Page
     {
         Conectar conectar = new Conectar();
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        private void DataGridIngresos_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+            DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
         }
-
     }
 }

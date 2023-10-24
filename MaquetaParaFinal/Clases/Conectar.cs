@@ -19,7 +19,13 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia)) 
             { 
-                string consulta = "SELECT Nombre_Paciente, Apellido_Paciente, Fecha_De_Nacimiento,Dni,Email,Telefono, Calle,Numero,Piso,Nombre_Localidad,Codigo_Postal FROM Pacientes " +
+                string consulta = "SELECT Nombre_Paciente AS Nombre, " +
+                    "Apellido_Paciente AS Apellido, " +
+                    "Fecha_De_Nacimiento AS 'Fecha De Nacimiento'," +
+                    "Dni,Email,Telefono,Calle,Numero,Piso," +
+                    "Nombre_Localidad AS Localidad," +
+                    "Codigo_Postal AS 'Codigo Postal'" +
+                    "FROM Pacientes " +
                         "INNER JOIN Localidades ON Fk_Id_Localidades=Pk_Id_Localidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta,conexion);
                 DataTable tabla = new DataTable();
@@ -32,7 +38,9 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = "SELECT Nombre_Profesional ,Apellido_Profesional,Matricula,Nombre_Servicio FROM Profesionales " +
+                string consulta = "SELECT Nombre_Profesional AS Nombre," +
+                    "Apellido_Profesional AS Apellido,Matricula," +
+                    "Nombre_Servicio AS Servicio FROM Profesionales " +
                         "INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -74,18 +82,54 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+        public DataTable DescargarTablaPracticas() 
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = "SELECT p.Nombre_Practica AS Nombre, " +
+                    "p.Fecha_Realizacion AS 'Fecha De Realizacion', " +
+                    "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
+                    "e.Nombre_Especialidad AS Especialidades " +
+                    "FROM Practicas AS p " +
+                    "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
+                    "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
+                    "ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+        public DataTable DescargarTablaIngresos()
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = "SELECT p.Nombre_Paciente AS Paciente, " +
+                    "p.Apellido_Paciente AS Apellido, " +
+                    "p.Dni, i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
+                    "i.Fecha_Retiro AS 'Fecha De Retiro', " +
+                    "pro.Nombre_Profesional AS Medico, " +
+                    "pro.Apellido_Profesional AS 'Apellido Medico' FROM Ingresos AS i " +
+                    "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
+                    "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
+                    "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
 
-        public void AgregarPaciente(int id,string nombre,string apellido,string Fecha_De_Nacimiento,string Dni, string Email, string Telefono, string Calle, string Numero, string Piso,int fk_id) 
+        }
+        public void AgregarPaciente(string nombre,string apellido,string Fecha_De_Nacimiento,string Dni, string Email, string Telefono, string Calle, string Numero, string Piso,int fk_id) 
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Pacientes (Pk_Id_Pacientes, Nombre_Paciente, Apellido_Paciente, Fecha_De_Nacimiento, Dni, Email, Telefono, Calle, Numero, Piso, Fk_Id_Localidades) " +
-                    "VALUES (@pk_id_pacientes,@nombre_paciente,@apellido_paciente,@fecha_nacimiento,@dni,@email,@telefono,@calle,@numero,@piso,@fk_id_localidades);";
+                string consulta = "INSERT INTO Pacientes (Nombre_Paciente, Apellido_Paciente, Fecha_De_Nacimiento, Dni, Email, Telefono, Calle, Numero, Piso, Fk_Id_Localidades) " +
+                    "VALUES (@nombre_paciente,@apellido_paciente,@fecha_nacimiento,@dni,@email,@telefono,@calle,@numero,@piso,@fk_id_localidades);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_pacientes", id);
                     cmd.Parameters.AddWithValue("@nombre_paciente", nombre);
                     cmd.Parameters.AddWithValue("@apellido_paciente", apellido);
                     cmd.Parameters.AddWithValue("@fecha_nacimiento", Fecha_De_Nacimiento);
@@ -191,16 +235,15 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarLocalidades(int id, string Nombre_Localidad, string Codigo_Postal)
+        public void AgregarLocalidades( string Nombre_Localidad, string Codigo_Postal)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Localidades (Pk_Id_Localidades, Nombre_Localidad, Codigo_Postal) VALUES (@pk_id_localidades, @nombre_localidad, @codigo_postal);";
+                string consulta = "INSERT INTO Localidades (Nombre_Localidad, Codigo_Postal) VALUES (@nombre_localidad, @codigo_postal);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_localidades", id);
                     cmd.Parameters.AddWithValue("@nombre_localidad", Nombre_Localidad);
                     cmd.Parameters.AddWithValue("@codigo_postal", Codigo_Postal);
                     cmd.ExecuteNonQuery();

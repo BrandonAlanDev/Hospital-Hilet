@@ -15,18 +15,12 @@ using System.Windows.Shapes;
 
 namespace MaquetaParaFinal.View
 {
-    public partial class Medicos : Page
+    public partial class Ingresos : Page
     {
-        public Medicos()
+        public Ingresos()
         {
             InitializeComponent();
         }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
 
     }
 }

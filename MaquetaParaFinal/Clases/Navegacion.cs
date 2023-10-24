@@ -17,8 +17,7 @@ namespace MaquetaParaFinal
         }
         private void LoadIngresos(object sender, RoutedEventArgs e)
         {
-            // ejemplo de uri absoluta
-            FrameNavegacion.NavigationService.Navigate(new Uri("https://www.useblackbox.io/", UriKind.Absolute));
+            FrameNavegacion.NavigationService.Navigate(new Uri("View/Ingresos.xaml", UriKind.Relative));
         }
         private void LoadPacientes(object sender, RoutedEventArgs e)
         {
