@@ -146,16 +146,15 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarProfesionales(int id, string nombre, string apellido, int Matricula, int Fk_Id_Servicios) {
+        public void AgregarProfesionales(string nombre, string apellido, int Matricula, int Fk_Id_Servicios) {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Profesionales (Pk_Id_Profesionales, Nombre_Profesional, Apellido_Profesional, Matricula, Fk_Id_Servicios) " +
-                     "VALUES (@pk_id_profesionales,@nombre_profesional,@apellido_profesional,@matricula,@fk_id_servicios);";
+                string consulta = "INSERT INTO Profesionales ( Nombre_Profesional, Apellido_Profesional, Matricula, Fk_Id_Servicios) " +
+                     "VALUES (@nombre_profesional,@apellido_profesional,@matricula,@fk_id_servicios);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_profesionales", id);
                     cmd.Parameters.AddWithValue("@nombre_profesional", nombre);
                     cmd.Parameters.AddWithValue("@apellido_profesional", apellido);
                     cmd.Parameters.AddWithValue("@matricula", Matricula);
@@ -165,66 +164,62 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarServicios(int id, string nombre) 
+        public void AgregarServicios(string nombre) 
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Servicios (Pk_Id_Servicios,Nombre_Servicio) " +
-                    "VALUES (@pk_id_servicios,@nombreservicio);";
+                string consulta = "INSERT INTO Servicios (Nombre_Servicio) " +
+                    "VALUES (@nombreservicio);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_servicios", id);
                     cmd.Parameters.AddWithValue("@nombreservicio", nombre);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void AgregarEspecialidades(int id, string nombre)
+        public void AgregarEspecialidades(string nombre)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Especialidades (Pk_Id_Especialidades,Nombre_Especialidad) VALUES (@pk_id_especialidad,@nombre_especialidad);";
+                string consulta = "INSERT INTO Especialidades (Nombre_Especialidad) VALUES (@nombre_especialidad);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_especialidad", id);
                     cmd.Parameters.AddWithValue("@nombre_especialidad", nombre);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void AgregarTiposDeMuestras(int id, string nombre)
+        public void AgregarTiposDeMuestras(string nombre)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO TiposDeMuestras (Pk_Id_Tipos_De_Muestra, Nombre_Tipo_De_Muestra) VALUES (@pk_id_tiposdemuestra,@nombre_muestra);";
+                string consulta = "INSERT INTO TiposDeMuestras (Nombre_Tipo_De_Muestra) VALUES (@nombre_muestra);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_tiposdemuestra", id);
                     cmd.Parameters.AddWithValue("@nombre_muestra", nombre);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void AgregarPracticas(int id, string fecha_realizacion, string tiempo_resultado, int nombre_practica, int fk_id_especialidades, int fk_id_tiposdemuestra)
+        public void AgregarPracticas(string fecha_realizacion, string tiempo_resultado, int nombre_practica, int fk_id_especialidades, int fk_id_tiposdemuestra)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Practicas (Pk_Id_Practicas, Fecha_Realizacion, Tiempo_Resultado, Nombre_Practica, Fk_Id_Especialidades, Fk_Id_Tipos_De_Muestra) " +
-                    "VALUES (@pk_id_practicas, @fecha_realizacion, @tiempo_resultado, @nombre_practica,@fk_id_especialidades,@fk_id_tiposdemuestra);";
+                string consulta = "INSERT INTO Practicas (Fecha_Realizacion, Tiempo_Resultado, Nombre_Practica, Fk_Id_Especialidades, Fk_Id_Tipos_De_Muestra) " +
+                    "VALUES (@fecha_realizacion, @tiempo_resultado, @nombre_practica,@fk_id_especialidades,@fk_id_tiposdemuestra);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_practicas", id);
                     cmd.Parameters.AddWithValue("@fecha_realizacion", fecha_realizacion);
                     cmd.Parameters.AddWithValue("@tiempo_resultado", tiempo_resultado);
                     cmd.Parameters.AddWithValue("@nombre_practica", nombre_practica);
@@ -235,7 +230,7 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarLocalidades( string Nombre_Localidad, string Codigo_Postal)
+        public void AgregarLocalidades(string Nombre_Localidad, string Codigo_Postal)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
@@ -251,33 +246,31 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarCategorias(int id, string Nombre_Categoria)
+        public void AgregarCategorias( string Nombre_Categoria)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Categorias (Pk_Id_Categorias, Nombre_Categoria) VALUES (@pk_id_categorias, @nombre_categoria);";
+                string consulta = "INSERT INTO Categorias (Nombre_Categoria) VALUES (@nombre_categoria);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_categorias", id);
                     cmd.Parameters.AddWithValue("@nombre_categoria", Nombre_Categoria);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void AgregarPersonalLaboratorio(int id, string nombre_personal, string apellido_personal, int fk_id_categorias, int fk_id_especialidades)
+        public void AgregarPersonalLaboratorio(string nombre_personal, string apellido_personal, int fk_id_categorias, int fk_id_especialidades)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO PersonalLaboratorio (Pk_Id_Personal_Laboratorio, Nombre_Personal, Apellido_Personal, Fk_Id_Categorias, Fk_Id_Especialidades) " +
-                    "VALUES (@pk_id_personal_laboratorio, @nombre_personal, @apellido_personal, @fk_id_categorias, @fk_id_especialidades);";
+                string consulta = "INSERT INTO PersonalLaboratorio (Nombre_Personal, Apellido_Personal, Fk_Id_Categorias, Fk_Id_Especialidades) " +
+                    "VALUES (@nombre_personal, @apellido_personal, @fk_id_categorias, @fk_id_especialidades);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_personal_laboratorio", id);
                     cmd.Parameters.AddWithValue("@nombre_personal", nombre_personal);
                     cmd.Parameters.AddWithValue("@apellido_personal", apellido_personal);
                     cmd.Parameters.AddWithValue("@fk_id_categorias", fk_id_categorias);
@@ -287,17 +280,16 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarIngresos(int id, string fecha_ingreso, string fecha_retiro, int fk_id_pacientes, int fk_id_profesionales)
+        public void AgregarIngresos(string fecha_ingreso, string fecha_retiro, int fk_id_pacientes, int fk_id_profesionales)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Ingresos (Pk_Id_Ingresos, Fecha_Ingreso, Fecha_Retiro, Fk_Id_Paciente, Fk_Id_Profesionales) " +
-                    "VALUES (@pk_id_ingresos, @fecha_ingreso, @fecha_retiro, @fk_id_pacientes, @fk_id_profesionales);";
+                string consulta = "INSERT INTO Ingresos (Fecha_Ingreso, Fecha_Retiro, Fk_Id_Paciente, Fk_Id_Profesionales) " +
+                    "VALUES (@fecha_ingreso, @fecha_retiro, @fk_id_pacientes, @fk_id_profesionales);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_ingresos", id);
                     cmd.Parameters.AddWithValue("@fecha_ingreso", fecha_ingreso);
                     cmd.Parameters.AddWithValue("@fecha_retiro", fecha_retiro);
                     cmd.Parameters.AddWithValue("@fk_id_pacientes", fk_id_pacientes);
@@ -307,17 +299,16 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarPracticasxIngresos(int id, int fk_id_ingresos, int fk_id_practicas)
+        public void AgregarPracticasxIngresos(int fk_id_ingresos, int fk_id_practicas)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO PracticasxIngresos (Pk_Id_PracticasxIngresos, Fk_Id_Ingresos, Fk_Id_Practicas) " +
-                    "VALUES (@pk_id_practicasxingresos, @fk_id_ingresos, @fk_id_practicas);";
+                string consulta = "INSERT INTO PracticasxIngresos (Fk_Id_Ingresos, Fk_Id_Practicas) " +
+                    "VALUES (@fk_id_ingresos, @fk_id_practicas);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@pk_id_practicasxingresos", id);
                     cmd.Parameters.AddWithValue("@fk_id_ingresos", fk_id_ingresos);
                     cmd.Parameters.AddWithValue("@fk_id_practicas", fk_id_practicas);
                     cmd.ExecuteNonQuery();
