@@ -22,12 +22,7 @@ namespace MaquetaParaFinal.Clases
                 string consulta = "SELECT Nombre_Paciente AS Nombre, " +
                     "Apellido_Paciente AS Apellido, " +
                     "Fecha_De_Nacimiento AS 'Fecha De Nacimiento'," +
-                    "Dni," +
-                    "Email," +
-                    "Telefono, " +
-                    "Calle," +
-                    "Numero," +
-                    "Piso," +
+                    "Dni,Email,Telefono,Calle,Numero,Piso," +
                     "Nombre_Localidad AS Localidad," +
                     "Codigo_Postal AS 'Codigo Postal'" +
                     "FROM Pacientes " +
@@ -43,7 +38,9 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = "SELECT Nombre_Profesional ,Apellido_Profesional,Matricula,Nombre_Servicio FROM Profesionales " +
+                string consulta = "SELECT Nombre_Profesional AS Nombre," +
+                    "Apellido_Profesional AS Apellido,Matricula," +
+                    "Nombre_Servicio AS Servicio FROM Profesionales " +
                         "INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
