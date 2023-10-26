@@ -48,10 +48,14 @@ namespace MaquetaParaFinal.View
             txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
         }
 
-        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGridPacientes_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-
+            if (e.Column.Header.ToString() == "ID") 
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
         }
 
+        
     }
 }

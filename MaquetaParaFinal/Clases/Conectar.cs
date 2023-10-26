@@ -19,7 +19,8 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia)) 
             { 
-                string consulta = "SELECT Nombre_Paciente AS Nombre, " +
+                string consulta = "SELECT Pk_Id_Pacientes AS ID," +
+                    "Nombre_Paciente AS Nombre, " +
                     "Apellido_Paciente AS Apellido, " +
                     "Fecha_De_Nacimiento AS 'Fecha De Nacimiento'," +
                     "Dni,Email,Telefono,Calle,Numero,Piso," +
