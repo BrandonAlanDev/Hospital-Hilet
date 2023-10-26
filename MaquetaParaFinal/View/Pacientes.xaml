@@ -16,7 +16,7 @@
 
                 <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,225,0" >
                     <DataGrid x:Name="DataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#213555"
-                              RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0">
+                              RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" >
                         <DataGrid.ColumnHeaderStyle>
                             <StaticResource ResourceKey="HeaderGrilla" />
                         </DataGrid.ColumnHeaderStyle>
@@ -51,9 +51,9 @@
                         </Border>
                     </StackPanel>
                     <Button x:Name="btnAltaPaciente" Content="Alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,50" Height="30" Width="70" Style="{StaticResource BotonPrimario}" />
-                    <Button x:Name="btnModificarPaciente" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False"/>
+                    <Button x:Name="btnModificarPaciente" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonSecundario}" IsEnabled="False"/>
                     <Button x:Name="btnBajaPaciente" Content="Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,10" Height="30" Width="70" Style="{StaticResource BotonSalir}" IsEnabled="False" />
-                    <Button x:Name="btnImprimirPaciente" Content="Imprimir Datos" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False"/>
+                    <Button x:Name="btnImprimirPaciente" Content="Imprimir Datos" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="100" Style="{StaticResource BotonSecundario}" IsEnabled="False"/>
                 </Grid>
             </Grid>
 
