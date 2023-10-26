@@ -11,7 +11,6 @@
     <Grid x:Name="Principal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 
         <DockPanel x:Name="Body" Background="Pink" >
-
             <Grid x:Name="MenuPaciente">
                 <Grid Background="#213555" Margin="0,0,225,0" >
                     <Label Content="Buscar" Foreground="#F0F0F0" FontFamily="Roboto" FontSize="15"/>

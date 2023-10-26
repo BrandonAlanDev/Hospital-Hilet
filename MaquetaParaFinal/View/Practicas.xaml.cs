@@ -24,5 +24,6 @@ namespace MaquetaParaFinal.View
         {
             InitializeComponent();
         }
+
     }
 }

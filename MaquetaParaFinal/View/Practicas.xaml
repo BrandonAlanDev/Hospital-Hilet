@@ -19,7 +19,7 @@
                     <Button x:Name="btAceptarBusqueda" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,5,0,0" Content="Buscar" Height="20" Width="62" Click="BuscarButton_Click" Style="{StaticResource BotonSecundario}"/>
                 </Grid>
                 <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,225,0" >
-                    <DataGrid x:Name="DataGrid" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                    <DataGrid x:Name="DataGridPracticas" ColumnWidth="*" IsReadOnly="True" d:ItemsSource="{d:SampleData ItemCount=5}" Loaded="DataGrid_Loaded"/>
                 </Grid>
 
                 <Grid x:Name="Botones" Width="225" HorizontalAlignment="Right" Background="#4F709C">
