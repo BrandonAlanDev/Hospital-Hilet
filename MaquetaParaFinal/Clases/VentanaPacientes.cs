@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,7 +11,7 @@ using System.Windows.Controls;
 
 namespace MaquetaParaFinal.View
 {
-    public partial class Pacientes : Page 
+    public partial class Pacientes : Page
     {
         Conectar conectar = new Conectar();
         private int NumeroFilaId = 0;
@@ -64,11 +65,11 @@ namespace MaquetaParaFinal.View
             //GARGAR LOCALIDAD Y EXTRAER LA FK
             // conectar.AgregarPaciente(txtNombre,txtApellido,txtFecha_De_Nacimiento,txtDni,txtEmail,txtTelefono,txtCalle,txtNro,txtPiso,"SinHacer");
         }
-        private void CargarSeleccion() 
+        private void CargarSeleccion(int num = 0)
         {
             if (DataGridPacientes.SelectedItem != null && DataGridPacientes.Items.Count >= NumeroFilaId)
             {
-                DataGridPacientes.SelectedIndex = NumeroFilaId;
+                DataGridPacientes.SelectedIndex = num;
                 DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
                 txtNombre.Text = row["Nombre"].ToString();
                 txtApellido.Text = row["Apellido"].ToString();
@@ -92,8 +93,42 @@ namespace MaquetaParaFinal.View
         private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
-            NumeroFilaId = int.Parse(row["ID"].ToString())-1; //-1 Porque el Datagrid comienza en 0 y el id en 1
-            CargarSeleccion();
+            NumeroFilaId = int.Parse(row["ID"].ToString()) - 1; //-1 Porque el Datagrid comienza en 0 y el id en 1
+            CargarSeleccion(NumeroFilaId);
+        }
+        private void BuscarButton_Click(object sender, RoutedEventArgs e)
+        {
+            FiltrarDatos(txtBuscar.Text);
+        }
+
+        private void FiltrarDatos(string filtro)
+        {
+            if (string.IsNullOrEmpty(filtro))
+            {
+                return;
+            }
+
+            foreach (DataRowView columna in DataGridPacientes.ItemsSource)
+            {
+                int mostrarFila = -1;
+
+                for (int i = 0; i < columna.Row.ItemArray.Length; i++)
+                {
+                    if (columna.Row.ItemArray[i] is string valorCelda)
+                    { // "StringComparison.OrdinalIgnoreCase" es para que compare pero ignorando las diferencias de mayusculas y minusculas
+                        if (valorCelda.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0) // Aca compara el valor de la celda con lo buscando
+                        {
+                            mostrarFila = int.Parse(columna.Row["ID"].ToString())-1;
+                            break;
+                        }
+                    }
+                }
+                if (mostrarFila != -1) 
+                {
+                    DataGridPacientes.SelectedIndex = mostrarFila;
+                    CargarSeleccion(mostrarFila);
+                }
+            }
         }
     }
 }
