@@ -13,7 +13,12 @@
         <DockPanel x:Name="Body" Background="Pink" >
 
             <Grid x:Name="MenuPracticas">
-                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,225,0">
+                <Grid Background="#213555" Margin="0,0,225,0" >
+                    <Label Content="Buscar" Foreground="#F0F0F0" FontFamily="Roboto" FontSize="15"/>
+                    <TextBox x:Name="txtBuscar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,6,0,0" TextWrapping="Wrap" Text="" Width="120"/>
+                    <Button x:Name="btAceptarBusqueda" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,5,0,0" Content="Buscar" Height="20" Width="62" Click="BuscarButton_Click" Style="{StaticResource BotonSecundario}"/>
+                </Grid>
+                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,225,0" >
                     <DataGrid x:Name="DataGrid" d:ItemsSource="{d:SampleData ItemCount=5}"/>
                 </Grid>
 

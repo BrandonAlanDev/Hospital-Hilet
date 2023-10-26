@@ -8,7 +8,7 @@
         Background="#213555"
         WindowStyle="None"
         Margin="0"
-        Title="MainWindow" WindowStartupLocation="CenterScreen" MinHeight="500" MinWidth="800">
+        Title="MainWindow" WindowStartupLocation="CenterScreen" MinHeight="575" MinWidth="800">
     <Grid Background="#213555" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MouseLeftButtonDown="Grid_MouseLeftButtonDown" Margin="0">
         <DockPanel x:Name="Header" Margin="0" Background="#213555" VerticalAlignment="Top" Height="50" >
             <Image x:Name="Logo" Width="49" Height="49" HorizontalAlignment="Left" Margin="5,1,0,1" Source="/View/logo.png"/>

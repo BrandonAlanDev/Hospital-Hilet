@@ -13,9 +13,13 @@
         <DockPanel x:Name="Body" Background="Pink" >
 
             <Grid x:Name="MenuPaciente">
-
-                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,225,0" >
-                    <DataGrid x:Name="DataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" Background="#213555"
+                <Grid Background="#213555" Margin="0,0,225,0" >
+                    <Label Content="Buscar" Foreground="#F0F0F0" FontFamily="Roboto" FontSize="15"/>
+                    <TextBox x:Name="txtBuscar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,6,0,0" TextWrapping="Wrap" Text="" Width="120"/>
+                    <Button x:Name="btAceptarBusqueda" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,5,0,0" Content="Buscar" Height="20" Width="62" Click="BuscarButton_Click" Style="{StaticResource BotonSecundario}"/>
+                </Grid>
+                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,225,0" >
+                    <DataGrid x:Name="DataGridPacientes" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" SelectionChanged="DataGridPacientes_SelectionChanged" Loaded="DataGridPacientes_Loaded" AutoGeneratingColumn="DataGridPacientes_AutoGeneratingColumn" Background="#213555"
                               RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" >
                         <DataGrid.ColumnHeaderStyle>
                             <StaticResource ResourceKey="HeaderGrilla" />
@@ -24,35 +28,61 @@
                 </Grid>
 
                 <Grid x:Name="Botones" Width="225" HorizontalAlignment="Right" Background="#4F709C">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Margin="0,10,0,60">
-                        <Label Content="ID del paciente" FontFamily="Roboto" FontWeight="Medium" FontSize="12" Foreground="#F0F0F0"/>
-                        <Border CornerRadius="7" Background="#213555" BorderBrush="#F0F0F0" BorderThickness="2" Margin="0,0,0,10" >
-                            <TextBox Margin="10,2,10,2" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
-                        </Border>
-                        <Label Content="Nombre del paciente" FontFamily="Roboto" FontWeight="Medium" FontSize="12" Foreground="#F0F0F0"/>
-                        <Border CornerRadius="7" Background="#213555" BorderBrush="#F0F0F0" BorderThickness="2" Margin="0,0,0,10" >
-                            <TextBox Margin="10,2,10,2" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
-                        </Border>
-                        <Label Content="DNI del paciente" FontFamily="Roboto" FontWeight="Medium" FontSize="12" Foreground="#F0F0F0"/>
-                        <Border CornerRadius="7" Background="#213555" BorderBrush="#F0F0F0" BorderThickness="2" Margin="0,0,0,10" >
-                            <TextBox Margin="10,2,10,2" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
-                        </Border>
-                        <Label Content="Fecha de Nacimiento" FontFamily="Roboto" FontWeight="Medium" FontSize="12" Foreground="#F0F0F0"/>
-                        <Border CornerRadius="7" Background="#213555" BorderBrush="#F0F0F0" BorderThickness="2" Margin="0,0,0,10" >
-                            <TextBox Margin="10,2,10,2" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
-                        </Border>
-                        <Label Content="Direccion" FontFamily="Roboto" FontWeight="Medium" FontSize="12" Foreground="#F0F0F0"/>
-                        <Border CornerRadius="7" Background="#213555" BorderBrush="#F0F0F0" BorderThickness="2" Margin="0,0,0,10" >
-                            <TextBox Margin="10,2,10,2" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
-                        </Border>
-                        <Label Content="E-Mail" FontFamily="Roboto" FontWeight="Medium" FontSize="12" Foreground="#F0F0F0"/>
-                        <Border CornerRadius="7" Background="#213555" BorderBrush="#F0F0F0" BorderThickness="2" Margin="0,0,0,10" >
-                            <TextBox Margin="10,2,10,2" Background="Transparent" BorderBrush="Transparent" IsEnabled="False"/>
-                        </Border>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="225" Margin="0,10,0,60">
+                        <StackPanel x:Name="TxtBoxes" IsEnabled="False" Width="225" HorizontalAlignment="Left" Background="Transparent">
+                            <DockPanel>
+                                <Label Content="Nombre" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtNombre" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Apellido" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtApellido" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Apellido" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="DNI" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtDni" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Dni" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Email" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtEmail" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Nacimiento" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtFecha_De_Nacimiento"  HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Fecha De Nacimiento" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Teléfono" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtTelefono" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Telefono" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Calle" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtCalle" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Calle" VerticalAlignment="Top" />
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Numero" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtNro" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Nro" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Piso" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtPiso" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Piso" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Localidad" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtLocalidad" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Localidad" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Codigo Postal" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <TextBox x:Name="txtCodPostas" HorizontalAlignment="Right" Width="130" Margin="0,6,10,0" TextWrapping="Wrap" Text="Codigo Postal" VerticalAlignment="Top"/>
+                            </DockPanel>
+                            <DockPanel x:Name="BotonesAceptar_Canlar" VerticalAlignment="Bottom" Margin="0,30">
+                                <Button x:Name="btAceptar" Content="Aceptar" Margin="5" Width="62" Click="btAceptar_Click"/>
+                                <Button x:Name="btCancelar" Content="Cancelar" Margin="5" Width="62" Click="btCancelar_Click"/>
+                            </DockPanel>
+                        </StackPanel>
                     </StackPanel>
-                    <Button x:Name="btnAltaPaciente" Content="Alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,50" Height="30" Width="70" Style="{StaticResource BotonPrimario}" />
-                    <Button x:Name="btnModificarPaciente" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonSecundario}" IsEnabled="False"/>
-                    <Button x:Name="btnBajaPaciente" Content="Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,10" Height="30" Width="70" Style="{StaticResource BotonSalir}" IsEnabled="False" />
+                    <Button x:Name="btAgregar" Content="+ Alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,50" Height="30" Width="70" Style="{StaticResource BotonPrimario}" />
+                    <Button x:Name="btModificar" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonSecundario}" IsEnabled="False"/>
+                    <Button x:Name="btEliminar" Content="- Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,10" Height="30" Width="70" Style="{StaticResource BotonSalir}" IsEnabled="False" />
                     <Button x:Name="btnImprimirPaciente" Content="Imprimir Datos" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="100" Style="{StaticResource BotonSecundario}" IsEnabled="False"/>
                 </Grid>
             </Grid>
