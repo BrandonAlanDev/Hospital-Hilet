@@ -13,19 +13,15 @@
         <DockPanel x:Name="Body" Background="Pink" >
 
             <Grid x:Name="MenuPracticas">
-                <Grid Width="125" Background="#4F709C" HorizontalAlignment="Left">
-                    <StackPanel>
-
-                    </StackPanel>
-                </Grid>
-
-                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="125,0,150,0">
+                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,225,0">
                     <DataGrid x:Name="DataGrid" d:ItemsSource="{d:SampleData ItemCount=5}"/>
                 </Grid>
 
-                <Grid x:Name="Botones" Width="150" HorizontalAlignment="Right" Background="#FFFFFF">
-                    <Button Content="Button" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10" Height="91" Width="100"/>
-
+                <Grid x:Name="Botones" Width="225" HorizontalAlignment="Right" Background="#4F709C">
+                    <Button x:Name="btnAltaPaciente" Content="Alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,50" Height="30" Width="70" Style="{StaticResource BotonPrimario}" />
+                    <Button x:Name="btnModificarPaciente" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False"/>
+                    <Button x:Name="btnBajaPaciente" Content="Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,10" Height="30" Width="70" Style="{StaticResource BotonSalir}" IsEnabled="False" />
+                    <Button x:Name="btnImprimirPaciente" Content="Imprimir Datos" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False"/>
                 </Grid>
             </Grid>
 

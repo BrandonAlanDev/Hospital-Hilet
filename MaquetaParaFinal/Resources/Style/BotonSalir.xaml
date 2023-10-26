@@ -17,6 +17,10 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="BordeBoton" Property="Background" Value="#FF6969"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="BordeBoton" Property="Background" Value="#888888"/>
+                            <Setter Property="Foreground" Value="#CCCCCC"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
