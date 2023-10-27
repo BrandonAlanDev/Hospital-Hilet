@@ -24,6 +24,9 @@
                         <DataGrid.ColumnHeaderStyle>
                             <StaticResource ResourceKey="HeaderGrilla" />
                         </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <StaticResource ResourceKey="CeldaSeleccionada" />
+                        </DataGrid.CellStyle>
                     </DataGrid>
                 </Grid>
 
