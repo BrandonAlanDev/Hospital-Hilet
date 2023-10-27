@@ -70,14 +70,14 @@ namespace MaquetaParaFinal.Clases
                         "pra.Nombre_Practica, " +
                         "tip.Nombre_Tipo_De_Muestra " +
                         "FROM PracticasxIngresos AS praxIn " +
-                        "INNER JOIN Ingresos AS i ON praxIn.Fk_Id_Ingresos = i.Pk_Id_Ingresos " +
-                        "INNER JOIN Pacientes AS pa ON i.Fk_Id_Paciente = pa.Pk_Id_Pacientes " +
-                        "INNER JOIN Profesionales AS pro ON pro.Pk_Id_Profesionales = i.Fk_Id_Profesionales " +
-                        "INNER JOIN Practicas AS pra ON praxIn.Fk_Id_Practicas = pra.Pk_Id_Practicas " +
-                        "INNER JOIN Especialidades AS esp ON pra.Fk_Id_Especialidades = esp.Pk_Id_Especialidades " +
-                        "INNER JOIN TiposDeMuestras AS tip ON pra.Fk_Id_Tipos_De_Muestra = tip.Pk_Id_Tipos_De_Muestra " +
-                        "INNER JOIN PersonalLaboratorio AS perL ON perL.Fk_Id_Especialidades = esp.Pk_Id_Especialidades " +
-                        "INNER JOIN Categorias AS cat ON perL.Fk_Id_Categorias = cat.Pk_Id_Categorias;";
+                            "INNER JOIN Ingresos AS i ON praxIn.Fk_Id_Ingresos = i.Pk_Id_Ingresos " +
+                            "INNER JOIN Pacientes AS pa ON i.Fk_Id_Paciente = pa.Pk_Id_Pacientes " +
+                            "INNER JOIN Profesionales AS pro ON pro.Pk_Id_Profesionales = i.Fk_Id_Profesionales " +
+                            "INNER JOIN Practicas AS pra ON praxIn.Fk_Id_Practicas = pra.Pk_Id_Practicas " +
+                            "INNER JOIN Especialidades AS esp ON pra.Fk_Id_Especialidades = esp.Pk_Id_Especialidades " +
+                            "INNER JOIN TiposDeMuestras AS tip ON pra.Fk_Id_Tipos_De_Muestra = tip.Pk_Id_Tipos_De_Muestra " +
+                            "INNER JOIN PersonalLaboratorio AS perL ON perL.Fk_Id_Especialidades = esp.Pk_Id_Especialidades " +
+                            "INNER JOIN Categorias AS cat ON perL.Fk_Id_Categorias = cat.Pk_Id_Categorias;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -94,9 +94,9 @@ namespace MaquetaParaFinal.Clases
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
                     "e.Nombre_Especialidad AS Especialidades " +
                     "FROM Practicas AS p " +
-                    "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
-                    "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
-                    "ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
+                        "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
+                        "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
+                            "ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -107,16 +107,16 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = "SELECT i.Pk_Id_Ingresos" +
+                string consulta = "SELECT i.Pk_Id_Ingresos AS ID" +
                     "p.Nombre_Paciente AS Paciente, " +
                     "p.Apellido_Paciente AS Apellido, " +
                     "p.Dni, i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
                     "i.Fecha_Retiro AS 'Fecha De Retiro', " +
                     "pro.Nombre_Profesional AS Medico, " +
                     "pro.Apellido_Profesional AS 'Apellido Medico' FROM Ingresos AS i " +
-                    "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
-                    "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
-                    "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
+                        "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
+                        "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
+                            "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -137,17 +137,17 @@ namespace MaquetaParaFinal.Clases
                     $"Nombre_Localidad AS Localidad, " +
                     $"Codigo_Postal AS 'Codigo Postal' " +
                     $"FROM Pacientes INNER JOIN Localidades ON Fk_Id_Localidades=Pk_Id_Localidades " +
-                    $"WHERE LOWER(Nombre_Paciente) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Apellido_Paciente) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Fecha_De_Nacimiento) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Dni) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Email) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Telefono) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Calle) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Numero) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Piso) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Nombre_Localidad) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Codigo_Postal) LIKE '%{buscar}%';";
+                        $"WHERE LOWER(Nombre_Paciente) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Apellido_Paciente) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Fecha_De_Nacimiento) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Dni) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Email) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Telefono) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Calle) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Numero) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Piso) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Nombre_Localidad) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Codigo_Postal) LIKE '%{buscar}%';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -164,11 +164,11 @@ namespace MaquetaParaFinal.Clases
                     $"Apellido_Profesional AS Apellido," +
                     $"Matricula, " +
                     $"Nombre_Servicio AS Servicio FROM Profesionales " +
-                    $"INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios " +
-                    $"WHERE LOWER(Nombre_Profesional) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Apellido_Profesional) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Matricula) LIKE '%{buscar}%' OR " +
-                    $"LOWER(Nombre_Servicio) LIKE '%{buscar}%';";
+                        $"INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios " +
+                            $"WHERE LOWER(Nombre_Profesional) LIKE '%{buscar}%' OR " +
+                                $"LOWER(Apellido_Profesional) LIKE '%{buscar}%' OR " +
+                                $"LOWER(Matricula) LIKE '%{buscar}%' OR " +
+                                $"LOWER(Nombre_Servicio) LIKE '%{buscar}%';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -186,13 +186,43 @@ namespace MaquetaParaFinal.Clases
                     $"t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra'," +
                     $"e.Nombre_Especialidad AS Especialidades " +
                     $"FROM Practicas AS p " +
-                    $"INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
-                    $"INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades" +
-                    $"WHERE LOWER(p.Nombre_Practica) LIKE '%{buscar}%' OR " +
-                    $"LOWER(p.Fecha_Realizacion) LIKE '%{buscar}%' OR " +
-                    $"LOWER(t.Nombre_Tipo_De_Muestra) LIKE '%{buscar}%' OR " +
-                    $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%'" +
-                    $"ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
+                        $"INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
+                        $"INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades" +
+                            $"WHERE LOWER(p.Nombre_Practica) LIKE '%{buscar}%' OR " +
+                                $"LOWER(p.Fecha_Realizacion) LIKE '%{buscar}%' OR " +
+                                $"LOWER(t.Nombre_Tipo_De_Muestra) LIKE '%{buscar}%' OR " +
+                                $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%'" +
+                                $"ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+        public DataTable BuscarEnTablaIngresos(string buscar)
+        {
+            buscar = buscar.ToLower();
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT i.Pk_Id_Ingresos AS ID, " +
+                    $"p.Nombre_Paciente AS Paciente, " +
+                    $"p.Apellido_Paciente AS Apellido," +
+                    $"p.Dni, " +
+                    $"i.Fecha_Ingreso AS 'Fecha De Ingreso'," +
+                    $"i.Fecha_Retiro AS 'Fecha De Retiro'," +
+                    $"pro.Nombre_Profesional AS Medico, " +
+                    $"pro.Apellido_Profesional AS 'Apellido Medico' " +
+                    $"FROM Ingresos AS i" +
+                        $"INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
+                        $"INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente  " +
+                            $"WHERE LOWER(p.Nombre_Paciente) LIKE '%{buscar}%' OR " +
+                                $"LOWER(p.Apellido_Paciente) LIKE '%{buscar}%' OR " +
+                                $"LOWER(p.Dni) LIKE '%{buscar}%' OR " +
+                                $"LOWER(i.Fecha_Ingreso) LIKE '%{buscar}%' OR " +
+                                $"LOWER(i.Fecha_Retiro) LIKE '%{buscar}%' OR " +
+                                $"LOWER(pro.Nombre_Profesional) LIKE '%{buscar}%'" +
+                                $"LOWER(pro.Apellido_Profesional) LIKE '%{buscar}%'" +
+                                $"ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico'";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
