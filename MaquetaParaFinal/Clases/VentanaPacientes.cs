@@ -50,26 +50,15 @@ namespace MaquetaParaFinal.View
                 }
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TxtBoxes.IsEnabled = true;
-        }
 
-        private void btCancelar_Click(object sender, RoutedEventArgs e)
+        private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
         {
-            TxtBoxes.IsEnabled = false;
+            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
-
-        private void btAceptar_Click(object sender, RoutedEventArgs e)
+        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //GARGAR LOCALIDAD Y EXTRAER LA FK
-            // conectar.AgregarPaciente(txtNombre,txtApellido,txtFecha_De_Nacimiento,txtDni,txtEmail,txtTelefono,txtCalle,txtNro,txtPiso,"SinHacer");
-        }
-        private void CargarSeleccion(int num = 0)
-        {
-            if (DataGridPacientes.SelectedItem != null && DataGridPacientes.Items.Count >= num)
+            if (DataGridPacientes.SelectedItem != null)
             {
-                DataGridPacientes.SelectedIndex = num;
                 DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
                 txtNombre.Text = row["Nombre"].ToString();
                 txtApellido.Text = row["Apellido"].ToString();
@@ -84,48 +73,11 @@ namespace MaquetaParaFinal.View
                 txtPiso.Text = row["Piso"].ToString();
             }
         }
-        private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
+        private void ClickBuscar(object sender, RoutedEventArgs e) 
         {
-            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
-        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
-            CargarSeleccion(int.Parse(row["ID"].ToString()));
-        }
-        private void ClickBuscar(object sender, RoutedEventArgs e) => Buscar(txtBuscar.Text);
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter) Buscar(txtBuscar.Text);
-        }
-        private void Buscar(string filtro)
-        {
-            if (string.IsNullOrEmpty(filtro))
-            {
-                return;
-            }
-
-            foreach (DataRowView columna in DataGridPacientes.ItemsSource)
-            {
-                int mostrarFila = -1;
-
-                for (int i = 0; i < columna.Row.ItemArray.Length; i++)
-                {
-                    if (columna.Row.ItemArray[i] is string valorCelda)
-                    { // "StringComparison.OrdinalIgnoreCase" es para que compare pero ignorando las diferencias de mayusculas y minusculas
-                        if (valorCelda.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0) // Aca compara el valor de la celda con lo buscando
-                        {
-                            mostrarFila = int.Parse(columna.Row["ID"].ToString());
-                            break;
-                        }
-                    }
-                }
-                if (mostrarFila != -1) 
-                {
-                    DataGridPacientes.SelectedIndex = mostrarFila;
-                    CargarSeleccion(mostrarFila);
-                }
-            }
         }
     }
 }
