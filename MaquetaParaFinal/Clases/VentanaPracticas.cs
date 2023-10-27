@@ -12,9 +12,9 @@ namespace MaquetaParaFinal.View
     public partial class Practicas : Page
     {
         Conectar conectar = new Conectar();
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        private void DataGridPacticas_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+            DataGridPacticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
         }
 
     }

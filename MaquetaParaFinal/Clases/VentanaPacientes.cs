@@ -88,12 +88,10 @@ namespace MaquetaParaFinal.View
         {
             DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
-
-
         private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
-            CargarSeleccion(int.Parse(row["ID"].ToString()) - 1); //-1 Porque el Datagrid comienza en 0 y el id en 1 (ya le dije al ale que inicie en 0)
+            CargarSeleccion(int.Parse(row["ID"].ToString()));
         }
         private void ClickBuscar(object sender, RoutedEventArgs e) => Buscar(txtBuscar.Text);
         private void EnterBuscar(object sender, KeyEventArgs e)
@@ -117,7 +115,7 @@ namespace MaquetaParaFinal.View
                     { // "StringComparison.OrdinalIgnoreCase" es para que compare pero ignorando las diferencias de mayusculas y minusculas
                         if (valorCelda.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0) // Aca compara el valor de la celda con lo buscando
                         {
-                            mostrarFila = int.Parse(columna.Row["ID"].ToString())-1;
+                            mostrarFila = int.Parse(columna.Row["ID"].ToString());
                             break;
                         }
                     }
