@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.View.Agregar;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,11 +27,13 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
-        private void DataGridPacientes_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (e.Column.Header.ToString() == "ID") 
+            System.Media.SystemSounds.Beep.Play();
+            MessageBoxResult resultado = MessageBox.Show("¿Estás seguro de que deseas eliminar este elemento?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (resultado == MessageBoxResult.Yes)
             {
-                e.Column.Visibility = Visibility.Hidden;
+                // Aquí va el código para eliminar el elemento
             }
         }
     }

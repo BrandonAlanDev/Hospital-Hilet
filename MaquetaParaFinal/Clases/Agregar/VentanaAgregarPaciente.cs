@@ -17,11 +17,9 @@ namespace MaquetaParaFinal.View.Agregar
             { "Dni", "txtDni" },
             { "Email", "txtEmail" },
             { "Fecha De Nacimiento", "txtFecha_De_Nacimiento" },
-            { "Telefono", "txtTelefono" },
+            { "Teléfono", "txtTelefono" },
             { "Calle", "txtCalle" },
             { "Nro", "txtNro" },
-            { "Localidad", "txtLocalidad" },
-            { "Codigo Postal", "txtCodPostas" },
             { "Piso", "txtPiso" }
         };
 
@@ -41,11 +39,31 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 if (string.IsNullOrWhiteSpace(textBox.Text))
                 {
-                    textBox.Text = Dicpacientes.FirstOrDefault(pair => pair.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
+                    textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
                 }
             }
         }
-
-
+        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            if (TodosLosCamposLlenos()) 
+            {
+                if (txtEmail.Text == "Email") txtEmail.Text = "";
+                if (txtTelefono.Text == "Teléfono") txtTelefono.Text = "";
+                conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, 0);
+                MessageBox.Show("Agregado Correctamente");
+                this.Close();
+            }
+            MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+        private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
+        {
+            return txtNombre.Text != "Nombre" &&
+                   txtApellido.Text != "Apellido" &&
+                   txtFecha_De_Nacimiento.Text != "Fecha De Nacimiento" &&
+                   txtDni.Text != "Dni" &&
+                   txtCalle.Text != "Calle" &&
+                   txtNro.Text != "Nro" &&
+                   txtPiso.Text != "Piso";
+        }
     }
 }
