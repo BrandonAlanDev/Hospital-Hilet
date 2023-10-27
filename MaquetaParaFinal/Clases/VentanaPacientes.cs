@@ -61,8 +61,12 @@ namespace MaquetaParaFinal.View
                 txtPiso.Text = row["Piso"].ToString();
             }
         }
-        private void ClickBuscar(object sender, RoutedEventArgs e) 
+
+
+        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
+            CargarSeleccion(int.Parse(row["ID"].ToString()) - 1); //-1 Porque el Datagrid comienza en 0 y el id en 1 (ya le dije al ale que inicie en 0)
         }
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
