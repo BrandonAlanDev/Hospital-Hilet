@@ -32,18 +32,8 @@ namespace MaquetaParaFinal.View
         {
             TxtBoxes.IsEnabled = false;
         }
-
-        private void btAceptar_Click(object sender, RoutedEventArgs e)
-        {
-            //GARGAR LOCALIDAD Y EXTRAER LA FK
-            // conectar.AgregarPaciente(txtNombre,txtApellido,txtFecha_De_Nacimiento,txtDni,txtEmail,txtTelefono,txtCalle,txtNro,txtPiso,"SinHacer");
-        }
-        private void CargarSeleccion(int num = 0)
-        {
-            TxtBoxes.IsEnabled = false;
-        }
-
-        private void btAceptar_Click(object sender, RoutedEventArgs e)
+       
+        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGridPacientes.SelectedItem != null)
             {
@@ -61,43 +51,33 @@ namespace MaquetaParaFinal.View
                 txtPiso.Text = row["Piso"].ToString();
             }
         }
-        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ClickBuscar(object sender, RoutedEventArgs e) 
         {
-            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
-            CargarSeleccion(int.Parse(row["ID"].ToString()));
+            DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
         }
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter) Buscar(txtBuscar.Text);
+            DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
         }
-        private void Buscar(string filtro)
+
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(filtro))
+            AgregarPaciente agregarPaciente = new AgregarPaciente();
+            agregarPaciente.Show();
+        }
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            System.Media.SystemSounds.Beep.Play();
+            MessageBoxResult resultado = MessageBox.Show("¿Estás seguro de que deseas eliminar este elemento?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (resultado == MessageBoxResult.Yes)
             {
-                return;
+                // Aquí va el código para eliminar el elemento
             }
+        }
 
-            foreach (DataRowView columna in DataGridPacientes.ItemsSource)
-            {
-                int mostrarFila = -1;
+        private void txtBuscar_TouchEnter(object sender, TouchEventArgs e)
+        {
 
-                for (int i = 0; i < columna.Row.ItemArray.Length; i++)
-                {
-                    if (columna.Row.ItemArray[i] is string valorCelda)
-                    { // "StringComparison.OrdinalIgnoreCase" es para que compare pero ignorando las diferencias de mayusculas y minusculas
-                        if (valorCelda.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0) // Aca compara el valor de la celda con lo buscando
-                        {
-                            mostrarFila = int.Parse(columna.Row["ID"].ToString());
-                            break;
-                        }
-                    }
-                }
-                if (mostrarFila != -1) 
-                {
-                    DataGridPacientes.SelectedIndex = mostrarFila;
-                    CargarSeleccion(mostrarFila);
-                }
-            }
         }
     }
 }
