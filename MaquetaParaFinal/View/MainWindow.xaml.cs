@@ -23,7 +23,7 @@ namespace MaquetaParaFinal
         public MainWindow()
         {
             InitializeComponent();
-            FrameNavegacion.NavigationService.Navigate(new Uri("View/Index.xaml", UriKind.Relative));
+            Loaded += LoadHome;
         }
     }
 }
