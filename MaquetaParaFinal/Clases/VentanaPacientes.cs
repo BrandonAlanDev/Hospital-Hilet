@@ -1,4 +1,5 @@
 ﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +16,13 @@ namespace MaquetaParaFinal.View
     public partial class Pacientes : Page
     {
         Conectar conectar = new Conectar();
+        private void DataGridPacientes_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "ID")
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
+        }
         private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
         {
             TxtBoxes.IsEnabled = true;
@@ -55,6 +63,11 @@ namespace MaquetaParaFinal.View
         }
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
+        }
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPaciente agregarPaciente = new AgregarPaciente();
+            agregarPaciente.Show();
         }
     }
 }

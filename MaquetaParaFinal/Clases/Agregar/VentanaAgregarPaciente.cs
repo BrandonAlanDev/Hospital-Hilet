@@ -51,11 +51,11 @@ namespace MaquetaParaFinal.View.Agregar
                 conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, 0);
                 MessageBox.Show("Agregado Correctamente");
                 this.Close();
-                return;
             }
+            System.Media.SystemSounds.Beep.Play();
             MessageBox.Show("Error");
         }
-        private bool TodosLosCamposLlenos()
+        private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
         {
             return txtNombre.Text != "Nombre" &&
                    txtApellido.Text != "Apellido" &&

@@ -27,18 +27,5 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
-        private void DataGridPacientes_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            if (e.Column.Header.ToString() == "ID") 
-            {
-                e.Column.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void btAgregar_Click(object sender, RoutedEventArgs e)
-        {
-            AgregarPaciente agregarPaciente = new AgregarPaciente();
-            agregarPaciente.Show();
-        }
     }
 }
