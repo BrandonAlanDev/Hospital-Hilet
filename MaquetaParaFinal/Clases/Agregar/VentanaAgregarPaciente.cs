@@ -17,7 +17,7 @@ namespace MaquetaParaFinal.View.Agregar
             { "Dni", "txtDni" },
             { "Email", "txtEmail" },
             { "Fecha De Nacimiento", "txtFecha_De_Nacimiento" },
-            { "Telefono", "txtTelefono" },
+            { "Teléfono", "txtTelefono" },
             { "Calle", "txtCalle" },
             { "Nro", "txtNro" },
             { "Piso", "txtPiso" }
@@ -48,12 +48,12 @@ namespace MaquetaParaFinal.View.Agregar
             if (TodosLosCamposLlenos()) 
             {
                 if (txtEmail.Text == "Email") txtEmail.Text = "";
+                if (txtTelefono.Text == "Teléfono") txtTelefono.Text = "";
                 conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, 0);
                 MessageBox.Show("Agregado Correctamente");
                 this.Close();
             }
-            System.Media.SystemSounds.Beep.Play();
-            MessageBox.Show("Error");
+            MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
         {
@@ -61,7 +61,6 @@ namespace MaquetaParaFinal.View.Agregar
                    txtApellido.Text != "Apellido" &&
                    txtFecha_De_Nacimiento.Text != "Fecha De Nacimiento" &&
                    txtDni.Text != "Dni" &&
-                   txtTelefono.Text != "Telefono" &&
                    txtCalle.Text != "Calle" &&
                    txtNro.Text != "Nro" &&
                    txtPiso.Text != "Piso";
