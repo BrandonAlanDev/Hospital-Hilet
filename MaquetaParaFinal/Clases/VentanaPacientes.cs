@@ -40,6 +40,11 @@ namespace MaquetaParaFinal.View
         }
         private void CargarSeleccion(int num = 0)
         {
+            
+        }
+
+        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             if (DataGridPacientes.SelectedItem != null)
             {
                 DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
@@ -56,14 +61,13 @@ namespace MaquetaParaFinal.View
                 txtPiso.Text = row["Piso"].ToString();
             }
         }
-
-
-        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ClickBuscar(object sender, RoutedEventArgs e) 
         {
         }
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
         }
+
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
             AgregarPaciente agregarPaciente = new AgregarPaciente();
