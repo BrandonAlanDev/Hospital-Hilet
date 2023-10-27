@@ -15,22 +15,11 @@ namespace MaquetaParaFinal.View
     public partial class Pacientes : Page
     {
         Conectar conectar = new Conectar();
+        private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
+        }
        
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TxtBoxes.IsEnabled = true;
-        }
-
-        private void btCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            TxtBoxes.IsEnabled = false;
-        }
-
-        private void btAceptar_Click(object sender, RoutedEventArgs e)
-        {
-            //GARGAR LOCALIDAD Y EXTRAER LA FK
-            // conectar.AgregarPaciente(txtNombre,txtApellido,txtFecha_De_Nacimiento,txtDni,txtEmail,txtTelefono,txtCalle,txtNro,txtPiso,"SinHacer");
-        }
         private void CargarSeleccion(int num = 0)
         {
             if (DataGridPacientes.SelectedItem != null && DataGridPacientes.Items.Count >= num)
@@ -50,11 +39,6 @@ namespace MaquetaParaFinal.View
                 txtPiso.Text = row["Piso"].ToString();
             }
         }
-        private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
-        {
-            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
-        }
-
 
         private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

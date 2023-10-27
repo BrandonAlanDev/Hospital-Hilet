@@ -20,8 +20,6 @@ namespace MaquetaParaFinal.View.Agregar
             { "Telefono", "txtTelefono" },
             { "Calle", "txtCalle" },
             { "Nro", "txtNro" },
-            { "Localidad", "txtLocalidad" },
-            { "Codigo Postal", "txtCodPostas" },
             { "Piso", "txtPiso" }
         };
 
@@ -41,11 +39,32 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 if (string.IsNullOrWhiteSpace(textBox.Text))
                 {
-                    textBox.Text = Dicpacientes.FirstOrDefault(pair => pair.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
+                    textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
                 }
             }
         }
-
-
+        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            if (TodosLosCamposLlenos()) 
+            {
+                if (txtEmail.Text == "Email") txtEmail.Text = "";
+                conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, 0);
+                MessageBox.Show("Agregado Correctamente");
+                this.Close();
+                return;
+            }
+            MessageBox.Show("Error");
+        }
+        private bool TodosLosCamposLlenos()
+        {
+            return txtNombre.Text != "Nombre" &&
+                   txtApellido.Text != "Apellido" &&
+                   txtFecha_De_Nacimiento.Text != "Fecha De Nacimiento" &&
+                   txtDni.Text != "Dni" &&
+                   txtTelefono.Text != "Telefono" &&
+                   txtCalle.Text != "Calle" &&
+                   txtNro.Text != "Nro" &&
+                   txtPiso.Text != "Piso";
+        }
     }
 }
