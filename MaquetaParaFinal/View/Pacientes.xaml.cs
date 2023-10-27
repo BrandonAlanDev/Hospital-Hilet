@@ -55,7 +55,5 @@ namespace MaquetaParaFinal.View
                 e.Column.Visibility = Visibility.Hidden;
             }
         }
-
-        
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MaquetaParaFinal.View
 {
@@ -91,10 +92,14 @@ namespace MaquetaParaFinal.View
 
         private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem; 
+            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
             CargarSeleccion(int.Parse(row["ID"].ToString()) - 1); //-1 Porque el Datagrid comienza en 0 y el id en 1 (ya le dije al ale que inicie en 0)
         }
-
+        private void ClickBuscar(object sender, RoutedEventArgs e) => Buscar(txtBuscar.Text);
+        private void EnterBuscar(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter) Buscar(txtBuscar.Text);
+        }
         private void Buscar(string filtro)
         {
             if (string.IsNullOrEmpty(filtro))
