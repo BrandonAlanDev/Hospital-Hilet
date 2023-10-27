@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.View.Agregar;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -32,6 +33,12 @@ namespace MaquetaParaFinal.View
             {
                 e.Column.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPaciente agregarPaciente = new AgregarPaciente();
+            agregarPaciente.Show();
         }
     }
 }

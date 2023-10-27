@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace MaquetaParaFinal.View.Agregar
 {
     public partial class AgregarPaciente : Window
     {
+        Conectar conectar = new Conectar();
         public AgregarPaciente()
         {
             InitializeComponent();
@@ -41,6 +43,19 @@ namespace MaquetaParaFinal.View.Agregar
             txtCalle.LostFocus += RestaurarNombrePorDefecto;
             txtLocalidad.LostFocus += RestaurarNombrePorDefecto;
             txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
+        }
+
+        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed) 
+            {
+                DragMove();
+            }
         }
     }
 }

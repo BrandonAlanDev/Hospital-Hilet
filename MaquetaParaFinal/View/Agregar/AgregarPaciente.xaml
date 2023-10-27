@@ -9,7 +9,7 @@
         AllowsTransparency="True"
         Background="Transparent"
         Title="AgregarPaciente" Height="550" Width="350">
-    <Grid>
+    <Grid x:Name="Principal" MouseLeftButtonDown="Principal_MouseLeftButtonDown" >
         <Image x:Name="Logo" Width="40" Height="40" HorizontalAlignment="Left" Margin="-7,-7,0,0"  VerticalAlignment="Top" Source="/View/Agregar/logo.png"/>
         <Border Margin="5,5,0,0" CornerRadius="45" Background="#4F709C" BorderBrush="#8fc643" BorderThickness="5">
             <StackPanel>
@@ -83,8 +83,8 @@
                         </DockPanel>
                     </StackPanel>
                 <DockPanel Width="250" Height="35" Margin="0,15,0,5">
-                    <Button x:Name="btnAceptarAgPaciente" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}"/>
-                    <Button x:Name="btnCancelarAgPaciente" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}"/>
+                    <Button x:Name="btnAceptarAgPaciente" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgPaciente_Click"/>
+                    <Button x:Name="btnCancelarAgPaciente" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarAgPaciente_Click"/>
                 </DockPanel>
             </StackPanel>
         </Border>
