@@ -121,6 +121,35 @@ namespace MaquetaParaFinal.Clases
             }
 
         }
+        public DataTable BuscarEnTablaPacientes(string buscar)
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT Pk_Id_Pacientes AS ID, " +
+                    $"Nombre_Paciente AS Nombre, " +
+                    $"Apellido_Paciente AS Apellido, " +
+                    $"Fecha_De_Nacimiento AS 'Fecha De Nacimiento'," +
+                    $"Dni, Email, Telefono, Calle, Numero, Piso, " +
+                    $"Nombre_Localidad AS Localidad, " +
+                    $"Codigo_Postal AS 'Codigo Postal' " +
+                    $"FROM Pacientes INNER JOIN Localidades ON Fk_Id_Localidades=Pk_Id_Localidades " +
+                    $"WHERE LOWER(Nombre_Paciente) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Apellido_Paciente) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Fecha_De_Nacimiento) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Dni) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Email) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Telefono) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Calle) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Numero) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Piso) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Nombre_Localidad) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Codigo_Postal) LIKE '%{buscar}%';";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
         public void AgregarPaciente(string nombre,string apellido,string Fecha_De_Nacimiento,string Dni, string Email, string Telefono, string Calle, string Numero, string Piso,int fk_id) 
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
