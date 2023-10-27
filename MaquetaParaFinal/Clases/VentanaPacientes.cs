@@ -14,7 +14,6 @@ namespace MaquetaParaFinal.View
     public partial class Pacientes : Page
     {
         Conectar conectar = new Conectar();
-        private int NumeroFilaId = 0;
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
             { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
@@ -67,7 +66,7 @@ namespace MaquetaParaFinal.View
         }
         private void CargarSeleccion(int num = 0)
         {
-            if (DataGridPacientes.SelectedItem != null && DataGridPacientes.Items.Count >= NumeroFilaId)
+            if (DataGridPacientes.SelectedItem != null && DataGridPacientes.Items.Count >= num)
             {
                 DataGridPacientes.SelectedIndex = num;
                 DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
@@ -92,13 +91,8 @@ namespace MaquetaParaFinal.View
 
         private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
-            NumeroFilaId = int.Parse(row["ID"].ToString()) - 1; //-1 Porque el Datagrid comienza en 0 y el id en 1
-            CargarSeleccion(NumeroFilaId);
-        }
-        private void BuscarButton_Click(object sender, RoutedEventArgs e)
-        {
-            FiltrarDatos(txtBuscar.Text);
+            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem; 
+            CargarSeleccion(int.Parse(row["ID"].ToString()) - 1); //-1 Porque el Datagrid comienza en 0 y el id en 1 (ya le dije al ale que inicie en 0)
         }
 
         private void FiltrarDatos(string filtro)
