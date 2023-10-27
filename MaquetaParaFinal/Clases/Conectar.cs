@@ -39,7 +39,8 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = "SELECT Nombre_Profesional AS Nombre," +
+                string consulta = "SELECT Pk_Id_Profesionales AS ID," +
+                    "Nombre_Profesional AS Nombre," +
                     "Apellido_Profesional AS Apellido,Matricula," +
                     "Nombre_Servicio AS Servicio FROM Profesionales " +
                         "INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios;";
@@ -123,6 +124,7 @@ namespace MaquetaParaFinal.Clases
         }
         public DataTable BuscarEnTablaPacientes(string buscar)
         {
+            buscar = buscar.ToLower();
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 string consulta = $"SELECT Pk_Id_Pacientes AS ID, " +
@@ -144,6 +146,27 @@ namespace MaquetaParaFinal.Clases
                     $"LOWER(Piso) LIKE '%{buscar}%' OR " +
                     $"LOWER(Nombre_Localidad) LIKE '%{buscar}%' OR " +
                     $"LOWER(Codigo_Postal) LIKE '%{buscar}%';";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+        public DataTable BuscarEnTablaProfesionales(string buscar)
+        {
+            buscar = buscar.ToLower();
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT Pk_Id_Profesionales AS ID, " +
+                    $"Nombre_Profesional AS Nombre, " +
+                    $"Apellido_Profesional AS Apellido," +
+                    $"Matricula, " +
+                    $"Nombre_Servicio AS Servicio FROM Profesionales " +
+                    $"INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios " +
+                    $"WHERE LOWER(Nombre_Profesional) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Apellido_Profesional) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Matricula) LIKE '%{buscar}%' OR " +
+                    $"LOWER(Nombre_Servicio) LIKE '%{buscar}%';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
