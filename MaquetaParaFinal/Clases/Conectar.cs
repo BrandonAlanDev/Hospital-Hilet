@@ -88,7 +88,8 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = "SELECT p.Nombre_Practica AS Nombre, " +
+                string consulta = "SELECT p.Pk_Id_Practicas AS ID" +
+                    "p.Nombre_Practica AS Nombre, " +
                     "p.Fecha_Realizacion AS 'Fecha De Realizacion', " +
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
                     "e.Nombre_Especialidad AS Especialidades " +
@@ -106,7 +107,8 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = "SELECT p.Nombre_Paciente AS Paciente, " +
+                string consulta = "SELECT i.Pk_Id_Ingresos" +
+                    "p.Nombre_Paciente AS Paciente, " +
                     "p.Apellido_Paciente AS Apellido, " +
                     "p.Dni, i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
                     "i.Fecha_Retiro AS 'Fecha De Retiro', " +
@@ -167,6 +169,30 @@ namespace MaquetaParaFinal.Clases
                     $"LOWER(Apellido_Profesional) LIKE '%{buscar}%' OR " +
                     $"LOWER(Matricula) LIKE '%{buscar}%' OR " +
                     $"LOWER(Nombre_Servicio) LIKE '%{buscar}%';";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+        public DataTable BuscarEnTablaPracticas(string buscar)
+        {
+            buscar = buscar.ToLower();
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT Pk_Id_Practicas AS ID, " +
+                    $"p.Nombre_Practica AS Nombre, " +
+                    $"p.Fecha_Realizacion AS 'Fecha De Realizacion'," +
+                    $"t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra'," +
+                    $"e.Nombre_Especialidad AS Especialidades " +
+                    $"FROM Practicas AS p " +
+                    $"INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
+                    $"INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades" +
+                    $"WHERE LOWER(p.Nombre_Practica) LIKE '%{buscar}%' OR " +
+                    $"LOWER(p.Fecha_Realizacion) LIKE '%{buscar}%' OR " +
+                    $"LOWER(t.Nombre_Tipo_De_Muestra) LIKE '%{buscar}%' OR " +
+                    $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%'" +
+                    $"ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
