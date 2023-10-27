@@ -27,5 +27,14 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            System.Media.SystemSounds.Beep.Play();
+            MessageBoxResult resultado = MessageBox.Show("¿Estás seguro de que deseas eliminar este elemento?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (resultado == MessageBoxResult.Yes)
+            {
+                // Aquí va el código para eliminar el elemento
+            }
+        }
     }
 }
