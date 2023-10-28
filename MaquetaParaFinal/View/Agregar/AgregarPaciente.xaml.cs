@@ -57,5 +57,9 @@ namespace MaquetaParaFinal.View.Agregar
                 DragMove();
             }
         }
+
+        private void AgregarPacientes_Loaded(object sender, RoutedEventArgs e)=>CargarLocalidades();
+
+        private void BuscarCodigoPostal(object sender, SelectionChangedEventArgs e)=>CargarCodigoPostal();
     }
 }
