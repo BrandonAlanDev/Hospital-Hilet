@@ -8,6 +8,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
+        WindowStartupLocation="CenterScreen"
         Title="AgregarPaciente" Height="550" Width="350">
     <Grid x:Name="Principal" MouseLeftButtonDown="Principal_MouseLeftButtonDown" >
         <Image x:Name="Logo" Width="40" Height="40" HorizontalAlignment="Left" Margin="-7,-7,0,0"  VerticalAlignment="Top" Source="/View/Agregar/logo.png"/>
@@ -70,16 +71,17 @@
                             </Border>
                         </DockPanel>
                         <DockPanel>
-                        <Label Content="Localidad" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch"  Background="#213555" CornerRadius="9">
-                                <TextBox x:Name="txtLocalidad" Margin="5,0,0,0" TextWrapping="Wrap" Text="Localidad" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
-                            </Border>
+                            <Label Content="Localidad" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                            <ComboBox Margin="0,6,10,0"  HorizontalAlignment="Stretch"  x:Name="txtLocalidad"  Style="{StaticResource Combos}">
+                                <ComboBoxItem Content="item 1"/>
+                                <ComboBoxItem Content="item 2"/>
+                                <ComboBoxItem Content="item 3"/>
+                            </ComboBox>
                         </DockPanel>
                         <DockPanel>
-                        <Label Content="Codigo Postal" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch"  Background="#213555" CornerRadius="9">
-                                <TextBox x:Name="txtCodPostas" Margin="5,0,0,0" TextWrapping="Wrap" Text="Codigo Postal" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
-                            </Border>
+                            <Label Content="Codigo Postal" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                            <ComboBox x:Name="txtCodPostas" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}" IsEnabled="False">
+                            </ComboBox>
                         </DockPanel>
                     </StackPanel>
                 <DockPanel Width="250" Height="35" Margin="0,15,0,5">
