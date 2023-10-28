@@ -1,4 +1,5 @@
-﻿using MaquetaParaFinal.View.Agregar;
+﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,6 +27,6 @@ namespace MaquetaParaFinal.View
         {
             InitializeComponent();
         }
-        
+
     }
 }

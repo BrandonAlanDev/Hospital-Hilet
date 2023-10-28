@@ -67,12 +67,24 @@ namespace MaquetaParaFinal.View
         }
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
-            System.Media.SystemSounds.Beep.Play();
-            MessageBoxResult resultado = MessageBox.Show("¿Estás seguro de que deseas eliminar este elemento?\\||||||||||||||||||||                                 ", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (resultado == MessageBoxResult.Yes)
+            if (txtNombre.Text != "Nombre")
             {
-                // Aquí va el código para eliminar el elemento
+                System.Media.SystemSounds.Beep.Play();
+                MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar a {txtNombre.Text} {txtApellido.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    // Aquí va el código para eliminar si lo tuviera (ponete a laburar alejandro)
+                }
             }
+        }
+        private void btnImprimirPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtNombre.Text != "Nombre") 
+            { 
+                Impresora impresora = new Impresora();
+                impresora.ImprimirDocumento();
+            }
+            
         }
     }
 }
