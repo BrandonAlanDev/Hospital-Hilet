@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Input;
 
 namespace MaquetaParaFinal.View.Agregar
 {
@@ -41,6 +42,18 @@ namespace MaquetaParaFinal.View.Agregar
                 {
                     textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
                 }
+            }
+        }
+        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
             }
         }
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
