@@ -80,7 +80,7 @@ namespace MaquetaParaFinal.View.Agregar
                 {
                     connection.Open();
 
-                    string query = "SELECT Nombre_Localidad AS Localidad FROM Localidades";
+                    string query = "SELECT DISTINCT Nombre_Localidad AS Localidad FROM Localidades";
                     SqlCommand cmd = new SqlCommand(query, connection);
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
