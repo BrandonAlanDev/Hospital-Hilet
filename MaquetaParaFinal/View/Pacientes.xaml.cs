@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.View.Agregar;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -24,35 +25,15 @@ namespace MaquetaParaFinal.View
         public Pacientes()
         {
             InitializeComponent();
-            txtNombre.GotFocus += LimpiarTxt;
-            txtApellido.GotFocus += LimpiarTxt;
-            txtDni.GotFocus += LimpiarTxt;
-            txtEmail.GotFocus += LimpiarTxt;
-            txtFecha_De_Nacimiento.GotFocus += LimpiarTxt;
-            txtTelefono.GotFocus += LimpiarTxt;
-            txtNro.GotFocus += LimpiarTxt;
-            txtPiso.GotFocus += LimpiarTxt;
-            txtCalle.GotFocus += LimpiarTxt;
-            txtLocalidad.GotFocus += LimpiarTxt;
-            txtCodPostas.GotFocus += LimpiarTxt;
-            txtNombre.LostFocus += RestaurarNombrePorDefecto;
-            txtApellido.LostFocus += RestaurarNombrePorDefecto;
-            txtDni.LostFocus += RestaurarNombrePorDefecto;
-            txtEmail.LostFocus += RestaurarNombrePorDefecto;
-            txtFecha_De_Nacimiento.LostFocus += RestaurarNombrePorDefecto;
-            txtTelefono.LostFocus += RestaurarNombrePorDefecto;
-            txtNro.LostFocus += RestaurarNombrePorDefecto;
-            txtPiso.LostFocus += RestaurarNombrePorDefecto;
-            txtCalle.LostFocus += RestaurarNombrePorDefecto;
-            txtLocalidad.LostFocus += RestaurarNombrePorDefecto;
-            txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
         }
 
-        private void DataGridPacientes_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if (e.Column.Header.ToString() == "ID") 
+            System.Media.SystemSounds.Beep.Play();
+            MessageBoxResult resultado = MessageBox.Show("¿Estás seguro de que deseas eliminar este elemento?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (resultado == MessageBoxResult.Yes)
             {
-                e.Column.Visibility = Visibility.Hidden;
+                // Aquí va el código para eliminar el elemento
             }
         }
     }

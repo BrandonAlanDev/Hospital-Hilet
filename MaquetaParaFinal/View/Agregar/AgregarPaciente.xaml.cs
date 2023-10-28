@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +15,51 @@ using System.Windows.Shapes;
 
 namespace MaquetaParaFinal.View.Agregar
 {
-    /// <summary>
-    /// Lógica de interacción para AgregarPaciente.xaml
-    /// </summary>
     public partial class AgregarPaciente : Window
     {
+        Conectar conectar = new Conectar();
         public AgregarPaciente()
         {
             InitializeComponent();
+            txtNombre.GotFocus += LimpiarTxt;
+            txtApellido.GotFocus += LimpiarTxt;
+            txtDni.GotFocus += LimpiarTxt;
+            txtEmail.GotFocus += LimpiarTxt;
+            txtFecha_De_Nacimiento.GotFocus += LimpiarTxt;
+            txtTelefono.GotFocus += LimpiarTxt;
+            txtNro.GotFocus += LimpiarTxt;
+            txtPiso.GotFocus += LimpiarTxt;
+            txtCalle.GotFocus += LimpiarTxt;
+            txtLocalidad.GotFocus += LimpiarTxt;
+            txtCodPostas.GotFocus += LimpiarTxt;
+            txtNombre.LostFocus += RestaurarNombrePorDefecto;
+            txtApellido.LostFocus += RestaurarNombrePorDefecto;
+            txtDni.LostFocus += RestaurarNombrePorDefecto;
+            txtEmail.LostFocus += RestaurarNombrePorDefecto;
+            txtFecha_De_Nacimiento.LostFocus += RestaurarNombrePorDefecto;
+            txtTelefono.LostFocus += RestaurarNombrePorDefecto;
+            txtNro.LostFocus += RestaurarNombrePorDefecto;
+            txtPiso.LostFocus += RestaurarNombrePorDefecto;
+            txtCalle.LostFocus += RestaurarNombrePorDefecto;
+            txtLocalidad.LostFocus += RestaurarNombrePorDefecto;
+            txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
         }
+
+        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed) 
+            {
+                DragMove();
+            }
+        }
+
+        private void AgregarPacientes_Loaded(object sender, RoutedEventArgs e)=>CargarLocalidades();
+
+        private void BuscarCodigoPostal(object sender, SelectionChangedEventArgs e)=>CargarCodigoPostal();
     }
 }

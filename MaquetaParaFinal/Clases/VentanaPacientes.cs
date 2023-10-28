@@ -1,4 +1,5 @@
 ﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,61 +16,27 @@ namespace MaquetaParaFinal.View
     public partial class Pacientes : Page
     {
         Conectar conectar = new Conectar();
-        private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
+        private void DataGridPacientes_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
-            { "Apellido", "txtApellido" },
-            { "Dni", "txtDni" },
-            { "Email", "txtEmail" },
-            { "Fecha De Nacimiento", "txtFecha_De_Nacimiento" },
-            { "Telefono", "txtTelefono" },
-            { "Calle", "txtCalle" },
-            { "Nro", "txtNro" },
-            { "Localidad", "txtLocalidad" },
-            { "Codigo Postal", "txtCodPostas" },
-            { "Piso", "txtPiso" }
-        };
-
-        private void LimpiarTxt(object sender, RoutedEventArgs e) // Uso el diccionario para no tener que hacer mil metodos para borrarlo, se tiene que usar como evento en el main.
-        {
-            if (sender is TextBox textBox)
+            if (e.Column.Header.ToString() == "ID")
             {
-                if (Dicpacientes.ContainsKey(textBox.Text))
-                {
-                    textBox.Clear();
-                }
+                e.Column.Visibility = Visibility.Hidden;
             }
         }
-        private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
+        private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
         {
-            if (sender is TextBox textBox)
-            {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                {
-                    textBox.Text = Dicpacientes.FirstOrDefault(pair => pair.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
-                }
-            }
+            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            TxtBoxes.IsEnabled = true;
-        }
-
-        private void btCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            TxtBoxes.IsEnabled = false;
-        }
-
-        private void btAceptar_Click(object sender, RoutedEventArgs e)
-        {
-            //GARGAR LOCALIDAD Y EXTRAER LA FK
-            // conectar.AgregarPaciente(txtNombre,txtApellido,txtFecha_De_Nacimiento,txtDni,txtEmail,txtTelefono,txtCalle,txtNro,txtPiso,"SinHacer");
-        }
+       
         private void CargarSeleccion(int num = 0)
         {
-            if (DataGridPacientes.SelectedItem != null && DataGridPacientes.Items.Count >= num)
+            
+        }
+
+        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGridPacientes.SelectedItem != null)
             {
-                DataGridPacientes.SelectedIndex = num;
                 DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
                 txtNombre.Text = row["Nombre"].ToString();
                 txtApellido.Text = row["Apellido"].ToString();
@@ -84,50 +51,17 @@ namespace MaquetaParaFinal.View
                 txtPiso.Text = row["Piso"].ToString();
             }
         }
-        private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
+        private void ClickBuscar(object sender, RoutedEventArgs e) 
         {
-            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
-
-
-        private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
-            CargarSeleccion(int.Parse(row["ID"].ToString()) - 1); //-1 Porque el Datagrid comienza en 0 y el id en 1 (ya le dije al ale que inicie en 0)
-        }
-        private void ClickBuscar(object sender, RoutedEventArgs e) => Buscar(txtBuscar.Text);
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter) Buscar(txtBuscar.Text);
         }
-        private void Buscar(string filtro)
+
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(filtro))
-            {
-                return;
-            }
-
-            foreach (DataRowView columna in DataGridPacientes.ItemsSource)
-            {
-                int mostrarFila = -1;
-
-                for (int i = 0; i < columna.Row.ItemArray.Length; i++)
-                {
-                    if (columna.Row.ItemArray[i] is string valorCelda)
-                    { // "StringComparison.OrdinalIgnoreCase" es para que compare pero ignorando las diferencias de mayusculas y minusculas
-                        if (valorCelda.IndexOf(filtro, StringComparison.OrdinalIgnoreCase) >= 0) // Aca compara el valor de la celda con lo buscando
-                        {
-                            mostrarFila = int.Parse(columna.Row["ID"].ToString())-1;
-                            break;
-                        }
-                    }
-                }
-                if (mostrarFila != -1) 
-                {
-                    DataGridPacientes.SelectedIndex = mostrarFila;
-                    CargarSeleccion(mostrarFila);
-                }
-            }
+            AgregarPaciente agregarPaciente = new AgregarPaciente();
+            agregarPaciente.Show();
         }
     }
 }
