@@ -14,8 +14,10 @@ namespace MaquetaParaFinal.View
         Conectar conectar = new Conectar();
         private void DataGridMedicos_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
-
+            try
+            {
+                DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+            }catch{}
         }
     }
 }

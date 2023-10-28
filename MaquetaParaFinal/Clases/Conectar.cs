@@ -100,7 +100,7 @@ namespace MaquetaParaFinal.Clases
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
-                return tabla;
+                       return tabla;
             }
         }
         public DataTable DescargarTablaIngresos()

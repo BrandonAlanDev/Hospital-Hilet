@@ -14,7 +14,9 @@ namespace MaquetaParaFinal.View
         Conectar conectar = new Conectar();
         private void DataGridPacticas_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridPacticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+            try { 
+                DataGridPacticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+            } catch { }
         }
 
     }

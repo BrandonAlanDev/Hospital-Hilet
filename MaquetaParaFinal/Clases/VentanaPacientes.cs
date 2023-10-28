@@ -25,12 +25,9 @@ namespace MaquetaParaFinal.View
         }
         private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
         {
-            TxtBoxes.IsEnabled = true;
-        }
-
-        private void btCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            TxtBoxes.IsEnabled = false;
+            try {             
+                DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
+            } catch { }
         }
        
         private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -57,27 +54,25 @@ namespace MaquetaParaFinal.View
         }
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
+            if (e.Key == Key.Enter) 
+            { 
+                DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
+            }
         }
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
             AgregarPaciente agregarPaciente = new AgregarPaciente();
-            agregarPaciente.Show();
+            agregarPaciente.ShowDialog();
         }
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
             System.Media.SystemSounds.Beep.Play();
-            MessageBoxResult resultado = MessageBox.Show("¿Estás seguro de que deseas eliminar este elemento?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult resultado = MessageBox.Show("¿Estás seguro de que deseas eliminar este elemento?\\||||||||||||||||||||                                 ", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (resultado == MessageBoxResult.Yes)
             {
                 // Aquí va el código para eliminar el elemento
             }
-        }
-
-        private void txtBuscar_TouchEnter(object sender, TouchEventArgs e)
-        {
-
         }
     }
 }
