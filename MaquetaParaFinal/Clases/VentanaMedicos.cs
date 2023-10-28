@@ -19,5 +19,12 @@ namespace MaquetaParaFinal.View
                 DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
             }catch{}
         }
+        private void DataGridMedicos_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "ID")
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }
