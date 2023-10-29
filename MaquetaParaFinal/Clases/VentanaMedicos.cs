@@ -12,38 +12,19 @@ namespace MaquetaParaFinal.View
     public partial class Medicos : Page
     {
         Conectar conectar = new Conectar();
-
-        private readonly Dictionary<string, string> medicos = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
+        private void DataGridMedicos_Loaded(object sender, RoutedEventArgs e)
         {
-            { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
-            { "Apellido", "txtApellido" },
-            { "Matrícula", "txtMatricula" }
-        };
-
-        private void LimpiarTxt(object sender, RoutedEventArgs e) // Uso el diccionario para no tener que hacer mil metodos para borrarlo, se tiene que usar como evento en el main.
-        {
-            if (sender is TextBox textBox)
+            try
             {
-
-                if (medicos.ContainsKey(textBox.Text))
-                {
-                    textBox.Clear();
-                }
-            }
+                DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+            }catch{}
         }
-        private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
+        private void DataGridMedicos_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (sender is TextBox textBox)
+            if (e.Column.Header.ToString() == "ID")
             {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                {
-                    textBox.Text = medicos.FirstOrDefault(pair => pair.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
-                }
+                e.Column.Visibility = Visibility.Hidden;
             }
-        }
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
         }
     }
 }

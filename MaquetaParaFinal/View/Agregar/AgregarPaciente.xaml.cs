@@ -44,7 +44,6 @@ namespace MaquetaParaFinal.View.Agregar
             txtLocalidad.LostFocus += RestaurarNombrePorDefecto;
             txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
         }
-
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
