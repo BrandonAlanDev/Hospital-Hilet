@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Input;
+using System.Data.SqlClient;
+using System.Data;
+using System.Windows.Automation;
 
 namespace MaquetaParaFinal.View.Agregar
 {
@@ -44,11 +47,6 @@ namespace MaquetaParaFinal.View.Agregar
                 }
             }
         }
-        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
@@ -77,6 +75,85 @@ namespace MaquetaParaFinal.View.Agregar
                    txtCalle.Text != "Calle" &&
                    txtNro.Text != "Nro" &&
                    txtPiso.Text != "Piso";
+        }
+
+        private void CargarLocalidades()
+        {
+            string connectionString = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
+            "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "SELECT DISTINCT Nombre_Localidad AS Localidad FROM Localidades";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    txtLocalidad.ItemsSource = null;
+                    txtLocalidad.Items.Clear();
+
+                    // Crear una lista para almacenar los datos
+                    List<string> data = new List<string>();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        data.Add(row["Localidad"].ToString());
+                    }
+
+                    // Asignar los datos al ComboBox
+                    txtLocalidad.ItemsSource = data;
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void CargarCodigoPostal()
+        {
+            string connectionString = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
+            "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = $"SELECT Codigo_Postal AS CodPostal FROM Localidades WHERE Nombre_Localidad = '{txtLocalidad.SelectedItem}'";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    if (txtCodPostas.IsEnabled == false) txtCodPostas.IsEnabled = true;
+                    txtCodPostas.ItemsSource = null;
+                    txtCodPostas.Items.Clear();
+
+                    // Crear una lista para almacenar los datos
+                    List<string> data = new List<string>();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        data.Add(row["CodPostal"].ToString());
+                    }
+
+                    // Asignar los datos al ComboBox
+                    txtCodPostas.ItemsSource = data;
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
         }
     }
 }

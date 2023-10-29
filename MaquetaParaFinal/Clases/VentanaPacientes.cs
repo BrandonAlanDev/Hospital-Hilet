@@ -29,7 +29,13 @@ namespace MaquetaParaFinal.View
                 DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
             } catch { }
         }
+            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
+        }
        
+        private void CargarSeleccion(int num = 0)
+        {
+            
+        }
         private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGridPacientes.SelectedItem != null)
@@ -48,7 +54,7 @@ namespace MaquetaParaFinal.View
                 txtPiso.Text = row["Piso"].ToString();
             }
         }
-        private void ClickBuscar(object sender, RoutedEventArgs e) 
+        private void ClickBuscar(object sender, RoutedEventArgs e)
         {
             DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
         }
@@ -75,6 +81,16 @@ namespace MaquetaParaFinal.View
                     // Aquí va el código para eliminar si lo tuviera (ponete a laburar alejandro)
                 }
             }
+        {
+        }
+        private void EnterBuscar(object sender, KeyEventArgs e)
+        {
+        }
+
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPaciente agregarPaciente = new AgregarPaciente();
+            agregarPaciente.Show();
         }
         private void btnImprimirPaciente_Click(object sender, RoutedEventArgs e)
         {
