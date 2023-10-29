@@ -155,5 +155,10 @@ namespace MaquetaParaFinal.View.Agregar
                 }
             }
         }
+        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
+
+        private void AgregarPacientes_Loaded(object sender, RoutedEventArgs e) => CargarLocalidades();
+
+        private void BuscarCodigoPostal(object sender, SelectionChangedEventArgs e) => CargarCodigoPostal();
     }
 }

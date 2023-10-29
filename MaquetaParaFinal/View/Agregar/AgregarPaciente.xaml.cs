@@ -44,21 +44,6 @@ namespace MaquetaParaFinal.View.Agregar
             txtLocalidad.LostFocus += RestaurarNombrePorDefecto;
             txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
         }
-        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
 
-        private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (Mouse.LeftButton == MouseButtonState.Pressed) 
-            {
-                DragMove();
-            }
-        }
-
-        private void AgregarPacientes_Loaded(object sender, RoutedEventArgs e)=>CargarLocalidades();
-
-        private void BuscarCodigoPostal(object sender, SelectionChangedEventArgs e)=>CargarCodigoPostal();
     }
 }
