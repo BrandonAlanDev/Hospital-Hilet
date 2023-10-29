@@ -75,7 +75,7 @@
                         </Border>
                     </DockPanel>
                     <DockPanel>
-                        <Label Content="Localidad" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                        <Label Content="Localidad*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <ComboBox Margin="0,6,10,0"  HorizontalAlignment="Stretch"  x:Name="txtLocalidad"  Style="{StaticResource Combos}" SelectionChanged="BuscarCodigoPostal">
                             <ComboBoxItem Content="item 1"/>
                             <ComboBoxItem Content="item 2"/>
@@ -83,7 +83,7 @@
                         </ComboBox>
                     </DockPanel>
                     <DockPanel>
-                        <Label Content="Codigo Postal" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                        <Label Content="Codigo Postal*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <ComboBox x:Name="txtCodPostas" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}" IsEnabled="False">
                         </ComboBox>
                     </DockPanel>
