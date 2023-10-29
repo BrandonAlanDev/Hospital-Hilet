@@ -16,6 +16,7 @@ namespace MaquetaParaFinal.View
     public partial class Pacientes : Page
     {
         Conectar conectar = new Conectar();
+
         private void DataGridPacientes_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "ID")
@@ -23,6 +24,7 @@ namespace MaquetaParaFinal.View
                 e.Column.Visibility = Visibility.Hidden;
             }
         }
+
         private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
         {
             try {             
@@ -30,10 +32,6 @@ namespace MaquetaParaFinal.View
             } catch { }
         }
        
-        private void CargarSeleccion(int num = 0)
-        {
-            
-        }
         private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGridPacientes.SelectedItem != null)
@@ -52,10 +50,12 @@ namespace MaquetaParaFinal.View
                 txtPiso.Text = row["Piso"].ToString();
             }
         }
+
         private void ClickBuscar(object sender, RoutedEventArgs e)
         {
             DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
         }
+
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter) 
@@ -63,11 +63,13 @@ namespace MaquetaParaFinal.View
                 DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
             }
         }
+
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
             AgregarPaciente agregarPaciente = new AgregarPaciente();
             agregarPaciente.ShowDialog();
         }
+
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (txtNombre.Text != "Nombre")
@@ -80,6 +82,7 @@ namespace MaquetaParaFinal.View
                 }
             }
         }
+
         private void btnImprimirPaciente_Click(object sender, RoutedEventArgs e)
         {
             if (txtNombre.Text != "Nombre") 
