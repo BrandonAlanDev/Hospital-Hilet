@@ -25,6 +25,10 @@ namespace MaquetaParaFinal.View
         }
         private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
         {
+            try {             
+                DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
+            } catch { }
+        }
             DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
        
@@ -32,7 +36,6 @@ namespace MaquetaParaFinal.View
         {
             
         }
-
         private void DataGridPacientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGridPacientes.SelectedItem != null)
@@ -51,7 +54,33 @@ namespace MaquetaParaFinal.View
                 txtPiso.Text = row["Piso"].ToString();
             }
         }
-        private void ClickBuscar(object sender, RoutedEventArgs e) 
+        private void ClickBuscar(object sender, RoutedEventArgs e)
+        {
+            DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
+        }
+        private void EnterBuscar(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) 
+            { 
+                DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
+            }
+        }
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPaciente agregarPaciente = new AgregarPaciente();
+            agregarPaciente.ShowDialog();
+        }
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtNombre.Text != "Nombre")
+            {
+                System.Media.SystemSounds.Beep.Play();
+                MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar a {txtNombre.Text} {txtApellido.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    // Aquí va el código para eliminar si lo tuviera (ponete a laburar alejandro)
+                }
+            }
         {
         }
         private void EnterBuscar(object sender, KeyEventArgs e)
@@ -62,6 +91,15 @@ namespace MaquetaParaFinal.View
         {
             AgregarPaciente agregarPaciente = new AgregarPaciente();
             agregarPaciente.Show();
+        }
+        private void btnImprimirPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtNombre.Text != "Nombre") 
+            { 
+                Impresora impresora = new Impresora();
+                impresora.ImprimirDocumento();
+            }
+            
         }
     }
 }

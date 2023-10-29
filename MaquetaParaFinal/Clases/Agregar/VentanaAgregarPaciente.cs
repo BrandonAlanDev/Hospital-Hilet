@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Input;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Automation;
@@ -44,6 +45,13 @@ namespace MaquetaParaFinal.View.Agregar
                 {
                     textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
                 }
+            }
+        }
+        private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
             }
         }
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
