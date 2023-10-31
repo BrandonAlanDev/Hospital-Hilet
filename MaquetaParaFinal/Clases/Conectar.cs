@@ -644,7 +644,7 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-
+         
         public void EliminarProfesional(int id)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
