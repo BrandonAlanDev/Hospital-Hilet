@@ -631,5 +631,43 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-    }
+        
+        public void EliminarPacientes(int id)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"UPDATE Pacientes SET Baja_Pacientes = {DateTime.Today}"
+                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                {
+                   cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EliminarProfesional(int id)
+        {
+            using (SqlConnection conectar = new SqlConnection (contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"UPDATE Profesionales SET Baja_Profesional = {DateTime.Today}"
+                using (SqlCommand cmd = new SqlCommand(consulta,conectar)) 
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EliminarPersonalLaboratorio(int id)
+        {
+            using(SqlConnection conectar = SqlConnection(contrasenia))
+            {   
+                conectar.Open();
+                string consulta = $"UPDATE PersonalLaboratorio SET Baja_Personal = {DateTime.Today}"
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar)
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 }
