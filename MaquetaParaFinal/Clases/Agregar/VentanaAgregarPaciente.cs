@@ -64,7 +64,7 @@ namespace MaquetaParaFinal.View.Agregar
                 {
                     int id = conectar.ObtenerId_Localidad(txtLocalidad.Text);
                     conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, id);
-                    this.Close();
+                    LimpiarTxt();
                     MessageBox.Show("Agregado Correctamente");
                 }
                 catch (Exception)
@@ -87,6 +87,19 @@ namespace MaquetaParaFinal.View.Agregar
                    txtNro.Text != "Nro" &&
                    txtPiso.Text != "Piso" &&
                    txtLocalidad.SelectedValue != null;
+        }
+
+        private void LimpiarTxt()
+        {
+            txtNombre.Text = "Nombre";
+            txtApellido.Text = "Apellido";
+            txtFecha_De_Nacimiento.Text = "Fecha De Nacimiento";
+            txtDni.Text = "Dni";
+            txtCalle.Text = "Calle";
+            txtNro.Text = "Nro";
+            txtPiso.Text = "Piso";
+            txtLocalidad.SelectedValue = null;
+            txtCodPostas.SelectedValue = null;
         }
 
         private void CargarLocalidades()
