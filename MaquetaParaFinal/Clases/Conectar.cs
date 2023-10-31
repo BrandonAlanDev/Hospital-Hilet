@@ -17,8 +17,8 @@ namespace MaquetaParaFinal.Clases
 
         public DataTable DescargaTablaPaciente() //Anda
         {
-            using (SqlConnection conexion = new SqlConnection(contrasenia)) 
-            { 
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
                 string consulta = "SELECT Pk_Id_Pacientes AS ID," +
                     "Nombre_Paciente AS Nombre, " +
                     "Apellido_Paciente AS Apellido, " +
@@ -28,7 +28,7 @@ namespace MaquetaParaFinal.Clases
                     "Codigo_Postal AS 'Codigo Postal'" +
                     "FROM Pacientes " +
                         "INNER JOIN Localidades ON Fk_Id_Localidades=Pk_Id_Localidades;";
-                SqlDataAdapter command = new SqlDataAdapter(consulta,conexion);
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
                 return tabla;
@@ -84,7 +84,7 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
-        public DataTable DescargarTablaPracticas() 
+        public DataTable DescargarTablaPracticas()
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
@@ -100,7 +100,7 @@ namespace MaquetaParaFinal.Clases
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
-                       return tabla;
+                return tabla;
             }
         }
         public DataTable DescargarTablaIngresos()
@@ -229,7 +229,7 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
-        public void AgregarPaciente(string nombre,string apellido,string Fecha_De_Nacimiento,string Dni, string Email, string Telefono, string Calle, string Numero, string Piso,int fk_id) 
+        public void AgregarPaciente(string nombre, string apellido, string Fecha_De_Nacimiento, string Dni, string Email, string Telefono, string Calle, string Numero, string Piso, int fk_id)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
@@ -273,7 +273,7 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarServicios(string nombre) 
+        public void AgregarServicios(string nombre)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
@@ -355,7 +355,7 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarCategorias( string Nombre_Categoria)
+        public void AgregarCategorias(string Nombre_Categoria)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
@@ -424,7 +424,7 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-        public void ModificarLocalidades(int id, string nombre_localidad, string codigo_postal) 
+        public void ModificarLocalidades(int id, string nombre_localidad, string codigo_postal)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
@@ -592,7 +592,7 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void ModificarPracticas(int id, string fecha_realizacion, string tiempo_resultado,string nombre_practica, int fk_id_especialidad, int fk_id_tipodemuestra)
+        public void ModificarPracticas(int id, string fecha_realizacion, string tiempo_resultado, string nombre_practica, int fk_id_especialidad, int fk_id_tipodemuestra)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
@@ -631,27 +631,27 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        
+
         public void EliminarPacientes(int id)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Pacientes SET Baja_Pacientes = {DateTime.Today}"
-                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                string consulta = $"UPDATE Pacientes SET Baja_Pacientes = {DateTime.Today}";
+                using (SqlCommand cmd = new SqlCommand(consulta,conectar))
                 {
-                   cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
 
         public void EliminarProfesional(int id)
         {
-            using (SqlConnection conectar = new SqlConnection (contrasenia))
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Profesionales SET Baja_Profesional = {DateTime.Today}"
-                using (SqlCommand cmd = new SqlCommand(consulta,conectar)) 
+                string consulta = $"UPDATE Profesionales SET Baja_Profesional = {DateTime.Today}";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
                 }
@@ -660,14 +660,15 @@ namespace MaquetaParaFinal.Clases
 
         public void EliminarPersonalLaboratorio(int id)
         {
-            using(SqlConnection conectar = SqlConnection(contrasenia))
-            {   
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
                 conectar.Open();
-                string consulta = $"UPDATE PersonalLaboratorio SET Baja_Personal = {DateTime.Today}"
-                using (SqlCommand cmd = new SqlCommand(consulta, conectar)
+                string consulta = $"UPDATE PersonalLaboratorio SET Baja_Personal = {DateTime.Today}";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
                 }
             }
         }
+    }
 }
