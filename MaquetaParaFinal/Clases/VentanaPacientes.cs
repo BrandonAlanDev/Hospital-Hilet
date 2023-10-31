@@ -1,5 +1,6 @@
 ﻿using MaquetaParaFinal.Clases;
 using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -48,6 +49,16 @@ namespace MaquetaParaFinal.View
                 txtLocalidad.Text = row["Localidad"].ToString();
                 txtCodPostas.Text = row["Codigo Postal"].ToString();
                 txtPiso.Text = row["Piso"].ToString();
+
+                btModificar.IsEnabled = true;
+                btEliminar.IsEnabled = true;
+                btnImprimirPaciente.IsEnabled = true;
+            }
+            else
+            {
+                btModificar.IsEnabled = false;
+                btEliminar.IsEnabled = false;
+                btnImprimirPaciente.IsEnabled = false;
             }
         }
 
@@ -68,6 +79,19 @@ namespace MaquetaParaFinal.View
         {
             AgregarPaciente agregarPaciente = new AgregarPaciente();
             agregarPaciente.ShowDialog();
+        }
+        private void btModificar_Click(object sender, RoutedEventArgs e)
+        {
+            ModificarPaciente modificarPaciente = new ModificarPaciente();
+            modificarPaciente.txtNombre.Text = txtNombre.Text;
+            modificarPaciente.txtApellido.Text = txtApellido.Text;
+            modificarPaciente.txtCalle.Text = txtCalle.Text;
+            modificarPaciente.txtEmail.Text = txtEmail.Text;
+            modificarPaciente.txtDni.Text = txtDni.Text;
+            modificarPaciente.txtFecha_De_Nacimiento.Text = txtFecha_De_Nacimiento.Text;
+            modificarPaciente.txtLocalidad.Text = txtLocalidad.Text;
+            modificarPaciente.txtCodPostas.Text = txtCodPostas.Text;
+            modificarPaciente.ShowDialog();
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
