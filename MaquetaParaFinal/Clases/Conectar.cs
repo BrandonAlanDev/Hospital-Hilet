@@ -255,7 +255,7 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarProfesionales(string nombre, string apellido, int Matricula, int Fk_Id_Servicios) {
+        public void AgregarProfesionales(string nombre, string apellido, int Matricula,int Fk_Id_Servicios) {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
@@ -278,8 +278,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Servicios (Nombre_Servicio) " +
-                    "VALUES (@nombreservicio);";
+                string consulta = "INSERT INTO Servicios (Nombre_Servicio) VALUES (@nombreservicio);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
@@ -630,6 +629,6 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-
+        
     }
 }

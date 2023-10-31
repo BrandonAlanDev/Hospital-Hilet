@@ -11,10 +11,6 @@
         WindowStartupLocation="CenterScreen"
         Title="AgregarPaciente" Height="550" Width="350" Loaded="AgregarPacientes_Loaded">
     <Grid x:Name="Principal" MouseLeftButtonDown="Principal_MouseLeftButtonDown" >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="139*"/>
-            <ColumnDefinition Width="36*"/>
-        </Grid.ColumnDefinitions>
         <Image x:Name="Logo" Width="40" Height="40" HorizontalAlignment="Left" Margin="-7,-7,0,0"  VerticalAlignment="Top" Source="/View/Agregar/logo.png"/>
         <Border Margin="5,5,0,0" CornerRadius="45" Background="#4F709C" BorderBrush="#8fc643" BorderThickness="5" Grid.ColumnSpan="2">
             <StackPanel>
