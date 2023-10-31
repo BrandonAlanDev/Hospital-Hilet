@@ -61,7 +61,8 @@ namespace MaquetaParaFinal.View.Agregar
             if (TodosLosCamposLlenos())
             {
                 int idServicio = conectar.ObtenerId_Servicio(txtServicio.Text);
-                conectar.AgregarProfesionales(txtNombre.Text,txtApellido.Text,int.Parse(txtMatricula.Text),idServicio);
+                conectar.AgregarProfesionales(txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), idServicio);
+                LimpiarTxt();
                 return;
             }
             MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -71,7 +72,15 @@ namespace MaquetaParaFinal.View.Agregar
         {
             return txtNombre.Text != "Nombre" &&
                    txtApellido.Text != "Apellido" &&
-                   txtMatricula.Text != "Matricula";
+                   txtMatricula.Text != "Matricula" &&
+                   txtServicio != null;
+        }
+
+        private void LimpiarTxt()
+        {
+            txtNombre.Text = "Nombre";
+            txtApellido.Text = "Apellido";
+            txtMatricula.Text = "Matricula";
         }
     }
 }
