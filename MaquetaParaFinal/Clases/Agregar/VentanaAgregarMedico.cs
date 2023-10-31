@@ -60,13 +60,14 @@ namespace MaquetaParaFinal.View.Agregar
         {
             if (TodosLosCamposLlenos())
             {
-                int idServicio = 0;
+                int idServicio = conectar.ObtenerId_Servicio(txtServicio.Text);
                 conectar.AgregarProfesionales(txtNombre.Text,txtApellido.Text,int.Parse(txtMatricula.Text),idServicio);
+                return;
             }
             MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
+        private bool TodosLosCamposLlenos()
         {
             return txtNombre.Text != "Nombre" &&
                    txtApellido.Text != "Apellido" &&

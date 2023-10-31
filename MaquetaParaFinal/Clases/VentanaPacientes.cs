@@ -79,6 +79,7 @@ namespace MaquetaParaFinal.View
         {
             AgregarPaciente agregarPaciente = new AgregarPaciente();
             agregarPaciente.ShowDialog();
+            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
