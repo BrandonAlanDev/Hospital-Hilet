@@ -15,6 +15,8 @@ namespace MaquetaParaFinal.View.Modificar
     public partial class ModificarPaciente : Window
     {
         Conectar conectar = new Conectar();
+        public int Id { get; set; }
+
 
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
@@ -62,13 +64,24 @@ namespace MaquetaParaFinal.View.Modificar
             {
                 if (txtEmail.Text == "Email") txtEmail.Text = "";
                 if (txtTelefono.Text == "Teléfono") txtTelefono.Text = "";
-                conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, 0);
-                MessageBox.Show("Agregado Correctamente");
-                this.Close();
+                try
+                {
+                    int idLocalidad = conectar.ObtenerId_Localidad(txtLocalidad.Text);
+                    conectar.ModificarPacientes(Id,txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, idLocalidad);
+                    this.Close();
+                    MessageBox.Show("Modificado Correctamente");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Compruebe Los Datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            else
+            {
+                MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
-        private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
+        private bool TodosLosCamposLlenos()
         {
             return txtNombre.Text != "Nombre" &&
                    txtApellido.Text != "Apellido" &&
@@ -76,7 +89,8 @@ namespace MaquetaParaFinal.View.Modificar
                    txtDni.Text != "Dni" &&
                    txtCalle.Text != "Calle" &&
                    txtNro.Text != "Nro" &&
-                   txtPiso.Text != "Piso";
+                   txtPiso.Text != "Piso" &&
+                   txtLocalidad.SelectedValue != null; ;
         }
 
         private void CargarLocalidades()

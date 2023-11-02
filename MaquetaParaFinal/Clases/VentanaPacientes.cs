@@ -83,16 +83,22 @@ namespace MaquetaParaFinal.View
         }
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
-            ModificarPaciente modificarPaciente = new ModificarPaciente();
-            modificarPaciente.txtNombre.Text = txtNombre.Text;
-            modificarPaciente.txtApellido.Text = txtApellido.Text;
-            modificarPaciente.txtCalle.Text = txtCalle.Text;
-            modificarPaciente.txtEmail.Text = txtEmail.Text;
-            modificarPaciente.txtDni.Text = txtDni.Text;
-            modificarPaciente.txtFecha_De_Nacimiento.Text = txtFecha_De_Nacimiento.Text;
-            modificarPaciente.txtLocalidad.Text = txtLocalidad.Text;
-            modificarPaciente.txtCodPostas.Text = txtCodPostas.Text;
+            ModificarPaciente modificarPaciente = new ModificarPaciente(); 
+            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem; // Lo hice con Row porque no funcagba como lo tenias :c
+            modificarPaciente.Id = int.Parse(row["ID"].ToString());
+            modificarPaciente.txtNombre.Text = row["Nombre"].ToString();
+            modificarPaciente.txtApellido.Text = row["Apellido"].ToString();
+            modificarPaciente.txtDni.Text = row["Dni"].ToString();
+            modificarPaciente.txtEmail.Text = row["Email"].ToString();
+            modificarPaciente.txtFecha_De_Nacimiento.Text = row["Fecha De Nacimiento"].ToString();
+            modificarPaciente.txtTelefono.Text = row["Telefono"].ToString();
+            modificarPaciente.txtCalle.Text = row["Calle"].ToString();
+            modificarPaciente.txtNro.Text = row["Numero"].ToString();
+            modificarPaciente.txtLocalidad.Text = row["Localidad"].ToString();
+            modificarPaciente.txtCodPostas.Text = row["Codigo Postal"].ToString();
+            modificarPaciente.txtPiso.Text = row["Piso"].ToString();
             modificarPaciente.ShowDialog();
+            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
