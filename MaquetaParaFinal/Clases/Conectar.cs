@@ -27,7 +27,8 @@ namespace MaquetaParaFinal.Clases
                     "Nombre_Localidad AS Localidad," +
                     "Codigo_Postal AS 'Codigo Postal'" +
                     "FROM Pacientes " +
-                        "INNER JOIN Localidades ON Fk_Id_Localidades=Pk_Id_Localidades;";
+                        "INNER JOIN Localidades ON Fk_Id_Localidades=Pk_Id_Localidades" +
+                        "WHERE Baja_Pacientes IS NULL";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -43,7 +44,28 @@ namespace MaquetaParaFinal.Clases
                     "Nombre_Profesional AS Nombre," +
                     "Apellido_Profesional AS Apellido,Matricula," +
                     "Nombre_Servicio AS Servicio FROM Profesionales " +
-                        "INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios;";
+                        "INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios" +
+                        "WHERE Baja_Profesional IS NULL";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+
+        public DataTable DescargaTablaPersonalLaboratorio() //Probar
+        {
+            using(SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = "SELECT Pk_Id_Personal_Laboratorio AS ID," +
+                    "Nombre_Personal AS Nombre," +
+                    "Apellido_Personal AS Apellido," +
+                    "Dni," +
+                    "Nombre_Categoria AS Categoria," +
+                    "Nombre_Especialdad AS Especialidad" +
+                    "FROM PersonalLaboratorio" +
+                        "INNER JOIN Categorias ON Fk_Id_Categorias = Pk_Id_Categorias" +
+                        "INNER JOIN Especialidades ON Fk_Id_Especialidades = Pk_Id_Especialidades";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
