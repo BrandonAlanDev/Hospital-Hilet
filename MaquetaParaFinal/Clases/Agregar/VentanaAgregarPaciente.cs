@@ -20,7 +20,7 @@ namespace MaquetaParaFinal.View.Agregar
             { "Apellido", "txtApellido" },
             { "Dni", "txtDni" },
             { "Email", "txtEmail" },
-            { "Fecha De Nacimiento", "txtFecha_De_Nacimiento" },
+            { "YYYY-MM-DD", "txtFecha_De_Nacimiento" },
             { "Teléfono", "txtTelefono" },
             { "Calle", "txtCalle" },
             { "Nro", "txtNro" },
@@ -60,11 +60,22 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 if (txtEmail.Text == "Email") txtEmail.Text = "";
                 if (txtTelefono.Text == "Teléfono") txtTelefono.Text = "";
-                conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, 0);
-                MessageBox.Show("Agregado Correctamente");
-                this.Close();
+                try
+                {
+                    int id = conectar.ObtenerId_Localidad(txtLocalidad.Text);
+                    conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, id);
+                    LimpiarTxt();
+                    MessageBox.Show("Agregado Correctamente");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Compruebe Los Datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            else
+            {
+                MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
         private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
         {
@@ -74,7 +85,21 @@ namespace MaquetaParaFinal.View.Agregar
                    txtDni.Text != "Dni" &&
                    txtCalle.Text != "Calle" &&
                    txtNro.Text != "Nro" &&
-                   txtPiso.Text != "Piso";
+                   txtPiso.Text != "Piso" &&
+                   txtLocalidad.SelectedValue != null;
+        }
+
+        private void LimpiarTxt()
+        {
+            txtNombre.Text = "Nombre";
+            txtApellido.Text = "Apellido";
+            txtFecha_De_Nacimiento.Text = "Fecha De Nacimiento";
+            txtDni.Text = "Dni";
+            txtCalle.Text = "Calle";
+            txtNro.Text = "Nro";
+            txtPiso.Text = "Piso";
+            txtLocalidad.SelectedValue = null;
+            txtCodPostas.SelectedValue = null;
         }
 
         private void CargarLocalidades()

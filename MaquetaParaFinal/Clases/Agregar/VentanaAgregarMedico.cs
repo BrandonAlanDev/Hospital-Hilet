@@ -60,17 +60,27 @@ namespace MaquetaParaFinal.View.Agregar
         {
             if (TodosLosCamposLlenos())
             {
-                int idServicio = 0;
-                conectar.AgregarProfesionales(txtNombre.Text,txtApellido.Text,int.Parse(txtMatricula.Text),idServicio);
+                int idServicio = conectar.ObtenerId_Servicio(txtServicio.Text);
+                conectar.AgregarProfesionales(txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), idServicio);
+                LimpiarTxt();
+                return;
             }
             MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
+        private bool TodosLosCamposLlenos()
         {
             return txtNombre.Text != "Nombre" &&
                    txtApellido.Text != "Apellido" &&
-                   txtMatricula.Text != "Matricula";
+                   txtMatricula.Text != "Matricula" &&
+                   txtServicio != null;
+        }
+
+        private void LimpiarTxt()
+        {
+            txtNombre.Text = "Nombre";
+            txtApellido.Text = "Apellido";
+            txtMatricula.Text = "Matricula";
         }
     }
 }

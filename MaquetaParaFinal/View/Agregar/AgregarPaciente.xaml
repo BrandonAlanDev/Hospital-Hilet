@@ -43,7 +43,7 @@
                     <DockPanel>
                         <Label Content="Nacimiento*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch"  Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtFecha_De_Nacimiento" Margin="5,0,0,0" TextWrapping="Wrap" Text="Fecha De Nacimiento" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" InputScope="Date" />
+                            <TextBox x:Name="txtFecha_De_Nacimiento" Margin="5,0,0,0" TextWrapping="Wrap" Text="YYYY-MM-DD" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" InputScope="Date" />
                         </Border>
                     </DockPanel>
                     <DockPanel>

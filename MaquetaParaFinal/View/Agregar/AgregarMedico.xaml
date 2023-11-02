@@ -35,8 +35,7 @@
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Servicio*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <ComboBox x:Name="txtServicio" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}" IsEnabled="False">
-                        </ComboBox>
+                        <ComboBox x:Name="txtServicio" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}" IsEnabled="False"/>
                     </DockPanel>
                 </StackPanel>
                 <DockPanel Width="250" Height="35" Margin="0,15,0,5">

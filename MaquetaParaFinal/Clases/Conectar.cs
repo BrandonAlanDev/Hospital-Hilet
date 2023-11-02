@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Net;
 using System.Windows.Documents;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace MaquetaParaFinal.Clases
 {
@@ -249,7 +251,6 @@ namespace MaquetaParaFinal.Clases
                     cmd.Parameters.AddWithValue("@numero", Numero);
                     cmd.Parameters.AddWithValue("@piso", Piso);
                     cmd.Parameters.AddWithValue("@fk_id_localidades", fk_id);
-
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -629,6 +630,33 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-        
+
+        public int ObtenerId_Servicio(string servicio)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia)) 
+            {
+                string consulta = "SELECT Pk_Id_Servicios FROM Servicios WHERE Nombre_Servicio = @servicio";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@servicio", servicio);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }         
+            }
+        }
+
+        public int ObtenerId_Localidad(string nombre)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = "SELECT Pk_Id_Localidades FROM Localidades WHERE Nombre_Localidad = @nombre";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+
     }
 }
