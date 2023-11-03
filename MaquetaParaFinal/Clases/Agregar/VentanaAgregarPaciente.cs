@@ -37,6 +37,24 @@ namespace MaquetaParaFinal.View.Agregar
                 }
             }
         }
+
+        private void AbrirDatePicker_Click(object sender, RoutedEventArgs e)
+        {
+            // Abre el Popup que contiene el DatePicker
+            datePickerPopup.IsOpen = true;
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Captura la fecha seleccionada y cierra el Popup
+            datePickerPopup.IsOpen = false;
+
+            // Puedes utilizar la fecha seleccionada como desees
+            DateTime fechaSeleccionada = datePicker.SelectedDate ?? DateTime.Now;
+            string fecha = $"{fechaSeleccionada.Year}-{fechaSeleccionada.Month}-{fechaSeleccionada.Day}";
+
+            txtFecha_De_Nacimiento.Text = fecha;
+        }
         private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
         {
             if (sender is TextBox textBox)
