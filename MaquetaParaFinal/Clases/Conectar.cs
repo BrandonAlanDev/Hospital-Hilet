@@ -30,7 +30,7 @@ namespace MaquetaParaFinal.Clases
                     "Codigo_Postal AS 'Codigo Postal'" +
                     "FROM Pacientes " +
                         "INNER JOIN Localidades ON Fk_Id_Localidades=Pk_Id_Localidades" +
-                        "WHERE Baja_Pacientes IS NULL";
+                    "WHERE Baja_Pacientes IS NULL";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -45,9 +45,10 @@ namespace MaquetaParaFinal.Clases
                 string consulta = "SELECT Pk_Id_Profesionales AS ID," +
                     "Nombre_Profesional AS Nombre," +
                     "Apellido_Profesional AS Apellido,Matricula," +
-                    "Nombre_Servicio AS Servicio FROM Profesionales " +
+                    "Nombre_Servicio AS Servicio " +
+                    "FROM Profesionales " +
                         "INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios" +
-                        "WHERE Baja_Profesional IS NULL";
+                    "WHERE Baja_Profesional IS NULL";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -67,7 +68,8 @@ namespace MaquetaParaFinal.Clases
                     "Nombre_Especialdad AS Especialidad" +
                     "FROM PersonalLaboratorio" +
                         "INNER JOIN Categorias ON Fk_Id_Categorias = Pk_Id_Categorias" +
-                        "INNER JOIN Especialidades ON Fk_Id_Especialidades = Pk_Id_Especialidades";
+                        "INNER JOIN Especialidades ON Fk_Id_Especialidades = Pk_Id_Especialidades" +
+                    "WHERE Baja_Personal IS NULL";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -120,7 +122,7 @@ namespace MaquetaParaFinal.Clases
                     "FROM Practicas AS p " +
                         "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
                         "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
-                            "ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
+                    "ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -140,7 +142,7 @@ namespace MaquetaParaFinal.Clases
                     "pro.Apellido_Profesional AS 'Apellido Medico' FROM Ingresos AS i " +
                         "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
                         "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
-                            "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
+                    "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -695,7 +697,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE PersonalLaboratorio SET Baja_Personal = {DateTime.Today}";
+                string consulta = $"UPDATE PersonalLaboratorio SET Baja_Personal = {DateTime.Today} WHERE Pk_Id_Personal_Laboratorio = {id}";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
