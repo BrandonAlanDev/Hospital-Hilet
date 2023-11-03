@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MaquetaParaFinal.View
 {
@@ -50,6 +51,19 @@ namespace MaquetaParaFinal.View
                 btEliminar.IsEnabled = false;
                 btnImprimirPacticas.IsEnabled = false;
             }
+        }
+
+        private void EnterBuscar(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                DataGridPracticas.ItemsSource = conectar.BuscarEnTablaPracticas(txtBuscar.Text).DefaultView;
+            }
+        }
+
+        private void ClickBuscar(object sender, RoutedEventArgs e)
+        {
+            DataGridPracticas.ItemsSource = conectar.BuscarEnTablaPracticas(txtBuscar.Text).DefaultView;
         }
 
     }
