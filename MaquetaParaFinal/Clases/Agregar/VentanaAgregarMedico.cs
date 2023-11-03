@@ -1,6 +1,7 @@
 ﻿using MaquetaParaFinal.Clases;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,6 +67,20 @@ namespace MaquetaParaFinal.View.Agregar
                 return;
             }
             MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void CargarServicio()
+        {
+            DataTable dtServicio = conectar.DescargarTablaServicios();
+            List<string> data = new List<string>();
+
+            foreach (DataRow row in dtServicio.Rows)
+            {
+                data.Add(row["Servicio"].ToString());
+            }
+            txtServicio.ItemsSource = null;
+            txtServicio.Items.Clear();
+            txtServicio.ItemsSource = data;
         }
 
         private bool TodosLosCamposLlenos()

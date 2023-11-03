@@ -17,6 +17,19 @@ namespace MaquetaParaFinal.Clases
         string contrasenia = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
             "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
 
+        public DataTable DescargarTablaServicios()
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                conexion.Open();
+                string consulta = "SELECT Nombre_Servicio AS Servicio FROM Servicios";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+
         public DataTable DescargaTablaEspecialidades()
         {
             using(SqlConnection conexion = new SqlConnection (contrasenia)) 
@@ -706,7 +719,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Pacientes SET Baja_Pacientes = {DateTime.Today} WHERE Pk_Id_Pacientes= {id}";
+                string consulta = $"UPDATE Pacientes SET Baja_Pacientes = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Pacientes= {id}";
                 using (SqlCommand cmd = new SqlCommand(consulta,conectar))
                 {
                     cmd.ExecuteNonQuery();
@@ -719,7 +732,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Profesionales SET Baja_Profesional = {DateTime.Today} WHERE Pk_Id_Profesionales = {id}";
+                string consulta = $"UPDATE Profesionales SET Baja_Profesional = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Profesionales = {id}";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
@@ -730,6 +743,7 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia)) 
             {
+                conectar.Open();
                 string consulta = "SELECT Pk_Id_Servicios FROM Servicios WHERE Nombre_Servicio = @servicio";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
@@ -743,7 +757,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE PersonalLaboratorio SET Baja_Personal = {DateTime.Today} WHERE Pk_Id_Personal_Laboratorio = {id}";
+                string consulta = $"UPDATE PersonalLaboratorio SET Baja_Personal = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Personal_Laboratorio = {id}";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
