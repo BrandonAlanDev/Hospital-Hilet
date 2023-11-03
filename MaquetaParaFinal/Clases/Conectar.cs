@@ -9,6 +9,7 @@ using System.Net;
 using System.Windows.Documents;
 using System.Windows.Controls;
 using System.Windows;
+using Newtonsoft.Json.Bson;
 
 namespace MaquetaParaFinal.Clases
 {
@@ -701,6 +702,31 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
+        public void EliminarIngresos(int id)
+        {
+            using(SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"UPDATE Ingresos SET Retirado = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}'  WHERE Pk_Id_Ingresos = {id}";
+                using(SqlCommand cmd = new SqlCommand(consulta,conectar))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EliminarTiposDeMuestra()
+        {
+            using(SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"UPDATE Tipos";
+                using(SqlCommand cmd = new SqlCommand(consulta,conectar))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public void EliminarPacientes(int id)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
