@@ -43,7 +43,6 @@ namespace MaquetaParaFinal.View.Agregar
             txtCalle.LostFocus += RestaurarNombrePorDefecto;
             txtLocalidad.LostFocus += RestaurarNombrePorDefecto;
             txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
-            datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
         }
 
         

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Automation;
+using System.Text.RegularExpressions;
 
 namespace MaquetaParaFinal.View.Agregar
 {
@@ -37,19 +38,37 @@ namespace MaquetaParaFinal.View.Agregar
                 }
             }
         }
+        private void ControlarNombre(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
 
+            // Patrón para permitir letras, espacios y comilla simple
+            string regEx = @"^[A-Za-z ']{1,20}$";
+
+            if (!(Regex.IsMatch(input, regEx ) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
+            {
+                textBox.Text = Regex.Replace(input, @"[^A-Za-z ']", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
+                textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
+            }
+        }
         private void AbrirDatePicker_Click(object sender, RoutedEventArgs e)
         {
             // Abre el Popup que contiene el DatePicker
             datePickerPopup.IsOpen = true;
+            DateTime fechaHace150Anios = DateTime.Now.AddYears(-150);
+            datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, fechaHace150Anios));
+            datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
         }
 
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             // Captura la fecha seleccionada y cierra el Popup
             datePickerPopup.IsOpen = false;
+            
 
-            // Puedes utilizar la fecha seleccionada como desees
+            // Primero paso la fecha que selecciono el usuario y despues hice que lo pase al txtbox que va a usar sql en el formato correcto
             DateTime fechaSeleccionada = datePicker.SelectedDate ?? DateTime.Now;
             string fecha = $"{fechaSeleccionada.Year}-{fechaSeleccionada.Month}-{fechaSeleccionada.Day}";
 

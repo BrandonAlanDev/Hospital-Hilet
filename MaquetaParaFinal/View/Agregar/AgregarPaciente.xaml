@@ -19,13 +19,13 @@
                     <DockPanel>
                         <Label Content="Nombre*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtNombre" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                            <TextBox x:Name="txtNombre" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TextChanged="ControlarNombre"/>
                         </Border>
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Apellido*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtApellido" Margin="5,0,0,0" Text="Apellido" TextWrapping="Wrap"  VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                            <TextBox x:Name="txtApellido" Margin="5,0,0,0" Text="Apellido" TextWrapping="Wrap"  VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TextChanged="ControlarNombre"/>
                         </Border>
                     </DockPanel>
                     <DockPanel>
@@ -44,6 +44,7 @@
                         <Label Content="Nacimiento*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch"  Background="#213555" CornerRadius="9">
                             <StackPanel>
+                                <Label Content="Año - Mes - Dia" IsEnabled="False" Foreground="#A0A0A0"/>
                                 <TextBox x:Name="txtFecha_De_Nacimiento" Margin="5,0,0,0" TextWrapping="Wrap" Text="Fecha de Nacimiento" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" InputScope="Date" IsEnabled="False"/>
                                 <Grid>
                                     <Button  x:Name="BotonFecha"  Content="Igresar Fecha" Margin="0,5,0,5" Style="{StaticResource BotonPrimario}" Click="AbrirDatePicker_Click"/>
