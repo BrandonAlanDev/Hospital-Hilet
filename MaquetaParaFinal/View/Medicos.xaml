@@ -19,7 +19,7 @@
                 </Grid>
                 <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,225,0" >
                     <DataGrid x:Name="DataGridMedicos" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Loaded="DataGridMedicos_Loaded" Background="#213555"
-                              RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" AutoGeneratingColumn="DataGridMedicos_AutoGeneratingColumn" >
+                              RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" AutoGeneratingColumn="DataGridMedicos_AutoGeneratingColumn" SelectionChanged="DataGridMedicos_SelectionChanged" >
                         <DataGrid.ColumnHeaderStyle>
                             <StaticResource ResourceKey="HeaderGrilla" />
                         </DataGrid.ColumnHeaderStyle>
@@ -60,9 +60,9 @@
                     </StackPanel>
                     <Grid>
                         <Button x:Name="btAgregar" Content="+ Alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,50" Height="30" Width="70" Style="{StaticResource BotonPrimario}" Click="btAgregar_Click" />
-                        <Button x:Name="btModificar" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonPrimario}"/>
-                        <Button x:Name="btEliminar" Content="- Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,10" Height="30" Width="70" Style="{StaticResource BotonSalir}" Click="btEliminar_Click" />
-                        <Button x:Name="btnImprimirMedicos" Content="Imprimir Datos" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="100" Style="{StaticResource BotonPrimario}" />
+                        <Button x:Name="btModificar" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False"/>
+                        <Button x:Name="btEliminar" Content="- Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,10" Height="30" Width="70" Style="{StaticResource BotonSalir}" Click="btEliminar_Click" IsEnabled="False"/>
+                        <Button x:Name="btnImprimirMedicos" Content="Imprimir Datos" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False"/>
                     </Grid>
                 </Grid>
             </Grid>
