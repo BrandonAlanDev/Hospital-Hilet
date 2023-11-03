@@ -10,6 +10,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Automation;
 using System.Text.RegularExpressions;
+using System.Windows.Media;
+using iText.Kernel.Colors;
 
 namespace MaquetaParaFinal.View.Agregar
 {
@@ -56,23 +58,37 @@ namespace MaquetaParaFinal.View.Agregar
         private void AbrirDatePicker_Click(object sender, RoutedEventArgs e)
         {
             // Abre el Popup que contiene el DatePicker
-            datePickerPopup.IsOpen = true;
-            DateTime fechaHace150Anios = DateTime.Now.AddYears(-150);
-            datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, fechaHace150Anios));
-            datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
+            if (datePickerPopup.IsOpen == false)
+            {
+                datePickerPopup.IsOpen = true;
+                DateTime fechaHace150Anios = DateTime.Now.AddYears(-150);
+                datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, fechaHace150Anios));
+                datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
+                BotonFecha.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(239, 98, 98));
+                BotonFecha.Content = "Cerrar Fecha";
+            }
+            else
+            {
+                datePickerPopup.IsOpen = false;
+                BotonFecha.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(143, 198, 67));
+                BotonFecha.Content = "Ingresar Fecha";
+            }
         }
-
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             // Captura la fecha seleccionada y cierra el Popup
-            datePickerPopup.IsOpen = false;
-            
+            // Primero paso la fecha que selecciono el usuario y despues hice que lo pase al txtbox
+            // que va a usar sql en el formato correcto
 
-            // Primero paso la fecha que selecciono el usuario y despues hice que lo pase al txtbox que va a usar sql en el formato correcto
             DateTime fechaSeleccionada = datePicker.SelectedDate ?? DateTime.Now;
             string fecha = $"{fechaSeleccionada.Year}-{fechaSeleccionada.Month}-{fechaSeleccionada.Day}";
 
             txtFecha_De_Nacimiento.Text = fecha;
+
+            BotonFecha.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(143, 198, 67));
+            BotonFecha.Content = "Ingresar Fecha";
+            datePickerPopup.IsOpen = false;
+            BotonFecha.Focus();
         }
         private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
         {

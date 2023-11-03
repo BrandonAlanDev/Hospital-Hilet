@@ -84,7 +84,7 @@ namespace MaquetaParaFinal.View
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
             ModificarPaciente modificarPaciente = new ModificarPaciente(); 
-            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem; // Lo hice con Row porque no funcagba como lo tenias :c
+            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem; // Lo hice con Row
             modificarPaciente.Id = int.Parse(row["ID"].ToString());
             modificarPaciente.txtNombre.Text = row["Nombre"].ToString();
             modificarPaciente.txtApellido.Text = row["Apellido"].ToString();
@@ -109,7 +109,9 @@ namespace MaquetaParaFinal.View
                 MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar a {txtNombre.Text} {txtApellido.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (resultado == MessageBoxResult.Yes)
                 {
-                    // Aquí va el código para eliminar si lo tuviera (ponete a laburar alejandro)
+                    DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
+                    conectar.EliminarPacientes(int.Parse(row["ID"].ToString()));
+                    DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
                 }
             }
         }

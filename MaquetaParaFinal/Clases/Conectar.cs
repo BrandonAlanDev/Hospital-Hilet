@@ -665,7 +665,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Pacientes SET Baja_Pacientes = {DateTime.Today} WHERE Pk_Id_Pacientes= {id}";
+                string consulta = $"UPDATE Pacientes SET Baja_Pacientes = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Pacientes= {id}";
                 using (SqlCommand cmd = new SqlCommand(consulta,conectar))
                 {
                     cmd.ExecuteNonQuery();

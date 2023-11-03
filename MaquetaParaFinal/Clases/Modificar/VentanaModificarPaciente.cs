@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
+using System.Text.RegularExpressions;
+using System.Windows.Media;
 
 namespace MaquetaParaFinal.View.Modificar
 {
@@ -40,6 +42,56 @@ namespace MaquetaParaFinal.View.Modificar
                     textBox.Clear();
                 }
             }
+        }
+        private void ControlarNombre(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
+
+            // Patrón para permitir letras, espacios y comilla simple
+            string regEx = @"^[A-Za-z ']{1,20}$";
+
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
+            {
+                textBox.Text = Regex.Replace(input, @"[^A-Za-z ']", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
+                textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
+            }
+        }
+        private void AbrirDatePicker_Click(object sender, RoutedEventArgs e)
+        {
+            // Abre el Popup que contiene el DatePicker
+            if (datePickerPopup.IsOpen == false)
+            {
+                datePickerPopup.IsOpen = true;
+                DateTime fechaHace150Anios = DateTime.Now.AddYears(-150);
+                datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, fechaHace150Anios));
+                datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
+                BotonFecha.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(239, 98, 98));
+                BotonFecha.Content = "Cerrar Fecha";
+            }
+            else
+            {
+                datePickerPopup.IsOpen = false;
+                BotonFecha.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(143, 198, 67));
+                BotonFecha.Content = "Ingresar Fecha";
+            }
+        }
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Captura la fecha seleccionada y cierra el Popup
+            // Primero paso la fecha que selecciono el usuario y despues hice que lo pase al txtbox
+            // que va a usar sql en el formato correcto
+
+            DateTime fechaSeleccionada = datePicker.SelectedDate ?? DateTime.Now;
+            string fecha = $"{fechaSeleccionada.Year}-{fechaSeleccionada.Month}-{fechaSeleccionada.Day}";
+
+            txtFecha_De_Nacimiento.Text = fecha;
+
+            BotonFecha.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(143, 198, 67));
+            BotonFecha.Content = "Ingresar Fecha";
+            datePickerPopup.IsOpen = false;
+            BotonFecha.Focus();
         }
         private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
         {
