@@ -45,10 +45,42 @@ namespace MaquetaParaFinal.View.Agregar
         {
 
         }
+        void CargarEnBoxEspecilidad() 
+        {
+            DataTable dtespecialidad = conectar.DescargaTablaEspecialidades();
+            // Crear una lista para almacenar los datos
+            List<string> data = new List<string>();
+
+            foreach (DataRow row in dtespecialidad.Rows)
+            {
+                data.Add(row["Especialidad"].ToString());
+            }
+
+            // Asignar los datos al ComboBox
+            txtEspecialidad.ItemsSource = data;
+        }
+
+        void CargarEnBoxTipoDeMuestra()
+        {
+            DataTable dtesmuestra = conectar.DescargaTablaTiposDeMuestra();
+            // Crear una lista para almacenar los datos
+            List<string> data = new List<string>();
+
+            foreach (DataRow row in dtesmuestra.Rows)
+            {
+                data.Add(row["Tipo de Muestra"].ToString());
+            }
+
+            // Asignar los datos al ComboBox
+            txtTipoDeMuestra.ItemsSource = data;
+        }
 
         private void Border_Loaded(object sender, RoutedEventArgs e)
         {
-            //DataTable dtespecialidad = 
+            try{
+                CargarEnBoxEspecilidad();
+                CargarEnBoxTipoDeMuestra();
+            }catch{ }
         }
     }
 }
