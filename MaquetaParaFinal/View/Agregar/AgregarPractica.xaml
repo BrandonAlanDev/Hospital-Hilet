@@ -12,7 +12,7 @@
         Title="AgregarPractica" Height="550" Width="350" >
     <Grid x:Name="Principal" MouseLeftButtonDown="Principal_MouseLeftButtonDown" >
         <Image x:Name="Logo" Width="40" Height="40" HorizontalAlignment="Left" Margin="-7,-7,0,0"  VerticalAlignment="Top" Source="/View/Agregar/logo.png"/>
-        <Border Margin="5,5,0,0" CornerRadius="45" Background="#4F709C" BorderBrush="#8fc643" BorderThickness="5" Grid.ColumnSpan="2">
+        <Border Margin="5,5,0,0" CornerRadius="45" Background="#4F709C" BorderBrush="#8fc643" BorderThickness="5" Grid.ColumnSpan="2" Loaded="Border_Loaded">
             <StackPanel>
                 <Label Content="Agregar Practica" FontSize="25" FontFamily="Roboto" FontWeight="Medium" Foreground="#F0F0F0" Margin="20,5,0,0"/>
                 <StackPanel  Margin="0,10,0,0"  Width="300" Height="380">
