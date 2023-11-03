@@ -109,7 +109,9 @@ namespace MaquetaParaFinal.View
                 MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar a {txtNombre.Text} {txtApellido.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (resultado == MessageBoxResult.Yes)
                 {
-                    // Aquí va el código para eliminar si lo tuviera (ponete a laburar alejandro)
+                    DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
+                    conectar.EliminarPacientes(int.Parse(row["ID"].ToString()));
+                    DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
                 }
             }
         }

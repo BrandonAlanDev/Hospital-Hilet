@@ -1,6 +1,7 @@
 ﻿using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,6 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
-        private void btAgregar_Click(object sender, RoutedEventArgs e)
-        {
-            AgregarMedico agregarMedico = new AgregarMedico();
-            agregarMedico.ShowDialog();
-        }
+
     }
 }
