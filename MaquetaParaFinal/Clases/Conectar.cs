@@ -389,7 +389,7 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarPracticas(string fecha_realizacion, string tiempo_resultado, int nombre_practica, int fk_id_especialidades, int fk_id_tiposdemuestra)
+        public void AgregarPracticas(string fecha_realizacion, string tiempo_resultado, string nombre_practica, int fk_id_especialidades, int fk_id_tiposdemuestra)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {

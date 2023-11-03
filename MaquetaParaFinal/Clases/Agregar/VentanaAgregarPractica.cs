@@ -43,7 +43,17 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
-
+            if (txtNombrePractica.Text != "Nombre" && txtEspecialidad.Text != null && txtTipoDeMuestra.Text != null)
+            {
+                string fecha =$"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}";
+                int idEspecialidad;
+                int idTipoMuestra;
+                conectar.AgregarPracticas(fecha, txtTiempoResultado.Text,txtNombrePractica.Text,0,0);
+            }
+            else 
+            {
+                MessageBox.Show("Plantilla Incompleta","Error",MessageBoxButton.OK,MessageBoxImage.Question);
+            }
         }
         void CargarEnBoxEspecilidad() 
         {
