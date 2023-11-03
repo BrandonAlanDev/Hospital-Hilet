@@ -32,6 +32,21 @@ namespace MaquetaParaFinal.View
             }catch { }
         }
 
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtNombre.Text != "Nombre")
+            {
+                System.Media.SystemSounds.Beep.Play();
+                MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar la practica {txtNombre.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
+                    //conectar.EliminarPractica(int.Parse(row["ID"].ToString())); PARA CUANDO ESTE EL METODO
+                    DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+                }
+            }
+        }
+
         private void DataGridPracticas_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGridPracticas.SelectedItem != null)
