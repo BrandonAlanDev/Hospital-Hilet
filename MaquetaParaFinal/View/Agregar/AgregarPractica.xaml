@@ -19,7 +19,7 @@
                     <DockPanel>
                         <Label Content="Nombre Practica*" Margin="0,3,0,0" Width="130" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtNombrePractica" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" GotFocus="txtNombrePractica_GotFocus" LostFocus="txtNombrePractica_LostFocus"/>
+                            <TextBox x:Name="txtNombrePractica" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" GotFocus="txtNombrePractica_GotFocus" LostFocus="txtNombrePractica_LostFocus" TextChanged="ControlarNombre"/>
                         </Border>
                     </DockPanel>
                     <DockPanel>
