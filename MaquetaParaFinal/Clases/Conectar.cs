@@ -17,6 +17,45 @@ namespace MaquetaParaFinal.Clases
         string contrasenia = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
             "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
 
+        public DataTable DescargaTablaEspecialidades()
+        {
+            using(SqlConnection conexion = new SqlConnection (contrasenia)) 
+            {
+                conexion.Open ();
+                string consulta = "SELECT Nombre_Especialidad AS Especialidad FROM Especialidades";
+                SqlDataAdapter command = new SqlDataAdapter (consulta,conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+
+        public DataTable DescargaTablaTiposDeMuestra() 
+        {
+            using(SqlConnection conexion = new SqlConnection (contrasenia))
+            {
+                conexion.Open ();
+                string consulta = "SELECT Nombre_Tipo_De_Muestra AS 'Tipo de Muestra' FROM TiposDeMuestras";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+
+        public DataTable DescargaTablaCategorias() 
+        {
+            using( SqlConnection conexion = new SqlConnection (contrasenia))
+            {
+                conexion.Open();
+                string consulta = "SELECT Nombre_Categoria AS Categoria FROM Categorias";
+                SqlDataAdapter command = new SqlDataAdapter ( consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+        
         public DataTable DescargaTablaPaciente() //Anda
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
@@ -108,7 +147,8 @@ namespace MaquetaParaFinal.Clases
                             "INNER JOIN Especialidades AS esp ON pra.Fk_Id_Especialidades = esp.Pk_Id_Especialidades " +
                             "INNER JOIN TiposDeMuestras AS tip ON pra.Fk_Id_Tipos_De_Muestra = tip.Pk_Id_Tipos_De_Muestra " +
                             "INNER JOIN PersonalLaboratorio AS perL ON perL.Fk_Id_Especialidades = esp.Pk_Id_Especialidades " +
-                            "INNER JOIN Categorias AS cat ON perL.Fk_Id_Categorias = cat.Pk_Id_Categorias;";
+                            "INNER JOIN Categorias AS cat ON perL.Fk_Id_Categorias = cat.Pk_Id_Categorias " +
+                            "WHERE (Baja_Pacientes IS NULL) AND (Baja_Profesional IS NULL) AND (Baja_Personal IS NULL);";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -147,6 +187,7 @@ namespace MaquetaParaFinal.Clases
                     "pro.Apellido_Profesional AS 'Apellido Medico' FROM Ingresos AS i " +
                         "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
                         "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
+                        "WHERE (Baja_Pacientes IS NULL) AND (Baja_Profesional IS NULL)" +
                     "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
