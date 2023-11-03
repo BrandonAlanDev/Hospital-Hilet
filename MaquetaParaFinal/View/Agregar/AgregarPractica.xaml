@@ -24,12 +24,12 @@
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Especialidad*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <ComboBox x:Name="txtEspecialidad" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}" IsEnabled="False">
+                        <ComboBox x:Name="txtEspecialidad" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}">
                         </ComboBox>
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Tipo De Muestra*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <ComboBox x:Name="txtTipoDeMuestra" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}" IsEnabled="False">
+                        <ComboBox x:Name="txtTipoDeMuestra" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}">
                         </ComboBox>
                     </DockPanel>
                 </StackPanel>
