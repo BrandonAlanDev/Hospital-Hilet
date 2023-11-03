@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Net;
 using System.Windows.Documents;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace MaquetaParaFinal.Clases
 {
@@ -271,13 +273,12 @@ namespace MaquetaParaFinal.Clases
                     cmd.Parameters.AddWithValue("@numero", Numero);
                     cmd.Parameters.AddWithValue("@piso", Piso);
                     cmd.Parameters.AddWithValue("@fk_id_localidades", fk_id);
-
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void AgregarProfesionales(string nombre, string apellido, int Matricula, int Fk_Id_Servicios) {
+        public void AgregarProfesionales(string nombre, string apellido, int Matricula,int Fk_Id_Servicios) {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
@@ -300,8 +301,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Servicios (Nombre_Servicio) " +
-                    "VALUES (@nombreservicio);";
+                string consulta = "INSERT INTO Servicios (Nombre_Servicio) VALUES (@nombreservicio);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
@@ -653,13 +653,12 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-
         public void EliminarPacientes(int id)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Pacientes SET Baja_Pacientes = {DateTime.Today}";
+                string consulta = $"UPDATE Pacientes SET Baja_Pacientes = {DateTime.Today} WHERE Pk_Id_Pacientes= {id}";
                 using (SqlCommand cmd = new SqlCommand(consulta,conectar))
                 {
                     cmd.ExecuteNonQuery();
@@ -672,16 +671,27 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Profesionales SET Baja_Profesional = {DateTime.Today}";
+                string consulta = $"UPDATE Profesionales SET Baja_Profesional = {DateTime.Today} WHERE Pk_Id_Profesionales = {id}";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
                 }
             }
         }
-
-        public void EliminarPersonalLaboratorio(int id)
+        public int ObtenerId_Servicio(string servicio)
         {
+            using (SqlConnection conectar = new SqlConnection(contrasenia)) 
+            {
+                string consulta = "SELECT Pk_Id_Servicios FROM Servicios WHERE Nombre_Servicio = @servicio";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@servicio", servicio);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }         
+            }
+        }
+        public void EliminarPersonalLaboratorio(int id)
+          {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
@@ -689,6 +699,19 @@ namespace MaquetaParaFinal.Clases
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public int ObtenerId_Localidad(string nombre)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = "SELECT Pk_Id_Localidades FROM Localidades WHERE Nombre_Localidad = @nombre";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
         }

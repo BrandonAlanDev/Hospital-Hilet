@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Automation;
+using System.Text.RegularExpressions;
 
 namespace MaquetaParaFinal.View.Agregar
 {
@@ -20,7 +21,7 @@ namespace MaquetaParaFinal.View.Agregar
             { "Apellido", "txtApellido" },
             { "Dni", "txtDni" },
             { "Email", "txtEmail" },
-            { "Fecha De Nacimiento", "txtFecha_De_Nacimiento" },
+            { "YYYY-MM-DD", "txtFecha_De_Nacimiento" },
             { "Teléfono", "txtTelefono" },
             { "Calle", "txtCalle" },
             { "Nro", "txtNro" },
@@ -36,6 +37,42 @@ namespace MaquetaParaFinal.View.Agregar
                     textBox.Clear();
                 }
             }
+        }
+        private void ControlarNombre(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
+
+            // Patrón para permitir letras, espacios y comilla simple
+            string regEx = @"^[A-Za-z ']{1,20}$";
+
+            if (!(Regex.IsMatch(input, regEx ) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
+            {
+                textBox.Text = Regex.Replace(input, @"[^A-Za-z ']", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
+                textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
+            }
+        }
+        private void AbrirDatePicker_Click(object sender, RoutedEventArgs e)
+        {
+            // Abre el Popup que contiene el DatePicker
+            datePickerPopup.IsOpen = true;
+            DateTime fechaHace150Anios = DateTime.Now.AddYears(-150);
+            datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, fechaHace150Anios));
+            datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Captura la fecha seleccionada y cierra el Popup
+            datePickerPopup.IsOpen = false;
+            
+
+            // Primero paso la fecha que selecciono el usuario y despues hice que lo pase al txtbox que va a usar sql en el formato correcto
+            DateTime fechaSeleccionada = datePicker.SelectedDate ?? DateTime.Now;
+            string fecha = $"{fechaSeleccionada.Year}-{fechaSeleccionada.Month}-{fechaSeleccionada.Day}";
+
+            txtFecha_De_Nacimiento.Text = fecha;
         }
         private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
         {
@@ -60,11 +97,22 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 if (txtEmail.Text == "Email") txtEmail.Text = "";
                 if (txtTelefono.Text == "Teléfono") txtTelefono.Text = "";
-                conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, 0);
-                MessageBox.Show("Agregado Correctamente");
-                this.Close();
+                try
+                {
+                    int id = conectar.ObtenerId_Localidad(txtLocalidad.Text);
+                    conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, id);
+                    LimpiarTxt();
+                    MessageBox.Show("Agregado Correctamente");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Compruebe Los Datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            else
+            {
+                MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
         private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
         {
@@ -74,7 +122,21 @@ namespace MaquetaParaFinal.View.Agregar
                    txtDni.Text != "Dni" &&
                    txtCalle.Text != "Calle" &&
                    txtNro.Text != "Nro" &&
-                   txtPiso.Text != "Piso";
+                   txtPiso.Text != "Piso" &&
+                   txtLocalidad.SelectedValue != null;
+        }
+
+        private void LimpiarTxt()
+        {
+            txtNombre.Text = "Nombre";
+            txtApellido.Text = "Apellido";
+            txtFecha_De_Nacimiento.Text = "Fecha De Nacimiento";
+            txtDni.Text = "Dni";
+            txtCalle.Text = "Calle";
+            txtNro.Text = "Nro";
+            txtPiso.Text = "Piso";
+            txtLocalidad.SelectedValue = null;
+            txtCodPostas.SelectedValue = null;
         }
 
         private void CargarLocalidades()

@@ -1,5 +1,6 @@
 ﻿using MaquetaParaFinal.Clases;
 using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -48,6 +49,16 @@ namespace MaquetaParaFinal.View
                 txtLocalidad.Text = row["Localidad"].ToString();
                 txtCodPostas.Text = row["Codigo Postal"].ToString();
                 txtPiso.Text = row["Piso"].ToString();
+
+                btModificar.IsEnabled = true;
+                btEliminar.IsEnabled = true;
+                btnImprimirPaciente.IsEnabled = true;
+            }
+            else
+            {
+                btModificar.IsEnabled = false;
+                btEliminar.IsEnabled = false;
+                btnImprimirPaciente.IsEnabled = false;
             }
         }
 
@@ -68,6 +79,26 @@ namespace MaquetaParaFinal.View
         {
             AgregarPaciente agregarPaciente = new AgregarPaciente();
             agregarPaciente.ShowDialog();
+            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
+        }
+        private void btModificar_Click(object sender, RoutedEventArgs e)
+        {
+            ModificarPaciente modificarPaciente = new ModificarPaciente(); 
+            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem; // Lo hice con Row porque no funcagba como lo tenias :c
+            modificarPaciente.Id = int.Parse(row["ID"].ToString());
+            modificarPaciente.txtNombre.Text = row["Nombre"].ToString();
+            modificarPaciente.txtApellido.Text = row["Apellido"].ToString();
+            modificarPaciente.txtDni.Text = row["Dni"].ToString();
+            modificarPaciente.txtEmail.Text = row["Email"].ToString();
+            modificarPaciente.txtFecha_De_Nacimiento.Text = row["Fecha De Nacimiento"].ToString();
+            modificarPaciente.txtTelefono.Text = row["Telefono"].ToString();
+            modificarPaciente.txtCalle.Text = row["Calle"].ToString();
+            modificarPaciente.txtNro.Text = row["Numero"].ToString();
+            modificarPaciente.txtLocalidad.Text = row["Localidad"].ToString();
+            modificarPaciente.txtCodPostas.Text = row["Codigo Postal"].ToString();
+            modificarPaciente.txtPiso.Text = row["Piso"].ToString();
+            modificarPaciente.ShowDialog();
+            DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
