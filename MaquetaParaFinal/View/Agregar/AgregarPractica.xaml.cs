@@ -1,5 +1,4 @@
-﻿using MaquetaParaFinal.View.Agregar;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MaquetaParaFinal.View
+namespace MaquetaParaFinal.View.Agregar
 {
     /// <summary>
-    /// Lógica de interacción para Practicas.xaml
+    /// Lógica de interacción para AgregarPractica.xaml
     /// </summary>
-    public partial class Practicas : Page
+    public partial class AgregarPractica : Window
     {
-        public Practicas()
+        public AgregarPractica()
         {
             InitializeComponent();
         }
