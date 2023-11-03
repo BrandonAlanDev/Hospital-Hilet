@@ -55,8 +55,8 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 data.Add(row["Especialidad"].ToString());
             }
-
-            // Asignar los datos al ComboBox
+            txtEspecialidad.ItemsSource = null;
+            txtEspecialidad.Items.Clear();
             txtEspecialidad.ItemsSource = data;
         }
 
@@ -70,8 +70,8 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 data.Add(row["Tipo de Muestra"].ToString());
             }
-
-            // Asignar los datos al ComboBox
+            txtTipoDeMuestra.ItemsSource = null;
+            txtTipoDeMuestra.Items.Clear();
             txtTipoDeMuestra.ItemsSource = data;
         }
 
@@ -79,8 +79,12 @@ namespace MaquetaParaFinal.View.Agregar
         {
             try{
                 CargarEnBoxEspecilidad();
-                CargarEnBoxTipoDeMuestra();
             }catch{ }
+
+            try{
+                CargarEnBoxTipoDeMuestra();
+            }catch { }
+
         }
     }
 }
