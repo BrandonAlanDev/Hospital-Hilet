@@ -1,4 +1,5 @@
 ﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,16 @@ namespace MaquetaParaFinal.View
         private void DataGridPacticas_Loaded(object sender, RoutedEventArgs e)
         {
             try { 
-                DataGridPacticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+                DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
             } catch { }
         }
-
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPractica agregarPractica = new AgregarPractica();
+            agregarPractica.ShowDialog();
+            try{
+                DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+            }catch { }
+        }
     }
 }
