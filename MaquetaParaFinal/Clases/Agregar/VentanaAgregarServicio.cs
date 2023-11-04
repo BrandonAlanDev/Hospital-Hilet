@@ -33,6 +33,22 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
+        private void txtNombreServicio_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtNombreServicio.Text == "")
+            {
+                txtNombreServicio.Text = "Nombre";
+            }
+        }
+
+        private void txtNombreServicio_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtNombreServicio.Text == "Nombre")
+            {
+                txtNombreServicio.Text = "";
+            }
+        }
+
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
