@@ -66,6 +66,7 @@ namespace MaquetaParaFinal.View.Agregar
                 datePicker.BlackoutDates.Add(new CalendarDateRange(DateTime.Now.AddDays(1), DateTime.MaxValue));
                 BotonFecha.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(239, 98, 98));
                 BotonFecha.Content = "Cerrar Fecha";
+                datePicker.Focus();
             }
             else
             {
@@ -119,6 +120,7 @@ namespace MaquetaParaFinal.View.Agregar
                     conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, id);
                     LimpiarTxt();
                     MessageBox.Show("Agregado Correctamente");
+                    this.Close();
                 }
                 catch (Exception)
                 {
