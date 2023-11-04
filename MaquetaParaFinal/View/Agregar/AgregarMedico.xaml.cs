@@ -31,5 +31,11 @@ namespace MaquetaParaFinal.View.Agregar
             CargarServicios();
         }
 
+        private void txtServicio_Loaded(object sender, RoutedEventArgs e)
+        {
+            try{
+                CargarServicio();
+            }catch { }
+        }
     }
 }

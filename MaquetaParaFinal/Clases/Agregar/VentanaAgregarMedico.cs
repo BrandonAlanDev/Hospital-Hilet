@@ -70,6 +70,20 @@ namespace MaquetaParaFinal.View.Agregar
             MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
+        private void CargarServicio()
+        {
+            DataTable dtServicio = conectar.DescargarTablaServicios();
+            List<string> data = new List<string>();
+
+            foreach (DataRow row in dtServicio.Rows)
+            {
+                data.Add(row["Servicio"].ToString());
+            }
+            txtServicio.ItemsSource = null;
+            txtServicio.Items.Clear();
+            txtServicio.ItemsSource = data;
+        }
+
         private bool TodosLosCamposLlenos()
         {
             return txtNombre.Text != "Nombre" &&
