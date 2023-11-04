@@ -67,7 +67,7 @@ namespace MaquetaParaFinal.View.Agregar
                 MessageBox.Show("Se agrego el medico correctamente");
                 this.Close();
             }
-            MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            else   MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void CargarServicio()
