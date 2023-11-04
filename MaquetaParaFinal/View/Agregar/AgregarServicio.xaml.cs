@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +20,10 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarServicio : Window
     {
+        Conectar conectar = new Conectar();
         public AgregarServicio()
         {
             InitializeComponent();
-        }
-
-        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
