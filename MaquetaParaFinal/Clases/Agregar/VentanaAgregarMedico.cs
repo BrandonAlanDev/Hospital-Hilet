@@ -64,8 +64,8 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 int idServicio = conectar.ObtenerId_Servicio(txtServicio.Text);
                 conectar.AgregarProfesionales(txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), idServicio);
-                LimpiarTxt();
-                return;
+                MessageBox.Show("Se agrego el medico correctamente");
+                this.Close();
             }
             MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
