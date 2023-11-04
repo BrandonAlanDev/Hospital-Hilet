@@ -27,6 +27,11 @@ namespace MaquetaParaFinal.View
         {
             AgregarMedico agregarMedico = new AgregarMedico();
             agregarMedico.ShowDialog();
+            try
+            {
+                DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+            }
+            catch { }
         }
     }
 }

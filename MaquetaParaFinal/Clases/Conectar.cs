@@ -689,12 +689,14 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia)) 
             {
+                conectar.Open();
                 string consulta = "SELECT Pk_Id_Servicios FROM Servicios WHERE Nombre_Servicio = @servicio";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@servicio", servicio);
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }         
+                conectar.Close();
             }
         }
         public void EliminarPersonalLaboratorio(int id)
