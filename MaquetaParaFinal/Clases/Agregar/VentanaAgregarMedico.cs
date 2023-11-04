@@ -1,6 +1,7 @@
 ﻿using MaquetaParaFinal.Clases;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -63,8 +64,8 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 int idServicio = conectar.ObtenerId_Servicio(txtServicio.Text);
                 conectar.AgregarProfesionales(txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), idServicio);
-                LimpiarTxt();
-                return;
+                MessageBox.Show("Se agrego el medico correctamente");
+                this.Close();
             }
             MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
@@ -96,6 +97,52 @@ namespace MaquetaParaFinal.View.Agregar
             txtNombre.Text = "Nombre";
             txtApellido.Text = "Apellido";
             txtMatricula.Text = "Matricula";
+        }
+
+        private void CargarServicios()
+        {
+            string connectionString = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
+            "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = "SELECT DISTINCT Nombre_Servicio AS Servicio FROM Servicios";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    txtServicio.ItemsSource = null;
+                    txtServicio.Items.Clear();
+
+                    // Crear una lista para almacenar los datos
+                    List<string> data = new List<string>();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        data.Add(row["Servicio"].ToString());
+                    }
+
+                    // Asignar los datos al ComboBox
+                    txtServicio.ItemsSource = data;
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+
+        private void btnAgregarServicio_Click(object sender, RoutedEventArgs e) 
+        {
+            AgregarServicio agregarServicio = new AgregarServicio();
+            agregarServicio.ShowDialog();
+            CargarServicios();
         }
     }
 }

@@ -43,8 +43,7 @@ namespace MaquetaParaFinal.View.Agregar
             txtCalle.LostFocus += RestaurarNombrePorDefecto;
             txtLocalidad.LostFocus += RestaurarNombrePorDefecto;
             txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
+            txtNombre.Focus();
         }
-
-        
     }
 }

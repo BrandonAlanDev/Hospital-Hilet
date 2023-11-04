@@ -84,7 +84,7 @@ namespace MaquetaParaFinal.View
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
             ModificarPaciente modificarPaciente = new ModificarPaciente(); 
-            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem; // Lo hice con Row porque no funcagba como lo tenias :c
+            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem; // Lo hice con Row
             modificarPaciente.Id = int.Parse(row["ID"].ToString());
             modificarPaciente.txtNombre.Text = row["Nombre"].ToString();
             modificarPaciente.txtApellido.Text = row["Apellido"].ToString();

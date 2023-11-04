@@ -28,6 +28,7 @@ namespace MaquetaParaFinal.View.Agregar
             txtNombre.LostFocus += RestaurarNombrePorDefecto;
             txtApellido.LostFocus += RestaurarNombrePorDefecto;
             txtMatricula.LostFocus += RestaurarNombrePorDefecto;
+            CargarServicios();
         }
 
         private void txtServicio_Loaded(object sender, RoutedEventArgs e)
