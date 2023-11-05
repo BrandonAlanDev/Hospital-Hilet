@@ -119,7 +119,7 @@ namespace MaquetaParaFinal.View.Modificar
                 if (txtTelefono.Text == "Teléfono") txtTelefono.Text = "";
                 try
                 {
-                    int idLocalidad = conectar.ObtenerId_Localidad(txtLocalidad.Text);
+                    int idLocalidad = conectar.ObtenerId_Localidades(txtLocalidad.Text);
                     conectar.ModificarPacientes(Id,txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, idLocalidad);
                     MessageBox.Show("Modificado Correctamente");
                     this.Close();
