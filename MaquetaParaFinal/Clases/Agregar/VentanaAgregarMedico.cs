@@ -62,7 +62,7 @@ namespace MaquetaParaFinal.View.Agregar
         {
             if (TodosLosCamposLlenos())
             {
-                int idServicio = conectar.ObtenerId_Servicio(txtServicio.Text);
+                int idServicio = conectar.ObtenerId_Servicios(txtServicio.Text);
                 conectar.AgregarProfesionales(txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), idServicio);
                 MessageBox.Show("Se agrego el medico correctamente");
                 this.Close();

@@ -373,7 +373,7 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarEspecialidades(string nombre)
+        public void AgregarEspecialidades(string nombre_especialidad)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
@@ -382,13 +382,13 @@ namespace MaquetaParaFinal.Clases
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@nombre_especialidad", nombre);
+                    cmd.Parameters.AddWithValue("@nombre_especialidad", nombre_especialidad);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void AgregarTiposDeMuestras(string nombre)
+        public void AgregarTiposDeMuestras(string nombre_muestra)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
@@ -397,7 +397,7 @@ namespace MaquetaParaFinal.Clases
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@nombre_muestra", nombre);
+                    cmd.Parameters.AddWithValue("@nombre_muestra", nombre_muestra);
                     cmd.ExecuteNonQuery();
                 }
             }

@@ -116,7 +116,7 @@ namespace MaquetaParaFinal.View.Agregar
                 if (txtTelefono.Text == "Teléfono") txtTelefono.Text = "";
                 try
                 {
-                    int id = conectar.ObtenerId_Localidad(txtLocalidad.Text);
+                    int id = conectar.ObtenerId_Localidades(txtLocalidad.Text);
                     conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, id);
                     LimpiarTxt();
                     MessageBox.Show("Agregado Correctamente");
