@@ -776,7 +776,6 @@ namespace MaquetaParaFinal.Clases
                     cmd.Parameters.AddWithValue("@servicio", servicio);
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }         
-                conectar.Close();
             }
         }
         public void EliminarPersonalLaboratorio(int id)
