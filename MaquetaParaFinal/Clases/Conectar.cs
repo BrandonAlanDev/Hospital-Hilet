@@ -837,20 +837,20 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-        public int ObtenerId_Localidad(string nombre)
+        public int ObtenerId_Localidades(string localidad)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "SELECT Pk_Id_Localidades FROM Localidades WHERE Nombre_Localidad = @nombre";
+                string consulta = "SELECT Pk_Id_Localidades FROM Localidades WHERE Nombre_Localidad = @localidad";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@localidad", localidad);
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
         }
-        public int ObtenerId_Servicio(string servicio)
+        public int ObtenerId_Servicios(string servicio)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
@@ -859,6 +859,45 @@ namespace MaquetaParaFinal.Clases
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@servicio", servicio);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+        public int ObtenerId_Categorias(string categoria)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = "SELECT Pk_Id_Categorias FROM Categorias WHERE Nombre_Categoria = @categoria";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@categoria", categoria);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+        public int ObtenerId_TiposDeMuestras(string muestra)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = "SELECT Pk_Id_Tipos_De_Muestra FROM TiposDeMuestras WHERE Nombre_Tipo_De_Muestra = @muestra";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@muestra", muestra);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+        public int ObtenerId_Especialidades(string especialidad)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = "SELECT Pk_Id_Especialidades FROM Especialidades WHERE Nombre_Especialidad = @especialidad";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@especialidad", especialidad);
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
