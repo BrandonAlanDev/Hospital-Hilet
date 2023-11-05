@@ -363,11 +363,12 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Servicios (Nombre_Servicio) VALUES (@nombreservicio);";
-
+                string consulta = "INSERT INTO Servicios (Nombre_Servicio) " +
+                                    "SELECT @nombre " +
+                                    "WHERE NOT EXISTS (SELECT 1 FROM Servicios WHERE Nombre_Servicio = @nombre)";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@nombreservicio", nombre);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
                     cmd.ExecuteNonQuery();
                 }
             }
