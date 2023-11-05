@@ -728,13 +728,61 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void EliminarTiposDeMuestra()
+        public void EliminarLocalidades(int id) 
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"UPDATE Localidades SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}'  WHERE Pk_Id_Localidades = {id}";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void EliminarServicios(int id)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"UPDATE Servicios SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}'  WHERE Pk_Id_Servicios = {id}";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void EliminarCategorias(int id)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"UPDATE Categorias SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}'  WHERE Pk_Id_Categorias = {id}";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void EliminarTiposDeMuestra(int id)
         {
             using(SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Tipos";
+                string consulta = $"UPDATE TiposDeMuestras SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Tipos_De_Muestra = {id}";
                 using(SqlCommand cmd = new SqlCommand(consulta,conectar))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void EliminarEspecialidad(int id)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"UPDATE Especialidades SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Especialidades = {id}";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
                 }
@@ -765,25 +813,24 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-        public int ObtenerId_Servicio(string servicio)
-        {
-            using (SqlConnection conectar = new SqlConnection(contrasenia)) 
-            {
-                conectar.Open();
-                string consulta = "SELECT Pk_Id_Servicios FROM Servicios WHERE Nombre_Servicio = @servicio";
-                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
-                {
-                    cmd.Parameters.AddWithValue("@servicio", servicio);
-                    return Convert.ToInt32(cmd.ExecuteScalar());
-                }         
-            }
-        }
         public void EliminarPersonalLaboratorio(int id)
           {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
                 string consulta = $"UPDATE PersonalLaboratorio SET Baja_Personal = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Personal_Laboratorio = {id}";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void EliminarPracticas(int id)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"UPDATE Practicas SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}'  WHERE Pk_Id_Practicas = {id}";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
@@ -799,6 +846,19 @@ namespace MaquetaParaFinal.Clases
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@nombre", nombre);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+        public int ObtenerId_Servicio(string servicio)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = "SELECT Pk_Id_Servicios FROM Servicios WHERE Nombre_Servicio = @servicio";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@servicio", servicio);
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
