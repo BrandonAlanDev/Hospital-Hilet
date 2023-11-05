@@ -16,8 +16,9 @@ namespace MaquetaParaFinal.View.Agregar
     {
         private void btnAceptarAgServicio_Click(object sender, RoutedEventArgs e)
         {
-                // futura consulta para comprobar que no exista ya dicho servicio
-                if (txtNombreServicio.Text != "Nombre" && conectar.ValidarSiexisteServicio(txtNombreServicio.Text) != 1)
+            if (conectar.ValidarSiexisteServicio(txtNombreServicio.Text) != 1)
+            {
+                if (txtNombreServicio.Text != "Nombre")
                 {
                     try
                     {
@@ -29,8 +30,8 @@ namespace MaquetaParaFinal.View.Agregar
                     {
                         MessageBox.Show("Error al ingresar los datos", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
-                }
-                else MessageBox.Show("El servicio ya existe","Error",MessageBoxButton.OK,MessageBoxImage.Warning);
+                }else MessageBox.Show("Ingrese un Nombre", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }else MessageBox.Show("El servicio ya existe", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void txtNombreServicio_LostFocus(object sender, RoutedEventArgs e)
