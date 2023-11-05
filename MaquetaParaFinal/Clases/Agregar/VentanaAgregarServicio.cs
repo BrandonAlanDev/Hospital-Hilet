@@ -19,7 +19,7 @@ namespace MaquetaParaFinal.View.Agregar
             try
             {
                 // futura consulta para comprobar que no exista ya dicho servicio
-                if (true)
+                if (txtNombreServicio.Text != "Nombre" && true)
                 {
                     conectar.AgregarServicios(txtNombreServicio.Text);
                     MessageBox.Show("Servicio agregado correctamente");
