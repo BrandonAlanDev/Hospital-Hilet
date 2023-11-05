@@ -14,23 +14,24 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarServicio : Window
     {
-        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
+        private void btnAceptarAgServicio_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (conectar.ValidarSiexisteServicio(txtNombreServicio.Text) != 1)
             {
-                // futura consulta para comprobar que no exista ya dicho servicio
-                if (true)
+                if (txtNombreServicio.Text != "Nombre")
                 {
-                    conectar.AgregarServicios(txtNombreServicio.Text);
-                    MessageBox.Show("Servicio agregado correctamente");
-                    this.Close();
-                }
-                else MessageBox.Show("El servicio ya existe");
-            }
-            catch
-            {
-                MessageBox.Show("Error al ingresar los datos");
-            }
+                    try
+                    {
+                        conectar.AgregarServicios(txtNombreServicio.Text);
+                        MessageBox.Show("Servicio agregado correctamente");
+                        this.Close();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error al ingresar los datos", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }else MessageBox.Show("Ingrese un Nombre", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }else MessageBox.Show("El servicio ya existe", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void txtNombreServicio_LostFocus(object sender, RoutedEventArgs e)
@@ -49,7 +50,7 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
-        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
+        private void btnCancelarAgServicio_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

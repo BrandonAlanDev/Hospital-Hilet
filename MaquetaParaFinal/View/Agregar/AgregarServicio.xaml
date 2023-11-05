@@ -22,8 +22,8 @@
                         </Border>
                  </DockPanel>
                  <DockPanel Width="250" Height="35" Margin="0,25,0,5">
-                    <Button x:Name="btnAceptarAgPaciente" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgPaciente_Click"/>
-                    <Button x:Name="btnCancelarAgPaciente" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarAgPaciente_Click"/>
+                    <Button x:Name="btnAceptarAgServicio" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgServicio_Click"/>
+                    <Button x:Name="btnCancelarAgServicio" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarAgServicio_Click"/>
                 </DockPanel>
 
             </StackPanel>

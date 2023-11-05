@@ -44,7 +44,13 @@ namespace MaquetaParaFinal.View.Agregar
                 }
             }
         }
-
+        private void txtServicio_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                CargarServicios();
+            } catch { }
+        }
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
@@ -53,16 +59,13 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
-        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
             if (TodosLosCamposLlenos())
             {
-                int idServicio = conectar.ObtenerId_Servicio(txtServicio.Text);
+                int idServicio = conectar.ObtenerId_Servicios(txtServicio.Text);
                 conectar.AgregarProfesionales(txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), idServicio);
                 MessageBox.Show("Se agrego el medico correctamente");
                 this.Close();
@@ -70,7 +73,7 @@ namespace MaquetaParaFinal.View.Agregar
             else   MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private void CargarServicio()
+        private void CargarServicios()
         {
             DataTable dtServicio = conectar.DescargarTablaServicios();
             List<string> data = new List<string>();
@@ -97,45 +100,6 @@ namespace MaquetaParaFinal.View.Agregar
             txtNombre.Text = "Nombre";
             txtApellido.Text = "Apellido";
             txtMatricula.Text = "Matricula";
-        }
-
-        private void CargarServicios()
-        {
-            string connectionString = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
-            "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-
-                    string query = "SELECT DISTINCT Nombre_Servicio AS Servicio FROM Servicios";
-                    SqlCommand cmd = new SqlCommand(query, connection);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    txtServicio.ItemsSource = null;
-                    txtServicio.Items.Clear();
-
-                    // Crear una lista para almacenar los datos
-                    List<string> data = new List<string>();
-
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        data.Add(row["Servicio"].ToString());
-                    }
-
-                    // Asignar los datos al ComboBox
-                    txtServicio.ItemsSource = data;
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
-            }
         }
 
         private void btnAgregarServicio_Click(object sender, RoutedEventArgs e) 
