@@ -17,7 +17,7 @@ namespace MaquetaParaFinal.View.Agregar
         private void btnAceptarAgServicio_Click(object sender, RoutedEventArgs e)
         {
                 // futura consulta para comprobar que no exista ya dicho servicio
-                if (txtNombreServicio.Text != "Nombre" && true)
+                if (txtNombreServicio.Text != "Nombre" && conectar.ValidarSiexisteServicio(txtNombreServicio.Text) != 1)
                 {
                     try
                     {
