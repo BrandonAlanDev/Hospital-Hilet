@@ -30,6 +30,30 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+        public DataTable DescargarTablaLocalidades()
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                conexion.Open();
+                string consulta = "SELECT DISTINCT Nombre_Localidad AS Localidad FROM Localidades";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+        public DataTable DescargarTablaCodPostal(object Localidad)
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                conexion.Open();
+                string consulta = $"SELECT Codigo_Postal AS CodPostal FROM Localidades WHERE Nombre_Localidad = '{Localidad}'";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
 
         public DataTable DescargaTablaEspecialidades()
         {
