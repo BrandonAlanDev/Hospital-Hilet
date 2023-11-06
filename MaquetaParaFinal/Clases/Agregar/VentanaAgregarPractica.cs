@@ -63,7 +63,7 @@ namespace MaquetaParaFinal.View.Agregar
                 string fecha =$"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}";
                 int idEspecialidad = conectar.ObtenerId_Especialidades(txtEspecialidad.Text);
                 int idTipoMuestra = conectar.ObtenerId_TiposDeMuestras(txtTipoDeMuestra.Text);
-                conectar.AgregarPracticas(fecha, txtTiempoResultado.Text,txtNombrePractica.Text, idEspecialidad, idTipoMuestra);
+                //conectar.AgregarPracticas(fecha, txtTiempoResultado.Text,txtNombrePractica.Text, idEspecialidad, idTipoMuestra);
                 LimpiarTxt();
                 MessageBox.Show("Agregado Correctamente");
             }

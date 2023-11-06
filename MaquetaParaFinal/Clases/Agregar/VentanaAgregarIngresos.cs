@@ -51,7 +51,7 @@ namespace MaquetaParaFinal.View.Agregar
 
             foreach (DataRow row in dt.Rows)
             {
-                data.Add(row["Apellido"].ToString() + row[" "].ToString() + row["Nombre"].ToString());
+                data.Add(row["Apellido"].ToString() + " " + row["Nombre"].ToString());
             }
             txtMedico.ItemsSource = null;
             txtMedico.Items.Clear();
