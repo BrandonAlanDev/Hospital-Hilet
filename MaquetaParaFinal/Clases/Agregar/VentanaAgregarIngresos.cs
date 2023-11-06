@@ -65,14 +65,15 @@ namespace MaquetaParaFinal.View.Agregar
                 int idpaciente = conectar.ObtenerId_Pacientes(txtDni.Text);
                 string s = txtMedico.SelectedValue.ToString();
                 string[] corte = s.Split(" ");
-                string nombre, apellido;
+                string nombre = "";
+                string apellido = "";
                 foreach (var c in corte)
                 {
                     apellido = c.ToString();
                     nombre = c.ToString();
                 }
-                //int idmedico = conectar
-                conectar.AgregarIngresos(fecha,"",idpaciente,);
+                int idmedico = conectar.ObtenerId_Profesionales(nombre, apellido);
+                conectar.AgregarIngresos(fecha,null,idpaciente, idmedico);
             }
             else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }

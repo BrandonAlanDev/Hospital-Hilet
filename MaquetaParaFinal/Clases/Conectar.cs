@@ -963,7 +963,7 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-        public int ObtenerId_PersonalLaboratorio(string nombre,string apellido)
+        public int ObtenerId_Profesionales(string nombre,string apellido)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
