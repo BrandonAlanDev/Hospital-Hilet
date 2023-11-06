@@ -325,24 +325,25 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 string consulta = $"SELECT i.Pk_Id_Ingresos AS ID, " +
-                    $"p.Nombre_Paciente AS Paciente, " +
-                    $"p.Apellido_Paciente AS Apellido," +
-                    $"p.Dni, " +
-                    $"i.Fecha_Ingreso AS 'Fecha De Ingreso'," +
-                    $"i.Retirado AS 'Fecha De Retiro'," +
-                    $"pro.Nombre_Profesional AS Medico, " +
-                    $"pro.Apellido_Profesional AS 'Apellido Medico' " +
-                    $"FROM Ingresos AS i" +
+                $"p.Nombre_Paciente AS Paciente, " +
+                $"p.Apellido_Paciente AS Apellido, " +
+                $"p.Dni, " +
+                $"i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
+                $"i.Retirado AS 'Fecha De Retiro', " +
+                $"pro.Nombre_Profesional AS Medico, " +
+                $"pro.Apellido_Profesional AS 'Apellido Medico' " +
+                    $"FROM Ingresos AS i " +
                         $"INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
-                        $"INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente  " +
-                            $"WHERE LOWER(p.Nombre_Paciente) LIKE '%{buscar}%' OR " +
-                                $"LOWER(p.Apellido_Paciente) LIKE '%{buscar}%' OR " +
-                                $"LOWER(p.Dni) LIKE '%{buscar}%' OR " +
-                                $"LOWER(i.Fecha_Ingreso) LIKE '%{buscar}%' OR " +
-                                $"LOWER(i.Retiro) LIKE '%{buscar}%' OR " +
-                                $"LOWER(pro.Nombre_Profesional) LIKE '%{buscar}%'" +
-                                $"LOWER(pro.Apellido_Profesional) LIKE '%{buscar}%'" +
-                                $"ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico'";
+                        $"INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
+                        $"WHERE LOWER(p.Nombre_Paciente) LIKE '%{buscar}%' OR " +
+                            $"LOWER(p.Apellido_Paciente) LIKE '%{buscar}%' OR " +
+                            $"LOWER(p.Dni) LIKE '%{buscar}%' OR " +
+                            $"LOWER(i.Fecha_Ingreso) LIKE '%{buscar}%' OR " +
+                            $"LOWER(i.Retirado) LIKE '%{buscar}%' OR " +
+                            $"LOWER(pro.Nombre_Profesional) LIKE '%{buscar}%' OR " +
+                            $"LOWER(pro.Apellido_Profesional) LIKE '%{buscar}%' AND p.Baja_Pacientes IS NULL " +
+                            $"ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico'";
+
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);

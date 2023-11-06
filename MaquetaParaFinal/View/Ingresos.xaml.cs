@@ -30,5 +30,13 @@ namespace MaquetaParaFinal.View
                 e.Column.Visibility = Visibility.Hidden;
             }
         }
+
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) 
+            {
+                DataGridIngresos.ItemsSource = conectar.BuscarEnTablaIngresos(txtBuscar.Text).DefaultView;
+            }
+        }
     }
 }
