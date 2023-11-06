@@ -950,5 +950,20 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
+        public int ObtenerId_PersonalLaboratorio(string nombre,string apellido)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = "SELECT Pk_Id_Pacientes FROM Pacientes WHERE Nombre_Personal = @nombre AND Apellido_Personal = @apellido";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@apellido", apellido);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+
     }
 }
