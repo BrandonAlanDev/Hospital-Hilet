@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,5 +25,10 @@ namespace MaquetaParaFinal.View.Agregar
             InitializeComponent();
         }
 
+        private void txtMedico_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = conectar.DescargaTablaProfesinales();
+
+        }
     }
 }

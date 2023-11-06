@@ -21,5 +21,23 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
+        private void txtDni_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtDni.Text == "DNI")
+            {
+                txtDni.Text = "";
+            }
+        }
+
+        private void txtDni_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtDni.Text == "")
+            {
+                txtDni.Text = "DNI";
+            }
+        }
+
+        private void txtFecha_Loaded(object sender, RoutedEventArgs e) => txtFecha.Text = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
+
     }
 }
