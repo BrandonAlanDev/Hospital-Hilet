@@ -1,4 +1,5 @@
 ﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,12 @@ namespace MaquetaParaFinal.View
             {
                 DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
             } catch{}
+        }
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarIngreso agregarIngreso = new AgregarIngreso();
+            agregarIngreso.ShowDialog();
+            DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
         }
     }
 }
