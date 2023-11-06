@@ -1,6 +1,7 @@
 ﻿using MaquetaParaFinal.Clases;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace MaquetaParaFinal.View.Agregar
     public partial class AgregarIngreso : Window
     {
         Conectar conectar = new Conectar();
-
+        private string fecha;
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -37,7 +38,44 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
-        private void txtFecha_Loaded(object sender, RoutedEventArgs e) => txtFecha.Text = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
+        private void txtFecha_Loaded(object sender, RoutedEventArgs e)
+        {
+            fecha = $"{DateTime.Now.Year}-{DateTime.Now.Month}-{DateTime.Now.Day}";
+            txtFecha.Text = fecha; 
+        }
+
+        private void txtMedico_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = conectar.DescargaTablaProfesinales();
+            List<string> data = new List<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                data.Add(row["Apellido"].ToString() + row[" "].ToString() + row["Nombre"].ToString());
+            }
+            txtMedico.ItemsSource = null;
+            txtMedico.Items.Clear();
+            txtMedico.ItemsSource = data;
+        }
+
+        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtMedico.SelectedValue != null && txtDni.Text != "DNI")
+            {
+                int idpaciente = conectar.ObtenerId_Pacientes(txtDni.Text);
+                string s = txtMedico.SelectedValue.ToString();
+                string[] corte = s.Split(" ");
+                string nombre, apellido;
+                foreach (var c in corte)
+                {
+                    apellido = c.ToString();
+                    nombre = c.ToString();
+                }
+                //int idmedico = conectar
+                conectar.AgregarIngresos(fecha,"",idpaciente,);
+            }
+            else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
 
     }
 }
