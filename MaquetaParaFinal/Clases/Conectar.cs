@@ -298,10 +298,10 @@ namespace MaquetaParaFinal.Clases
                         $"INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
                         $"INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades" +
                             $"WHERE LOWER(p.Nombre_Practica) LIKE '%{buscar}%' OR " +
-                                $"LOWER(p.Fecha_Realizacion) LIKE '%{buscar}%' OR " +
+                                $"LOWER(p.Tiempo_Demora) LIKE '%{buscar}%' OR " +
                                 $"LOWER(t.Nombre_Tipo_De_Muestra) LIKE '%{buscar}%' OR " +
                                 $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%'" +
-                                $"ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
+                                $"ORDER BY Nombre, 'Tiempo_Demora', 'Tipo De Muestra', Especialidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -711,20 +711,19 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void ModificarPracticas(int id, string fecha_realizacion, string tiempo_resultado, string nombre_practica, int fk_id_especialidad, int fk_id_tipodemuestra)
+        public void ModificarPracticas(int id, int tiempo_demora, string nombre_practica, int fk_id_especialidad, int fk_id_tipodemuestra)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "UPDATE Practicas SET Fecha_Realizacion = @fecha_realizacion, Tiempo_Resultado = @tiempo_resultado, Nombre_Practica = @nombre_practica, " +
+                string consulta = "UPDATE Practicas SET Tiempo_Demora = @tiempo_demora, Nombre_Practica = @nombre_practica, " +
                     "Fk_Id_Especialidades = @fk_id_especialidad, Fk_Id_Tipos_De_Muestra = @fk_id_tipodemuestra " +
                     "WHERE Pk_Id_Practicas = @pk_id_practica;";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@pk_id_practica", id);
-                    cmd.Parameters.AddWithValue("@fecha_realizacion", fecha_realizacion);
-                    cmd.Parameters.AddWithValue("@tiempo_resultado", tiempo_resultado);
+                    cmd.Parameters.AddWithValue("@tiempo_demora", tiempo_demora);
                     cmd.Parameters.AddWithValue("@nombre_practica", nombre_practica);
                     cmd.Parameters.AddWithValue("@fk_id_especialidad", fk_id_especialidad);
                     cmd.Parameters.AddWithValue("@fk_id_tipodemuestra", fk_id_tipodemuestra);
