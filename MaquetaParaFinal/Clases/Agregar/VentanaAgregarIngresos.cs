@@ -14,6 +14,8 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
         public string fecha { get; set; }
+        public string nombre { get; set; }
+        public string apellido { get; set; }
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -62,20 +64,23 @@ namespace MaquetaParaFinal.View.Agregar
         {
             if (txtMedico.SelectedValue != null && txtDni.Text != "DNI")
             {
+                SepararNombre();
                 int idpaciente = conectar.ObtenerId_Pacientes(txtDni.Text);
-                string s = txtMedico.SelectedValue.ToString();
-                string[] corte = s.Split(" ");
-                string nombre = "";
-                string apellido = "";
-                foreach (var c in corte)
-                {
-                    apellido = c.ToString();
-                    nombre = c.ToString();
-                }
                 int idmedico = conectar.ObtenerId_Profesionales(nombre, apellido);
                 conectar.AgregarIngresos(fecha,idpaciente, idmedico);
             }
             else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void SepararNombre() 
+        {
+            string s = txtMedico.SelectedValue.ToString();
+            string[] corte = s.Split(" ");
+            foreach (var c in corte)
+            {
+                apellido = c.ToString();
+                nombre = c.ToString();
+            }
         }
 
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();

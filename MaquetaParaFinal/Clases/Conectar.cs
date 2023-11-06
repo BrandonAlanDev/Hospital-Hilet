@@ -967,7 +967,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "SELECT Pk_Id_Pacientes FROM Pacientes WHERE Nombre_Personal = @nombre AND Apellido_Personal = @apellido";
+                string consulta = "SELECT Pk_Id_Profesionales FROM Profesionales WHERE Nombre_Profesional = @nombre AND Apellido_Profesional = @apellido";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@nombre", nombre);
