@@ -166,15 +166,14 @@ namespace MaquetaParaFinal.Clases
                         "pa.Nombre_Paciente, " +
                         "pa.Apellido_Paciente, " +
                         "pa.Dni, i.Fecha_Ingreso, " +
-                        "i.Fecha_Retiro, " +
+                        "i.Retirado, " +
                         "pro.Nombre_Profesional, " +
                         "pro.Apellido_Profesional, " +
                         "esp.Nombre_Especialidad, " +
                         "perL.Nombre_Personal, " +
                         "perL.Apellido_Personal, " +
                         "cat.Nombre_Categoria, " +
-                        "pra.Fecha_Realizacion, " +
-                        "pra.Tiempo_Resultado, " +
+                        "pra.Tiempo_Demora, " +
                         "pra.Nombre_Practica, " +
                         "tip.Nombre_Tipo_De_Muestra " +
                         "FROM PracticasxIngresos AS praxIn " +
@@ -199,13 +198,13 @@ namespace MaquetaParaFinal.Clases
             {
                 string consulta = "SELECT p.Pk_Id_Practicas AS ID" +
                     "p.Nombre_Practica AS Nombre, " +
-                    "p.Fecha_Realizacion AS 'Fecha De Realizacion', " +
+                    "p.Tiempo_Demora AS 'Tiempo de Demora', " +
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
                     "e.Nombre_Especialidad AS Especialidades " +
                     "FROM Practicas AS p " +
                         "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
                         "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
-                    "ORDER BY Nombre, 'Fecha De Realizacion', 'Tipo De Muestra', Especialidades;";
+                    "ORDER BY Nombre, 'Tiempo de Demora', 'Tipo De Muestra', Especialidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -220,7 +219,7 @@ namespace MaquetaParaFinal.Clases
                     "p.Nombre_Paciente AS Paciente, " +
                     "p.Apellido_Paciente AS Apellido, " +
                     "p.Dni, i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
-                    "i.Fecha_Retiro AS 'Fecha De Retiro', " +
+                    "i.Retirado AS 'Fecha De Retiro', " +
                     "pro.Nombre_Profesional AS Medico, " +
                     "pro.Apellido_Profesional AS 'Apellido Medico' FROM Ingresos AS i " +
                         "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
@@ -292,7 +291,7 @@ namespace MaquetaParaFinal.Clases
             {
                 string consulta = $"SELECT Pk_Id_Practicas AS ID, " +
                     $"p.Nombre_Practica AS Nombre, " +
-                    $"p.Fecha_Realizacion AS 'Fecha De Realizacion'," +
+                    $"p.Tiempo_Demora AS 'Tiempo de Demora'," +
                     $"t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra'," +
                     $"e.Nombre_Especialidad AS Especialidades " +
                     $"FROM Practicas AS p " +
@@ -319,7 +318,7 @@ namespace MaquetaParaFinal.Clases
                     $"p.Apellido_Paciente AS Apellido," +
                     $"p.Dni, " +
                     $"i.Fecha_Ingreso AS 'Fecha De Ingreso'," +
-                    $"i.Fecha_Retiro AS 'Fecha De Retiro'," +
+                    $"i.Retirado AS 'Fecha De Retiro'," +
                     $"pro.Nombre_Profesional AS Medico, " +
                     $"pro.Apellido_Profesional AS 'Apellido Medico' " +
                     $"FROM Ingresos AS i" +
@@ -329,7 +328,7 @@ namespace MaquetaParaFinal.Clases
                                 $"LOWER(p.Apellido_Paciente) LIKE '%{buscar}%' OR " +
                                 $"LOWER(p.Dni) LIKE '%{buscar}%' OR " +
                                 $"LOWER(i.Fecha_Ingreso) LIKE '%{buscar}%' OR " +
-                                $"LOWER(i.Fecha_Retiro) LIKE '%{buscar}%' OR " +
+                                $"LOWER(i.Retiro) LIKE '%{buscar}%' OR " +
                                 $"LOWER(pro.Nombre_Profesional) LIKE '%{buscar}%'" +
                                 $"LOWER(pro.Apellido_Profesional) LIKE '%{buscar}%'" +
                                 $"ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico'";
@@ -440,21 +439,20 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarPracticas(string fecha_realizacion, string tiempo_resultado, string nombre_practica, int fk_id_especialidades, int fk_id_tiposdemuestra)
+        public void AgregarPracticas(string nombre_practica, int fk_id_especialidades, int fk_id_tiposdemuestra,int tiempo_demora)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Practicas (Fecha_Realizacion, Tiempo_Resultado, Nombre_Practica, Fk_Id_Especialidades, Fk_Id_Tipos_De_Muestra) " +
-                    "VALUES (@fecha_realizacion, @tiempo_resultado, @nombre_practica,@fk_id_especialidades,@fk_id_tiposdemuestra);";
+                string consulta = "INSERT INTO Practicas (Nombre_Practica, Fk_Id_Especialidades, Fk_Id_Tipos_De_Muestra, Tiempo_Demora) " +
+                    "VALUES (@nombre_practica,@fk_id_especialidades,@fk_id_tiposdemuestra,@tiempo_demora);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@fecha_realizacion", fecha_realizacion);
-                    cmd.Parameters.AddWithValue("@tiempo_resultado", tiempo_resultado);
                     cmd.Parameters.AddWithValue("@nombre_practica", nombre_practica);
                     cmd.Parameters.AddWithValue("@fk_id_especialidades", fk_id_especialidades);
                     cmd.Parameters.AddWithValue("@fk_id_tiposdemuestra", fk_id_tiposdemuestra);
+                    cmd.Parameters.AddWithValue("@tiempo_demora", tiempo_demora);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -510,18 +508,18 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarIngresos(string fecha_ingreso, string fecha_retiro, int fk_id_pacientes, int fk_id_profesionales)
+        public void AgregarIngresos(string fecha_ingreso, string retirado, int fk_id_pacientes, int fk_id_profesionales)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Ingresos (Fecha_Ingreso, Fecha_Retiro, Fk_Id_Paciente, Fk_Id_Profesionales) " +
+                string consulta = "INSERT INTO Ingresos (Fecha_Ingreso, Retirado, Fk_Id_Paciente, Fk_Id_Profesionales) " +
                     "VALUES (@fecha_ingreso, @fecha_retiro, @fk_id_pacientes, @fk_id_profesionales);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@fecha_ingreso", fecha_ingreso);
-                    cmd.Parameters.AddWithValue("@fecha_retiro", fecha_retiro);
+                    cmd.Parameters.AddWithValue("@retirado", retirado);
                     cmd.Parameters.AddWithValue("@fk_id_pacientes", fk_id_pacientes);
                     cmd.Parameters.AddWithValue("@fk_id_profesionales", fk_id_profesionales);
                     cmd.ExecuteNonQuery();
@@ -693,19 +691,19 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void ModificarIngresos(int id, string fecha_ingreso, string fecha_retiro, int fk_id_paciente, int fk_id_profesional)
+        public void ModificarIngresos(int id, string fecha_ingreso, string retirado, int fk_id_paciente, int fk_id_profesional)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "UPDATE Ingresos SET Fecha_Ingreso = @fecha_ingreso, Fecha_Retiro = @fecha_retiro, Fk_Id_Paciente = @fk_id_paciente, " +
+                string consulta = "UPDATE Ingresos SET Fecha_Ingreso = @fecha_ingreso, Retirado = @retirado, Fk_Id_Paciente = @fk_id_paciente, " +
                     "Fk_Id_Profesionales = @fk_id_profesional WHERE Pk_Id_Ingresos = @pk_id_ingreso;";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@pk_id_ingreso", id);
                     cmd.Parameters.AddWithValue("@fecha_ingreso", fecha_ingreso);
-                    cmd.Parameters.AddWithValue("@fecha_retiro", fecha_retiro);
+                    cmd.Parameters.AddWithValue("@retirado", retirado);
                     cmd.Parameters.AddWithValue("@fk_id_paciente", fk_id_paciente);
                     cmd.Parameters.AddWithValue("@fk_id_profesional", fk_id_profesional);
                     cmd.ExecuteNonQuery();
@@ -948,6 +946,20 @@ namespace MaquetaParaFinal.Clases
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@especialidad", especialidad);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+
+        public int ObtenerId_Pacientes(string dni)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = "SELECT Pk_Id_Pacientes FROM Pacientes WHERE Dni = @dni";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@dni", dni);
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
