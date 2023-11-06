@@ -900,6 +900,19 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
+        public int ObtenerId_Medicos(string matricula)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = "SELECT Pk_Id_Profesionales FROM Profesionales WHERE Matricula = @matricula";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    cmd.Parameters.AddWithValue("@matricula", matricula);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
         public int ObtenerId_Categorias(string categoria)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
