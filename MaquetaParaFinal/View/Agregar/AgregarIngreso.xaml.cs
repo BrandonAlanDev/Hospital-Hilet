@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MaquetaParaFinal.View.Agregar
@@ -18,11 +17,12 @@ namespace MaquetaParaFinal.View.Agregar
     /// <summary>
     /// Lógica de interacción para AgregarIngreso.xaml
     /// </summary>
-    public partial class AgregarIngreso : Page
+    public partial class AgregarIngreso : Window
     {
         public AgregarIngreso()
         {
             InitializeComponent();
         }
+
     }
 }
