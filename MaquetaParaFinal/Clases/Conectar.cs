@@ -508,18 +508,17 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarIngresos(string fecha_ingreso, string retirado, int fk_id_pacientes, int fk_id_profesionales)
+        public void AgregarIngresos(string fecha_ingreso, int fk_id_pacientes, int fk_id_profesionales)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO Ingresos (Fecha_Ingreso, Retirado, Fk_Id_Paciente, Fk_Id_Profesionales) " +
-                    "VALUES (@fecha_ingreso, @fecha_retiro, @fk_id_pacientes, @fk_id_profesionales);";
+                string consulta = "INSERT INTO Ingresos (Fecha_Ingreso, Fk_Id_Paciente, Fk_Id_Profesionales) " +
+                    "VALUES (@fecha_ingreso, @fk_id_pacientes, @fk_id_profesionales);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@fecha_ingreso", fecha_ingreso);
-                    cmd.Parameters.AddWithValue("@retirado", retirado);
                     cmd.Parameters.AddWithValue("@fk_id_pacientes", fk_id_pacientes);
                     cmd.Parameters.AddWithValue("@fk_id_profesionales", fk_id_profesionales);
                     cmd.ExecuteNonQuery();

@@ -73,7 +73,7 @@ namespace MaquetaParaFinal.View.Agregar
                     nombre = c.ToString();
                 }
                 int idmedico = conectar.ObtenerId_Profesionales(nombre, apellido);
-                conectar.AgregarIngresos(fecha,null,idpaciente, idmedico);
+                conectar.AgregarIngresos(fecha,idpaciente, idmedico);
             }
             else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
