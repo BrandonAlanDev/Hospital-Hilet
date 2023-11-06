@@ -13,7 +13,7 @@ namespace MaquetaParaFinal.View.Agregar
     public partial class AgregarIngreso : Window
     {
         Conectar conectar = new Conectar();
-        private string fecha;
+        public string fecha { get; set; }
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -77,6 +77,8 @@ namespace MaquetaParaFinal.View.Agregar
             }
             else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+
+        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
 
     }
 }

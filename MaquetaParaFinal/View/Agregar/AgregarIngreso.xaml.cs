@@ -25,9 +25,6 @@ namespace MaquetaParaFinal.View.Agregar
             InitializeComponent();
         }
 
-        private void AgregarPacientes_Loaded(object sender, RoutedEventArgs e)
-        {
 
-        }
     }
 }

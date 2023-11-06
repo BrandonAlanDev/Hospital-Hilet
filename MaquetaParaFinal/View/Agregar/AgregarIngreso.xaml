@@ -9,7 +9,7 @@
         AllowsTransparency="True"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
-        Title="AgregarIngreso" Height="250" Width="350" Loaded="AgregarPacientes_Loaded">
+        Title="AgregarIngreso" Height="250" Width="350">
     <Grid x:Name="Principal" MouseLeftButtonDown="Principal_MouseLeftButtonDown" >
         <Image x:Name="Logo" Width="40" Height="40" HorizontalAlignment="Left" Margin="-7,-7,0,0"  VerticalAlignment="Top" Source="/View/Agregar/logo.png"/>
         <Border Margin="5,5,0,0" CornerRadius="45" Background="#4F709C" BorderBrush="#8fc643" BorderThickness="5" Grid.ColumnSpan="2">
@@ -19,13 +19,13 @@
                     <DockPanel>
                         <Label Content="Fecha" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtFecha" Margin="5,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TextChanged="ControlarNombre" IsEnabled="False" Loaded="txtFecha_Loaded"/>
+                            <TextBox x:Name="txtFecha" Margin="5,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" IsEnabled="False" Loaded="txtFecha_Loaded"/>
                         </Border>
                     </DockPanel>
                     <DockPanel>
                         <Label Content="DNI Paciente*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtDni" Margin="5,0,0,0" TextWrapping="Wrap" Text="DNI" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TextChanged="ControlarNombre" TabIndex="1" GotFocus="txtDni_GotFocus" LostFocus="txtDni_LostFocus"/>
+                            <TextBox x:Name="txtDni" Margin="5,0,0,0" TextWrapping="Wrap" Text="DNI" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="1" GotFocus="txtDni_GotFocus" LostFocus="txtDni_LostFocus"/>
                         </Border>
                     </DockPanel>
                     <DockPanel>
@@ -34,8 +34,8 @@
                     </DockPanel>
                 </StackPanel>
                 <DockPanel Width="250" Height="35" Margin="0,15,0,5">
-                    <Button x:Name="btnAceptarAgPaciente" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgPaciente_Click" TabIndex="13"/>
-                    <Button x:Name="btnCancelarAgPaciente" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarAgPaciente_Click" TabIndex="14"/>
+                    <Button x:Name="btnAceptarAgPaciente" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgPaciente_Click" TabIndex="3"/>
+                    <Button x:Name="btnCancelarAgPaciente" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarAgPaciente_Click" TabIndex="4"/>
                 </DockPanel>
             </StackPanel>
         </Border>
