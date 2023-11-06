@@ -23,5 +23,12 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
+        private void DataGridIngresos_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "ID")
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }

@@ -215,17 +215,17 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = "SELECT i.Pk_Id_Ingresos AS ID" +
-                    "p.Nombre_Paciente AS Paciente, " +
-                    "p.Apellido_Paciente AS Apellido, " +
-                    "p.Dni, i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
-                    "i.Retirado AS 'Fecha De Retiro', " +
-                    "pro.Nombre_Profesional AS Medico, " +
-                    "pro.Apellido_Profesional AS 'Apellido Medico' FROM Ingresos AS i " +
-                        "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
-                        "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
-                        "WHERE (Baja_Pacientes IS NULL) AND (Baja_Profesional IS NULL)" +
-                    "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
+                string consulta = "SELECT i.Pk_Id_Ingresos AS ID, " +
+                                "p.Nombre_Paciente AS Paciente, " +
+                                "p.Apellido_Paciente AS Apellido, " +
+                                "p.Dni, i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
+                                "i.Retirado AS 'Fecha De Retiro', " +
+                                "pro.Nombre_Profesional AS Medico, " +
+                                "pro.Apellido_Profesional AS 'Apellido Medico' FROM Ingresos AS i " +
+                                    "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
+                                    "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
+                                    "WHERE (Baja_Pacientes IS NULL) AND (Baja_Profesional IS NULL) " +
+                                "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -525,11 +525,10 @@ namespace MaquetaParaFinal.Clases
             {
                 conectar.Open();
                 string consulta = "INSERT INTO Ingresos (Fecha_Ingreso, Fk_Id_Paciente, Fk_Id_Profesionales) " +
-                    "VALUES (@fecha_ingreso, @fk_id_pacientes, @fk_id_profesionales);";
+                    $"VALUES ('{fecha_ingreso}', @fk_id_pacientes, @fk_id_profesionales);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
-                    cmd.Parameters.AddWithValue("@fecha_ingreso", fecha_ingreso);
                     cmd.Parameters.AddWithValue("@fk_id_pacientes", fk_id_pacientes);
                     cmd.Parameters.AddWithValue("@fk_id_profesionales", fk_id_profesionales);
                     cmd.ExecuteNonQuery();
@@ -973,16 +972,16 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-        public int ObtenerId_Profesionales(string nombre,string apellido)
+        public int ObtenerId_Profesionales(string personal)
         {
-            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                conectar.Open();
-                string consulta = "SELECT Pk_Id_Profesionales FROM Profesionales WHERE Nombre_Profesional = @nombre AND Apellido_Profesional = @apellido";
-                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                conexion.Open();
+                string consulta = "SELECT Pk_Id_Profesionales AS ID FROM Profesionales " +
+                        "WHERE CONCAT(Apellido_Profesional,' ', Nombre_Profesional) = @Personal";
+                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
                 {
-                    cmd.Parameters.AddWithValue("@nombre", nombre);
-                    cmd.Parameters.AddWithValue("@apellido", apellido);
+                    cmd.Parameters.AddWithValue("@Personal", personal);
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }

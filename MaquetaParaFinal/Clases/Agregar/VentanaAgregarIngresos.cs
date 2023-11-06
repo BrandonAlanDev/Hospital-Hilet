@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -114,10 +115,10 @@ namespace MaquetaParaFinal.View.Agregar
         {
             if (txtMedico.SelectedValue != null && ComprobarSeleccion())
             {
-                SepararNombre();
                 int idpaciente = conectar.ObtenerId_Pacientes(txtBuscarDni.Text);
-                int idmedico = conectar.ObtenerId_Profesionales(nombre, apellido);
+                int idmedico = conectar.ObtenerId_Profesionales(txtMedico.SelectedValue.ToString());
                 conectar.AgregarIngresos(fecha,idpaciente, idmedico);
+                this.Close();
             }
             else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
@@ -137,20 +138,14 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void txtBuscarDni_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (IsNumber(e.Text))
-            {
-                e.Handled = true;
-            }
+            if (IsNumber(e.Text)) e.Handled = true;
         }
 
         private bool IsNumber(string text)
         {
             foreach (char c in text)
             {
-                if (!char.IsDigit(c))
-                {
-                    return true;
-                }
+                if (!char.IsDigit(c)) return true;
             }
             return false;
         }
