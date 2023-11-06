@@ -28,7 +28,23 @@ namespace MaquetaParaFinal.View.Agregar
         private void txtMedico_Loaded(object sender, RoutedEventArgs e)
         {
             DataTable dt = conectar.DescargaTablaProfesinales();
+            List<string> data = new List<string>();
 
+            foreach (DataRow row in dt.Rows)
+            {
+                data.Add(row["Apellido"].ToString()+ row[" "].ToString()+ row["Nombre"].ToString());
+            }
+            txtMedico.ItemsSource = null;
+            txtMedico.Items.Clear();
+            txtMedico.ItemsSource = data;
+        }
+
+        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtMedico.SelectedValue != null && txtDni.Text != "DNI")
+            {
+                //int idpaciente 
+            }else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning); 
         }
     }
 }
