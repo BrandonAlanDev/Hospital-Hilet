@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace MaquetaParaFinal.View.Agregar
@@ -16,6 +17,7 @@ namespace MaquetaParaFinal.View.Agregar
         public string fecha { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
+        private bool dniElegido = false;
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -24,19 +26,20 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
-        private void txtDni_GotFocus(object sender, RoutedEventArgs e)
+        private void txtBuscarDni_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (txtDni.Text == "DNI")
+            if (txtBuscarDni.Text == "DNI")
             {
-                txtDni.Text = "";
+                txtBuscarDni.Text = "";
             }
         }
 
-        private void txtDni_LostFocus(object sender, RoutedEventArgs e)
+        private void txtBuscarDni_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (txtDni.Text == "")
+            if (txtBuscarDni.Text == "")
             {
-                txtDni.Text = "DNI";
+                txtBuscarDni.Text = "DNI";
+                txtComboboxDni.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -60,12 +63,59 @@ namespace MaquetaParaFinal.View.Agregar
             txtMedico.ItemsSource = data;
         }
 
+        private void BuscarDni(object sender, KeyEventArgs e)
+        {
+            if (txtBuscarDni.Text.Length > 0)
+            {
+                DataTable dt = conectar.BuscarEnTablaPacientesSoloPorDni(txtBuscarDni.Text);
+                List<string> data = new List<string>();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    data.Add(row["Dni"].ToString());
+                }
+                txtComboboxDni.ItemsSource = null;
+                txtComboboxDni.Items.Clear();
+                txtComboboxDni.ItemsSource = data;
+                txtComboboxDni.Visibility = data.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+                if (data.Count > 0)
+                {
+                    txtComboboxDni.IsDropDownOpen = true;
+                    txtBuscarDni.Focus();
+                }
+            }
+            else 
+            { 
+                txtComboboxDni.Visibility = Visibility.Collapsed;
+                txtComboboxDni.IsDropDownOpen = false;
+            }
+        }
+
+        private void txtComboboxDni_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (txtComboboxDni.Visibility != Visibility.Collapsed) 
+            {             
+                txtBuscarDni.Text = txtComboboxDni.SelectedItem.ToString() != null ? txtComboboxDni.SelectedItem.ToString() : string.Empty;
+                txtComboboxDni.Visibility = Visibility.Collapsed;
+                dniElegido = true;
+            }
+        }
+
+        private bool ComprobarSeleccion() 
+        {
+            if (dniElegido == true || txtBuscarDni.Text == txtComboboxDni.Text)
+            {
+                return true;
+            }
+            return false;
+        }
+
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
-            if (txtMedico.SelectedValue != null && txtDni.Text != "DNI")
+            if (txtMedico.SelectedValue != null && ComprobarSeleccion())
             {
                 SepararNombre();
-                int idpaciente = conectar.ObtenerId_Pacientes(txtDni.Text);
+                int idpaciente = conectar.ObtenerId_Pacientes(txtBuscarDni.Text);
                 int idmedico = conectar.ObtenerId_Profesionales(nombre, apellido);
                 conectar.AgregarIngresos(fecha,idpaciente, idmedico);
             }
@@ -84,6 +134,26 @@ namespace MaquetaParaFinal.View.Agregar
         }
 
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
+
+        private void txtBuscarDni_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (IsNumber(e.Text))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool IsNumber(string text)
+        {
+            foreach (char c in text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
     }
 }

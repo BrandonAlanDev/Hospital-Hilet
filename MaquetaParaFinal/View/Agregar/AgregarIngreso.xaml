@@ -24,9 +24,12 @@
                     </DockPanel>
                     <DockPanel>
                         <Label Content="DNI Paciente*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtDni" Margin="5,0,0,0" TextWrapping="Wrap" Text="DNI" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="2" GotFocus="txtDni_GotFocus" LostFocus="txtDni_LostFocus"/>
-                        </Border>
+                        <Grid Margin="0,6,10,0">
+                            <ComboBox x:Name="txtComboboxDni" VerticalAlignment="Top" Style="{StaticResource Combos}" IsDropDownOpen="True" Visibility="Collapsed" SelectionChanged="txtComboboxDni_SelectionChanged"/>
+                            <Border HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
+                                <TextBox x:Name="txtBuscarDni" TextWrapping="Wrap" Text="DNI" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" KeyUp="BuscarDni" PreviewTextInput="txtBuscarDni_PreviewTextInput" LostFocus="txtBuscarDni_LostFocus" GotFocus="txtBuscarDni_GotFocus"/>
+                            </Border>
+                        </Grid>
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Medico*" Margin="0,10,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>

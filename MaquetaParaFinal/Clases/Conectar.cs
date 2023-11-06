@@ -263,6 +263,17 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+        public DataTable BuscarEnTablaPacientesSoloPorDni(string buscar)
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT Dni FROM Pacientes WHERE Dni LIKE '{buscar}%';";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
         public DataTable BuscarEnTablaProfesionales(string buscar)
         {
             buscar = buscar.ToLower();
