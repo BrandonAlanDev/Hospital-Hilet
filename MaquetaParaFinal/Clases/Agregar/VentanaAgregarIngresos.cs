@@ -16,8 +16,6 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
         public string fecha { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
         private bool dniElegido = false;
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -92,6 +90,20 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
+        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtMedico.SelectedValue != null && ComprobarSeleccion())
+            {
+                int idpaciente = conectar.ObtenerId_Pacientes(txtBuscarDni.Text);
+                int idmedico = conectar.ObtenerId_Profesionales(txtMedico.SelectedValue.ToString());
+                conectar.AgregarIngresos(fecha,idpaciente, idmedico);
+                this.Close();
+            }
+            else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
+
         private void txtComboboxDni_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (txtComboboxDni.Visibility != Visibility.Collapsed) 
@@ -110,31 +122,6 @@ namespace MaquetaParaFinal.View.Agregar
             }
             return false;
         }
-
-        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
-        {
-            if (txtMedico.SelectedValue != null && ComprobarSeleccion())
-            {
-                int idpaciente = conectar.ObtenerId_Pacientes(txtBuscarDni.Text);
-                int idmedico = conectar.ObtenerId_Profesionales(txtMedico.SelectedValue.ToString());
-                conectar.AgregarIngresos(fecha,idpaciente, idmedico);
-                this.Close();
-            }
-            else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-        }
-
-        private void SepararNombre() 
-        {
-            string s = txtMedico.SelectedValue.ToString();
-            string[] corte = s.Split(" ");
-            foreach (var c in corte)
-            {
-                apellido = c.ToString();
-                nombre = c.ToString();
-            }
-        }
-
-        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void txtBuscarDni_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

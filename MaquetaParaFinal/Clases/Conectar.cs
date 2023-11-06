@@ -267,7 +267,7 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = $"SELECT Dni FROM Pacientes WHERE Dni LIKE '{buscar}%';";
+                string consulta = $"SELECT Dni FROM Pacientes WHERE Dni LIKE '{buscar}%' AND Baja_Pacientes IS NULL;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
