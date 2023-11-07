@@ -228,11 +228,14 @@ namespace MaquetaParaFinal.Clases
                     "CONCAT(pro.Nombre_Profesional,' ',pro.Apellido_Profesional) AS Medico, " +
                     "i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
                     "i.Retirado AS 'Fecha De Retiro' " +
+                    "COUNT(pxi.Fk_Id_Ingresos) AS Practicas" +
                     "FROM Ingresos AS i " +
                         "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
                         "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
+                        "INNER JOIN PracticasxIngresos AS pxi ON pxi.Fk_Id_Ingresos = i.Pk_Id_Ingresos" +
                             "WHERE (p.Baja_Pacientes IS NULL) AND (pro.Baja_Profesional IS NULL) " +
-                            "ORDER BY Paciente,Dni ,Medico,'Fecha De Ingreso', 'Fecha De Retiro';";
+                    "GROUP BY ID, Paciente,Dni,'Fecha de Ingreso','Fecha de Retiro' " +
+                    "ORDER BY Paciente,Dni ,Medico,'Fecha De Ingreso', 'Fecha De Retiro';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
