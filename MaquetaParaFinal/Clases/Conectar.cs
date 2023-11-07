@@ -216,16 +216,16 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 string consulta = "SELECT i.Pk_Id_Ingresos AS ID, " +
-                                "p.Nombre_Paciente AS Paciente, " +
-                                "p.Apellido_Paciente AS Apellido, " +
-                                "p.Dni, i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
-                                "i.Retirado AS 'Fecha De Retiro', " +
-                                "pro.Nombre_Profesional AS Medico, " +
-                                "pro.Apellido_Profesional AS 'Apellido Medico' FROM Ingresos AS i " +
-                                    "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
-                                    "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
-                                    "WHERE (Baja_Pacientes IS NULL) AND (Baja_Profesional IS NULL) " +
-                                "ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico';";
+                    "CONCAT(p.Nombre_Paciente,' ',p.Apellido_Paciente) AS Paciente, " +
+                    "p.Dni, " +
+                    "CONCAT(pro.Nombre_Profesional,' ',pro.Apellido_Profesional) AS Medico, " +
+                    "i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
+                    "i.Retirado AS 'Fecha De Retiro' " +
+                    "FROM Ingresos AS i " +
+                        "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
+                        "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
+                            "WHERE (Baja_Pacientes IS NULL) AND (Baja_Profesional IS NULL) " +
+                            "ORDER BY Paciente,Dni ,Medico,'Fecha De Ingreso', 'Fecha De Retiro';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
