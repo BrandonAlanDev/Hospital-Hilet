@@ -256,7 +256,8 @@ namespace MaquetaParaFinal.Clases
                             $"LOWER(Numero) LIKE '%{buscar}%' OR " +
                             $"LOWER(Piso) LIKE '%{buscar}%' OR " +
                             $"LOWER(Nombre_Localidad) LIKE '%{buscar}%' OR " +
-                            $"LOWER(Codigo_Postal) LIKE '%{buscar}%';";
+                            $"LOWER(Codigo_Postal) LIKE '%{buscar}%' AND " +
+                            $"(Baja_Pacientes IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -288,7 +289,8 @@ namespace MaquetaParaFinal.Clases
                             $"WHERE LOWER(Nombre_Profesional) LIKE '%{buscar}%' OR " +
                                 $"LOWER(Apellido_Profesional) LIKE '%{buscar}%' OR " +
                                 $"LOWER(Matricula) LIKE '%{buscar}%' OR " +
-                                $"LOWER(Nombre_Servicio) LIKE '%{buscar}%';";
+                                $"LOWER(Nombre_Servicio) LIKE '%{buscar}%' AND " +
+                                $"(Baja_Profesional IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -311,7 +313,8 @@ namespace MaquetaParaFinal.Clases
                             $"WHERE LOWER(p.Nombre_Practica) LIKE '%{buscar}%' OR " +
                                 $"LOWER(p.Tiempo_Demora) LIKE '%{buscar}%' OR " +
                                 $"LOWER(t.Nombre_Tipo_De_Muestra) LIKE '%{buscar}%' OR " +
-                                $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%'" +
+                                $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%' AND " +
+                                $"(Fecha_Baja IS NULL)" +
                                 $"ORDER BY Nombre, 'Tiempo_Demora', 'Tipo De Muestra', Especialidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -341,7 +344,8 @@ namespace MaquetaParaFinal.Clases
                             $"LOWER(i.Fecha_Ingreso) LIKE '%{buscar}%' OR " +
                             $"LOWER(i.Retirado) LIKE '%{buscar}%' OR " +
                             $"LOWER(pro.Nombre_Profesional) LIKE '%{buscar}%' OR " +
-                            $"LOWER(pro.Apellido_Profesional) LIKE '%{buscar}%' AND p.Baja_Pacientes IS NULL " +
+                            $"LOWER(pro.Apellido_Profesional) LIKE '%{buscar}%' AND (p.Baja_Pacientes IS NULL) AND (pro.Baja_Profesional IS NULL) AND " +
+                            $"(i.Retirado IS NULL)" +
                             $"ORDER BY Paciente, Apellido, 'Fecha De Ingreso', 'Fecha De Retiro', Medico, 'Apellido Medico'";
 
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
