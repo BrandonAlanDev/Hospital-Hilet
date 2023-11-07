@@ -35,10 +35,13 @@ namespace MaquetaParaFinal.View
 
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                DataGridMedicos.ItemsSource = conectar.BuscarEnTablaProfesionales(txtBuscar.Text).DefaultView;
-            }
+            if (txtBuscar.Text.Length >0) 
+            { 
+                if (e.Key == Key.Enter)
+                {
+                    DataGridMedicos.ItemsSource = conectar.BuscarEnTablaProfesionales(txtBuscar.Text).DefaultView;
+                }
+            }else DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
         }
 
         private void ClickBuscar(object sender, RoutedEventArgs e)

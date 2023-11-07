@@ -23,20 +23,9 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
-        private void DataGridIngresos_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        private void DataGridIngresos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.Column.Header.ToString() == "ID")
-            {
-                e.Column.Visibility = Visibility.Hidden;
-            }
-        }
 
-        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter) 
-            {
-                DataGridIngresos.ItemsSource = conectar.BuscarEnTablaIngresos(txtBuscar.Text).DefaultView;
-            }
         }
     }
 }
