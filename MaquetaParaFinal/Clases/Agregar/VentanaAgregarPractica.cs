@@ -60,10 +60,10 @@ namespace MaquetaParaFinal.View.Agregar
         {
             if (txtNombrePractica.Text != "Nombre" && txtEspecialidad.SelectedValue != null && txtTipoDeMuestra.SelectedValue != null)
             {
-                string fecha =$"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}";
+                int tiempodemora = 0;
                 int idEspecialidad = conectar.ObtenerId_Especialidades(txtEspecialidad.Text);
                 int idTipoMuestra = conectar.ObtenerId_TiposDeMuestras(txtTipoDeMuestra.Text);
-                conectar.AgregarPracticas(fecha, txtTiempoResultado.Text,txtNombrePractica.Text, idEspecialidad, idTipoMuestra);
+                conectar.AgregarPracticas(txtNombrePractica.Text, idEspecialidad, idTipoMuestra,tiempodemora);
                 LimpiarTxt();
                 MessageBox.Show("Agregado Correctamente");
             }

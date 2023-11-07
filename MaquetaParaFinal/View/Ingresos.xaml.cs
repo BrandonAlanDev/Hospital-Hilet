@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.View.Agregar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,22 @@ namespace MaquetaParaFinal.View
         public Ingresos()
         {
             InitializeComponent();
+        }
+
+        private void DataGridIngresos_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "ID")
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) 
+            {
+                DataGridIngresos.ItemsSource = conectar.BuscarEnTablaIngresos(txtBuscar.Text).DefaultView;
+            }
         }
     }
 }

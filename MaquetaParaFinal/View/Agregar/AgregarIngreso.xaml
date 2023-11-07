@@ -1,0 +1,46 @@
+﻿<Window x:Class="MaquetaParaFinal.View.Agregar.AgregarIngreso"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MaquetaParaFinal.View.Agregar"
+         mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        Title="AgregarIngreso" Height="250" Width="350">
+    <Grid x:Name="Principal" MouseLeftButtonDown="Principal_MouseLeftButtonDown" >
+        <Image x:Name="Logo" Width="40" Height="40" HorizontalAlignment="Left" Margin="-7,-7,0,0"  VerticalAlignment="Top" Source="/View/Agregar/logo.png"/>
+        <Border Margin="5,5,0,0" CornerRadius="45" Background="#4F709C" BorderBrush="#8fc643" BorderThickness="5" Grid.ColumnSpan="2">
+            <StackPanel>
+                <Label Content="Agregar Ingreso" FontSize="25" FontFamily="Roboto" FontWeight="Medium" Foreground="#F0F0F0" Margin="20,5,0,0"/>
+                <StackPanel  Margin="0,10,0,0"  Width="300" Height="110">
+                    <DockPanel>
+                        <Label Content="Fecha" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                        <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
+                            <TextBox x:Name="txtFecha" Margin="5,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="1" IsEnabled="False" Loaded="txtFecha_Loaded"/>
+                        </Border>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Content="DNI Paciente*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                        <Grid Margin="0,6,10,0">
+                            <ComboBox x:Name="txtComboboxDni" VerticalAlignment="Top" Style="{StaticResource Combos}" IsDropDownOpen="True" Visibility="Collapsed" SelectionChanged="txtComboboxDni_SelectionChanged"/>
+                            <Border HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
+                                <TextBox x:Name="txtBuscarDni" TextWrapping="Wrap" Text="DNI" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" KeyUp="BuscarDni" PreviewTextInput="txtBuscarDni_PreviewTextInput" LostFocus="txtBuscarDni_LostFocus" GotFocus="txtBuscarDni_GotFocus"/>
+                            </Border>
+                        </Grid>
+                    </DockPanel>
+                    <DockPanel>
+                        <Label Content="Medico*" Margin="0,10,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                        <ComboBox x:Name="txtMedico" Margin="0,10,10,0" Text="Apellido"  VerticalAlignment="Top" Style="{StaticResource Combos}" TabIndex="3" Loaded="txtMedico_Loaded"/>
+                    </DockPanel>
+                </StackPanel>
+                <DockPanel Width="250" Height="35" Margin="0,15,0,5">
+                    <Button x:Name="btnAceptarAgPaciente" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgPaciente_Click" TabIndex="4"/>
+                    <Button x:Name="btnCancelarAgPaciente" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarAgPaciente_Click" TabIndex="5"/>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
