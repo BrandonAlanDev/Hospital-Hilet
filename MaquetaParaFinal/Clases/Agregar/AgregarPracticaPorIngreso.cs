@@ -27,12 +27,12 @@ namespace MaquetaParaFinal.View.Agregar
         }
         private void CargarPracticas()
         {
-            DataTable dtServicio = conectar.DescargarTablaPracticas();
+            DataTable dtPractica = conectar.DescargarTablaPracticas();
             List<string> data = new List<string>();
 
-            foreach (DataRow row in dtServicio.Rows)
+            foreach (DataRow row in dtPractica.Rows)
             {
-                data.Add(row["Servicio"].ToString());
+                data.Add(row["Nombre"].ToString());
             }
             txtPractica.ItemsSource = null;
             txtPractica.Items.Clear();

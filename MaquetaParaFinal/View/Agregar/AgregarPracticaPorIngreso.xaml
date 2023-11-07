@@ -16,7 +16,7 @@
                 <Label Content="Agregar practica al ingreso" FontSize="25" FontFamily="Roboto" FontWeight="Medium" Foreground="#F0F0F0" Margin="20,5,0,0"/>
                 <DockPanel Margin="10,20,10,0">
                     <Label Content="Practica*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                    <ComboBox x:Name="txtPractica" Margin="0,3,0,0"  HorizontalAlignment="Left" Width="225" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" Style="{StaticResource Combos}" />
+                    <ComboBox x:Name="txtPractica" Margin="0,3,0,0"  HorizontalAlignment="Left" Width="225" Text="Nombre" VerticalAlignment="Top" Style="{StaticResource Combos}" />
                     <Button x:Name="txtAgregarPractica" Content="+" Style="{StaticResource BotonPrimario}" Width="30" HorizontalAlignment="Right" />
                 </DockPanel>
                 <DockPanel Width="250" Height="35" Margin="0,25,0,5">
