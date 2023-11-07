@@ -191,7 +191,7 @@ namespace MaquetaParaFinal.Clases
                             "INNER JOIN TiposDeMuestras AS tip ON pra.Fk_Id_Tipos_De_Muestra = tip.Pk_Id_Tipos_De_Muestra " +
                             "INNER JOIN PersonalLaboratorio AS perL ON perL.Fk_Id_Especialidades = esp.Pk_Id_Especialidades " +
                             "INNER JOIN Categorias AS cat ON perL.Fk_Id_Categorias = cat.Pk_Id_Categorias " +
-                            "WHERE (Baja_Pacientes IS NULL) AND (Baja_Profesional IS NULL) AND (Baja_Personal IS NULL);";
+                            "WHERE (pa.Baja_Pacientes IS NULL) AND (pro.Baja_Profesional IS NULL) AND (perL.Baja_Personal IS NULL);";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -231,7 +231,7 @@ namespace MaquetaParaFinal.Clases
                     "FROM Ingresos AS i " +
                         "INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
                         "INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
-                            "WHERE (Baja_Pacientes IS NULL) AND (Baja_Profesional IS NULL) " +
+                            "WHERE (p.Baja_Pacientes IS NULL) AND (pro.Baja_Profesional IS NULL) " +
                             "ORDER BY Paciente,Dni ,Medico,'Fecha De Ingreso', 'Fecha De Retiro';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -321,7 +321,7 @@ namespace MaquetaParaFinal.Clases
                                 $"LOWER(p.Tiempo_Demora) LIKE '%{buscar}%' OR " +
                                 $"LOWER(t.Nombre_Tipo_De_Muestra) LIKE '%{buscar}%' OR " +
                                 $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%' AND " +
-                                $"(Fecha_Baja IS NULL)" +
+                                $"(p.Fecha_Baja IS NULL)" +
                                 $"ORDER BY Nombre, 'Tiempo_Demora', 'Tipo De Muestra', Especialidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -340,8 +340,7 @@ namespace MaquetaParaFinal.Clases
                 $"p.Dni, " +
                 $"i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
                 $"i.Retirado AS 'Fecha De Retiro', " +
-                $"pro.Nombre_Profesional AS Medico, " +
-                $"pro.Apellido_Profesional AS 'Apellido Medico' " +
+                $"CONCAT(pro.Nombre_Profesional, ' ', pro.Apellido_Profesional) AS Medico, " +
                     $"FROM Ingresos AS i " +
                         $"INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
                         $"INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
