@@ -15,12 +15,41 @@ namespace MaquetaParaFinal.View
     public partial class Ingresos : Page
     {
         Conectar conectar = new Conectar();
+
         private void DataGridIngresos_Loaded(object sender, RoutedEventArgs e)
         {
             try{
                 DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
             } catch{}
         }
+
+        private void DataGridIngresos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGridIngresos.SelectedItem != null)
+            {
+                DataRowView row = (DataRowView)DataGridIngresos.SelectedItem;
+                txtPaciente.Text = row["Paciente"].ToString();
+                txtDni.Text = row["Dni"].ToString();
+                txtMedico.Text = row["Medico"].ToString();
+                txtFecha_Ingreso.Text = row["Fecha De Ingreso"].ToString();
+                if (row["Fecha De Retiro"].ToString() != string.Empty)
+                {
+                    txtFecha_Retiro.Text = row["Fecha De Retiro"].ToString();
+                }
+                else txtFecha_Retiro.Text = "Fecha De Retiro";
+
+                btModificar.IsEnabled = true;
+                btEliminar.IsEnabled = true;
+                btnImprimirPaciente.IsEnabled = true;
+            }
+            else
+            {
+                btModificar.IsEnabled = false;
+                btEliminar.IsEnabled = false;
+                btnImprimirPaciente.IsEnabled = false;
+            }
+        }
+
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
             AgregarIngreso agregarIngreso = new AgregarIngreso();
