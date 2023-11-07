@@ -70,10 +70,13 @@ namespace MaquetaParaFinal.View
 
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
+            if (txtBuscar.Text.Length > 0)
             {
-                DataGridPracticas.ItemsSource = conectar.BuscarEnTablaPracticas(txtBuscar.Text).DefaultView;
-            }
+                if (e.Key == Key.Enter)
+                {
+                    DataGridPracticas.ItemsSource = conectar.BuscarEnTablaPracticas(txtBuscar.Text).DefaultView;
+                }
+            }else DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
         }
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
