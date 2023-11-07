@@ -2,6 +2,7 @@
 using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,7 +49,8 @@ namespace MaquetaParaFinal.View
 
         private void btPracticas_Click(object sender, RoutedEventArgs e)
         {
-            VentanaPracticaPorIngreso vtn = new VentanaPracticaPorIngreso(0);
+            DataRowView row = (DataRowView) DataGridIngresos.SelectedItem;
+            VentanaPracticaPorIngreso vtn = new VentanaPracticaPorIngreso(int.Parse(row["ID"].ToString()));
             vtn.ShowDialog();
         }
 
