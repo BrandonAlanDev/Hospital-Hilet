@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
 
 namespace MaquetaParaFinal.View
 {
@@ -51,7 +52,13 @@ namespace MaquetaParaFinal.View
             agregarMedico.ShowDialog();
             DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
         }
-
+        private void btModificar_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView row = (DataRowView) DataGridMedicos.SelectedItem;
+            ModificarMedicos modificarMedico = new ModificarMedicos(int.Parse(row["ID"].ToString()),txtNombre.Text,txtApellido.Text,txtMatricula.Text,txtServicio.Text);
+            modificarMedico.ShowDialog();
+            DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+        }
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (txtNombre.Text != "Nombre")

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,14 +13,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MaquetaParaFinal.View.Agregar
+namespace MaquetaParaFinal.View.Modificar
 {
     /// <summary>
-    /// Lógica de interacción para AgregarMedico.xaml
+    /// Lógica de interacción para ModificarMedicos.xaml
     /// </summary>
-    public partial class AgregarMedico : Window
+    public partial class ModificarMedicos : Window
     {
-        public AgregarMedico()
+        string MatriculaInicial;
+        int idmedico;
+        public ModificarMedicos(int id,string nombre, string apellido, string matricula, string servicios)
         {
             InitializeComponent();
             txtNombre.GotFocus += LimpiarTxt;
@@ -29,7 +32,12 @@ namespace MaquetaParaFinal.View.Agregar
             txtApellido.LostFocus += RestaurarNombrePorDefecto;
             txtMatricula.LostFocus += RestaurarNombrePorDefecto;
             CargarServicios();
+            txtNombre.Text = nombre;
+            txtApellido.Text = apellido;
+            txtMatricula.Text = matricula;
+            txtServicio.Text = servicios;
+            MatriculaInicial = matricula;
+            idmedico = id;
         }
-
     }
 }

@@ -1,18 +1,18 @@
-﻿using MaquetaParaFinal.Clases;
+﻿using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows;
+using MaquetaParaFinal.Clases;
 
-namespace MaquetaParaFinal.View.Agregar
+namespace MaquetaParaFinal.View.Modificar
 {
-    public partial class AgregarMedico : Window
+    public partial class ModificarMedicos : Window
     {
         Conectar conectar = new Conectar();
 
@@ -49,7 +49,8 @@ namespace MaquetaParaFinal.View.Agregar
             try
             {
                 CargarServicios();
-            } catch { }
+            }
+            catch { }
         }
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -66,11 +67,11 @@ namespace MaquetaParaFinal.View.Agregar
             if (TodosLosCamposLlenos())
             {
                 int idServicio = conectar.ObtenerId_Servicios(txtServicio.Text);
-                conectar.AgregarProfesionales(txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), idServicio);
-                MessageBox.Show("Se agrego el medico correctamente");
+                conectar.ModificarProfesionales(idmedico,txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), idServicio);
+                MessageBox.Show("Se Modifico el medico correctamente");
                 this.Close();
             }
-            else   MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void CargarServicios()
@@ -102,7 +103,7 @@ namespace MaquetaParaFinal.View.Agregar
             txtMatricula.Text = "Matricula";
         }
 
-        private void btnAgregarServicio_Click(object sender, RoutedEventArgs e) 
+        private void btnAgregarServicio_Click(object sender, RoutedEventArgs e)
         {
             AgregarServicio agregarServicio = new AgregarServicio();
             agregarServicio.ShowDialog();

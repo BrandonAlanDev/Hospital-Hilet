@@ -18,12 +18,12 @@
                 <DockPanel Margin="10,20,10,0">
                         <Label Content="Nombre*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtNombreServicio" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                            <TextBox x:Name="txtNombreServicio" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" LostFocus="txtNombreServicio_LostFocus" GotFocus="txtNombreServicio_GotFocus" />
                         </Border>
                  </DockPanel>
                  <DockPanel Width="250" Height="35" Margin="0,25,0,5">
-                    <Button x:Name="btnAceptarAgPaciente" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgPaciente_Click"/>
-                    <Button x:Name="btnCancelarAgPaciente" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarAgPaciente_Click"/>
+                    <Button x:Name="btnAceptarAgServicio" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgServicio_Click"/>
+                    <Button x:Name="btnCancelarAgServicio" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarAgServicio_Click"/>
                 </DockPanel>
 
             </StackPanel>
