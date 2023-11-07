@@ -23,7 +23,8 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT Nombre_Servicio AS Servicio FROM Servicios";
+                string consulta = "SELECT Nombre_Servicio AS Servicio FROM Servicios " +
+                                    "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -35,7 +36,8 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT DISTINCT Nombre_Localidad AS Localidad FROM Localidades";
+                string consulta = "SELECT DISTINCT Nombre_Localidad AS Localidad FROM Localidades " +
+                                    "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -47,7 +49,8 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = $"SELECT Codigo_Postal AS CodPostal FROM Localidades WHERE Nombre_Localidad = '{Localidad}'";
+                string consulta = $"SELECT Codigo_Postal AS CodPostal FROM Localidades WHERE Nombre_Localidad = '{Localidad}' AND " +
+                                    $"WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -60,7 +63,8 @@ namespace MaquetaParaFinal.Clases
             using(SqlConnection conexion = new SqlConnection (contrasenia)) 
             {
                 conexion.Open ();
-                string consulta = "SELECT Nombre_Especialidad AS Especialidad FROM Especialidades";
+                string consulta = "SELECT Nombre_Especialidad AS Especialidad FROM Especialidades " +
+                                    "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter (consulta,conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -73,7 +77,8 @@ namespace MaquetaParaFinal.Clases
             using(SqlConnection conexion = new SqlConnection (contrasenia))
             {
                 conexion.Open ();
-                string consulta = "SELECT Nombre_Tipo_De_Muestra AS 'Tipo de Muestra' FROM TiposDeMuestras";
+                string consulta = "SELECT Nombre_Tipo_De_Muestra AS 'Tipo de Muestra' FROM TiposDeMuestras " +
+                                    "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -86,7 +91,8 @@ namespace MaquetaParaFinal.Clases
             using( SqlConnection conexion = new SqlConnection (contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT Nombre_Categoria AS Categoria FROM Categorias";
+                string consulta = "SELECT Nombre_Categoria AS Categoria FROM Categorias " +
+                                    "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter ( consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -109,7 +115,7 @@ namespace MaquetaParaFinal.Clases
                     "l.Codigo_Postal AS 'Codigo Postal' " +
                     "FROM Pacientes AS p " +
                         "INNER JOIN Localidades AS l ON p.Fk_Id_Localidades=l.Pk_Id_Localidades " +
-                    "WHERE p.Baja_Pacientes IS NULL";
+                    "WHERE (p.Baja_Pacientes IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -128,7 +134,7 @@ namespace MaquetaParaFinal.Clases
                     "Nombre_Servicio AS Servicio " +
                     "FROM Profesionales " +
                         "INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios " +
-                    "WHERE Baja_Profesional IS NULL";
+                    "WHERE (Baja_Profesional IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -150,7 +156,7 @@ namespace MaquetaParaFinal.Clases
                     "FROM PersonalLaboratorio" +
                         "INNER JOIN Categorias ON Fk_Id_Categorias = Pk_Id_Categorias " +
                         "INNER JOIN Especialidades ON Fk_Id_Especialidades = Pk_Id_Especialidades " +
-                    "WHERE Baja_Personal IS NULL";
+                    "WHERE (Baja_Personal IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -196,7 +202,7 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = "SELECT p.Pk_Id_Practicas AS ID" +
+                string consulta = "SELECT p.Pk_Id_Practicas AS ID, " +
                     "p.Nombre_Practica AS Nombre, " +
                     "p.Tiempo_Demora AS 'Tiempo de Demora', " +
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
@@ -204,6 +210,7 @@ namespace MaquetaParaFinal.Clases
                     "FROM Practicas AS p " +
                         "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
                         "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
+                        "WHERE (p.Fecha_Baja IS NULL)" +
                     "ORDER BY Nombre, 'Tiempo de Demora', 'Tipo De Muestra', Especialidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
