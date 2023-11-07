@@ -23,5 +23,9 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
+        private void DataGridIngresos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
