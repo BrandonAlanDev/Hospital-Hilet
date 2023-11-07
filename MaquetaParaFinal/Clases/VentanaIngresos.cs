@@ -23,5 +23,24 @@ namespace MaquetaParaFinal.View
         {
 
         }
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btModificar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnImprimirPaciente_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
