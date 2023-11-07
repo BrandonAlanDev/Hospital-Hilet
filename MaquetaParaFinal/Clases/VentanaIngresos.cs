@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MaquetaParaFinal.View
 {
@@ -25,6 +26,26 @@ namespace MaquetaParaFinal.View
             agregarIngreso.ShowDialog();
             DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
         }
+
+        private void DataGridIngresos_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "ID")
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (txtBuscar.Text.Length > 0)
+            {
+                if (e.Key == Key.Enter)
+                {
+                    DataGridIngresos.ItemsSource = conectar.BuscarEnTablaIngresos(txtBuscar.Text).DefaultView;
+                }
+            }else DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
+        }
+
         private void btPracticas_Click(object sender, RoutedEventArgs e)
         {
 

@@ -69,14 +69,13 @@ namespace MaquetaParaFinal.View
 
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter) 
+            if (txtBuscar.Text.Length == 0)
             {
-                if (txtBuscar.Text.Length == 0)
+                if (e.Key == Key.Enter)
                 {
-                    DataGridPacientes.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
+                    DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
                 }
-                else DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
-            }
+            }else DataGridPacientes.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
         }
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
