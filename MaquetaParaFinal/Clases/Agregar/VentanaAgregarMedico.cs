@@ -80,7 +80,7 @@ namespace MaquetaParaFinal.View.Agregar
 
             foreach (DataRow row in dtServicio.Rows)
             {
-                data.Add(row["Servicio"].ToString());
+                data.Add(row["Nombre"].ToString());
             }
             txtServicio.ItemsSource = null;
             txtServicio.Items.Clear();

@@ -27,7 +27,8 @@ namespace MaquetaParaFinal.View
         }
         private void btPracticas_Click(object sender, RoutedEventArgs e)
         {
-
+            VentanaPracticaPorIngreso vtn = new VentanaPracticaPorIngreso(0);
+            vtn.ShowDialog();
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)

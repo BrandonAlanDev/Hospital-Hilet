@@ -24,7 +24,8 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void AgregarPractica(object sender, RoutedEventArgs e)
         {
-
+            AgregarPracticaPorIngreso agregar = new AgregarPracticaPorIngreso();
+            agregar.ShowDialog();
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
