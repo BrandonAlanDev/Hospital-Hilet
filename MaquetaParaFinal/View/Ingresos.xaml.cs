@@ -22,5 +22,9 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
+        private void btPracticas_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

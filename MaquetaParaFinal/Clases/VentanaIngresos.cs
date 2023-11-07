@@ -19,5 +19,9 @@ namespace MaquetaParaFinal.View
                 DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
             } catch{}
         }
+        private void btPracticas_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
