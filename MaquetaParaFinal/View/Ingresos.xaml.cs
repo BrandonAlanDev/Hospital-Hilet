@@ -1,6 +1,7 @@
 ﻿using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,5 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
-        private void DataGridIngresos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
