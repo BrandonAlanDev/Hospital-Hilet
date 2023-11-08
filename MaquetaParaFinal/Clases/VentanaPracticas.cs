@@ -23,6 +23,14 @@ namespace MaquetaParaFinal.View
             } catch { }
         }
 
+        private void DataGridPracticas_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "ID")
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
+        }
+
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
             AgregarPractica agregarPractica = new AgregarPractica();
@@ -41,7 +49,7 @@ namespace MaquetaParaFinal.View
                 if (resultado == MessageBoxResult.Yes)
                 {
                     DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
-                    //conectar.EliminarPractica(int.Parse(row["ID"].ToString())); PARA CUANDO ESTE EL METODO
+                    conectar.EliminarPracticas(int.Parse(row["ID"].ToString()));
                     DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
                 }
             }
@@ -54,8 +62,8 @@ namespace MaquetaParaFinal.View
                 DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
                 txtNombre.Text = row["Nombre"].ToString();
                 txtEspecialidades.Text = row["Especialidades"].ToString();
+                txtTiempo_Demora.Text = row["Tiempo De Demora"].ToString();
                 txtTipo_De_Muestra.Text = row["Tipo De Muestra"].ToString();
-                txtFecha_De_Realizacion.Text = row["Fecha De Realizacion"].ToString();
                 btModificar.IsEnabled = true;
                 btEliminar.IsEnabled = true;
                 btnImprimirPacticas.IsEnabled = true;
