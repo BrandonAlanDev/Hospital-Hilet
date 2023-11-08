@@ -37,7 +37,7 @@ namespace MaquetaParaFinal.View
                     txtFecha_Retiro.Text = row["Fecha De Retiro"].ToString();
                 }
                 else txtFecha_Retiro.Text = "Fecha De Retiro";
-
+                txtCantidad.Text = row["Practicas"].ToString();
                 btModificar.IsEnabled = true;
                 btEliminar.IsEnabled = true;
                 btnImprimirPaciente.IsEnabled = true;
