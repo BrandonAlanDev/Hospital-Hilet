@@ -312,20 +312,22 @@ namespace MaquetaParaFinal.Clases
             buscar = buscar.ToLower();
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = $"SELECT Pk_Id_Practicas AS ID, " +
+                string consulta = $"SELECT " +
+                    $"p.Pk_Id_Practicas AS ID, " +
                     $"p.Nombre_Practica AS Nombre, " +
                     $"p.Tiempo_Demora AS 'Tiempo de Demora'," +
                     $"t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra'," +
                     $"e.Nombre_Especialidad AS Especialidades " +
                     $"FROM Practicas AS p " +
                         $"INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
-                        $"INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades" +
-                            $"WHERE LOWER(p.Nombre_Practica) LIKE '%{buscar}%' OR " +
-                                $"LOWER(p.Tiempo_Demora) LIKE '%{buscar}%' OR " +
-                                $"LOWER(t.Nombre_Tipo_De_Muestra) LIKE '%{buscar}%' OR " +
-                                $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%' AND " +
-                                $"(p.Fecha_Baja IS NULL)" +
-                                $"ORDER BY Nombre, 'Tiempo_Demora', 'Tipo De Muestra', Especialidades;";
+                        $"INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
+                    $"WHERE (LOWER(p.Nombre_Practica) LIKE '%{buscar}%' OR " +
+                        $"p.Tiempo_Demora LIKE '%{buscar}%' OR " +
+                        $"LOWER(t.Nombre_Tipo_De_Muestra) LIKE '%{buscar}%' OR " +
+                        $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%') AND " +
+                        $"(p.Fecha_Baja IS NULL) " +
+                    $"ORDER BY Nombre, p.Tiempo_Demora, 'Tipo De Muestra', Especialidades;";
+
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
