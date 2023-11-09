@@ -75,7 +75,7 @@ namespace MaquetaParaFinal.View
                 {
                     DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
                 }
-            }else DataGridPacientes.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
+            }else DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
