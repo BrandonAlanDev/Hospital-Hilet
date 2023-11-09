@@ -15,8 +15,10 @@ namespace MaquetaParaFinal.View.Agregar
     public partial class AgregarIngreso : Window
     {
         Conectar conectar = new Conectar();
+
         public string fecha { get; set; }
-        private bool dniElegido = false;
+
+
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -25,20 +27,19 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
-        private void txtBuscarDni_GotFocus(object sender, RoutedEventArgs e)
+        private void txtComboboxDni_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (txtBuscarDni.Text == "DNI")
+            if (txtComboboxDni.Text == "")
             {
-                txtBuscarDni.Text = "";
+                txtComboboxDni.Text = "DNI";
             }
         }
 
-        private void txtBuscarDni_LostFocus(object sender, RoutedEventArgs e)
+        private void txtComboboxDni_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (txtBuscarDni.Text == "")
+            if (txtComboboxDni.Text == "DNI")
             {
-                txtBuscarDni.Text = "DNI";
-                txtComboboxDni.Visibility = Visibility.Collapsed;
+                txtComboboxDni.Text = "";
             }
         }
 
@@ -64,9 +65,9 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void BuscarDni(object sender, KeyEventArgs e)
         {
-            if (txtBuscarDni.Text.Length > 0)
+            if (txtComboboxDni.Text.Length > 0)
             {
-                DataTable dt = conectar.BuscarEnTablaPacientesSoloPorDni(txtBuscarDni.Text);
+                DataTable dt = conectar.BuscarEnTablaPacientesSoloPorDni(txtComboboxDni.Text);
                 List<string> data = new List<string>();
 
                 foreach (DataRow row in dt.Rows)
@@ -76,26 +77,19 @@ namespace MaquetaParaFinal.View.Agregar
                 txtComboboxDni.ItemsSource = null;
                 txtComboboxDni.Items.Clear();
                 txtComboboxDni.ItemsSource = data;
-                txtComboboxDni.Visibility = data.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
                 if (data.Count > 0)
                 {
                     txtComboboxDni.IsDropDownOpen = true;
-                    txtBuscarDni.Focus();
                 }
-            }
-            else 
-            { 
-                txtComboboxDni.Visibility = Visibility.Collapsed;
-                txtComboboxDni.IsDropDownOpen = false;
             }
         }
 
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
-            if (txtMedico.SelectedValue != null && ComprobarSeleccion())
+            if (txtMedico.SelectedValue != null && txtComboboxDni.Text != "DNI")
             {
-                int idpaciente = conectar.ObtenerId_Pacientes(txtBuscarDni.Text);
-                int idmedico = conectar.ObtenerId_Profesionales(txtMedico.SelectedValue.ToString());
+                int idpaciente = conectar.ObtenerId_Pacientes(txtComboboxDni.Text);
+                int idmedico = conectar.ObtenerId_Profesionales(txtMedico.Text);
                 conectar.AgregarIngresos(fecha,idpaciente, idmedico);
                 this.Close();
             }
@@ -103,25 +97,6 @@ namespace MaquetaParaFinal.View.Agregar
         }
 
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
-
-        private void txtComboboxDni_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (txtComboboxDni.Visibility != Visibility.Collapsed) 
-            {             
-                txtBuscarDni.Text = txtComboboxDni.SelectedItem.ToString() != null ? txtComboboxDni.SelectedItem.ToString() : string.Empty;
-                txtComboboxDni.Visibility = Visibility.Collapsed;
-                dniElegido = true;
-            }
-        }
-
-        private bool ComprobarSeleccion() 
-        {
-            if (dniElegido == true || txtBuscarDni.Text == txtComboboxDni.Text)
-            {
-                return true;
-            }
-            return false;
-        }
 
         private void txtBuscarDni_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
