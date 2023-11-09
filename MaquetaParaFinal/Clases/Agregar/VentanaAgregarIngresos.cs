@@ -77,11 +77,8 @@ namespace MaquetaParaFinal.View.Agregar
                 txtComboboxDni.ItemsSource = null;
                 txtComboboxDni.Items.Clear();
                 txtComboboxDni.ItemsSource = data;
-                if (data.Count > 0)
-                {
-                    txtComboboxDni.IsDropDownOpen = true;
-                }
-            }
+                txtComboboxDni.IsDropDownOpen = true;
+            }else txtComboboxDni.IsDropDownOpen = false;
         }
 
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
