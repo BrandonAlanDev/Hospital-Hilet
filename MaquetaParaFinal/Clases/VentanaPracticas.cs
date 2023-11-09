@@ -89,7 +89,10 @@ namespace MaquetaParaFinal.View
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
         {
-            DataGridPracticas.ItemsSource = conectar.BuscarEnTablaPracticas(txtBuscar.Text).DefaultView;
+            if (txtBuscar.Text.Length > 0)
+            {
+                DataGridPracticas.ItemsSource = conectar.BuscarEnTablaPracticas(txtBuscar.Text).DefaultView;
+            }else DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
         }
 
     }

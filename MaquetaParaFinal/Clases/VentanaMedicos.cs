@@ -46,7 +46,10 @@ namespace MaquetaParaFinal.View
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
         {
-            DataGridMedicos.ItemsSource = conectar.BuscarEnTablaProfesionales(txtBuscar.Text).DefaultView;
+            if (txtBuscar.Text.Length > 0)
+            {
+                DataGridMedicos.ItemsSource = conectar.BuscarEnTablaProfesionales(txtBuscar.Text).DefaultView;
+            }else DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
         }
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
