@@ -54,16 +54,16 @@ namespace MaquetaParaFinal.View.Agregar
                 textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
             }
         }
+
         private void btnCancelar_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
         {
             if (txtNombrePractica.Text != "Nombre" && txtEspecialidad.SelectedValue != null && txtTipoDeMuestra.SelectedValue != null)
             {
-                int tiempodemora = 0;
                 int idEspecialidad = conectar.ObtenerId_Especialidades(txtEspecialidad.Text);
                 int idTipoMuestra = conectar.ObtenerId_TiposDeMuestras(txtTipoDeMuestra.Text);
-                conectar.AgregarPracticas(txtNombrePractica.Text, idEspecialidad, idTipoMuestra,tiempodemora);
+                conectar.AgregarPracticas(txtNombrePractica.Text, idEspecialidad, idTipoMuestra, int.Parse(txtTiempoResultado.Text));
                 LimpiarTxt();
                 MessageBox.Show("Agregado Correctamente");
             }
@@ -72,6 +72,7 @@ namespace MaquetaParaFinal.View.Agregar
                 MessageBox.Show("Plantilla Incompleta","Error",MessageBoxButton.OK,MessageBoxImage.Question);
             }
         }
+
         private void LimpiarTxt()
         {
             txtNombrePractica.Text = "Nombre";
@@ -79,6 +80,7 @@ namespace MaquetaParaFinal.View.Agregar
             txtEspecialidad.SelectedValue = null;
             txtTipoDeMuestra.SelectedValue = null;
         }
+
         void CargarEnBoxEspecilidad() 
         {
             DataTable dtespecialidad = conectar.DescargaTablaEspecialidades();
@@ -119,6 +121,20 @@ namespace MaquetaParaFinal.View.Agregar
                 CargarEnBoxTipoDeMuestra();
             }catch { }
 
+        }
+
+        private void SoloNumero_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (IsNumber(e.Text)) e.Handled = true;
+        }
+
+        private bool IsNumber(string text)
+        {
+            foreach (char c in text)
+            {
+                if (!char.IsDigit(c)) return true;
+            }
+            return false;
         }
     }
 }
