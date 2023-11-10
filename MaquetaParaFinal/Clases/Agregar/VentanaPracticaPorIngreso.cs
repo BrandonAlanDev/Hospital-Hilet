@@ -15,7 +15,15 @@ namespace MaquetaParaFinal.View.Agregar
     {
         private void ActualizarPracticas(int id)
         {
+            try { ActualizarFechaRetiro(); } catch { }
             DataGridPracticasxIngreso.ItemsSource = conectar.DescargarPracticaDeUnIngreso(id).DefaultView;
+        }
+        private void ActualizarFechaRetiro()
+        {
+            int horasDemora = conectar.BuscarTiempoDemora(idIngreso);
+            DateTime fecha = DateTime.Now.AddHours(horasDemora);
+            string fechaRetiro = $"{fecha.Year}-{fecha.Month}-{fecha.Day}";
+            conectar.ActualizarFecha_Retiro(idIngreso, fechaRetiro);
         }
 
         private void Salir(object sender, RoutedEventArgs e)=>this.Close();

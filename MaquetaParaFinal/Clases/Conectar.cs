@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Controls;
 using System.Windows;
 using Newtonsoft.Json.Bson;
+using MaquetaParaFinal.View;
 
 namespace MaquetaParaFinal.Clases
 {
@@ -225,7 +226,7 @@ namespace MaquetaParaFinal.Clases
             {
                 string consulta = "SELECT  " +
                     "p.Nombre_Practica AS Nombre, " +
-                    "p.Tiempo_Demora AS 'Tiempo de Demora', " +
+                    "p.Tiempo_Demora AS 'Horas de Demora', " +
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
                     "e.Nombre_Especialidad AS Especialidades " +
                     "FROM Practicas AS p " +
@@ -234,7 +235,7 @@ namespace MaquetaParaFinal.Clases
                         "INNER JOIN PracticasxIngresos AS pxi ON pxi.Fk_Id_Practicas = p.Pk_Id_Practicas " +
                         "INNER JOIN Ingresos AS i ON pxi.Fk_Id_Ingresos = i.Pk_Id_Ingresos " +
                         $"WHERE (p.Fecha_Baja IS NULL) AND i.Pk_Id_Ingresos = {id} " +
-                    "ORDER BY Nombre, 'Tiempo de Demora', 'Tipo De Muestra', Especialidades;";
+                    "ORDER BY Nombre, 'Horas de Demora', 'Tipo De Muestra', Especialidades;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -1074,10 +1075,11 @@ namespace MaquetaParaFinal.Clases
             using(SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = $"UPDATE Ingresos SET Retirado = '{retirado}' " +
-                                    $"WHERE Pk_Id_Ingreso = {id}";
+                string consulta = $"UPDATE Ingresos SET Retirado = @retirado " +
+                                    $"WHERE Pk_Id_Ingresos = {id}";
                 using (SqlCommand cmd = new SqlCommand (consulta,conexion)) 
                 {
+                    cmd.Parameters.AddWithValue("@retirado", retirado);
                     cmd.ExecuteNonQuery();
                 }
             }
