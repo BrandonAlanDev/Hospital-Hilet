@@ -32,10 +32,7 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void ActualizarPracticas(int id)
         {
-
-            DataTable dt = new DataTable();
-
-            //DataGridPracticasxIngreso.ItemsSource = conectar.
+            DataGridPracticasxIngreso.ItemsSource = conectar.DescargaTablaPracticasXIngresos().DefaultView;
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

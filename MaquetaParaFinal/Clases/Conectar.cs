@@ -218,6 +218,30 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+
+        public DataTable DescargarPracticaDeUnIngreso(int id)
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = "SELECT p.Pk_Id_Practicas AS ID, " +
+                    "p.Nombre_Practica AS Nombre, " +
+                    "p.Tiempo_Demora AS 'Tiempo de Demora', " +
+                    "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
+                    "e.Nombre_Especialidad AS Especialidades " +
+                    "FROM Practicas AS p " +
+                        "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
+                        "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
+                        "INNER JOIN PracticasxIngresos AS pxi ON pxi.Fk_Id_Practicas = p.Pk_Id_Practicas " +
+                        "INNER JOIN Ingresos AS i ON pxi.Fk_Id_Ingresos = i.Pk_Id_Ingresos " +
+                        $"WHERE (p.Fecha_Baja IS NULL) AND i.Pk_Id_Ingresos = {id} " +
+                    "ORDER BY Nombre, 'Tiempo de Demora', 'Tipo De Muestra', Especialidades;";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+
         public DataTable DescargarTablaIngresos()
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
