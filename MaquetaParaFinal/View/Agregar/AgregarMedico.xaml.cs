@@ -31,5 +31,18 @@ namespace MaquetaParaFinal.View.Agregar
             CargarServicios();
         }
 
+        private void SoloNumeros_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (IsNumber(e.Text)) e.Handled = true;
+        }
+
+        private bool IsNumber(string text)
+        {
+            foreach (char c in text)
+            {
+                if (!char.IsDigit(c)) return true;
+            }
+            return false;
+        }
     }
 }

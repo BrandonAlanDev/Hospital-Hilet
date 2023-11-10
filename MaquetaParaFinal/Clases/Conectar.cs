@@ -1035,5 +1035,23 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
+        public void SeleccionarTiempoDemora(int id)
+        {
+            using (SqlConnection conexion = new SqlConnection (contrasenia)) 
+            {
+                conexion.Open();
+                string consulta = "SELECT MAX(p.Tiempo_Demora) AS 'Demora en hs'" +
+                                    "FROM Practicas AS p INNER JOIN PracticasxIngresos AS PxI " +
+                                    "ON p.Pk_Id_Practicas = PxI.Fk_Id_Practicas " +
+                                    "INNER JOIN Ingresos AS I " +
+                                    "ON PxI.Fk_Id_Ingresos = I.Pk_Id_Ingresos " +
+                                    $"WHERE p.Pk_Id_Practicas = {id}";
+                using (SqlCommand cmd = new SqlCommand (consulta, conexion)) 
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }
