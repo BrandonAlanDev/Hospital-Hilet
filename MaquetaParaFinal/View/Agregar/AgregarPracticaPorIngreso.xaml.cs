@@ -28,5 +28,12 @@ namespace MaquetaParaFinal.View.Agregar
             InitializeComponent();
             CargarPracticas();
         }
+
+        private void txtAgregarPractica_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPractica agregarPractica = new AgregarPractica();
+            agregarPractica.ShowDialog();
+
+        }
     }
 }

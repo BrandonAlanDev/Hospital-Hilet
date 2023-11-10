@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace MaquetaParaFinal.View.Agregar
 {
@@ -26,17 +25,11 @@ namespace MaquetaParaFinal.View.Agregar
             conectar.ActualizarFecha_Retiro(idIngreso, fechaRetiro);
         }
 
-        private void Salir(object sender, RoutedEventArgs e)=>this.Close();
+        private void Salir(object sender, RoutedEventArgs e) => this.Close();
 
-        private void EliminarPractica(object sender, RoutedEventArgs e)
-        {
-            ActualizarPracticas(idIngreso);
-        }
+        private void EliminarPractica(object sender, RoutedEventArgs e) => ActualizarPracticas(idIngreso);
 
-        private void ModificarPractica(object sender, RoutedEventArgs e)
-        {
-            ActualizarPracticas(idIngreso);
-        }
+        private void ModificarPractica(object sender, RoutedEventArgs e) => ActualizarPracticas(idIngreso);
 
         private void AgregarPractica(object sender, RoutedEventArgs e)
         {

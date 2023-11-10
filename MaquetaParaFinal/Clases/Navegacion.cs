@@ -25,7 +25,7 @@ namespace MaquetaParaFinal
             btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
 
-            //Hacemos que els frame navegue a la page local Index, con una URI relativa, ya que no ponemos la ruta completa
+            //Hacemos que el frame navegue a la page local Index, con una URI relativa, ya que no ponemos la ruta completa
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Index.xaml", UriKind.Relative));
         }
         private void LoadIngresos(object sender, RoutedEventArgs e)
