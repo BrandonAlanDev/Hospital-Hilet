@@ -1069,5 +1069,19 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
+        public void ActualizarFecha_Retiro(int id,string retirado)
+        {
+            using(SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                conexion.Open();
+                string consulta = $"UPDATE Ingresos SET Retirado = '{retirado}' " +
+                                    $"WHERE Pk_Id_Ingreso = {id}";
+                using (SqlCommand cmd = new SqlCommand (consulta,conexion)) 
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
     }
 }
