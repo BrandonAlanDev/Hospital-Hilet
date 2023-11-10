@@ -225,6 +225,8 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 string consulta = "SELECT  " +
+                    "pxi.Pk_Id_PracticasxIngresos AS ID, " +
+                    "i.Pk_Id_Ingresos AS 'ID Ingresos', " +
                     "p.Nombre_Practica AS Nombre, " +
                     "p.Tiempo_Demora AS 'Horas de Demora', " +
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
@@ -814,6 +816,19 @@ namespace MaquetaParaFinal.Clases
                 conectar.Open();
                 string consulta = $"UPDATE Ingresos SET Retirado = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}'  WHERE Pk_Id_Ingresos = {id}";
                 using(SqlCommand cmd = new SqlCommand(consulta,conectar))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EliminarPracticaXIngreso(int id)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"DELETE FROM PracticasxIngresos WHERE Pk_Id_PracticasxIngresos = {id}";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
                 }
