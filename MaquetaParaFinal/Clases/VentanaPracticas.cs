@@ -64,15 +64,7 @@ namespace MaquetaParaFinal.View
                 txtEspecialidades.Text = row["Especialidades"].ToString();
                 txtTiempo_Demora.Text = row["Tiempo De Demora"].ToString();
                 txtTipo_De_Muestra.Text = row["Tipo De Muestra"].ToString();
-                btModificar.IsEnabled = true;
-                btEliminar.IsEnabled = true;
-                btnImprimirPacticas.IsEnabled = true;
-            }
-            else
-            {
-                btModificar.IsEnabled = false;
-                btEliminar.IsEnabled = false;
-                btnImprimirPacticas.IsEnabled = false;
+                if (row["Tiempo De Demora"].ToString() == string.Empty) txtTiempo_Demora.Text = "Fecha"; 
             }
         }
 
