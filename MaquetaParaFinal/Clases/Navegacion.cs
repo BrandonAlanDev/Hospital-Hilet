@@ -66,7 +66,7 @@ namespace MaquetaParaFinal
             btnPacientes.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnIngresos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnHome.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
-            btnMedicos.Background = new SolidColorBrush(Color.FromRgb(33, 53, 85));
+            btnMedicos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPacientes.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
@@ -99,7 +99,6 @@ namespace MaquetaParaFinal
             animation.Completed += (s, _) => Close();
             BeginAnimation(UIElement.OpacityProperty, animation);
         }
-
 
         private void btnMaxMin(object sender, RoutedEventArgs e)
         {
