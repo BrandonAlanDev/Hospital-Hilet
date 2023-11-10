@@ -223,7 +223,7 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = "SELECT p.Pk_Id_Practicas AS ID, " +
+                string consulta = "SELECT  " +
                     "p.Nombre_Practica AS Nombre, " +
                     "p.Tiempo_Demora AS 'Tiempo de Demora', " +
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
@@ -1048,6 +1048,22 @@ namespace MaquetaParaFinal.Clases
                                     $"WHERE I.Pk_Id_Ingresos = {id}";
                 using (SqlCommand cmd = new SqlCommand (consulta, conexion)) 
                 {
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+
+        public int BuscarPractica(string practica)
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                conexion.Open();
+                string consulta = "SELECT Pk_Id_Practicas " +
+                                    "FROM Practicas " +
+                                    $"WHERE Nombre_Practica = @practica";
+                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                {
+                    cmd.Parameters.AddWithValue("@practica", practica);
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }

@@ -26,6 +26,7 @@ namespace MaquetaParaFinal.View.Agregar
         {
             InitializeComponent();
             this.idIngreso = idIngreso;
+            ActualizarPracticas(idIngreso);
         }
     }
 }

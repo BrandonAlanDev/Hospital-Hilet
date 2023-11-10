@@ -21,8 +21,10 @@ namespace MaquetaParaFinal.View.Agregar
     public partial class AgregarPracticaPorIngreso : Window
     {
         Conectar conectar=new Conectar();
-        public AgregarPracticaPorIngreso()
+        int idIngreso;
+        public AgregarPracticaPorIngreso(int idIngreso)
         {
+            this.idIngreso = idIngreso;
             InitializeComponent();
             CargarPracticas();
         }

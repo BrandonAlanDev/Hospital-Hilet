@@ -23,7 +23,8 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void btnAceptarAgServicio_Click(object sender, RoutedEventArgs e)
         {
-
+            if(txtPractica.Text !=null) conectar.AgregarPracticasxIngresos(idIngreso,conectar.BuscarPractica(txtPractica.Text));
+            this.Close();
         }
         private void CargarPracticas()
         {
