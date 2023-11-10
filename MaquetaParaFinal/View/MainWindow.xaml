@@ -15,7 +15,7 @@
             <Label Content="HOSPITAL HILET" Foreground="#F0F0F0" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
 
             <Grid HorizontalAlignment="Right">
-
+                <Button x:Name="btnMinimizar" Content="-" HorizontalAlignment="Right" Margin="0,0,90,0" Width="25" Height="25" Style="{StaticResource BotonPrimario}" Click="btnMinim" Background="Gold"/>
                 <Button x:Name="btnMaxmin" Content="O" HorizontalAlignment="Right" Margin="0,0,50,0" Width="25" Height="25" Style="{StaticResource BotonPrimario}" Click="btnMaxMin"/>
                 <Button x:Name="btnSalir" Content="X" HorizontalAlignment="Right" Margin="0,0,10,0" Width="25" Height="25" Style="{StaticResource BotonSalir}" Click="btnSalir_Click"/>
             </Grid>

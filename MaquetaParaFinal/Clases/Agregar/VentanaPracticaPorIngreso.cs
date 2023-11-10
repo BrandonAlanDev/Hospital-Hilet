@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +28,14 @@ namespace MaquetaParaFinal.View.Agregar
         {
             AgregarPracticaPorIngreso agregar = new AgregarPracticaPorIngreso();
             agregar.ShowDialog();
+        }
+
+        private void ActualizarPracticas(int id)
+        {
+
+            DataTable dt = new DataTable();
+
+            //DataGridPracticasxIngreso.ItemsSource = conectar.
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

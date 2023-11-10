@@ -112,5 +112,10 @@ namespace MaquetaParaFinal
                 this.WindowState = WindowState.Normal;
             }
         }
+
+        private void btnMinim(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 }
