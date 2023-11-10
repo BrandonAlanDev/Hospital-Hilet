@@ -40,6 +40,7 @@ namespace MaquetaParaFinal.View.Agregar
                 }
             }
         }
+
         private void ControlarNombre(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -55,6 +56,7 @@ namespace MaquetaParaFinal.View.Agregar
                 textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
             }
         }
+
         private void AbrirDatePicker_Click(object sender, RoutedEventArgs e)
         {
             // Abre el Popup que contiene el DatePicker
@@ -75,6 +77,7 @@ namespace MaquetaParaFinal.View.Agregar
                 BotonFecha.Content = "Ingresar Fecha";
             }
         }
+
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             // Captura la fecha seleccionada y cierra el Popup
@@ -91,6 +94,7 @@ namespace MaquetaParaFinal.View.Agregar
             datePickerPopup.IsOpen = false;
             BotonFecha.Focus();
         }
+
         private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
         {
             if (sender is TextBox textBox)
@@ -101,6 +105,7 @@ namespace MaquetaParaFinal.View.Agregar
                 }
             }
         }
+
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
@@ -108,6 +113,7 @@ namespace MaquetaParaFinal.View.Agregar
                 DragMove();
             }
         }
+
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
             if (TodosLosCamposLlenos()) 
@@ -132,6 +138,7 @@ namespace MaquetaParaFinal.View.Agregar
                 MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
         private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
         {
             return txtNombre.Text != "Nombre" &&
@@ -156,6 +163,8 @@ namespace MaquetaParaFinal.View.Agregar
             txtLocalidad.SelectedValue = null;
             txtCodPostas.SelectedValue = null;
         }
+
+
 
         private void CargarLocalidades()
         {
@@ -193,5 +202,21 @@ namespace MaquetaParaFinal.View.Agregar
         private void AgregarPacientes_Loaded(object sender, RoutedEventArgs e) => CargarLocalidades();
 
         private void BuscarCodigoPostal(object sender, SelectionChangedEventArgs e) => CargarCodigoPostal();
+
+
+        private void SoloNumeros_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (IsNumber(e.Text)) e.Handled = true;
+        }
+
+        private bool IsNumber(string text)
+        {
+            foreach (char c in text)
+            {
+                if (!char.IsDigit(c)) return true;
+            }
+            return false;
+        }
+
     }
 }
