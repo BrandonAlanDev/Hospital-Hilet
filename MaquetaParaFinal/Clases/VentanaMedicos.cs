@@ -20,6 +20,7 @@ namespace MaquetaParaFinal.View
 
         private void DataGridMedicos_Loaded(object sender, RoutedEventArgs e)
         {
+            txtBuscar.Focus();
             try{
                 DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
             }catch{}

@@ -18,6 +18,7 @@ namespace MaquetaParaFinal.View
 
         private void DataGridIngresos_Loaded(object sender, RoutedEventArgs e)
         {
+            txtBuscar.Focus();
             try{
                 DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
             } catch{}

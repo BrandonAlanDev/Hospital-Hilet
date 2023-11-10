@@ -18,7 +18,9 @@ namespace MaquetaParaFinal.View
 
         private void DataGridPacticas_Loaded(object sender, RoutedEventArgs e)
         {
-            try { 
+            txtBuscar.Focus();
+            try
+            { 
                 DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
             } catch { }
         }

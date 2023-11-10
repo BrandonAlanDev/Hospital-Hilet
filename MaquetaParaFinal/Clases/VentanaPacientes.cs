@@ -28,7 +28,9 @@ namespace MaquetaParaFinal.View
 
         private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
         {
-            try {             
+            txtBuscar.Focus();
+            try
+            {             
                 DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
             } catch { }
         }
