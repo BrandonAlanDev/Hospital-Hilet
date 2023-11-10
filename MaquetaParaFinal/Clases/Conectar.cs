@@ -226,7 +226,6 @@ namespace MaquetaParaFinal.Clases
             {
                 string consulta = "SELECT  " +
                     "pxi.Pk_Id_PracticasxIngresos AS ID, " +
-                    "i.Pk_Id_Ingresos AS 'ID Ingresos', " +
                     "p.Nombre_Practica AS Nombre, " +
                     "p.Tiempo_Demora AS 'Horas de Demora', " +
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +

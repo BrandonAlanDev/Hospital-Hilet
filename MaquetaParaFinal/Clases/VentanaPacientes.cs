@@ -24,10 +24,6 @@ namespace MaquetaParaFinal.View
             {
                 e.Column.Visibility = Visibility.Hidden;
             }
-            if (e.Column.Header.ToString() == "ID Ingresos")
-            {
-                e.Column.Visibility = Visibility.Hidden;
-            }
         }
 
         private void DataGridPacientes_Loaded(object sender, RoutedEventArgs e)
