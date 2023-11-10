@@ -64,7 +64,10 @@ namespace MaquetaParaFinal.View
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
         {
-            DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
+            if (txtBuscar.Text.Length == 0)
+            {
+                DataGridPacientes.ItemsSource = conectar.BuscarEnTablaPacientes(txtBuscar.Text).DefaultView;
+            }else DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
         }
 
         private void EnterBuscar(object sender, KeyEventArgs e)

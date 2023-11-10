@@ -25,7 +25,7 @@
                     <DockPanel>
                         <Label Content="Tiempo De Resultado*" Margin="0,3,0,0" Width="130" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtTiempoResultado" Margin="5,0,0,0" TextWrapping="Wrap" Text="Tiempo" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" GotFocus="txtNombrePractica_GotFocus" LostFocus="txtNombrePractica_LostFocus"/>
+                            <TextBox x:Name="txtTiempoResultado" Margin="5,0,0,0" TextWrapping="Wrap" Text="Tiempo" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" GotFocus="txtTiempoResultado_GotFocus" LostFocus="txtTiempoResultado_LostFocus" PreviewTextInput="SoloNumero_PreviewTextInput"/>
                         </Border>
                     </DockPanel>
                     <DockPanel>

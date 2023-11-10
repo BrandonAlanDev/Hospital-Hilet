@@ -95,12 +95,6 @@ namespace MaquetaParaFinal.View.Agregar
                    txtServicio != null;
         }
 
-        private void LimpiarTxt()
-        {
-            txtNombre.Text = "Nombre";
-            txtApellido.Text = "Apellido";
-            txtMatricula.Text = "Matricula";
-        }
 
         private void btnAgregarServicio_Click(object sender, RoutedEventArgs e) 
         {

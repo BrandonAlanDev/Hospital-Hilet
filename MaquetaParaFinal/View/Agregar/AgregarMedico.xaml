@@ -31,7 +31,7 @@
                     <DockPanel>
                         <Label Content="Matricula*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch"  Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtMatricula" Margin="5,0,0,0" TextWrapping="Wrap" Text="Matricula" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                            <TextBox x:Name="txtMatricula" Margin="5,0,0,0" TextWrapping="Wrap" Text="Matricula" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" PreviewTextInput="SoloNumeros_PreviewTextInput" />
                         </Border>
                     </DockPanel>
                     <DockPanel Margin="0,2,0,0">

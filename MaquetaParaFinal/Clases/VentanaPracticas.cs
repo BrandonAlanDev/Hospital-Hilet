@@ -64,15 +64,7 @@ namespace MaquetaParaFinal.View
                 txtEspecialidades.Text = row["Especialidades"].ToString();
                 txtTiempo_Demora.Text = row["Tiempo De Demora"].ToString();
                 txtTipo_De_Muestra.Text = row["Tipo De Muestra"].ToString();
-                btModificar.IsEnabled = true;
-                btEliminar.IsEnabled = true;
-                btnImprimirPacticas.IsEnabled = true;
-            }
-            else
-            {
-                btModificar.IsEnabled = false;
-                btEliminar.IsEnabled = false;
-                btnImprimirPacticas.IsEnabled = false;
+                if (row["Tiempo De Demora"].ToString() == string.Empty) txtTiempo_Demora.Text = "Fecha"; 
             }
         }
 
@@ -89,7 +81,10 @@ namespace MaquetaParaFinal.View
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
         {
-            DataGridPracticas.ItemsSource = conectar.BuscarEnTablaPracticas(txtBuscar.Text).DefaultView;
+            if (txtBuscar.Text.Length > 0)
+            {
+                DataGridPracticas.ItemsSource = conectar.BuscarEnTablaPracticas(txtBuscar.Text).DefaultView;
+            }else DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
         }
 
     }

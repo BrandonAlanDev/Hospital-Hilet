@@ -26,5 +26,14 @@ namespace MaquetaParaFinal.View.Agregar
             InitializeComponent();
         }
 
+        private void txtTiempoResultado_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtTiempoResultado.Text == "") txtTiempoResultado.Text = "Tiempo";
+        }
+
+        private void txtTiempoResultado_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtTiempoResultado.Text == "Tiempo") txtTiempoResultado.Text = "";
+        }
     }
 }
