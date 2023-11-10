@@ -53,13 +53,6 @@ namespace MaquetaParaFinal.View
             }
         }
 
-        private void btAgregar_Click(object sender, RoutedEventArgs e)
-        {
-            AgregarIngreso agregarIngreso = new AgregarIngreso();
-            agregarIngreso.ShowDialog();
-            DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
-        }
-
         private void DataGridIngresos_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "ID")
@@ -92,6 +85,14 @@ namespace MaquetaParaFinal.View
             DataRowView row = (DataRowView) DataGridIngresos.SelectedItem;
             VentanaPracticaPorIngreso vtn = new VentanaPracticaPorIngreso(int.Parse(row["ID"].ToString()));
             vtn.ShowDialog();
+            DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
+        }
+
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarIngreso agregarIngreso = new AgregarIngreso();
+            agregarIngreso.ShowDialog();
+            DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
@@ -101,12 +102,20 @@ namespace MaquetaParaFinal.View
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
-
+            System.Media.SystemSounds.Beep.Play();
+            MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar el Ingreso de {txtPaciente.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (resultado == MessageBoxResult.Yes)
+            {
+                DataRowView row = (DataRowView)DataGridIngresos.SelectedItem;
+                conectar.EliminarIngresos(int.Parse(row["ID"].ToString()));
+                DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
+            }
         }
 
         private void btnImprimirPaciente_Click(object sender, RoutedEventArgs e)
         {
-
+            Impresora impresora = new Impresora();
+            impresora.ImprimirDocumento();
         }
     }
 }

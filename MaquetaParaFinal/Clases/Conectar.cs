@@ -107,16 +107,16 @@ namespace MaquetaParaFinal.Clases
             {
                 conexion.Open();
                 string consulta = "SELECT " +
-                    "p.Pk_Id_Pacientes AS ID," +
-                    "p.Nombre_Paciente AS Nombre, " +
-                    "p.Apellido_Paciente AS Apellido, " +
-                    "p.Fecha_De_Nacimiento AS 'Fecha De Nacimiento'," +
-                    "p.Dni,p.Email,p.Telefono,p.Calle,p.Numero,p.Piso," +
-                    "l.Nombre_Localidad AS Localidad," +
-                    "l.Codigo_Postal AS 'Codigo Postal' " +
+                        "p.Pk_Id_Pacientes AS ID, " +
+                        "p.Nombre_Paciente AS Nombre, " +
+                        "p.Apellido_Paciente AS Apellido, " +
+                        "CONVERT(varchar, p.Fecha_De_Nacimiento, 120) AS 'Fecha De Nacimiento', " +
+                        "p.Dni, p.Email, p.Telefono, p.Calle, p.Numero, p.Piso, " +
+                        "l.Nombre_Localidad AS Localidad, " +
+                        "l.Codigo_Postal AS 'Codigo Postal' " +
                     "FROM Pacientes AS p " +
-                        "INNER JOIN Localidades AS l ON p.Fk_Id_Localidades=l.Pk_Id_Localidades " +
-                    "WHERE (p.Baja_Pacientes IS NULL)";
+                        "INNER JOIN Localidades AS l ON p.Fk_Id_Localidades = l.Pk_Id_Localidades " +
+                    "WHERE p.Baja_Pacientes IS NULL;";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -172,15 +172,16 @@ namespace MaquetaParaFinal.Clases
                 string consulta = "SELECT " +
                         "pa.Nombre_Paciente, " +
                         "pa.Apellido_Paciente, " +
-                        "pa.Dni, i.Fecha_Ingreso, " +
-                        "i.Retirado, " +
+                        "pa.Dni, " +
+                        "CONVERT(varchar,i.Fecha_Ingreso,120) AS 'Fecha De Ingreso', " +
+                        "CONVERT(varchar,i.Retirado,120) AS 'Fecha De Retiro', " +
                         "pro.Nombre_Profesional, " +
                         "pro.Apellido_Profesional, " +
                         "esp.Nombre_Especialidad, " +
                         "perL.Nombre_Personal, " +
                         "perL.Apellido_Personal, " +
                         "cat.Nombre_Categoria, " +
-                        "pra.Tiempo_Demora, " +
+                        "CONVERT(varchar,pra.Tiempo_Demora,120) AS 'Tiempo De Demora', " +
                         "pra.Nombre_Practica, " +
                         "tip.Nombre_Tipo_De_Muestra " +
                         "FROM PracticasxIngresos AS praxIn " +
@@ -205,7 +206,7 @@ namespace MaquetaParaFinal.Clases
             {
                 string consulta = "SELECT p.Pk_Id_Practicas AS ID, " +
                     "p.Nombre_Practica AS Nombre, " +
-                    "p.Tiempo_Demora AS 'Tiempo de Demora', " +
+                    "CONVERT(varchar,p.Tiempo_Demora,120) AS 'Tiempo de Demora', " +
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
                     "e.Nombre_Especialidad AS Especialidades " +
                     "FROM Practicas AS p " +
@@ -227,7 +228,7 @@ namespace MaquetaParaFinal.Clases
                 string consulta = "SELECT  " +
                     "pxi.Pk_Id_PracticasxIngresos AS ID, " +
                     "p.Nombre_Practica AS Nombre, " +
-                    "p.Tiempo_Demora AS 'Horas de Demora', " +
+                    "CONVERT(varchar,p.Tiempo_Demora,120) AS 'Horas de Demora', " +
                     "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
                     "e.Nombre_Especialidad AS Especialidades " +
                     "FROM Practicas AS p " +
@@ -252,9 +253,9 @@ namespace MaquetaParaFinal.Clases
                     "CONCAT(p.Nombre_Paciente,' ',p.Apellido_Paciente) AS Paciente, " +
                     "p.Dni, " +
                     "CONCAT(pro.Nombre_Profesional,' ',pro.Apellido_Profesional) AS Medico, " +
-                    "i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
-                    "i.Retirado AS 'Fecha De Retiro', " +
-                    "+COUNT(pxi.Fk_Id_Ingresos) AS Practicas " +
+                    "CONVERT(varchar,i.Fecha_Ingreso, 120) AS 'Fecha De Ingreso', " +
+                    "CASE WHEN CONVERT(varchar, i.Retirado, 120) = '1111-11-11' THEN NULL ELSE CONVERT(varchar, i.Retirado, 120) END AS 'Fecha De Retiro', " +
+                    "COUNT(pxi.Fk_Id_Ingresos) AS Practicas " +
                     "FROM Ingresos AS i " +
                         "LEFT JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales " +
                         "LEFT JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente " +
@@ -280,7 +281,7 @@ namespace MaquetaParaFinal.Clases
                 string consulta = $"SELECT Pk_Id_Pacientes AS ID, " +
                     $"Nombre_Paciente AS Nombre, " +
                     $"Apellido_Paciente AS Apellido, " +
-                    $"Fecha_De_Nacimiento AS 'Fecha De Nacimiento'," +
+                    $"CONVERT(varchar,Fecha_De_Nacimiento,120) AS 'Fecha De Nacimiento'," +
                     $"Dni, Email, Telefono, Calle, Numero, Piso, " +
                     $"Nombre_Localidad AS Localidad, " +
                     $"Codigo_Postal AS 'Codigo Postal' " +
@@ -344,14 +345,14 @@ namespace MaquetaParaFinal.Clases
                 string consulta = $"SELECT " +
                     $"p.Pk_Id_Practicas AS ID, " +
                     $"p.Nombre_Practica AS Nombre, " +
-                    $"p.Tiempo_Demora AS 'Tiempo de Demora'," +
+                    $"CONVERT(varchar,p.Tiempo_Demora,120) AS 'Tiempo de Demora'," +
                     $"t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra'," +
                     $"e.Nombre_Especialidad AS Especialidades " +
                     $"FROM Practicas AS p " +
                         $"INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
                         $"INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
                     $"WHERE (LOWER(p.Nombre_Practica) LIKE '%{buscar}%' OR " +
-                        $"p.Tiempo_Demora LIKE '%{buscar}%' OR " +
+                        $"CONVERT(varchar,p.Tiempo_Demora,120) LIKE '%{buscar}%' OR " +
                         $"LOWER(t.Nombre_Tipo_De_Muestra) LIKE '%{buscar}%' OR " +
                         $"LOWER(e.Nombre_Especialidad) LIKE '%{buscar}%') AND " +
                         $"(p.Fecha_Baja IS NULL) " +
@@ -372,8 +373,9 @@ namespace MaquetaParaFinal.Clases
                         $"CONCAT(p.Nombre_Paciente,' ',p.Apellido_Paciente) AS Paciente, " +
                         $"p.Dni, " +
                         $"CONCAT(pro.Nombre_Profesional,' ',pro.Apellido_Profesional) AS Medico, " +
-                        $"i.Fecha_Ingreso AS 'Fecha De Ingreso', " +
-                        $"i.Retirado AS 'Fecha De Retiro', COUNT(pxi.Fk_Id_Ingresos) AS Practicas " +
+                        $"CONVERT(varchar,i.Fecha_Ingreso,120) AS 'Fecha De Ingreso', " +
+                        $"CONVERT(varchar,i.Retirado,120) AS 'Fecha De Retiro', " +
+                        $"COUNT(pxi.Fk_Id_Ingresos) AS Practicas " +
                     $"FROM Ingresos AS i " +
                         $"INNER JOIN Profesionales AS pro ON i.Fk_Id_Profesionales = pro.Pk_Id_Profesionales AND pro.Baja_Profesional IS NULL " +
                         $"INNER JOIN Pacientes AS p ON p.Pk_Id_Pacientes = i.Fk_Id_Paciente AND p.Baja_Pacientes IS NULL " +
