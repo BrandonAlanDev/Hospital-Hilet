@@ -1035,7 +1035,7 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void SeleccionarTiempoDemora(int id)
+        public int BuscarTiempoDemora(int id)
         {
             using (SqlConnection conexion = new SqlConnection (contrasenia)) 
             {
@@ -1045,10 +1045,10 @@ namespace MaquetaParaFinal.Clases
                                     "ON p.Pk_Id_Practicas = PxI.Fk_Id_Practicas " +
                                     "INNER JOIN Ingresos AS I " +
                                     "ON PxI.Fk_Id_Ingresos = I.Pk_Id_Ingresos " +
-                                    $"WHERE p.Pk_Id_Practicas = {id}";
+                                    $"WHERE I.Pk_Id_Ingresos = {id}";
                 using (SqlCommand cmd = new SqlCommand (consulta, conexion)) 
                 {
-                    cmd.ExecuteNonQuery();
+                    return Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
         }
