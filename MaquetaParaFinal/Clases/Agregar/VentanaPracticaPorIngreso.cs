@@ -58,7 +58,7 @@ namespace MaquetaParaFinal.View.Agregar
                 if (resultado == MessageBoxResult.Yes)
                 {
                     conectar.EliminarPracticaXIngreso(int.Parse(row["ID"].ToString()));
-                    conectar.ActualizarFecha_Retiro(idIngreso, null);
+                    //conectar.ActualizarFecha_Retiro(idIngreso, "NULL");
                     ActualizarPracticas(idIngreso);
                 }
             }

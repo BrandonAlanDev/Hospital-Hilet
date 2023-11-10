@@ -19,13 +19,13 @@
                     <DockPanel>
                         <Label Content="Nombre*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtNombre" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                            <TextBox x:Name="txtNombre" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TextChanged="ControlarNombre" />
                         </Border>
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Apellido*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtApellido" Margin="5,0,0,0" Text="Apellido" TextWrapping="Wrap"  VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                            <TextBox x:Name="txtApellido" Margin="5,0,0,0" Text="Apellido" TextWrapping="Wrap"  VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TextChanged="ControlarNombre" />
                         </Border>
                     </DockPanel>
                     <DockPanel>
