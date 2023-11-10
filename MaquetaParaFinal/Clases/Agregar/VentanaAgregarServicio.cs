@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace MaquetaParaFinal.View.Agregar
@@ -32,6 +34,21 @@ namespace MaquetaParaFinal.View.Agregar
                     }
                 }else MessageBox.Show("Ingrese un Nombre", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }else MessageBox.Show("El servicio ya existe", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void ControlarNombre(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
+
+            string regEx = @"^[A-Za-z ']{1,20}$";
+
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
+            {
+                textBox.Text = Regex.Replace(input, @"[^A-Za-z ']", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
+                textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
+            }
         }
 
         private void txtNombreServicio_LostFocus(object sender, RoutedEventArgs e)

@@ -25,7 +25,7 @@ namespace MaquetaParaFinal
             btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
 
-            //Hacemos que els frame navegue a la page local Index, con una URI relativa, ya que no ponemos la ruta completa
+            //Hacemos que el frame navegue a la page local Index, con una URI relativa, ya que no ponemos la ruta completa
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Index.xaml", UriKind.Relative));
         }
         private void LoadIngresos(object sender, RoutedEventArgs e)
@@ -66,7 +66,7 @@ namespace MaquetaParaFinal
             btnPacientes.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnIngresos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnHome.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
-            btnMedicos.Background = new SolidColorBrush(Color.FromRgb(33, 53, 85));
+            btnMedicos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPacientes.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
@@ -99,7 +99,6 @@ namespace MaquetaParaFinal
             animation.Completed += (s, _) => Close();
             BeginAnimation(UIElement.OpacityProperty, animation);
         }
-
 
         private void btnMaxMin(object sender, RoutedEventArgs e)
         {

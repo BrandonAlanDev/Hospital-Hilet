@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace MaquetaParaFinal.View.Agregar
 {
@@ -80,7 +81,7 @@ namespace MaquetaParaFinal.View.Agregar
 
             foreach (DataRow row in dtServicio.Rows)
             {
-                data.Add(row["Nombre"].ToString());
+                data.Add(row["Servicio"].ToString());
             }
             txtServicio.ItemsSource = null;
             txtServicio.Items.Clear();
@@ -95,12 +96,41 @@ namespace MaquetaParaFinal.View.Agregar
                    txtServicio != null;
         }
 
-
-        private void btnAgregarServicio_Click(object sender, RoutedEventArgs e) 
+        private void btnAgregarServicio_Click(object sender, RoutedEventArgs e)
         {
             AgregarServicio agregarServicio = new AgregarServicio();
             agregarServicio.ShowDialog();
             CargarServicios();
         }
+
+        private void ControlarNombre(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
+
+            string regEx = @"^[A-Za-z ']{1,20}$";
+
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
+            {
+                textBox.Text = Regex.Replace(input, @"[^A-Za-z ']", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
+                textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
+            }
+        }
+
+        private void SoloNumeros_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (IsNumber(e.Text)) e.Handled = true;
+        }
+
+        private bool IsNumber(string text)
+        {
+            foreach (char c in text)
+            {
+                if (!char.IsDigit(c)) return true;
+            }
+            return false;
+        }
+
     }
 }

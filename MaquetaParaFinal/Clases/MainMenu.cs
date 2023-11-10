@@ -18,27 +18,19 @@ namespace MaquetaParaFinal
                 DragMove();
             }
         }
-        private void botonPrueba_Click(object sender, RoutedEventArgs e)
-        {
-            FrameNavegacion.Content = null;
-            Medicos medicos = new Medicos();
-            FrameNavegacion.Navigate(medicos);
-        }
-        private void PruebaVolver_Click(object sender, RoutedEventArgs e)
-        {
-            FrameNavegacion.Content = null;
 
-        }
-        private void VentanaPacientes() 
+        private void Window_KeyDown(object sender, KeyEventArgs e) //Navigación mediante Ctrl
         {
-            Pacientes pacientes = new Pacientes();
-            FrameNavegacion.Navigate(pacientes);
+            if (e.Key == Key.H && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control) LoadHome(sender, e);
+
+            if (e.Key == Key.I && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control) LoadIngresos(sender, e);
+
+            if (e.Key == Key.P && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control) LoadPacientes(sender, e);
+
+            if (e.Key == Key.T && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control) LoadPracticas(sender, e);
+
+            if (e.Key == Key.M && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control) LoadMedicos(sender, e);
         }
-        private void VolverMenuPrincipal(object sender, EventArgs e)
-        {
-            FrameNavegacion.Content = null;
-            Practicas practicas = new Practicas();
-            FrameNavegacion.Navigate(practicas);
-        }
+
     }
 }

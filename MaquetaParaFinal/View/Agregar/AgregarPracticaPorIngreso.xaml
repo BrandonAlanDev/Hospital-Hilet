@@ -17,7 +17,7 @@
                 <DockPanel Margin="10,20,10,0">
                     <Label Content="Practica*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                     <ComboBox x:Name="txtPractica" Margin="0,3,0,0"  HorizontalAlignment="Left" Width="225" Text="Nombre" VerticalAlignment="Top" Style="{StaticResource Combos}" />
-                    <Button x:Name="txtAgregarPractica" Content="+" Style="{StaticResource BotonPrimario}" Width="30" HorizontalAlignment="Right" />
+                    <Button x:Name="txtAgregarPractica" Content="+" Style="{StaticResource BotonPrimario}" Width="30" HorizontalAlignment="Right" Click="txtAgregarPractica_Click" />
                 </DockPanel>
                 <DockPanel Width="250" Height="35" Margin="0,25,0,5">
                     <Button x:Name="btnAceptarAgServicio" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgServicio_Click"/>

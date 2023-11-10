@@ -8,30 +8,30 @@
         Background="#213555"
         WindowStyle="None"
         Margin="0"
-        Title="MainWindow" WindowStartupLocation="CenterScreen" MinHeight="575" MinWidth="800" Icon="/View/logo.png">
+        Title="MainWindow" WindowStartupLocation="CenterScreen" MinHeight="575" MinWidth="800" Icon="/View/logo.png" KeyDown="Window_KeyDown">
     <Grid Background="#213555" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MouseLeftButtonDown="Grid_MouseLeftButtonDown" Margin="0">
         <DockPanel x:Name="Header" Margin="0" Background="#213555" VerticalAlignment="Top" Height="50" >
             <Image x:Name="Logo" Width="49" Height="49" HorizontalAlignment="Left" Margin="5,1,0,1" Source="/View/logo.png"/>
             <Label Content="HOSPITAL HILET" Foreground="#F0F0F0" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
 
             <Grid HorizontalAlignment="Right">
-                <Button x:Name="btnMinimizar" Content="-" HorizontalAlignment="Right" Margin="0,0,90,0" Width="25" Height="25" Style="{StaticResource BotonPrimario}" Click="btnMinim" Background="Gold"/>
-                <Button x:Name="btnMaxmin" Content="O" HorizontalAlignment="Right" Margin="0,0,50,0" Width="25" Height="25" Style="{StaticResource BotonPrimario}" Click="btnMaxMin"/>
-                <Button x:Name="btnSalir" Content="X" HorizontalAlignment="Right" Margin="0,0,10,0" Width="25" Height="25" Style="{StaticResource BotonSalir}" Click="btnSalir_Click"/>
+                <Button x:Name="btnMinimizar" Content="-" HorizontalAlignment="Right" Margin="0,0,90,0" Width="25" Height="25" Style="{StaticResource BotonPrimario}" Click="btnMinim" Background="Gold" TabIndex="7"/>
+                <Button x:Name="btnMaxmin" Content="O" HorizontalAlignment="Right" Margin="0,0,50,0" Width="25" Height="25" Style="{StaticResource BotonPrimario}" Click="btnMaxMin" TabIndex="8"/>
+                <Button x:Name="btnSalir" Content="X" HorizontalAlignment="Right" Margin="0,0,10,0" Width="25" Height="25" Style="{StaticResource BotonSalir}" Click="btnSalir_Click" TabIndex="9"/>
             </Grid>
         </DockPanel>
         <DockPanel x:Name="Menu" Background="#213555" Margin="0,50,0,0" VerticalAlignment="Top" Height="25" >
             <Grid HorizontalAlignment="Left">
-                <Button x:Name="btnHome" Content="Inicio" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="25,0,0,0" Click="LoadHome"/>
-                <Button x:Name="btnIngresos" Content="Ingresos" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="95,0,0,0" Click="LoadIngresos"/>
-                <Button x:Name="btnPacientes" Content="Pacientes" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="165,0,0,0" Click="LoadPacientes"/>
-                <Button x:Name="btnPracticas" Content="Practicas" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="235,0,0,0" Click="LoadPracticas"/>
-                <Button x:Name="btnMedicos" Content="Medicos" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="305,0,0,0" Click="LoadMedicos"/>
+                <Button x:Name="btnHome" Content="Inicio" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="25,0,0,0" Click="LoadHome" TabIndex="1"/>
+                <Button x:Name="btnIngresos" Content="Ingresos" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="95,0,0,0" Click="LoadIngresos" TabIndex="2"/>
+                <Button x:Name="btnPacientes" Content="Pacientes" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="165,0,0,0" Click="LoadPacientes" TabIndex="3"/>
+                <Button x:Name="btnPracticas" Content="Practicas" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="235,0,0,0" Click="LoadPracticas" TabIndex="4"/>
+                <Button x:Name="btnMedicos" Content="Medicos" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="305,0,0,0" Click="LoadMedicos" TabIndex="5"/>
             </Grid>
         </DockPanel>
         <DockPanel x:Name="Body" Background="#FF222222" Margin="0,75,0,0" >
             <Grid x:Name="ContenedorNav"  Background="#213555" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Frame x:Name="FrameNavegacion" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
+                <Frame x:Name="FrameNavegacion" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" NavigationUIVisibility="Hidden" TabIndex="6"/>
             </Grid>
         </DockPanel>
     </Grid>

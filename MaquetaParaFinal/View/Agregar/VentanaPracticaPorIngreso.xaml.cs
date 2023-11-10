@@ -20,13 +20,6 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class VentanaPracticaPorIngreso : Window
     {
-        Conectar conectar = new Conectar();
-        int idIngreso;
-        public VentanaPracticaPorIngreso(int idIngreso)
-        {
-            InitializeComponent();
-            this.idIngreso = idIngreso;
-            ActualizarPracticas(idIngreso);
-        }
+
     }
 }

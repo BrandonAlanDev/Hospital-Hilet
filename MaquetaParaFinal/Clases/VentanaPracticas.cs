@@ -18,7 +18,9 @@ namespace MaquetaParaFinal.View
 
         private void DataGridPacticas_Loaded(object sender, RoutedEventArgs e)
         {
-            try { 
+            txtBuscar.Focus();
+            try
+            { 
                 DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
             } catch { }
         }
@@ -28,30 +30,6 @@ namespace MaquetaParaFinal.View
             if (e.Column.Header.ToString() == "ID")
             {
                 e.Column.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void btAgregar_Click(object sender, RoutedEventArgs e)
-        {
-            AgregarPractica agregarPractica = new AgregarPractica();
-            agregarPractica.ShowDialog();
-            try{
-                DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
-            }catch { }
-        }
-
-        private void btEliminar_Click(object sender, RoutedEventArgs e)
-        {
-            if (txtNombre.Text != "Nombre")
-            {
-                System.Media.SystemSounds.Beep.Play();
-                MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar la practica {txtNombre.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (resultado == MessageBoxResult.Yes)
-                {
-                    DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
-                    conectar.EliminarPracticas(int.Parse(row["ID"].ToString()));
-                    DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
-                }
             }
         }
 
