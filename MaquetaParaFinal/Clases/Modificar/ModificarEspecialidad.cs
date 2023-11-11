@@ -12,11 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MaquetaParaFinal.View.Agregar
+namespace MaquetaParaFinal.View.Modificar
 {
-    public partial class AgregarEspecialidad : Window
+    public partial class ModificarEspecialidad : Window
     {
-
         private void txtNombreEspecialidad_LostFocus(object sender, RoutedEventArgs e)
         {
             //TO-DO

@@ -1,5 +1,5 @@
-﻿using MaquetaParaFinal.Clases.Agregar;
-using MaquetaParaFinal.View.Agregar;
+﻿using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +53,8 @@ namespace MaquetaParaFinal.View
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            ModificarEspecialidad me = new ModificarEspecialidad();
+            me.ShowDialog();
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)

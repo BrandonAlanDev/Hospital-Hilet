@@ -1,4 +1,6 @@
-﻿using MaquetaParaFinal.View.Agregar;
+﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,7 +31,8 @@ namespace MaquetaParaFinal.View
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            ModificarPersonal mp = new ModificarPersonal();
+            mp.ShowDialog();
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
