@@ -21,13 +21,7 @@ namespace MaquetaParaFinal.View.Agregar
         {
             { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
             { "Apellido", "txtApellido" },
-            { "Dni", "txtDni" },
-            { "Email", "txtEmail" },
-            { "YYYY-MM-DD", "txtFecha_De_Nacimiento" },
-            { "Teléfono", "txtTelefono" },
-            { "Calle", "txtCalle" },
-            { "Nro", "txtNro" },
-            { "Piso", "txtPiso" }
+            { "Dni", "txtDni" }
         };
 
         private void LimpiarTxt(object sender, RoutedEventArgs e) // Uso el diccionario para no tener que hacer mil metodos para borrarlo, se tiene que usar como evento en el main.
@@ -41,6 +35,10 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
+        private void Principal_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
         private void ControlarNombre(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
