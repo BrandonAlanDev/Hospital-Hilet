@@ -8,7 +8,49 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Especialidad">
 
-    <Grid>
-        
+    <Grid x:Name="Principal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+        <DockPanel x:Name="Body" Background="Pink" >
+            <Grid x:Name="MenuEspecialidad">
+                <Grid Background="#213555" Margin="0,0,225,0" >
+                    <Label Content="Buscar" Foreground="#F0F0F0" FontFamily="Roboto" FontSize="15"/>
+                    <TextBox x:Name="txtBuscar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,6,0,0" TextWrapping="Wrap" Text="" Width="120" PreviewKeyDown="EnterBuscar" />
+                    <Button x:Name="btAceptarBusqueda" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,5,0,0" Content="Buscar" Height="20" Width="62" Style="{StaticResource BotonSecundario}" PreviewKeyDown="EnterBuscar" Click="ClickBuscar"/>
+                </Grid>
+                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,225,0" >
+                    <DataGrid x:Name="DataGridEspecialidad" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Loaded="DataGridEspecialidad_Loaded" Background="#213555"
+                              RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" AutoGeneratingColumn="DataGridEspecialidad_AutoGeneratingColumn" SelectionChanged="DataGridEspecialidad_SelectionChanged" >
+                        <DataGrid.ColumnHeaderStyle>
+                            <StaticResource ResourceKey="HeaderGrilla" />
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <StaticResource ResourceKey="CeldaSeleccionada" />
+                        </DataGrid.CellStyle>
+                    </DataGrid>
+                </Grid>
+
+                <Grid x:Name="Botones" Width="225" HorizontalAlignment="Right" Background="#4F709C">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="225" Margin="0,10,0,60">
+                        <StackPanel x:Name="TxtBoxes" IsEnabled="False" Width="225" HorizontalAlignment="Left" Background="Transparent">
+                            <DockPanel>
+                                <Label Content="Nombre" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <Border Margin="0,6,10,0"  HorizontalAlignment="Right" Width="130" Background="#213555" CornerRadius="9">
+                                    <TextBox x:Name="txtNombre" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                                </Border>
+                            </DockPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <Grid>
+                        <Button x:Name="btAgregar" Content="+ Alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,50" Height="30" Width="70" Style="{StaticResource BotonPrimario}" Click="btAgregar_Click" />
+                        <Button x:Name="btModificar" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False" Click="btModificar_Click"/>
+                        <Button x:Name="btEliminar" Content="- Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="180" Style="{StaticResource BotonSalir}" Click="btEliminar_Click" IsEnabled="False"/>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+
+
+        </DockPanel>
+
     </Grid>
 </Page>
