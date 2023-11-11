@@ -65,6 +65,12 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void Principal_Loaded(object sender, RoutedEventArgs e)
         {
+            CargarBoxEsp();
+            CargarBoxCat();
+        }
+
+        private void CargarBoxEsp() 
+        {
             DataTable dt = conectar.DescargarTablaEspecialidades();
             List<string> data = new List<string>();
 
@@ -75,17 +81,20 @@ namespace MaquetaParaFinal.View.Agregar
             txtEspecialidad.ItemsSource = null;
             txtEspecialidad.Items.Clear();
             txtEspecialidad.ItemsSource = data;
+        }
 
-            dt = conectar.DescargaTablaCategorias();
-            List<string> data1 = new List<string>();
+        private void CargarBoxCat()
+        {
+            DataTable dt = conectar.DescargaTablaCategorias();
+            List<string> data = new List<string>();
 
             foreach (DataRow row in dt.Rows)
             {
-                data1.Add(row["Categoria"].ToString());
+                data.Add(row["Categoria"].ToString());
             }
             txtCategoria.ItemsSource = null;
             txtCategoria.Items.Clear();
-            txtCategoria.ItemsSource = data1;
+            txtCategoria.ItemsSource = data;
         }
 
         private void SoloNumero(object sender, TextChangedEventArgs e)
@@ -117,6 +126,7 @@ namespace MaquetaParaFinal.View.Agregar
         {
             AgregarEspecialidad agregarEspecialidad = new AgregarEspecialidad();
             agregarEspecialidad.ShowDialog();
+            CargarBoxEsp();
         }
         private void btnAgregarCategoria_Click(object sender, RoutedEventArgs e)
         {

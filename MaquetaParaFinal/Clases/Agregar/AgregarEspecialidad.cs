@@ -1,7 +1,9 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +18,7 @@ namespace MaquetaParaFinal.View.Agregar
 {
     public partial class AgregarEspecialidad : Window
     {
+        Conectar conectar = new Conectar();
 
         private void txtNombreEspecialidad_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -27,7 +30,16 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void ControlarNombre(object sender, TextChangedEventArgs e)
         {
-            //TO-DO
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
+            string regEx = @"^[A-Za-z]{1,20}$";
+
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20))
+            {
+                textBox.Text = Regex.Replace(input, @"[^A-Za-z ']", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length));
+                textBox.Select(textBox.Text.Length, 0);
+            }
         }
 
         private void txtNombreEspecialidad_GotFocus(object sender, RoutedEventArgs e)
@@ -40,7 +52,12 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void btnAceptarAgEspecialidad_Click(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            if (txtNombreEspecialidad.Text != "Nombre") 
+            {
+                conectar.AgregarEspecialidades(txtNombreEspecialidad.Text);
+                MessageBox.Show("Agregado Correctamente","Agregado");
+                this.Close();
+            }
         }
 
         private void btnCancelarAgEspecialidad_Click(object sender, RoutedEventArgs e) => this.Close();
