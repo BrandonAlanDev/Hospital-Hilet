@@ -93,6 +93,40 @@ namespace MaquetaParaFinal
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Medicos.xaml", UriKind.Relative));
         }
 
+        private void LoadPersonal(object sender, RoutedEventArgs e)
+        {
+            btnMedicos.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnPracticas.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnPacientes.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnIngresos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnHome.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+
+            btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnPacientes.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnIngresos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnHome.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+
+            FrameNavegacion.NavigationService.Navigate(new Uri("View/Personal.xaml", UriKind.Relative));
+        }
+
+        private void LoadEspecialidad(object sender, RoutedEventArgs e)
+        {
+            btnMedicos.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnPracticas.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnPacientes.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnIngresos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnHome.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+
+            btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnPacientes.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnIngresos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnHome.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+
+            FrameNavegacion.NavigationService.Navigate(new Uri("View/Especialidad.xaml", UriKind.Relative));
+        }
+
         private void btnSalir_Click(object sender, RoutedEventArgs e)
         {
             DoubleAnimation animation = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.2)));
