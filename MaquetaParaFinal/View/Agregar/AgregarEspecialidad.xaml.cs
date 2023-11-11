@@ -14,44 +14,11 @@ using System.Windows.Shapes;
 
 namespace MaquetaParaFinal.View.Agregar
 {
-    /// <summary>
-    /// Interaction logic for AgregarEspecialidad.xaml
-    /// </summary>
     public partial class AgregarEspecialidad : Window
     {
         public AgregarEspecialidad()
         {
             InitializeComponent();
-        }
-
-        private void txtNombreEspecialidad_LostFocus(object sender, RoutedEventArgs e)
-        {
-            //TO-DO
-        }
-
-        private void ControlarNombre(object sender, TextChangedEventArgs e)
-        {
-            //TO-DO
-        }
-
-        private void txtNombreEspecialidad_GotFocus(object sender, RoutedEventArgs e)
-        {
-            //TO-DO
-        }
-
-        private void btnAceptarAgEspecialidad_Click(object sender, RoutedEventArgs e)
-        {
-            //TO-DO
-        }
-
-        private void btnCancelarAgEspecialidad_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //TO-DO
         }
     }
 }

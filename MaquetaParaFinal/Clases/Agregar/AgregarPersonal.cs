@@ -34,7 +34,7 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnAgregarEspecialidad_Click(object sender, RoutedEventArgs e)
