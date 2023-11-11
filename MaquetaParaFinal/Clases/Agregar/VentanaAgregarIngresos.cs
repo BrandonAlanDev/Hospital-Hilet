@@ -1,10 +1,13 @@
-﻿using MaquetaParaFinal.Clases;
+﻿using iText.Layout.Element;
+using MaquetaParaFinal.Clases;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +20,6 @@ namespace MaquetaParaFinal.View.Agregar
         Conectar conectar = new Conectar();
 
         public string fecha { get; set; }
-
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -63,22 +65,18 @@ namespace MaquetaParaFinal.View.Agregar
             txtMedico.ItemsSource = data;
         }
 
-        private void BuscarDni(object sender, KeyEventArgs e)
+        private void txtComboboxDni_Loaded(object sender, RoutedEventArgs e)
         {
-            if (txtComboboxDni.Text.Length > 0)
-            {
-                DataTable dt = conectar.BuscarEnTablaPacientesSoloPorDni(txtComboboxDni.Text);
-                List<string> data = new List<string>();
+            DataTable dt = conectar.DescargaTablaPaciente();
+            List<string> data = new List<string>();
 
-                foreach (DataRow row in dt.Rows)
-                {
-                    data.Add(row["Dni"].ToString());
-                }
-                txtComboboxDni.ItemsSource = null;
-                txtComboboxDni.Items.Clear();
-                txtComboboxDni.ItemsSource = data;
-                txtComboboxDni.IsDropDownOpen = true;
-            }else txtComboboxDni.IsDropDownOpen = false;
+            foreach (DataRow row in dt.Rows)
+            {
+                data.Add(row["Dni"].ToString());
+            }
+            txtComboboxDni.ItemsSource = null;
+            txtComboboxDni.Items.Clear();
+            txtComboboxDni.ItemsSource = data;
         }
 
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)

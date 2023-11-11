@@ -17,8 +17,8 @@ namespace MaquetaParaFinal.View.Modificar
     public partial class ModificarPaciente : Window
     {
         Conectar conectar = new Conectar();
-        public int Id { get; set; }
 
+        public int Id { get; set; }
 
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
@@ -43,12 +43,12 @@ namespace MaquetaParaFinal.View.Modificar
                 }
             }
         }
+
         private void ControlarNombre(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
             string input = textBox.Text;
 
-            // Patrón para permitir letras, espacios y comilla simple
             string regEx = @"^[A-Za-z ']{1,20}$";
 
             if (!(Regex.IsMatch(input, regEx) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
@@ -58,6 +58,23 @@ namespace MaquetaParaFinal.View.Modificar
                 textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
             }
         }
+
+        private void SoloNumero(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
+
+            // Patrón para permitir solo números
+            string regEx = @"^[0-9]{1,20}$";
+
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
+            {
+                textBox.Text = Regex.Replace(input, @"[^0-9]", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
+                textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
+            }
+        }
+
         private void AbrirDatePicker_Click(object sender, RoutedEventArgs e)
         {
             // Abre el Popup que contiene el DatePicker
@@ -78,12 +95,9 @@ namespace MaquetaParaFinal.View.Modificar
                 BotonFecha.Content = "Ingresar Fecha";
             }
         }
+
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Captura la fecha seleccionada y cierra el Popup
-            // Primero paso la fecha que selecciono el usuario y despues hice que lo pase al txtbox
-            // que va a usar sql en el formato correcto
-
             DateTime fechaSeleccionada = datePicker.SelectedDate ?? DateTime.Now;
             string fecha = $"{fechaSeleccionada.Year}-{fechaSeleccionada.Month}-{fechaSeleccionada.Day}";
 
@@ -94,6 +108,7 @@ namespace MaquetaParaFinal.View.Modificar
             datePickerPopup.IsOpen = false;
             BotonFecha.Focus();
         }
+
         private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
         {
             if (sender is TextBox textBox)
@@ -104,6 +119,7 @@ namespace MaquetaParaFinal.View.Modificar
                 }
             }
         }
+
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)
@@ -111,6 +127,7 @@ namespace MaquetaParaFinal.View.Modificar
                 DragMove();
             }
         }
+
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
             if (TodosLosCamposLlenos())
@@ -129,11 +146,9 @@ namespace MaquetaParaFinal.View.Modificar
                     MessageBox.Show("Compruebe Los Datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            else
-            {
-                MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+
         private bool TodosLosCamposLlenos()
         {
             return txtNombre.Text != "Nombre" &&
@@ -148,91 +163,40 @@ namespace MaquetaParaFinal.View.Modificar
 
         private void CargarLocalidades()
         {
-            string connectionString = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
-            "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
+            DataTable dtLocaldiades = conectar.DescargarTablaLocalidades();
+            List<string> data = new List<string>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            foreach (DataRow row in dtLocaldiades.Rows)
             {
-                try
-                {
-                    connection.Open();
-
-                    string query = "SELECT DISTINCT Nombre_Localidad AS Localidad FROM Localidades";
-                    SqlCommand cmd = new SqlCommand(query, connection);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    txtLocalidad.ItemsSource = null;
-                    txtLocalidad.Items.Clear();
-
-                    // Crear una lista para almacenar los datos
-                    List<string> data = new List<string>();
-
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        data.Add(row["Localidad"].ToString());
-                    }
-
-                    // Asignar los datos al ComboBox
-                    txtLocalidad.ItemsSource = data;
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
+                data.Add(row["Localidad"].ToString());
             }
+            // Asignar los datos al ComboBox
+            txtLocalidad.ItemsSource = null;
+            txtLocalidad.Items.Clear();
+            txtLocalidad.ItemsSource = data;
         }
 
         private void CargarCodigoPostal()
         {
-            string connectionString = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
-            "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
+            DataTable dtCodigoPostal = conectar.DescargarTablaCodPostal(txtLocalidad.SelectedItem);
+            // Crear una lista para almacenar los datos
+            List<string> data = new List<string>();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            foreach (DataRow row in dtCodigoPostal.Rows)
             {
-                try
-                {
-                    connection.Open();
-
-                    string query = $"SELECT Codigo_Postal AS CodPostal FROM Localidades WHERE Nombre_Localidad = '{txtLocalidad.SelectedItem}'";
-                    SqlCommand cmd = new SqlCommand(query, connection);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    if (txtCodPostas.IsEnabled == false) txtCodPostas.IsEnabled = true;
-                    txtCodPostas.ItemsSource = null;
-                    txtCodPostas.Items.Clear();
-
-                    // Crear una lista para almacenar los datos
-                    List<string> data = new List<string>();
-
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        data.Add(row["CodPostal"].ToString());
-                    }
-
-                    // Asignar los datos al ComboBox
-                    txtCodPostas.ItemsSource = data;
-                    connection.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
+                data.Add(row["CodPostal"].ToString());
             }
+            if (txtCodPostas.IsEnabled == false) txtCodPostas.IsEnabled = true;
+            txtCodPostas.ItemsSource = null;
+            txtCodPostas.Items.Clear();
+            txtCodPostas.ItemsSource = data;
         }
+
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void AgregarPacientes_Loaded(object sender, RoutedEventArgs e) => CargarLocalidades();
 
         private void BuscarCodigoPostal(object sender, SelectionChangedEventArgs e) => CargarCodigoPostal();
-        private void LevantarDatosPaciente(int idPaciente)
-        {
-            
-        }
     
     }
 }

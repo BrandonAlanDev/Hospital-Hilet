@@ -57,6 +57,22 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
+        private void SoloNumero(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
+
+            // Patrón para permitir solo números
+            string regEx = @"^[0-9]{1,20}$";
+
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20))
+            {
+                textBox.Text = Regex.Replace(input, @"[^0-9]", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length));
+                textBox.Select(textBox.Text.Length, 0);
+            }
+        }
+
         private void AbrirDatePicker_Click(object sender, RoutedEventArgs e)
         {
             // Abre el Popup que contiene el DatePicker
@@ -133,10 +149,7 @@ namespace MaquetaParaFinal.View.Agregar
                     MessageBox.Show("Compruebe Los Datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-            else
-            {
-                MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private bool TodosLosCamposLlenos() //Era muy largo el if si no :c
@@ -164,8 +177,6 @@ namespace MaquetaParaFinal.View.Agregar
             txtCodPostas.SelectedValue = null;
         }
 
-
-
         private void CargarLocalidades()
         {
             DataTable dtLocaldiades = conectar.DescargarTablaLocalidades();
@@ -175,7 +186,6 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 data.Add(row["Localidad"].ToString());
             }
-            // Asignar los datos al ComboBox
             txtLocalidad.ItemsSource = null;
             txtLocalidad.Items.Clear();
             txtLocalidad.ItemsSource = data;
@@ -184,7 +194,6 @@ namespace MaquetaParaFinal.View.Agregar
         private void CargarCodigoPostal()
         {
             DataTable dtCodigoPostal = conectar.DescargarTablaCodPostal(txtLocalidad.SelectedItem);
-            // Crear una lista para almacenar los datos
             List<string> data = new List<string>();
 
             foreach (DataRow row in dtCodigoPostal.Rows)
@@ -203,20 +212,6 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void BuscarCodigoPostal(object sender, SelectionChangedEventArgs e) => CargarCodigoPostal();
 
-
-        private void SoloNumeros_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (IsNumber(e.Text)) e.Handled = true;
-        }
-
-        private bool IsNumber(string text)
-        {
-            foreach (char c in text)
-            {
-                if (!char.IsDigit(c)) return true;
-            }
-            return false;
-        }
 
     }
 }
