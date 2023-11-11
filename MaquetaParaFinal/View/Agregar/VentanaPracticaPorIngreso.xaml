@@ -8,6 +8,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
+        WindowStartupLocation="CenterScreen"
         Title="VentanaPracticaPorIngreso" Height="400" Width="600">
     <Grid x:Name="Principal" MouseLeftButtonDown="Grid_MouseLeftButtonDown" >
         <Image x:Name="Logo" Width="40" Height="40" HorizontalAlignment="Left" Margin="-7,-7,0,0"  VerticalAlignment="Top" Source="/View/Agregar/logo.png"/>

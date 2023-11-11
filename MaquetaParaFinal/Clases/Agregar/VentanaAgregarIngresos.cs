@@ -103,6 +103,8 @@ namespace MaquetaParaFinal.View.Agregar
                 int idpaciente = conectar.ObtenerId_Pacientes(txtComboboxDni.Text);
                 int idmedico = conectar.ObtenerId_Profesionales(txtMedico.Text);
                 conectar.AgregarIngresos(fecha,idpaciente, idmedico);
+                VentanaPracticaPorIngreso pxi = new VentanaPracticaPorIngreso(conectar.ObtenerUltimaIDIngresos());
+                pxi.ShowDialog();
                 this.Close();
             }
             else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
