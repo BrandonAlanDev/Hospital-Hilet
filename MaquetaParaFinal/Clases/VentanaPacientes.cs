@@ -54,13 +54,11 @@ namespace MaquetaParaFinal.View
 
                 btModificar.IsEnabled = true;
                 btEliminar.IsEnabled = true;
-                btnImprimirPaciente.IsEnabled = true;
             }
             else
             {
                 btModificar.IsEnabled = false;
                 btEliminar.IsEnabled = false;
-                btnImprimirPaciente.IsEnabled = false;
             }
         }
 

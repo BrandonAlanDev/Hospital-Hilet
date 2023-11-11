@@ -35,13 +35,11 @@ namespace MaquetaParaFinal.View
                 txtServicio.Text = row["Servicio"].ToString();
                 btModificar.IsEnabled = true;
                 btEliminar.IsEnabled = true;
-                btnImprimirMedicos.IsEnabled = true;
             }
             else
             {
                 btModificar.IsEnabled = false;
                 btEliminar.IsEnabled = false;
-                btnImprimirMedicos.IsEnabled = false;
             }
         }
     }

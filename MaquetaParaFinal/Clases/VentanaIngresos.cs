@@ -41,7 +41,6 @@ namespace MaquetaParaFinal.View
                 txtCantidad.Text = row["Practicas"].ToString();
                 btModificar.IsEnabled = true;
                 btEliminar.IsEnabled = true;
-                btnImprimirPaciente.IsEnabled = true;
                 btPxI.IsEnabled = true;
             }
             else
@@ -49,7 +48,6 @@ namespace MaquetaParaFinal.View
                 btPxI.IsEnabled = false;
                 btModificar.IsEnabled = false;
                 btEliminar.IsEnabled = false;
-                btnImprimirPaciente.IsEnabled = false;
             }
         }
 
