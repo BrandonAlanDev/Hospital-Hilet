@@ -19,7 +19,10 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void txtNombreEspecialidad_LostFocus(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            if (txtNombreEspecialidad.Text == "")
+            {
+                txtNombreEspecialidad.Text = "Nombre";
+            }
         }
 
         private void ControlarNombre(object sender, TextChangedEventArgs e)
@@ -29,7 +32,10 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void txtNombreEspecialidad_GotFocus(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            if (txtNombreEspecialidad.Text == "Nombre") 
+            {
+                txtNombreEspecialidad.Text = "";
+            }
         }
 
         private void btnAceptarAgEspecialidad_Click(object sender, RoutedEventArgs e)
@@ -37,14 +43,14 @@ namespace MaquetaParaFinal.View.Agregar
             //TO-DO
         }
 
-        private void btnCancelarAgEspecialidad_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        private void btnCancelarAgEspecialidad_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //TO-DO
+            if (e.LeftButton == MouseButtonState.Pressed) 
+            {
+                DragMove();
+            }
         }
     }
 }

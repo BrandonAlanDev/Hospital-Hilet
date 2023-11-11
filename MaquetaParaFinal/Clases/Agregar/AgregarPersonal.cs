@@ -65,16 +65,27 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void Principal_Loaded(object sender, RoutedEventArgs e)
         {
-            DataTable dtEspe = conectar.DescargarTablaEspecialidades();
+            DataTable dt = conectar.DescargarTablaEspecialidades();
             List<string> data = new List<string>();
 
-            foreach (DataRow row in dtEspe.Rows)
+            foreach (DataRow row in dt.Rows)
             {
                 data.Add(row["Especialidad"].ToString());
             }
             txtEspecialidad.ItemsSource = null;
             txtEspecialidad.Items.Clear();
             txtEspecialidad.ItemsSource = data;
+
+            dt = conectar.DescargaTablaCategorias();
+            List<string> data1 = new List<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                data1.Add(row["Categoria"].ToString());
+            }
+            txtCategoria.ItemsSource = null;
+            txtCategoria.Items.Clear();
+            txtCategoria.ItemsSource = data1;
         }
 
         private void SoloNumero(object sender, TextChangedEventArgs e)
@@ -92,17 +103,24 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
-
+            if (VerificarQueIngresoDatos())
+            {
+                int cat = conectar.ObtenerId_Categorias(txtCategoria.Text);
+                int esp = conectar.ObtenerId_Especialidades(txtEspecialidad.Text);
+                conectar.AgregarPersonalLaboratorio(txtNombre.Text, txtApellido.Text, cat, esp);
+            }
         }
 
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void btnAgregarEspecialidad_Click(object sender, RoutedEventArgs e)
         {
+            AgregarEspecialidad agregarEspecialidad = new AgregarEspecialidad();
+            agregarEspecialidad.ShowDialog();
         }
         private void btnAgregarCategoria_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -111,6 +129,15 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 DragMove();
             }
+        }
+        
+        private bool VerificarQueIngresoDatos() 
+        {
+            return txtCategoria.Text != string.Empty &&
+                   txtEspecialidad.Text != string.Empty &&
+                   txtDni.Text != "DNI" &&
+                   txtNombre.Text != "Nombre" &&
+                   txtApellido.Text != "Apellido";
         }
 
     }
