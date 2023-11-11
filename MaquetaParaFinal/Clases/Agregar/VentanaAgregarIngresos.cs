@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -76,27 +77,6 @@ namespace MaquetaParaFinal.View.Agregar
             txtComboboxDni.ItemsSource = null;
             txtComboboxDni.Items.Clear();
             txtComboboxDni.ItemsSource = data;
-        }
-
-        private void BuscarDni(object sender, KeyEventArgs e)
-        {
-            Thread.Sleep(200);
-            if (txtComboboxDni.Text.Length > 0)
-            {
-                DataTable dt = conectar.BuscarEnTablaPacientesSoloPorDni(txtComboboxDni.Text);
-                List<string> data = new List<string>();
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    data.Add(row["Dni"].ToString());
-                }
-
-                txtComboboxDni.ItemsSource = null;
-                txtComboboxDni.Items.Clear();
-                txtComboboxDni.ItemsSource = data;
-                if (txtComboboxDni.Text.Length > 0) txtComboboxDni.IsDropDownOpen = true;
-            }
-            else txtComboboxDni.IsDropDownOpen = false;
         }
 
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)

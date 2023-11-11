@@ -25,7 +25,7 @@
                     <DockPanel>
                         <Label Content="DNI Paciente*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Grid Margin="0,6,10,0">
-                            <ComboBox x:Name="txtComboboxDni" Text="DNI" IsEditable="True" VerticalAlignment="Top" Style="{StaticResource Combos}" Loaded="txtComboboxDni_Loaded" LostFocus="txtComboboxDni_LostFocus" GotFocus="txtComboboxDni_GotFocus" PreviewTextInput="txtBuscarDni_PreviewTextInput" KeyUp="BuscarDni"/>
+                            <ComboBox x:Name="txtComboboxDni" Text="DNI" IsEditable="True" VerticalAlignment="Top" Style="{StaticResource Combos}" LostFocus="txtComboboxDni_LostFocus" GotFocus="txtComboboxDni_GotFocus" Loaded="txtComboboxDni_Loaded" PreviewTextInput="txtBuscarDni_PreviewTextInput"/>
                         </Grid>
                     </DockPanel>
                     <DockPanel>
