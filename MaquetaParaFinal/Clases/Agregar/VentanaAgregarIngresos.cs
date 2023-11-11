@@ -20,20 +20,6 @@ namespace MaquetaParaFinal.View.Agregar
 
         public string fecha { get; set; }
 
-        private void txtComboboxDni_Loaded(object sender, RoutedEventArgs e)
-        {
-            DataTable dt = conectar.DescargaTablaPaciente();
-            List<string> data = new List<string>();
-
-            foreach (DataRow row in dt.Rows)
-            {
-                data.Add(row["Dni"].ToString());
-            }
-            txtComboboxDni.ItemsSource = null;
-            txtComboboxDni.Items.Clear();
-            txtComboboxDni.ItemsSource = data;
-        }
-
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -78,6 +64,20 @@ namespace MaquetaParaFinal.View.Agregar
             txtMedico.ItemsSource = data;
         }
 
+        private void txtComboboxDni_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataTable dt = conectar.DescargaTablaPaciente();
+            List<string> data = new List<string>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                data.Add(row["Dni"].ToString());
+            }
+            txtComboboxDni.ItemsSource = null;
+            txtComboboxDni.Items.Clear();
+            txtComboboxDni.ItemsSource = data;
+        }
+
         private void BuscarDni(object sender, KeyEventArgs e)
         {
             Thread.Sleep(200);
@@ -94,7 +94,7 @@ namespace MaquetaParaFinal.View.Agregar
                 txtComboboxDni.ItemsSource = null;
                 txtComboboxDni.Items.Clear();
                 txtComboboxDni.ItemsSource = data;
-                txtComboboxDni.IsDropDownOpen = true;
+                if (txtComboboxDni.Text.Length > 0) txtComboboxDni.IsDropDownOpen = true;
             }
             else txtComboboxDni.IsDropDownOpen = false;
         }
