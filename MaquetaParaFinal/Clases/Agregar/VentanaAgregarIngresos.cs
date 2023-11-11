@@ -102,12 +102,14 @@ namespace MaquetaParaFinal.View.Agregar
             {
                 int idpaciente = conectar.ObtenerId_Pacientes(txtComboboxDni.Text);
                 int idmedico = conectar.ObtenerId_Profesionales(txtMedico.Text);
-                conectar.AgregarIngresos(fecha,idpaciente, idmedico);
-                VentanaPracticaPorIngreso pxi = new VentanaPracticaPorIngreso(conectar.ObtenerUltimaIDIngresos());
-                pxi.ShowDialog();
-                this.Close();
-            }
-            else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (idpaciente != -1) 
+                {
+                    conectar.AgregarIngresos(fecha, idpaciente, idmedico);
+                    this.Close();
+                    VentanaPracticaPorIngreso pxi = new VentanaPracticaPorIngreso(conectar.ObtenerUltimaIDIngresos());
+                    pxi.ShowDialog();
+                }else MessageBox.Show("DNI No Cargado", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         private void btnAgregarPaciente(object sender, RoutedEventArgs e)

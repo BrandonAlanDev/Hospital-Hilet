@@ -1080,7 +1080,14 @@ namespace MaquetaParaFinal.Clases
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@dni", dni);
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    if (cmd.ExecuteScalar() != null) 
+                    { 
+                        return Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                    else
+                    {
+                        return -1;
+                    }
                 }
             }
         }
