@@ -70,7 +70,7 @@
                     <DockPanel>
                         <Label Content="Numero*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch"  Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtNro" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nro" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="9" PreviewTextInput="SoloNumeros_PreviewTextInput" />
+                            <TextBox x:Name="txtNro" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nro" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="9" TextChanged="SoloNumero" />
                         </Border>
                     </DockPanel>
                     <DockPanel>

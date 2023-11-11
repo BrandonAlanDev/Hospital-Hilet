@@ -51,7 +51,7 @@ namespace MaquetaParaFinal.View.Agregar
             txtFecha.Text = fecha; 
         }
 
-        private void txtMedico_Loaded(object sender, RoutedEventArgs e)
+        private void ActualizarMedicos()
         {
             DataTable dt = conectar.DescargaTablaProfesinales();
             List<string> data = new List<string>();
@@ -65,7 +65,19 @@ namespace MaquetaParaFinal.View.Agregar
             txtMedico.ItemsSource = data;
         }
 
-        private void txtComboboxDni_Loaded(object sender, RoutedEventArgs e)
+        private void txtMedico_Loaded(object sender, RoutedEventArgs e)
+        {
+            ActualizarMedicos();
+        }
+
+        private void btnAgregarMedico(object sender, RoutedEventArgs e)
+        {
+            AgregarMedico agregarMedico = new AgregarMedico();
+            agregarMedico.ShowDialog();
+            ActualizarMedicos();
+        }
+
+        private void ActualizarDNI()
         {
             DataTable dt = conectar.DescargaTablaPaciente();
             List<string> data = new List<string>();
@@ -79,6 +91,11 @@ namespace MaquetaParaFinal.View.Agregar
             txtComboboxDni.ItemsSource = data;
         }
 
+        private void txtComboboxDni_Loaded(object sender, RoutedEventArgs e)
+        {
+            ActualizarDNI();
+        }
+
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
             if (txtMedico.SelectedValue != null && txtComboboxDni.Text != "DNI")
@@ -89,6 +106,13 @@ namespace MaquetaParaFinal.View.Agregar
                 this.Close();
             }
             else MessageBox.Show("Planilla Incompleta", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private void btnAgregarPaciente(object sender, RoutedEventArgs e)
+        {
+            AgregarPaciente agregarPaciente = new AgregarPaciente();
+            agregarPaciente.ShowDialog();
+            ActualizarDNI();
         }
 
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();

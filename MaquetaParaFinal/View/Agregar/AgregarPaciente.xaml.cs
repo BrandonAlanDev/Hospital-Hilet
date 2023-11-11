@@ -45,5 +45,10 @@ namespace MaquetaParaFinal.View.Agregar
             txtCodPostas.LostFocus += RestaurarNombrePorDefecto;
             txtNombre.Focus();
         }
+
+        private void SoloNumero(object sender, TextCompositionEventArgs e)
+        {
+
+        }
     }
 }

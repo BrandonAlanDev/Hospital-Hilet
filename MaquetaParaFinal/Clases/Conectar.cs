@@ -51,7 +51,7 @@ namespace MaquetaParaFinal.Clases
             {
                 conexion.Open();
                 string consulta = $"SELECT Codigo_Postal AS CodPostal FROM Localidades WHERE Nombre_Localidad = '{Localidad}' AND " +
-                                    $"WHERE (Fecha_Baja IS NULL)";
+                                    $"(Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
