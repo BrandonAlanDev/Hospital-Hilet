@@ -61,8 +61,8 @@
                     <Grid>
                         <Button x:Name="btAgregar" Content="+ Alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,50" Height="30" Width="70" Style="{StaticResource BotonPrimario}" Click="btAgregar_Click" />
                         <Button x:Name="btModificar" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False" Click="btModificar_Click"/>
-                        <Button x:Name="btEliminar" Content="- Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,10" Height="30" Width="70" Style="{StaticResource BotonSalir}" Click="btEliminar_Click" IsEnabled="False"/>
-                        <Button x:Name="btnImprimirMedicos" Content="Imprimir Datos" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False"/>
+                        <Button x:Name="btEliminar" Content="- Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="180" Style="{StaticResource BotonSalir}" Click="btEliminar_Click" IsEnabled="False"/>
+                        
                     </Grid>
                 </Grid>
             </Grid>
