@@ -21,6 +21,35 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
 
+        private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string>
+        {
+            { "Nombre", "txtNombre" },
+            { "Apellido", "txtApellido" },
+            { "DNI", "txtDni" }
+        };
+
+        private void LimpiarTxt(object sender, RoutedEventArgs e)
+        {
+            if (sender is TextBox textBox)
+            {
+                if (Dicpacientes.ContainsKey(textBox.Text))
+                {
+                    textBox.Clear();
+                }
+            }
+        }
+
+        private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
+        {
+            if (sender is TextBox textBox)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
+                }
+            }
+        }
+
         private void ControlarNombre(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -53,7 +82,7 @@ namespace MaquetaParaFinal.View.Agregar
             TextBox textBox = (TextBox)sender;
             string input = textBox.Text;
             string regEx = @"^[0-9]{1,20}$";
-            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20))
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20) && input != "DNI")
             {
                 textBox.Text = Regex.Replace(input, @"[^0-9]", "");
                 textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length));

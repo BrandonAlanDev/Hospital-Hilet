@@ -21,7 +21,13 @@ namespace MaquetaParaFinal.View.Agregar
         {
             { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
             { "Apellido", "txtApellido" },
-            { "Dni", "txtDni" }
+            { "Dni", "txtDni" },
+            { "Email", "txtEmail" },
+            { "YYYY-MM-DD", "txtFecha_De_Nacimiento" },
+            { "Teléfono", "txtTelefono" },
+            { "Calle", "txtCalle" },
+            { "Nro", "txtNro" },
+            { "Piso", "txtPiso" }
         };
 
         private void LimpiarTxt(object sender, RoutedEventArgs e) // Uso el diccionario para no tener que hacer mil metodos para borrarlo, se tiene que usar como evento en el main.
@@ -31,6 +37,17 @@ namespace MaquetaParaFinal.View.Agregar
                 if (Dicpacientes.ContainsKey(textBox.Text))
                 {
                     textBox.Clear();
+                }
+            }
+        }
+
+        private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
+        {
+            if (sender is TextBox textBox)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
                 }
             }
         }
@@ -107,17 +124,6 @@ namespace MaquetaParaFinal.View.Agregar
             BotonFecha.Content = "Ingresar Fecha";
             datePickerPopup.IsOpen = false;
             BotonFecha.Focus();
-        }
-
-        private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
-        {
-            if (sender is TextBox textBox)
-            {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                {
-                    textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
-                }
-            }
         }
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
