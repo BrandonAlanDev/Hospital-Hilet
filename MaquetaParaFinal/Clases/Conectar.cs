@@ -386,6 +386,22 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+        public DataTable BuscarEnTablaEspecialidades(string buscar)
+        {
+            buscar = buscar.ToLower();
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT Pk_Id_Especialidades AS ID, " +
+                                    $"Nombre_Especialidad AS Especialidad " +
+                                    $"FROM Especialidades " +
+                                    $"WHERE LOWER(Nombre_Especialidad) LIKE '%{buscar}%' AND " +
+                                    $"(Fecha_Baja IS NULL)";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
         public DataTable BuscarEnTablaPracticas(string buscar)
         {
             buscar = buscar.ToLower();
