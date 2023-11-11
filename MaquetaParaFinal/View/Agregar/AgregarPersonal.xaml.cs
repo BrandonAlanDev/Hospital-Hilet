@@ -23,40 +23,5 @@ namespace MaquetaParaFinal.View.Agregar
         {
             InitializeComponent();
         }
-
-        private void SoloNumero(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void ControlarNombre(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnAgregarEspecialidad_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void btnAgregarCategoria_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
     }
 }
