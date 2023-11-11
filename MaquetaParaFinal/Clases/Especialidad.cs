@@ -1,4 +1,5 @@
-﻿using MaquetaParaFinal.View.Agregar;
+﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.View.Agregar;
 using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,26 @@ namespace MaquetaParaFinal.View
 {
     public partial class Especialidad : Page
     {
+        Conectar conectar = new Conectar();
 
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            //TO-DO
+            if (txtBuscar.Text.Length == 0)
+            {
+                if (e.Key == Key.Enter)
+                {
+                    DataGridEspecialidad.ItemsSource = conectar.BuscarEnTablaPersonalLaboratorio(txtBuscar.Text).DefaultView;
+                }
+            }else DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
         }
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            if (txtBuscar.Text.Length == 0)
+            {
+                DataGridEspecialidad.ItemsSource = conectar.BuscarEnTablaPersonalLaboratorio(txtBuscar.Text).DefaultView;
+            }
+            else DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
         }
 
         private void DataGridEspecialidad_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

@@ -366,17 +366,20 @@ namespace MaquetaParaFinal.Clases
             buscar = buscar.ToLower();
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = $"SELECT Pk_Id_Profesionales AS ID, " +
+                string consulta = $"SELECT " +
+                    $"Pk_Id_Profesionales AS ID, " +
                     $"Nombre_Profesional AS Nombre, " +
-                    $"Apellido_Profesional AS Apellido," +
+                    $"Apellido_Profesional AS Apellido, " +
                     $"Matricula, " +
-                    $"Nombre_Servicio AS Servicio FROM Profesionales " +
+                    $"Nombre_Servicio AS Servicio " +
+                    $"FROM Profesionales " +
                         $"INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios " +
-                            $"WHERE LOWER(Nombre_Profesional) LIKE '%{buscar}%' OR " +
-                                $"LOWER(Apellido_Profesional) LIKE '%{buscar}%' OR " +
-                                $"LOWER(Matricula) LIKE '%{buscar}%' OR " +
-                                $"LOWER(Nombre_Servicio) LIKE '%{buscar}%' AND " +
-                                $"(Baja_Profesional IS NULL)";
+                    $"WHERE " +
+                        $"LOWER(Nombre_Profesional) LIKE '%{buscar}%' OR " +
+                        $"LOWER(Apellido_Profesional) LIKE '%{buscar}%' OR " +
+                        $"LOWER(Matricula) LIKE '%{buscar}%' OR " +
+                        $"LOWER(Nombre_Servicio) LIKE '%{buscar}%' AND " +
+                        $"(Baja_Profesional IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
