@@ -118,18 +118,20 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
-        private void SoloNumeros_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void SoloNumero(object sender, TextChangedEventArgs e)
         {
-            if (IsNumber(e.Text)) e.Handled = true;
-        }
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
 
-        private bool IsNumber(string text)
-        {
-            foreach (char c in text)
+            // Patrón para permitir solo números
+            string regEx = @"^[0-9]{1,20}$";
+
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
             {
-                if (!char.IsDigit(c)) return true;
+                textBox.Text = Regex.Replace(input, @"[^0-9]", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
+                textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
             }
-            return false;
         }
 
     }

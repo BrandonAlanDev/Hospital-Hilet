@@ -31,7 +31,7 @@
                     <DockPanel>
                         <Label Content="DNI*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch"  Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtDni" Margin="5,0,0,0" TextWrapping="Wrap" Text="Dni" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="3" PreviewTextInput="SoloNumeros_PreviewTextInput" />
+                            <TextBox x:Name="txtDni" Margin="5,0,0,0" TextWrapping="Wrap" Text="Dni" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="3" TextChanged="SoloNumero" />
                         </Border>
                     </DockPanel>
                     <DockPanel>
@@ -58,7 +58,7 @@
                     <DockPanel>
                         <Label Content="Teléfono" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch"  Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtTelefono" Margin="5,0,0,0" TextWrapping="Wrap" Text="Teléfono" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="7" PreviewTextInput="SoloNumeros_PreviewTextInput" />
+                            <TextBox x:Name="txtTelefono" Margin="5,0,0,0" TextWrapping="Wrap" Text="Teléfono" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="7" TextChanged="SoloNumero" />
                         </Border>
                     </DockPanel>
                     <DockPanel>
