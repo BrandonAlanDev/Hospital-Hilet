@@ -12,39 +12,42 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MaquetaParaFinal.View.Agregar
+namespace MaquetaParaFinal.View.Modificar
 {
-    public partial class AgregarEspecialidad : Window
+    public partial class ModificarPersonal : Window
     {
-
-        private void txtNombreEspecialidad_LostFocus(object sender, RoutedEventArgs e)
+        private void SoloNumero(object sender, TextChangedEventArgs e)
         {
-            //TO-DO
+
         }
 
         private void ControlarNombre(object sender, TextChangedEventArgs e)
         {
-            //TO-DO
+
         }
 
-        private void txtNombreEspecialidad_GotFocus(object sender, RoutedEventArgs e)
+        private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+
         }
 
-        private void btnAceptarAgEspecialidad_Click(object sender, RoutedEventArgs e)
-        {
-            //TO-DO
-        }
-
-        private void btnCancelarAgEspecialidad_Click(object sender, RoutedEventArgs e)
+        private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        private void btnAgregarEspecialidad_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btnAgregarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //TO-DO
+
         }
     }
 }
