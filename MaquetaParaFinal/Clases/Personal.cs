@@ -43,17 +43,17 @@ namespace MaquetaParaFinal.View
             //TO-DO
         }
 
-        private void DataGridMedicos_Loaded(object sender, RoutedEventArgs e)
+        private void DataGridPersonal_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void DataGridMedicos_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        private void DataGridPersonal_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             //TO-DO
         }
 
-        private void DataGridMedicos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGridPersonal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //TO-DO
         }
