@@ -24,30 +24,5 @@ namespace MaquetaParaFinal.View
         {
             InitializeComponent();
         }
-
-        private void btAgregar_Click(object sender, RoutedEventArgs e)
-        {
-            //TO-DO
-        }
-
-        private void btModificar_Click(object sender, RoutedEventArgs e)
-        {
-            //TO-DO
-        }
-
-        private void btEliminar_Click(object sender, RoutedEventArgs e)
-        {
-            //TO-DO
-        }
-
-        private void EnterBuscar(object sender, KeyEventArgs e)
-        {
-            //TO-DO
-        }
-
-        private void ClickBuscar(object sender, RoutedEventArgs e)
-        {
-            //TO-DO
-        }
     }
 }
