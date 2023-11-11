@@ -598,18 +598,19 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarPersonalLaboratorio(string nombre_personal, string apellido_personal, int fk_id_categorias, int fk_id_especialidades)
+        public void AgregarPersonalLaboratorio(string nombre_personal,string Dni, string apellido_personal, int fk_id_categorias, int fk_id_especialidades)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO PersonalLaboratorio (Nombre_Personal, Apellido_Personal, Fk_Id_Categorias, Fk_Id_Especialidades) " +
-                    "VALUES (@nombre_personal, @apellido_personal, @fk_id_categorias, @fk_id_especialidades);";
+                string consulta = "INSERT INTO PersonalLaboratorio (Nombre_Personal, Apellido_Personal,Dni ,Fk_Id_Categorias, Fk_Id_Especialidades) " +
+                    "VALUES (@nombre_personal, @apellido_personal,@Dni ,@fk_id_categorias, @fk_id_especialidades);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@nombre_personal", nombre_personal);
                     cmd.Parameters.AddWithValue("@apellido_personal", apellido_personal);
+                    cmd.Parameters.AddWithValue("@Dni", Dni);
                     cmd.Parameters.AddWithValue("@fk_id_categorias", fk_id_categorias);
                     cmd.Parameters.AddWithValue("@fk_id_especialidades", fk_id_especialidades);
                     cmd.ExecuteNonQuery();

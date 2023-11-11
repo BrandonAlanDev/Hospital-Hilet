@@ -114,9 +114,18 @@ namespace MaquetaParaFinal.View.Agregar
         {
             if (VerificarQueIngresoDatos())
             {
-                int cat = conectar.ObtenerId_Categorias(txtCategoria.Text);
-                int esp = conectar.ObtenerId_Especialidades(txtEspecialidad.Text);
-                conectar.AgregarPersonalLaboratorio(txtNombre.Text, txtApellido.Text, cat, esp);
+                try
+                {
+                    int cat = conectar.ObtenerId_Categorias(txtCategoria.Text);
+                    int esp = conectar.ObtenerId_Especialidades(txtEspecialidad.Text);
+                    conectar.AgregarPersonalLaboratorio(txtNombre.Text,txtDni.Text ,txtApellido.Text, cat, esp);
+                    MessageBox.Show("Agregado Correctamente","Agregado");
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Error", "Error");
+                }
             }
         }
 
