@@ -58,6 +58,7 @@ namespace MaquetaParaFinal.View
 
         private void DataGridPersonal_Loaded(object sender, RoutedEventArgs e)
         {
+            txtBuscar.Focus();
             try {
                 DataGridPersonal.ItemsSource = conectar.DescargaTablaPersonalLaboratorio().DefaultView;
             } catch { }
@@ -92,5 +93,6 @@ namespace MaquetaParaFinal.View
                 btEliminar.IsEnabled = false;
             }
         }
+
     }
 }
