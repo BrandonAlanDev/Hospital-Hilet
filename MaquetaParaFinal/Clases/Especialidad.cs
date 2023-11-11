@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases.Agregar;
+using MaquetaParaFinal.View.Agregar;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +47,8 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            AgregarEspecialidad ag = new AgregarEspecialidad();
+            ag.ShowDialog();
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)

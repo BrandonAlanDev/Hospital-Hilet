@@ -1,4 +1,4 @@
-﻿using MaquetaParaFinal.Clases;
+﻿using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,7 +23,8 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            AgregarPersonal ap = new AgregarPersonal();
+            ap.ShowDialog();
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
