@@ -128,6 +128,7 @@ namespace MaquetaParaFinal.Clases
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
+                conexion.Open();
                 string consulta = "SELECT " +
                     "Pk_Id_Profesionales AS ID," +
                     "Nombre_Profesional AS Nombre," +
@@ -147,14 +148,15 @@ namespace MaquetaParaFinal.Clases
         {
             using(SqlConnection conexion = new SqlConnection(contrasenia))
             {
+                conexion.Open();
                 string consulta = "SELECT " +
                     "Pk_Id_Personal_Laboratorio AS ID," +
                     "Nombre_Personal AS Nombre," +
                     "Apellido_Personal AS Apellido," +
                     "Dni," +
                     "Nombre_Categoria AS Categoria," +
-                    "Nombre_Especialdad AS Especialidad " +
-                    "FROM PersonalLaboratorio" +
+                    "Nombre_Especialidad AS Especialidad " +
+                    "FROM PersonalLaboratorio " + 
                         "INNER JOIN Categorias ON Fk_Id_Categorias = Pk_Id_Categorias " +
                         "INNER JOIN Especialidades ON Fk_Id_Especialidades = Pk_Id_Especialidades " +
                     "WHERE (Baja_Personal IS NULL)";
@@ -304,6 +306,36 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+
+        public DataTable BuscarEnTablaPersonalLaboratorio(string buscar)
+        {
+            buscar = buscar.ToLower();
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT " +
+                        $"Pk_Id_Personal_Laboratorio AS ID, " +
+                        $"Nombre_Personal AS Nombre, " +
+                        $"Apellido_Personal AS Apellido, " +
+                        $"Dni, " +
+                        $"Nombre_Categoria AS Categoria, " +
+                        $"Nombre_Especialidad AS Especialidad " +
+                        $"FROM PersonalLaboratorio " +
+                            $"INNER JOIN Categorias ON Fk_Id_Categorias = Pk_Id_Categorias " +
+                            $"INNER JOIN Especialidades ON Fk_Id_Especialidades = Pk_Id_Especialidades " +
+                        $"WHERE " +
+                            $"(LOWER(Nombre_Personal) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Apellido_Personal) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Dni) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Nombre_Categoria) LIKE '%{buscar}%' OR " +
+                            $"LOWER(Nombre_Especialidad) LIKE '%{buscar}%') AND " +
+                            $"(Baja_Personal IS NULL)";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+
         public DataTable BuscarEnTablaPacientesSoloPorDni(string buscar)
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
