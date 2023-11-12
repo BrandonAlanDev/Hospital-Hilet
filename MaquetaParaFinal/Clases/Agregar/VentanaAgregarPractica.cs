@@ -68,7 +68,7 @@ namespace MaquetaParaFinal.View.Agregar
 
         void CargarEnBoxEspecilidad() 
         {
-            DataTable dtespecialidad = conectar.DescargaTablaEspecialidades();
+            DataTable dtespecialidad = conectar.DescargarTablaEspecialidades();
             // Crear una lista para almacenar los datos
             List<string> data = new List<string>();
 

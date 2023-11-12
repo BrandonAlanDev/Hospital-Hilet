@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,10 @@ namespace MaquetaParaFinal.View.Modificar
 {
     public partial class ModificarEspecialidad : Window
     {
+        Conectar conectar = new Conectar();
+
         public int id { get; set; }
+
         private void txtNombreEspecialidad_LostFocus(object sender, RoutedEventArgs e)
         {
             if (txtNombreEspecialidad.Text == "Nombre") 
@@ -50,13 +54,14 @@ namespace MaquetaParaFinal.View.Modificar
 
         private void btnAceptarAgEspecialidad_Click(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            if (txtNombreEspecialidad.Text != "")
+            {
+                conectar.ModificarEspecialidades(id,txtNombreEspecialidad.Text);
+                this.Close();
+            }
         }
 
-        private void btnCancelarAgEspecialidad_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        private void btnCancelarAgEspecialidad_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

@@ -67,7 +67,7 @@ namespace MaquetaParaFinal.View
                 btModificar.IsEnabled = false;
                 btEliminar.IsEnabled = false;
             }
-}
+        }
 
         private void DataGridEspecialidad_Loaded(object sender, RoutedEventArgs e)
         {
@@ -79,13 +79,19 @@ namespace MaquetaParaFinal.View
             AgregarEspecialidad ag = new AgregarEspecialidad();
             ag.ShowDialog();
             DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
             ModificarEspecialidad me = new ModificarEspecialidad();
+            DataRowView row = (DataRowView)DataGridEspecialidad.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
+            me.id = id;
+            me.txtNombreEspecialidad.Text = row["Especialidad"].ToString();
             me.ShowDialog();
             DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+            DataGridEspecialidad.SelectedValue = id;
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
@@ -96,6 +102,7 @@ namespace MaquetaParaFinal.View
             {
                 int id = int.Parse(row["ID"].ToString());
                 conectar.EliminarEspecialidad(id);
+                txtNombre.Text = "Nombre";
                 DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
             }
         }

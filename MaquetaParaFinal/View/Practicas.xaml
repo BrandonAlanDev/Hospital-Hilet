@@ -18,7 +18,7 @@
                     <Button x:Name="btAceptarBusqueda" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,5,0,0" Content="Buscar" Height="20" Width="62" Style="{StaticResource BotonSecundario}" PreviewKeyDown="EnterBuscar" Click="ClickBuscar"/>
                 </Grid>
                 <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,225,0" >
-                    <DataGrid x:Name="DataGridPracticas" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Background="#213555"
+                    <DataGrid x:Name="DataGridPracticas" SelectedValuePath="ID" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Background="#213555"
                               RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" Loaded="DataGridPacticas_Loaded" SelectionChanged="DataGridPracticas_SelectionChanged" AutoGeneratingColumn="DataGridPracticas_AutoGeneratingColumn" >
                         <DataGrid.ColumnHeaderStyle>
                             <StaticResource ResourceKey="HeaderGrilla" />
