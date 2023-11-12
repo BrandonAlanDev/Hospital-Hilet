@@ -310,6 +310,7 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+
         public DataTable BuscarEnTablaCategorias(string buscar)
         {
             buscar = buscar.ToLower();
@@ -939,12 +940,13 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-        public void EliminarCategorias(int id)
+        public void EliminarCategorias(int id,int idSinCAT)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Categorias SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Categorias = {id}";
+                string consulta = $"UPDATE Categorias SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Categorias = {id}; " +
+                    $"UPDATE PersonalLaboratorio SET Fk_Id_Categorias= {idSinCAT} WHERE Pk_Id_Categorias = {id};";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
@@ -963,12 +965,14 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
-        public void EliminarEspecialidad(int id)
+        public void EliminarEspecialidad(int id,int idSinEsp)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = $"UPDATE Especialidades SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Especialidades = {id}";
+                string consulta = $"UPDATE Especialidades SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Especialidades = {id}; " +
+                    $"UPDATE PersonalLaboratorio SET Fk_Id_Especialidades= {idSinEsp} WHERE Fk_Id_Especialidades = {id}; " +
+                    $"UPDATE Practicas SET Fk_Id_Especialidades= {idSinEsp} WHERE Fk_Id_Especialidades = {id};";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();

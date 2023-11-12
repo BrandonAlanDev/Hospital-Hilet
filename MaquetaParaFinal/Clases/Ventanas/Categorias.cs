@@ -29,7 +29,7 @@ namespace MaquetaParaFinal.View
             if (resultado == MessageBoxResult.Yes)
             {
                 DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
-                conectar.EliminarCategorias(int.Parse(row["ID"].ToString()));
+                conectar.EliminarCategorias(int.Parse(row["ID"].ToString()),conectar.ObtenerId_Categorias("Sin Categoría"));
                 txtNombre.Text = "Nombre";
                 DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
             }
