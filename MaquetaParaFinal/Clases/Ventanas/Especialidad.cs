@@ -31,7 +31,7 @@ namespace MaquetaParaFinal.View
                 {
                     DataGridEspecialidad.ItemsSource = conectar.BuscarEnTablaEspecialidades(txtBuscar.Text).DefaultView;
                 }
-            }else DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+            }else DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidadesParaElDataGrid().DefaultView;
         }
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
@@ -40,7 +40,7 @@ namespace MaquetaParaFinal.View
             {
                 DataGridEspecialidad.ItemsSource = conectar.BuscarEnTablaEspecialidades(txtBuscar.Text).DefaultView;
             }
-            else DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+            else DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidadesParaElDataGrid().DefaultView;
         }
 
         private void DataGridEspecialidad_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -74,7 +74,7 @@ namespace MaquetaParaFinal.View
             txtBuscar.Focus();
             try
             {
-                DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+                DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidadesParaElDataGrid().DefaultView;
             }catch{}
         }
 
@@ -82,7 +82,7 @@ namespace MaquetaParaFinal.View
         {
             AgregarEspecialidad ag = new AgregarEspecialidad();
             ag.ShowDialog();
-            DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+            DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidadesParaElDataGrid().DefaultView;
 
         }
 
@@ -94,7 +94,7 @@ namespace MaquetaParaFinal.View
             me.id = id;
             me.txtNombreEspecialidad.Text = row["Especialidad"].ToString();
             me.ShowDialog();
-            DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+            DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidadesParaElDataGrid().DefaultView;
             DataGridEspecialidad.SelectedValue = id;
         }
 
@@ -107,7 +107,7 @@ namespace MaquetaParaFinal.View
                 int id = int.Parse(row["ID"].ToString());
                 conectar.EliminarEspecialidad(id,conectar.ObtenerId_Especialidades("Sin Especialidad"));
                 txtNombre.Text = "Nombre";
-                DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+                DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidadesParaElDataGrid().DefaultView;
             }
         }
     }

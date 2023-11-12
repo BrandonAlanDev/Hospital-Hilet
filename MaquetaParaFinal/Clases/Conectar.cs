@@ -33,6 +33,7 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+
         public DataTable DescargarTablaEspecialidades()
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
@@ -40,6 +41,20 @@ namespace MaquetaParaFinal.Clases
                 conexion.Open();
                 string consulta = "SELECT Pk_Id_Especialidades AS ID, Nombre_Especialidad AS Especialidad FROM Especialidades " +
                                     "WHERE (Fecha_Baja IS NULL)";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+
+        public DataTable DescargarTablaEspecialidadesParaElDataGrid()
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                conexion.Open();
+                string consulta = "SELECT Pk_Id_Especialidades AS ID, Nombre_Especialidad AS Especialidad FROM Especialidades " +
+                                    "WHERE (Fecha_Baja IS NULL) AND Nombre_Especialidad <> 'Sin Especialidad'";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -98,6 +113,20 @@ namespace MaquetaParaFinal.Clases
                 string consulta = "SELECT Pk_Id_Categorias AS ID, " +
                                     "Nombre_Categoria AS Categoria FROM Categorias " +
                                     "WHERE (Fecha_Baja IS NULL)";
+                SqlDataAdapter command = new SqlDataAdapter ( consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }        
+        public DataTable DescargaTablaCategoriasParaElDataGrid() 
+        {
+            using( SqlConnection conexion = new SqlConnection (contrasenia))
+            {
+                conexion.Open();
+                string consulta = "SELECT Pk_Id_Categorias AS ID, " +
+                                    "Nombre_Categoria AS Categoria FROM Categorias " +
+                                    "WHERE (Fecha_Baja IS NULL) AND Nombre_Categoria <> 'Sin Categoría'";
                 SqlDataAdapter command = new SqlDataAdapter ( consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
