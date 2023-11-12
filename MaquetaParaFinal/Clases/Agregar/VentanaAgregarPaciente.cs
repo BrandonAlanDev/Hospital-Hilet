@@ -12,11 +12,14 @@ using System.Windows.Automation;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
 using iText.Kernel.Colors;
+using System.Net;
 
 namespace MaquetaParaFinal.View.Agregar
 {
     public partial class AgregarPaciente : Window
     {
+        public string Dni { get; set; }
+
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
             { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
@@ -50,11 +53,6 @@ namespace MaquetaParaFinal.View.Agregar
                     textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
                 }
             }
-        }
-
-        private void Principal_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void ControlarNombre(object sender, TextChangedEventArgs e)
@@ -142,12 +140,13 @@ namespace MaquetaParaFinal.View.Agregar
                 try
                 {
                     int id = conectar.ObtenerId_Localidades(txtLocalidad.Text);
-                    conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, id);
+                    Dni = txtDni.Text;
+                    conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, Dni, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, id);
                     LimpiarTxt();
                     MessageBox.Show("Agregado Correctamente");
                     this.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Compruebe Los Datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
@@ -215,6 +214,30 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void BuscarCodigoPostal(object sender, SelectionChangedEventArgs e) => CargarCodigoPostal();
 
+        private void AgregarNuevaLocalidad(object sender, RoutedEventArgs e)
+        {
+            AgregarLocalidad al = new AgregarLocalidad();
+            al.ShowDialog();
+            CargarLocalidades();
+            btnEliminarLocalidad.IsEnabled = false;
+        }
+
+        private void EliminarLocalidad(object sender, RoutedEventArgs e)
+        {
+            System.Media.SystemSounds.Beep.Play();
+            MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar la Localidad {txtLocalidad.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (resultado == MessageBoxResult.Yes)
+            {
+                int id = conectar.ObtenerId_Localidades(txtLocalidad.Text);
+                conectar.EliminarLocalidades(id);
+                CargarLocalidades();
+            }
+        }
+
+        private void HabilitarEliminar(object sender, SelectionChangedEventArgs e)
+        {
+            btnEliminarLocalidad.IsEnabled = true;
+        }
 
     }
 }

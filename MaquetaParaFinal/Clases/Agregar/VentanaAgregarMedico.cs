@@ -17,6 +17,8 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
 
+        public string medico { get; set; }
+
         private readonly Dictionary<string, string> Dicmedicos = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
             { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
@@ -67,6 +69,7 @@ namespace MaquetaParaFinal.View.Agregar
             if (TodosLosCamposLlenos())
             {
                 int idServicio = conectar.ObtenerId_Servicios(txtServicio.Text);
+                medico = txtApellido.Text + " " + txtNombre.Text;
                 conectar.AgregarProfesionales(txtNombre.Text, txtApellido.Text, int.Parse(txtMatricula.Text), idServicio);
                 MessageBox.Show("Se agrego el medico correctamente");
                 this.Close();

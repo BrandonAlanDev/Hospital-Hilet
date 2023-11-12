@@ -31,7 +31,7 @@
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Medico*" Margin="0,8,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <ComboBox x:Name="txtMedico" Margin="0,10,10,0" Width="150" Text="Apellido"  VerticalAlignment="Top" Style="{StaticResource Combos}" TabIndex="3" Loaded="txtMedico_Loaded"/>
+                        <ComboBox x:Name="txtMedico" Margin="0,10,10,0" Width="150" VerticalAlignment="Top" Style="{StaticResource Combos}" TabIndex="3" Loaded="txtMedico_Loaded"/>
                         <Button x:Name="AgregarMedico" Margin="2,2,0,0"  Width="25" Content="+" Style="{StaticResource BotonPrimario}" Click="btnAgregarMedico"/>
                     </DockPanel>
                 </StackPanel>
