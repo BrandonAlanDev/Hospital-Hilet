@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace MaquetaParaFinal.View
 {
@@ -83,16 +84,21 @@ namespace MaquetaParaFinal.View
         private void btPracticas_Click(object sender, RoutedEventArgs e)
         {
             DataRowView row = (DataRowView) DataGridIngresos.SelectedItem;
-            VentanaPracticaPorIngreso vtn = new VentanaPracticaPorIngreso(int.Parse(row["ID"].ToString()));
+            int id = int.Parse(row["ID"].ToString());
+            VentanaPracticaPorIngreso vtn = new VentanaPracticaPorIngreso(id);
             vtn.ShowDialog();
             DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
+            DataGridIngresos.SelectedValue = id;
         }
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = (DataRowView)DataGridIngresos.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
             AgregarIngreso agregarIngreso = new AgregarIngreso();
             agregarIngreso.ShowDialog();
             DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
+            DataGridIngresos.SelectedValue = id;
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
