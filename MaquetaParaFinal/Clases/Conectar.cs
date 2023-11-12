@@ -310,6 +310,23 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+        public DataTable BuscarEnTablaCategorias(string buscar)
+        {
+            buscar = buscar.ToLower();
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT " +
+                            $"Pk_Id_Categorias AS ID, " +
+                            $"Nombre_Categoria AS Categoria " +
+                        $"FROM Categorias " +
+                        $"WHERE " +
+                            $"LOWER(Nombre_Categoria) LIKE '%{buscar}%' AND (Fecha_Baja IS NULL)";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
 
         public DataTable BuscarEnTablaPersonalLaboratorio(string buscar)
         {

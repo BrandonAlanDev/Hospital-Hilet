@@ -23,24 +23,5 @@ namespace MaquetaParaFinal.View
         {
             InitializeComponent();
         }
-
-        private void DataGridMedicos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (DataGridMedicos.SelectedItem != null)
-            {
-                DataRowView row = (DataRowView)DataGridMedicos.SelectedItem;
-                txtNombre.Text = row["Nombre"].ToString();
-                txtApellido.Text = row["Apellido"].ToString();
-                txtMatricula.Text = row["Matricula"].ToString();
-                txtServicio.Text = row["Servicio"].ToString();
-                btModificar.IsEnabled = true;
-                btEliminar.IsEnabled = true;
-            }
-            else
-            {
-                btModificar.IsEnabled = false;
-                btEliminar.IsEnabled = false;
-            }
-        }
     }
 }

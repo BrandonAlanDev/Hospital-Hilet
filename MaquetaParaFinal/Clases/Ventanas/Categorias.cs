@@ -3,6 +3,7 @@ using MaquetaParaFinal.View.Agregar;
 using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,17 +58,40 @@ namespace MaquetaParaFinal.View
 
         private void DataGridCategoria_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (DataGridCategoria.SelectedItem != null)
+            {
+                DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
+                txtNombre.Text = row["Categoria"].ToString();
+                btAgregar.IsEnabled = true;
+                btModificar.IsEnabled = true;
+                btEliminar.IsEnabled = true;
+            }
+            else
+            {
+                btAgregar.IsEnabled = false;
+                btModificar.IsEnabled = false;
+                btEliminar.IsEnabled = false;
+            }
         }
 
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                if (e.Key == Key.Enter)
+                {
+                    DataGridCategoria.ItemsSource = conectar.BuscarEnTablaCategorias(txtBuscar.Text).DefaultView;
+                }
+            } else DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
         }
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
         {
-
+            if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                DataGridCategoria.ItemsSource = conectar.BuscarEnTablaCategorias(txtBuscar.Text).DefaultView;
+            }
+            else DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
         }
     }
 }
