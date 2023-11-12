@@ -38,8 +38,8 @@ namespace MaquetaParaFinal.View
             mp.txtNombre.Text = row["Nombre"].ToString();
             mp.txtApellido.Text = row["Apellido"].ToString();
             mp.txtDni.Text = row["Dni"].ToString();
-            mp.txtEspecialidad.SelectedValue = row["Especialidad"];
-            mp.txtCategoria.SelectedValue = row["Categoria"];
+            mp.categoria = row["Categoria"].ToString();
+            mp.especialidad = row["Especialidad"].ToString();
             mp.ShowDialog();
             DataGridPersonal.ItemsSource = conectar.BuscarEnTablaPersonalLaboratorio(txtBuscar.Text).DefaultView;
             DataGridPersonal.SelectedValue = id;

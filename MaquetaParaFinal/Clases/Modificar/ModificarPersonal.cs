@@ -23,6 +23,8 @@ namespace MaquetaParaFinal.View.Modificar
         Conectar conectar = new Conectar();
 
         public int id { get; set; }
+        public string categoria { get; set; }
+        public string especialidad { get; set; }
 
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string>
         {
@@ -84,6 +86,7 @@ namespace MaquetaParaFinal.View.Modificar
             txtEspecialidad.ItemsSource = null;
             txtEspecialidad.Items.Clear();
             txtEspecialidad.ItemsSource = data;
+            txtEspecialidad.SelectedValue = especialidad;
         }
 
         private void CargarBoxCat()
@@ -98,6 +101,7 @@ namespace MaquetaParaFinal.View.Modificar
             txtCategoria.ItemsSource = null;
             txtCategoria.Items.Clear();
             txtCategoria.ItemsSource = data;
+            txtCategoria.SelectedValue = categoria;
         }
 
         private void SoloNumero(object sender, TextChangedEventArgs e)
@@ -115,7 +119,21 @@ namespace MaquetaParaFinal.View.Modificar
 
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)
         {
-
+            if (VerificarQueIngresoDatos())
+            {
+                try
+                {
+                    int cat = conectar.ObtenerId_Categorias(txtCategoria.Text);
+                    int esp = conectar.ObtenerId_Especialidades(txtEspecialidad.Text);
+                    conectar.ModificarPersonalLaboratorio(id,txtNombre.Text, txtDni.Text, txtApellido.Text, cat, esp);
+                    MessageBox.Show("Agregado Correctamente", "Agregado");
+                    this.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("Error", "Error");
+                }
+            }
         }
 
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();
@@ -137,6 +155,14 @@ namespace MaquetaParaFinal.View.Modificar
             {
                 DragMove();
             }
+        }
+        private bool VerificarQueIngresoDatos()
+        {
+            return txtCategoria.Text != string.Empty &&
+                   txtEspecialidad.Text != string.Empty &&
+                   txtDni.Text != "DNI" &&
+                   txtNombre.Text != "Nombre" &&
+                   txtApellido.Text != "Apellido";
         }
 
     }

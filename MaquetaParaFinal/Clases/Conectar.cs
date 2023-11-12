@@ -805,12 +805,12 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void ModificarPersonalLaboratorio(int id, string nombre, string apellido, int fk_id_categoria, int fk_id_especialidad)
+        public void ModificarPersonalLaboratorio(int id, string nombre,string dni ,string apellido, int fk_id_categoria, int fk_id_especialidad)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "UPDATE PersonalLaboratorio SET Nombre_Personal = @nombre_personal, Apellido_Personal = @apellido_personal, Fk_Id_Categorias = @fk_id_categoria, " +
+                string consulta = "UPDATE PersonalLaboratorio SET Nombre_Personal = @nombre_personal, Apellido_Personal = @apellido_personal,Dni =@Dni, Fk_Id_Categorias = @fk_id_categoria, " +
                     "Fk_Id_Especialidades = @fk_id_especialidad WHERE Pk_Id_Personal_Laboratorio = @pk_id_personal_laboratorio;";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
@@ -818,6 +818,7 @@ namespace MaquetaParaFinal.Clases
                     cmd.Parameters.AddWithValue("@pk_id_personal_laboratorio", id);
                     cmd.Parameters.AddWithValue("@nombre_personal", nombre);
                     cmd.Parameters.AddWithValue("@Apellido_Personal", apellido);
+                    cmd.Parameters.AddWithValue("@Dni", dni);
                     cmd.Parameters.AddWithValue("@fk_id_categoria", fk_id_categoria);
                     cmd.Parameters.AddWithValue("@fk_id_especialidad", fk_id_especialidad);
                     cmd.ExecuteNonQuery();
