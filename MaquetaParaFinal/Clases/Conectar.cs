@@ -56,7 +56,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -77,7 +77,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -99,7 +99,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -119,7 +119,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -141,7 +141,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -163,7 +163,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -184,13 +184,13 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
         }
         
-        public DataTable DescargaTablaPaciente() //Anda
+        public DataTable DescargaTablaPaciente()
         {
             try
             {
@@ -214,7 +214,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -241,7 +241,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch 
             {
                 return new DataTable();
             }
@@ -271,7 +271,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -299,7 +299,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -330,7 +330,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -365,7 +365,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch
             {
                 return new DataTable();
             }
@@ -404,7 +404,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch 
             {
                 return new DataTable();
             }
@@ -430,7 +430,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch 
             {
                 return new DataTable();
             }
@@ -466,7 +466,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch 
             {
                 return new DataTable();
             }
@@ -499,7 +499,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch 
             {
                 return new DataTable();
             }
@@ -522,7 +522,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch 
             {
                 return new DataTable();
             }
@@ -556,7 +556,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch 
             {
                 return new DataTable();
             }
@@ -600,7 +600,7 @@ namespace MaquetaParaFinal.Clases
                     return tabla;
                 }
             }
-            catch (Exception)
+            catch 
             {
                 return new DataTable();
             }
@@ -638,7 +638,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception){ }
+            catch { }
         }
 
         public void AgregarProfesionales(string nombre, string apellido, int Matricula,int Fk_Id_Servicios) {
@@ -660,7 +660,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void AgregarServicios(string nombre)
@@ -678,7 +678,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public int ValidarSiexisteServicio(string nombre)
@@ -696,7 +696,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
 
         public void AgregarEspecialidades(string nombre_especialidad)
@@ -715,7 +715,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void AgregarPracticas(string nombre_practica, int fk_id_especialidades, int fk_id_tiposdemuestra,int tiempo_demora)
@@ -738,7 +738,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void AgregarLocalidades(string Nombre_Localidad, string Codigo_Postal)
@@ -758,7 +758,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void AgregarCategorias(string Nombre_Categoria)
@@ -777,7 +777,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void AgregarPersonalLaboratorio(string nombre_personal,string Dni, string apellido_personal, int fk_id_categorias, int fk_id_especialidades)
@@ -801,7 +801,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void AgregarIngresos(string fecha_ingreso, int fk_id_pacientes, int fk_id_profesionales)
@@ -822,7 +822,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void AgregarPracticasxIngresos(int fk_id_ingresos, int fk_id_practicas)
@@ -843,7 +843,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void ModificarCategorias(int id, string nombre_categoria)
@@ -863,7 +863,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void ModificarEspecialidades(int id, string nombre_especialidad)
@@ -883,7 +883,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void ModificarPacientes(int id, string nombre, string apellido, string Fecha_De_Nacimiento, string Dni, string Email, string Telefono, string Calle, string Numero, string Piso, int fk_id)
@@ -914,7 +914,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void ModificarProfesionales(int id, string nombre, string apellido, int Matricula, int Fk_Id_Servicios)
@@ -938,7 +938,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void ModificarPersonalLaboratorio(int id, string nombre,string dni ,string apellido, int fk_id_categoria, int fk_id_especialidad)
@@ -963,7 +963,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void ModificarIngresos(int id, int fk_id_paciente, int fk_id_profesional)
@@ -985,7 +985,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void EliminarIngresos(int id)
@@ -1002,7 +1002,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void EliminarPracticaXIngreso(int id)
@@ -1019,7 +1019,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public void EliminarLocalidades(int id) 
@@ -1036,7 +1036,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
        
         public void EliminarCategorias(int id,int idSinCAT)
@@ -1054,7 +1054,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
        
         public void EliminarEspecialidad(int id,int idSinEsp)
@@ -1073,7 +1073,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
         public void EliminarPacientes(int id)
         {
@@ -1089,7 +1089,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
          
         public void EliminarProfesional(int id)
@@ -1106,7 +1106,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
         public void EliminarPersonalLaboratorio(int id)
          {
@@ -1122,7 +1122,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
         public void EliminarPracticas(int id)
         {
@@ -1138,7 +1138,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
         public int ObtenerId_Localidades(string localidad)
         {
@@ -1155,7 +1155,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
         public int ObtenerId_Servicios(string servicio)
         {
@@ -1172,7 +1172,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
        
         public int ObtenerId_Categorias(string categoria)
@@ -1194,7 +1194,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
 
         public int ObtenerId_TiposDeMuestras(string muestra)
@@ -1212,7 +1212,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
         public int ObtenerId_Especialidades(string especialidad)
         {
@@ -1233,7 +1233,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
 
         public int ObtenerId_Pacientes(string dni)
@@ -1251,14 +1251,11 @@ namespace MaquetaParaFinal.Clases
                         {
                             return Convert.ToInt32(cmd.ExecuteScalar());
                         }
-                        else
-                        {
-                            return -1;
-                        }
+                        else return -1;
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
         public int ObtenerId_Profesionales(string personal)
         {
@@ -1276,7 +1273,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
 
         public int BuscarTiempoDemora(int id)
@@ -1298,7 +1295,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
 
         public int BuscarPractica(string practica)
@@ -1318,7 +1315,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) {return -1; }
+            catch  {return -1; }
         }
 
         public void ActualizarFecha_Retiro(int id,string retirado)
@@ -1337,7 +1334,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
         public int ObtenerUltimaIDIngresos()
@@ -1358,7 +1355,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { return -1; }
+            catch  { return -1; }
         }
 
         public void AgregarSinCategoria()
@@ -1375,7 +1372,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
         public void AgregarSinEspecialidad()
         {
@@ -1391,7 +1388,7 @@ namespace MaquetaParaFinal.Clases
                     }
                 }
             }
-            catch (Exception) { }
+            catch  { }
         }
 
     }
