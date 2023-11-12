@@ -47,7 +47,17 @@ namespace MaquetaParaFinal.View
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            if (txtNombre.Text != "Nombre")
+            {
+                System.Media.SystemSounds.Beep.Play();
+                MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar a {txtNombre.Text} {txtApellido.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    DataRowView row = (DataRowView)DataGridPersonal.SelectedItem;
+                    conectar.EliminarPersonalLaboratorio(int.Parse(row["ID"].ToString()));
+                    DataGridPersonal.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+                }
+            }
         }
 
         private void EnterBuscar(object sender, KeyEventArgs e)
