@@ -23,5 +23,6 @@ namespace MaquetaParaFinal.View.Modificar
         {
             InitializeComponent();
         }
+
     }
 }

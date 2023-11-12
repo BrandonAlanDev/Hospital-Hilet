@@ -30,14 +30,21 @@ namespace MaquetaParaFinal.View
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
             ModificarCategoria mc = new ModificarCategoria();
+            int id = int.Parse(row["ID"].ToString());
+            mc.id = id;
+            mc.txtNombreCategoria.Text = row["Categoria"].ToString();
             mc.ShowDialog();
+            DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
+            DataGridCategoria.SelectedValue = id;
         }
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
             AgregarCategorias ac = new AgregarCategorias();
             ac.ShowDialog();
+            DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
         }
 
         private void DataGridCategoria_Loaded(object sender, RoutedEventArgs e)

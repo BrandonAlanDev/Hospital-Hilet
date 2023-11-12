@@ -32,13 +32,21 @@ namespace MaquetaParaFinal.View.Agregar
             TextBox textBox = (TextBox)sender;
             string input = textBox.Text;
 
-            string regEx = @"^[A-Za-zÁ-Úá-ú]{1,20}$";
+            string regEx = @"^[A-Za-zÁ-Úá-ú 0-9]{1,20}$";
 
             if (!(Regex.IsMatch(input, regEx) && input.Length <= 20))
             {
-                textBox.Text = Regex.Replace(input, @"[^A-Za-zÁ-Úá-ú ']", "");
+                textBox.Text = Regex.Replace(input, @"[^A-Za-zÁ-Úá-ú 0-9]", "");
                 textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length));
                 textBox.Select(textBox.Text.Length, 0);
+            }
+        }
+
+        private void txtNombreCategoria_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) 
+            {
+                btnAceptarAgCategoria_Click(sender,e);
             }
         }
 
