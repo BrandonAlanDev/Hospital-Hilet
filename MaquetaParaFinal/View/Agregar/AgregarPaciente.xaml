@@ -81,16 +81,18 @@
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Localidad*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <ComboBox Margin="0,6,10,0"  HorizontalAlignment="Stretch"  x:Name="txtLocalidad"  Style="{StaticResource Combos}" SelectionChanged="BuscarCodigoPostal" TabIndex="11">
+                        <ComboBox Margin="0,3,10,2" Width="150" HorizontalAlignment="Stretch"  x:Name="txtLocalidad"  Style="{StaticResource Combos}" SelectionChanged="BuscarCodigoPostal" TabIndex="11">
                             <ComboBoxItem Content="item 1"/>
                             <ComboBoxItem Content="item 2"/>
                             <ComboBoxItem Content="item 3"/>
                         </ComboBox>
+                        <Button Content="+" Style="{StaticResource BotonPrimario}" Width="25" HorizontalAlignment="Right" Margin="0,0,10,0" Click="AgregarNuevaLocalidad"/>
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Codigo Postal*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <ComboBox x:Name="txtCodPostas" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}" IsEnabled="False" TabIndex="12">
+                        <ComboBox x:Name="txtCodPostas" Width="150" Margin="0,3,10,2"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}" SelectionChanged="HabilitarEliminar" IsEnabled="False" TabIndex="12">
                         </ComboBox>
+                        <Button x:Name="btnEliminarLocalidad" Content="-" Style="{StaticResource BotonSalir}" Width="25" HorizontalAlignment="Right" Margin="0,0,10,0" Click="EliminarLocalidad" IsEnabled="False"/>
                     </DockPanel>
                 </StackPanel>
                 <DockPanel Width="250" Height="35" Margin="0,15,0,5">
