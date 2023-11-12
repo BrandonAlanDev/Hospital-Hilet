@@ -486,7 +486,14 @@ namespace MaquetaParaFinal.Clases
                     cmd.Parameters.AddWithValue("@nombre_paciente", nombre);
                     cmd.Parameters.AddWithValue("@apellido_paciente", apellido);
                     cmd.Parameters.AddWithValue("@fecha_nacimiento", Fecha_De_Nacimiento);
-                    cmd.Parameters.AddWithValue("@dni", Dni);
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@dni", Dni);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("DNI ya ingresado","Error",MessageBoxButton.OK,MessageBoxImage.Warning);
+                    }
                     cmd.Parameters.AddWithValue("@email", Email);
                     cmd.Parameters.AddWithValue("@telefono", Telefono);
                     cmd.Parameters.AddWithValue("@calle", Calle);

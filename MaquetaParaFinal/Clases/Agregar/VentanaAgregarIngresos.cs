@@ -75,6 +75,7 @@ namespace MaquetaParaFinal.View.Agregar
             AgregarMedico agregarMedico = new AgregarMedico();
             agregarMedico.ShowDialog();
             ActualizarMedicos();
+            txtMedico.SelectedValue = agregarMedico.medico;
         }
 
         private void ActualizarDNI()
@@ -117,6 +118,7 @@ namespace MaquetaParaFinal.View.Agregar
             AgregarPaciente agregarPaciente = new AgregarPaciente();
             agregarPaciente.ShowDialog();
             ActualizarDNI();
+            txtComboboxDni.SelectedValue = agregarPaciente.Dni;
         }
 
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();

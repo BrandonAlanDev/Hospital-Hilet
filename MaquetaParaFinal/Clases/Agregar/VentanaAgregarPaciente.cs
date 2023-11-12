@@ -12,11 +12,14 @@ using System.Windows.Automation;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
 using iText.Kernel.Colors;
+using System.Net;
 
 namespace MaquetaParaFinal.View.Agregar
 {
     public partial class AgregarPaciente : Window
     {
+        public string Dni { get; set; }
+
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
             { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
@@ -137,12 +140,13 @@ namespace MaquetaParaFinal.View.Agregar
                 try
                 {
                     int id = conectar.ObtenerId_Localidades(txtLocalidad.Text);
-                    conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, txtDni.Text, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, id);
+                    Dni = txtDni.Text;
+                    conectar.AgregarPaciente(txtNombre.Text, txtApellido.Text, txtFecha_De_Nacimiento.Text, Dni, txtEmail.Text, txtTelefono.Text, txtCalle.Text, txtNro.Text, txtPiso.Text, id);
                     LimpiarTxt();
                     MessageBox.Show("Agregado Correctamente");
                     this.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Compruebe Los Datos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
