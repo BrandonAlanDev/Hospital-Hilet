@@ -1,4 +1,5 @@
-﻿using MaquetaParaFinal.View;
+﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,20 @@ namespace MaquetaParaFinal
 {
     public partial class MainWindow : Window
     {
+        Conectar conectar = new Conectar();
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
             }
+        }
+
+        private void Principal_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (conectar.ObtenerId_Categorias("Sin Categoría") == -1) conectar.AgregarSinCategoria();
+
+            if (conectar.ObtenerId_Especialidades("Sin Especialidad") == -1) conectar.AgregarSinEspecialidad();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e) //Navigación mediante Ctrl

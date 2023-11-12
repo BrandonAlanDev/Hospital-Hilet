@@ -31,7 +31,7 @@ namespace MaquetaParaFinal.View
                 DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
                 conectar.EliminarCategorias(int.Parse(row["ID"].ToString()),conectar.ObtenerId_Categorias("Sin Categoría"));
                 txtNombre.Text = "Nombre";
-                DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
+                DataGridCategoria.ItemsSource = conectar.DescargaTablaCategoriasParaElDataGrid().DefaultView;
             }
         }
 
@@ -43,7 +43,7 @@ namespace MaquetaParaFinal.View
             mc.id = id;
             mc.txtNombreCategoria.Text = row["Categoria"].ToString();
             mc.ShowDialog();
-            DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
+            DataGridCategoria.ItemsSource = conectar.DescargaTablaCategoriasParaElDataGrid().DefaultView;
             DataGridCategoria.SelectedValue = id;
         }
 
@@ -51,14 +51,14 @@ namespace MaquetaParaFinal.View
         {
             AgregarCategorias ac = new AgregarCategorias();
             ac.ShowDialog();
-            DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
+            DataGridCategoria.ItemsSource = conectar.DescargaTablaCategoriasParaElDataGrid().DefaultView;
         }
 
         private void DataGridCategoria_Loaded(object sender, RoutedEventArgs e)
         {
             txtBuscar.Focus();
             try {
-                DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
+                DataGridCategoria.ItemsSource = conectar.DescargaTablaCategoriasParaElDataGrid().DefaultView;
             } catch { }
         }
 
@@ -96,7 +96,7 @@ namespace MaquetaParaFinal.View
                 {
                     DataGridCategoria.ItemsSource = conectar.BuscarEnTablaCategorias(txtBuscar.Text).DefaultView;
                 }
-            } else DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
+            } else DataGridCategoria.ItemsSource = conectar.DescargaTablaCategoriasParaElDataGrid().DefaultView;
         }
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
@@ -105,7 +105,7 @@ namespace MaquetaParaFinal.View
             {
                 DataGridCategoria.ItemsSource = conectar.BuscarEnTablaCategorias(txtBuscar.Text).DefaultView;
             }
-            else DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
+            else DataGridCategoria.ItemsSource = conectar.DescargaTablaCategoriasParaElDataGrid().DefaultView;
         }
     }
 }
