@@ -56,6 +56,7 @@ namespace MaquetaParaFinal.View.Modificar
             txtMedico.ItemsSource = null;
             txtMedico.Items.Clear();
             txtMedico.ItemsSource = data;
+            txtMedico.SelectedValue = medico;
         }
 
         private void txtMedico_Loaded(object sender, RoutedEventArgs e)
@@ -82,6 +83,7 @@ namespace MaquetaParaFinal.View.Modificar
             txtComboboxDni.ItemsSource = null;
             txtComboboxDni.Items.Clear();
             txtComboboxDni.ItemsSource = data;
+            txtComboboxDni.SelectedValue = pacientedni;
         }
 
         private void txtComboboxDni_Loaded(object sender, RoutedEventArgs e)
@@ -97,7 +99,7 @@ namespace MaquetaParaFinal.View.Modificar
                 int idmedico = conectar.ObtenerId_Profesionales(txtMedico.Text);
                 if (idpaciente != -1)
                 {
-                    // TO-DO ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    conectar.ModificarIngresos(ID, idpaciente, idmedico);
                     this.Close();
                 }
                 else MessageBox.Show("DNI No Cargado", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);

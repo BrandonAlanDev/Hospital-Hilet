@@ -93,12 +93,9 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView)DataGridIngresos.SelectedItem;
-            int id = int.Parse(row["ID"].ToString());
             AgregarIngreso agregarIngreso = new AgregarIngreso();
             agregarIngreso.ShowDialog();
             DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
-            DataGridIngresos.SelectedValue = id;
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
@@ -107,9 +104,10 @@ namespace MaquetaParaFinal.View
             {
                 DataRowView row = (DataRowView)DataGridIngresos.SelectedItem;
                 int id = int.Parse(row["ID"].ToString());
-                ModificarIngreso mi = new ModificarIngreso(id); // seleccionar la id
+                ModificarIngreso mi = new ModificarIngreso(id, row["Dni"].ToString(), row["Medico"].ToString());
                 mi.ShowDialog();
                 DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
+                DataGridIngresos.SelectedValue= id;
             }
             catch { }
         }
