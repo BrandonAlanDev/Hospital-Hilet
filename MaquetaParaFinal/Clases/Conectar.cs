@@ -24,7 +24,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT Pk_Id_Servicios AS ID " +
+                string consulta = "SELECT Pk_Id_Servicios AS ID, " +
                                     "Nombre_Servicio AS Servicio FROM Servicios " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
@@ -52,7 +52,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT DISTINCT Pk_Id_Localidades AS ID " +
+                string consulta = "SELECT DISTINCT Pk_Id_Localidades AS ID, " +
                                     "Nombre_Localidad AS Localidad FROM Localidades " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
@@ -80,7 +80,7 @@ namespace MaquetaParaFinal.Clases
             using(SqlConnection conexion = new SqlConnection (contrasenia))
             {
                 conexion.Open ();
-                string consulta = "SELECT Pk_Id_Tipos_De_Muestra AS ID " +
+                string consulta = "SELECT Pk_Id_Tipos_De_Muestra AS ID, " +
                                     "Nombre_Tipo_De_Muestra AS 'Tipo de Muestra' FROM TiposDeMuestras " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
@@ -95,7 +95,7 @@ namespace MaquetaParaFinal.Clases
             using( SqlConnection conexion = new SqlConnection (contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT Pk_Id_Categorias AS ID " +
+                string consulta = "SELECT Pk_Id_Categorias AS ID, " +
                                     "Nombre_Categoria AS Categoria FROM Categorias " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter ( consulta, conexion);

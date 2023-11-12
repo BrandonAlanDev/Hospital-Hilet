@@ -1,4 +1,5 @@
-﻿using MaquetaParaFinal.View.Agregar;
+﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.View.Agregar;
 using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace MaquetaParaFinal.View
 {
     public partial class Categorias : Page
     {
+        Conectar conectar = new Conectar();
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
@@ -39,12 +41,18 @@ namespace MaquetaParaFinal.View
 
         private void DataGridCategoria_Loaded(object sender, RoutedEventArgs e)
         {
-
+            txtBuscar.Focus();
+            try {
+                DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
+            } catch { }
         }
 
         private void DataGridCategoria_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-
+            if (e.Column.Header.ToString() == "ID")
+            {
+                e.Column.Visibility = Visibility.Hidden;
+            }
         }
 
         private void DataGridCategoria_SelectionChanged(object sender, SelectionChangedEventArgs e)
