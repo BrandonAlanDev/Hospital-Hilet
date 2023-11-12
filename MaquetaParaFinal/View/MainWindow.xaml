@@ -29,6 +29,7 @@
                 <Button x:Name="btnMedicos" Content="Medicos" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="305,0,0,0" Click="LoadMedicos" TabIndex="5"/>
                 <Button x:Name="btnPersonal" Content="Personal" Style="{StaticResource BotonSecundario}" Width="60" Height="20" HorizontalAlignment="Left" Margin="375,0,0,0" Click="LoadPersonal" TabIndex="6"/>
                 <Button x:Name="btnEspecialidades" Content="Especialidades" Style="{StaticResource BotonSecundario}" Width="90" Height="20" HorizontalAlignment="Left" Margin="445,0,0,0" Click="LoadEspecialidad" TabIndex="7"/>
+                <Button x:Name="btnCategorias" Content="Categorias" Style="{StaticResource BotonSecundario}" Width="90" Height="20" HorizontalAlignment="Left" Margin="545,0,0,0" Click="LoadCategorias" TabIndex="7"/>
             </Grid>
         </DockPanel>
         <DockPanel x:Name="Body" Background="#FF222222" Margin="0,75,0,0" >
