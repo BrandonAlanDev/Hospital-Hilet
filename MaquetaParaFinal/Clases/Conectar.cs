@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,7 @@ namespace MaquetaParaFinal.Clases
 {
     class Conectar
     {
-        string contrasenia = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
-            "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
+        string contrasenia = File.ReadAllText("D:Sql.txt");
 
         public DataTable DescargarTablaServicios()
         {
@@ -976,7 +976,7 @@ namespace MaquetaParaFinal.Clases
             {
                 conectar.Open();
                 string consulta = $"UPDATE Categorias SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Categorias = {id}; " +
-                    $"UPDATE PersonalLaboratorio SET Fk_Id_Categorias= {idSinCAT} WHERE Pk_Id_Categorias = {id};";
+                    $"UPDATE PersonalLaboratorio SET Fk_Id_Categorias= {idSinCAT} WHERE Fk_Id_Categorias = {id};";
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.ExecuteNonQuery();
@@ -985,15 +985,19 @@ namespace MaquetaParaFinal.Clases
         }
         public void EliminarTiposDeMuestra(int id)
         {
-            using(SqlConnection conectar = new SqlConnection(contrasenia))
+            try
             {
-                conectar.Open();
-                string consulta = $"UPDATE TiposDeMuestras SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Tipos_De_Muestra = {id}";
-                using(SqlCommand cmd = new SqlCommand(consulta,conectar))
+                using (SqlConnection conectar = new SqlConnection(contrasenia))
                 {
-                    cmd.ExecuteNonQuery();
+                    conectar.Open();
+                    string consulta = $"UPDATE TiposDeMuestras SET Fecha_Baja = '{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day}' WHERE Pk_Id_Tipos_De_Muestra = {id}";
+                    using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
+            catch{}
         }
         public void EliminarEspecialidad(int id,int idSinEsp)
         {
