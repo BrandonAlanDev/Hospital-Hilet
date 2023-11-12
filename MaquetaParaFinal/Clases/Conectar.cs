@@ -256,9 +256,9 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 string consulta = "SELECT i.Pk_Id_Ingresos AS ID, " +
-                    "CONCAT(p.Nombre_Paciente,' ',p.Apellido_Paciente) AS Paciente, " +
+                    "CONCAT(p.Apellido_Paciente,' ',p.Nombre_Paciente) AS Paciente, " +
                     "p.Dni, " +
-                    "CONCAT(pro.Nombre_Profesional,' ',pro.Apellido_Profesional) AS Medico, " +
+                    "CONCAT(pro.Apellido_Profesional,' ',pro.Nombre_Profesional) AS Medico, " +
                     "CONVERT(varchar,i.Fecha_Ingreso, 120) AS 'Fecha De Ingreso', " +
                     "CASE WHEN CONVERT(varchar, i.Retirado, 120) = '1111-11-11' THEN NULL ELSE CONVERT(varchar, i.Retirado, 120) END AS 'Fecha De Retiro', " +
                     "COUNT(pxi.Fk_Id_Ingresos) AS Practicas " +
@@ -268,8 +268,8 @@ namespace MaquetaParaFinal.Clases
                         "LEFT JOIN PracticasxIngresos AS pxi ON pxi.Fk_Id_Ingresos = i.Pk_Id_Ingresos " +
                     "WHERE p.Baja_Pacientes IS NULL AND pro.Baja_Profesional IS NULL " +
                     "GROUP BY " +
-                        "i.Pk_Id_Ingresos, CONCAT(p.Nombre_Paciente,' ',p.Apellido_Paciente), p.Dni, " +
-                        "CONCAT(pro.Nombre_Profesional,' ',pro.Apellido_Profesional), i.Fecha_Ingreso, i.Retirado " +
+                        "i.Pk_Id_Ingresos, CONCAT(p.Apellido_Paciente,' ',p.Nombre_Paciente), p.Dni, " +
+                        "CONCAT(pro.Apellido_Profesional,' ',pro.Nombre_Profesional), i.Fecha_Ingreso, i.Retirado " +
                     "ORDER BY " +
                         "Paciente, Dni, Medico, 'Fecha De Ingreso', 'Fecha De Retiro';";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
@@ -826,19 +826,17 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void ModificarIngresos(int id, string fecha_ingreso, string retirado, int fk_id_paciente, int fk_id_profesional)
+        public void ModificarIngresos(int id, int fk_id_paciente, int fk_id_profesional)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "UPDATE Ingresos SET Fecha_Ingreso = @fecha_ingreso, Retirado = @retirado, Fk_Id_Paciente = @fk_id_paciente, " +
+                string consulta = "UPDATE Ingresos SET Fk_Id_Paciente = @fk_id_paciente, " +
                     "Fk_Id_Profesionales = @fk_id_profesional WHERE Pk_Id_Ingresos = @pk_id_ingreso;";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@pk_id_ingreso", id);
-                    cmd.Parameters.AddWithValue("@fecha_ingreso", fecha_ingreso);
-                    cmd.Parameters.AddWithValue("@retirado", retirado);
                     cmd.Parameters.AddWithValue("@fk_id_paciente", fk_id_paciente);
                     cmd.Parameters.AddWithValue("@fk_id_profesional", fk_id_profesional);
                     cmd.ExecuteNonQuery();

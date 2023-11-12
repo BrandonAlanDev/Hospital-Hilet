@@ -17,12 +17,14 @@ namespace MaquetaParaFinal.View.Modificar
     public partial class ModificarIngreso : Window
     {
         int ID;
-        public ModificarIngreso(int idIngreso)
+        string pacientedni;
+        string medico;
+        public ModificarIngreso(int idIngreso, string pacientedni,string medico)
         {
             this.ID = idIngreso;
             InitializeComponent();
-
-            // TO-DO PONER EL MEDICO Y EL DNI PRESELECCIONADO SEGUN EL id INGRESO seleccionado
+            this.pacientedni = pacientedni;
+            this.medico = medico;
         }
     }
 }
