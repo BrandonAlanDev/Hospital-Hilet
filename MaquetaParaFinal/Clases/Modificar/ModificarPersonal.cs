@@ -126,7 +126,7 @@ namespace MaquetaParaFinal.View.Modificar
                     int cat = conectar.ObtenerId_Categorias(txtCategoria.Text);
                     int esp = conectar.ObtenerId_Especialidades(txtEspecialidad.Text);
                     conectar.ModificarPersonalLaboratorio(id,txtNombre.Text, txtDni.Text, txtApellido.Text, cat, esp);
-                    MessageBox.Show("Agregado Correctamente", "Agregado");
+                    MessageBox.Show("Modificado Correctamente", "Modificado");
                     this.Close();
                 }
                 catch
@@ -146,7 +146,9 @@ namespace MaquetaParaFinal.View.Modificar
         }
         private void btnAgregarCategoria_Click(object sender, RoutedEventArgs e)
         {
-
+            AgregarCategorias agregarCategorias = new AgregarCategorias();
+            agregarCategorias.ShowDialog();
+            CargarBoxCat();
         }
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
