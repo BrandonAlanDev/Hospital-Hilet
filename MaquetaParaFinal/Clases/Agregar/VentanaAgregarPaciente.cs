@@ -19,6 +19,7 @@ namespace MaquetaParaFinal.View.Agregar
     public partial class AgregarPaciente : Window
     {
         public string Dni { get; set; }
+        private bool email = false;
 
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
@@ -54,7 +55,18 @@ namespace MaquetaParaFinal.View.Agregar
                 }
             }
         }
+        private void ControlarEmail(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string input = textBox.Text;
+            string regEx = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
+            if (!Regex.IsMatch(input, regEx))
+            {
+                MessageBox.Show("Correo electrónico inválido. Por favor, ingrese un correo electrónico válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                email = false;
+            }else email = true;
+        }
         private void ControlarNombre(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -135,7 +147,7 @@ namespace MaquetaParaFinal.View.Agregar
         {
             if (TodosLosCamposLlenos()) 
             {
-                if (txtEmail.Text == "Email") txtEmail.Text = "";
+                if (email == false) txtEmail.Text = "";
                 if (txtTelefono.Text == "Teléfono") txtTelefono.Text = "";
                 try
                 {
