@@ -17,7 +17,7 @@ namespace MaquetaParaFinal.Clases
 {
     class Conectar
     {
-        string contrasenia = File.ReadAllText("D:Sql.txt");
+        string contrasenia = File.ReadAllText(@"D:\Sql.txt");
 
         public DataTable DescargarTablaServicios()
         {
