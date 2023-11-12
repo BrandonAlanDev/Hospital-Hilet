@@ -1107,7 +1107,11 @@ namespace MaquetaParaFinal.Clases
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@categoria", categoria);
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    if (cmd.ExecuteScalar() != null)
+                    {
+                        return Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                    else return -1;
                 }
             }
         }
@@ -1134,7 +1138,11 @@ namespace MaquetaParaFinal.Clases
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@especialidad", especialidad);
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    if (cmd.ExecuteScalar() != null)
+                    {
+                        return Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                    else return -1;
                 }
             }
         }
