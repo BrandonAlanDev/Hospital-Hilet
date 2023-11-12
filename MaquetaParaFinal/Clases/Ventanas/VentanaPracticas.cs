@@ -43,8 +43,9 @@ namespace MaquetaParaFinal.View
                 txtEspecialidades.Text = row["Especialidades"].ToString();
                 txtTiempo_Demora.Text = row["Tiempo De Demora"].ToString();
                 txtTipo_De_Muestra.Text = row["Tipo De Muestra"].ToString();
-                if (row["Tiempo De Demora"].ToString() == string.Empty) txtTiempo_Demora.Text = "Fecha"; 
-            }
+                if (row["Tiempo De Demora"].ToString() == string.Empty) txtTiempo_Demora.Text = "Fecha";
+                btEliminar.IsEnabled = true;
+            }else btEliminar.IsEnabled = false;
         }
 
         private void EnterBuscar(object sender, KeyEventArgs e)
