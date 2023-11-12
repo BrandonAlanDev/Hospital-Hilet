@@ -1,4 +1,5 @@
 ﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.Clases.Ventanas;
 using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;

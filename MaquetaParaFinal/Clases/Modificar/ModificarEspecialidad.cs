@@ -16,9 +16,13 @@ namespace MaquetaParaFinal.View.Modificar
 {
     public partial class ModificarEspecialidad : Window
     {
+        public int id { get; set; }
         private void txtNombreEspecialidad_LostFocus(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            if (txtNombreEspecialidad.Text == "Nombre") 
+            {
+                txtNombreEspecialidad.Text = "";
+            }
         }
 
         private void ControlarNombre(object sender, TextChangedEventArgs e)

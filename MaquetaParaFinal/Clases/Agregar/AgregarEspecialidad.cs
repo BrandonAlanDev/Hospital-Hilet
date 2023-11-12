@@ -55,7 +55,6 @@ namespace MaquetaParaFinal.View.Agregar
             if (txtNombreEspecialidad.Text != "Nombre") 
             {
                 conectar.AgregarEspecialidades(txtNombreEspecialidad.Text);
-                MessageBox.Show("Agregado Correctamente","Agregado");
                 this.Close();
             }
         }

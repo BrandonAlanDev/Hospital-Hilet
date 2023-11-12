@@ -8,7 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows;
 
-namespace MaquetaParaFinal.Clases
+namespace MaquetaParaFinal.Clases.Ventanas
 {
     public class Impresora
     {

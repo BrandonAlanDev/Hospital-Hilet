@@ -37,7 +37,7 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT Nombre_Especialidad AS Especialidad FROM Especialidades " +
+                string consulta = "SELECT Pk_Id_Especialidades AS ID, Nombre_Especialidad AS Especialidad FROM Especialidades " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
