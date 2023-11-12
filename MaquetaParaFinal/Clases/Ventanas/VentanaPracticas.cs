@@ -74,12 +74,18 @@ namespace MaquetaParaFinal.View
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
-            int id = int.Parse(row["ID"].ToString());
-            BajaPractica bp = new BajaPractica(id, row["Nombre"].ToString());
-            bp.ShowDialog();
-            DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
-            DataGridPracticas.SelectedValue = id;
+            MessageBoxResult resultado = MessageBox.Show($"¿Seguro que Desea Eliminar la Practica {txtNombre.Text}?","Confirmación",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            if (resultado == MessageBoxResult.Yes) 
+            {
+                DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
+                conectar.EliminarPracticas(int.Parse(row["ID"].ToString()));
+                DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+                txtNombre.Text = "Nombre";
+                txtEspecialidades.Text = "Especialidades";
+                txtTiempo_Demora.Text = "Tiempo De Demora";
+                txtTipo_De_Muestra.Text = "Tipo De Muestra";
+                txtTiempo_Demora.Text = "Fecha";
+            }
         }
     }
 }
