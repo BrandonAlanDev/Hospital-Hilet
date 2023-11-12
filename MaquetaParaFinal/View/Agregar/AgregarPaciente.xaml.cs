@@ -50,5 +50,23 @@ namespace MaquetaParaFinal.View.Agregar
         {
 
         }
+
+        private void AgregarNuevaLocalidad(object sender, RoutedEventArgs e)
+        {
+            AgregarLocalidad al = new AgregarLocalidad();
+            al.ShowDialog();
+            CargarLocalidades();
+            btnEliminarLocalidad.IsEnabled = false;
+        }
+
+        private void EliminarLocalidad(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HabilitarEliminar(object sender, SelectionChangedEventArgs e)
+        {
+            btnEliminarLocalidad.IsEnabled = true;
+        }
     }
 }
