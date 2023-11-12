@@ -18,13 +18,13 @@
                 <DockPanel Margin="10,20,10,0">
                     <Label Content="Nombre*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                     <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                        <TextBox x:Name="txtNombreLocalidad" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" LostFocus="txtNombreLocal_LostFocus" GotFocus="txtNombreLocal_GotFocus" TextChanged="ControlarNombre" KeyDown="txtNombreLocal_KeyDown" />
+                        <TextBox x:Name="txtNombreLocalidad" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" LostFocus="txtNombreLocal_LostFocus" GotFocus="txtNombreLocal_GotFocus" TextChanged="ControlarNombre" />
                     </Border>
                 </DockPanel>
                 <DockPanel Margin="10,0,10,0">
                     <Label Content="Codigo Postal*" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                     <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch" Background="#213555" CornerRadius="9">
-                        <TextBox x:Name="txtCodPostal" Margin="5,0,0,0" TextWrapping="Wrap" Text="Codigo Postal" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" LostFocus="txtCodLocal_LostFocus" GotFocus="txtCodLocal_GotFocus" TextChanged="SoloNumero" KeyDown="txtCodLocal_KeyDown" />
+                        <TextBox x:Name="txtCodPostal" Margin="5,0,0,0" TextWrapping="Wrap" Text="Codigo Postal" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" LostFocus="txtCodLocal_LostFocus" GotFocus="txtCodLocal_GotFocus" TextChanged="SoloNumero" />
                     </Border>
                 </DockPanel>
                 <DockPanel Width="250" Height="35" Margin="0,15,0,5">

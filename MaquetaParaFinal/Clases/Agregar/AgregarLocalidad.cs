@@ -75,16 +75,6 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
-        private void txtCodLocal_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void txtNombreLocal_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void btnAceptarAgLocalidad_Click(object sender, RoutedEventArgs e)
         {
             if (txtCodPostal.Text != "Codigo Postal" && txtNombreLocalidad.Text != "Nombre")
@@ -98,7 +88,10 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (e.LeftButton == MouseButtonState.Pressed) 
+            {
+                DragMove();
+            }
         }
     }
 }
