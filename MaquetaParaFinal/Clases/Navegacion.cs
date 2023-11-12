@@ -20,6 +20,7 @@ namespace MaquetaParaFinal
             btnMedicos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPersonal.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnEspecialidades.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnCategorias.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             btnHome.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnIngresos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
@@ -28,6 +29,7 @@ namespace MaquetaParaFinal
             btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnPersonal.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnEspecialidades.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnCategorias.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
 
             //Hacemos que el frame navegue a la page local Index, con una URI relativa, ya que no ponemos la ruta completa
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Index.xaml", UriKind.Relative));
@@ -41,6 +43,7 @@ namespace MaquetaParaFinal
             btnMedicos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPersonal.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnEspecialidades.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnCategorias.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             btnIngresos.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnHome.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
@@ -49,6 +52,7 @@ namespace MaquetaParaFinal
             btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnPersonal.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnEspecialidades.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnCategorias.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
 
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Ingresos.xaml", UriKind.Relative));
         }
@@ -61,6 +65,7 @@ namespace MaquetaParaFinal
             btnMedicos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPersonal.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnEspecialidades.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnCategorias.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             btnPacientes.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnIngresos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
@@ -69,6 +74,7 @@ namespace MaquetaParaFinal
             btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnPersonal.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnEspecialidades.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnCategorias.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
 
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Pacientes.xaml", UriKind.Relative));
         }
@@ -81,6 +87,7 @@ namespace MaquetaParaFinal
             btnMedicos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPersonal.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnEspecialidades.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnCategorias.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPacientes.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
@@ -89,6 +96,7 @@ namespace MaquetaParaFinal
             btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnPersonal.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnEspecialidades.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnCategorias.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
 
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Practicas.xaml", UriKind.Relative));
         }
@@ -101,6 +109,7 @@ namespace MaquetaParaFinal
             btnHome.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPersonal.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnEspecialidades.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnCategorias.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
@@ -109,6 +118,7 @@ namespace MaquetaParaFinal
             btnHome.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnPersonal.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnEspecialidades.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnCategorias.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
 
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Medicos.xaml", UriKind.Relative));
         }
@@ -122,6 +132,7 @@ namespace MaquetaParaFinal
             btnHome.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPersonal.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnEspecialidades.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnCategorias.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
@@ -130,6 +141,7 @@ namespace MaquetaParaFinal
             btnHome.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnPersonal.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnEspecialidades.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnCategorias.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
 
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Personal.xaml", UriKind.Relative));
         }
@@ -144,6 +156,7 @@ namespace MaquetaParaFinal
             btnHome.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnPersonal.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
             btnEspecialidades.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnCategorias.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
@@ -152,6 +165,31 @@ namespace MaquetaParaFinal
             btnHome.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnPersonal.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnEspecialidades.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnCategorias.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+
+            FrameNavegacion.NavigationService.Navigate(new Uri("View/Especialidad.xaml", UriKind.Relative));
+        }
+
+        private void LoadCategorias(object sender, RoutedEventArgs e)
+        {
+            btnMedicos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnPracticas.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnPersonal.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnPacientes.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnIngresos.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnHome.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnPersonal.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnEspecialidades.Background = new SolidColorBrush(Color.FromRgb(79, 112, 156));
+            btnCategorias.Background = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+
+            btnMedicos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnPracticas.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnPacientes.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnIngresos.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnHome.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnPersonal.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnEspecialidades.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
+            btnCategorias.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
             FrameNavegacion.NavigationService.Navigate(new Uri("View/Especialidad.xaml", UriKind.Relative));
         }
