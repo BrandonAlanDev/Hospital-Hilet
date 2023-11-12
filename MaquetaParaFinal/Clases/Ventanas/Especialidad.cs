@@ -105,7 +105,7 @@ namespace MaquetaParaFinal.View
             if (resultado == MessageBoxResult.Yes) 
             {
                 int id = int.Parse(row["ID"].ToString());
-                conectar.EliminarEspecialidad(id);
+                conectar.EliminarEspecialidad(id,conectar.ObtenerId_Especialidades("Sin Especialidad"));
                 txtNombre.Text = "Nombre";
                 DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
             }
