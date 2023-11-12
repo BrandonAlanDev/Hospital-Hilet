@@ -71,7 +71,11 @@ namespace MaquetaParaFinal.View
 
         private void DataGridEspecialidad_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+            txtBuscar.Focus();
+            try
+            {
+                DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+            }catch{}
         }
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)

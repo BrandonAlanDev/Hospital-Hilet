@@ -139,7 +139,9 @@ namespace MaquetaParaFinal.View.Agregar
         }
         private void btnAgregarCategoria_Click(object sender, RoutedEventArgs e)
         {
-           
+            AgregarCategorias agregarCategorias = new AgregarCategorias();
+            agregarCategorias.ShowDialog();
+            CargarBoxCat();
         }
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
