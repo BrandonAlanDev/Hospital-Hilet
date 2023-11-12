@@ -25,14 +25,13 @@ namespace MaquetaParaFinal.View
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
             MessageBoxResult resultado = MessageBox.Show($"¿Seguro que Desea Eliminar la Categoria {txtNombre.Text}?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (resultado == MessageBoxResult.Yes)
             {
-                int id = int.Parse(row["ID"].ToString());
-                conectar.EliminarCategorias(id);
+                DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
+                conectar.EliminarCategorias(int.Parse(row["ID"].ToString()));
                 txtNombre.Text = "Nombre";
-                DataGridCategoria.ItemsSource = conectar.DescargarTablaEspecialidades().DefaultView;
+                DataGridCategoria.ItemsSource = conectar.DescargaTablaCategorias().DefaultView;
             }
         }
 

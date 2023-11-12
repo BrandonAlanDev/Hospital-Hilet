@@ -37,7 +37,7 @@
                     <DockPanel>
                         <Label Content="Email" Margin="0,3,0,0" Width="100" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
                         <Border Margin="0,6,10,0"  HorizontalAlignment="Stretch"  Background="#213555" CornerRadius="9">
-                            <TextBox x:Name="txtEmail" Margin="5,0,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="4"/>
+                            <TextBox x:Name="txtEmail" Margin="5,0,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" TabIndex="4" LostFocus="ControlarEmail"/>
                         </Border>
                     </DockPanel>
                     <DockPanel>

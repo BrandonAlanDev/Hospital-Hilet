@@ -27,6 +27,7 @@ namespace MaquetaParaFinal.View
         {
             AgregarPersonal ap = new AgregarPersonal();
             ap.ShowDialog();
+            DataGridPersonal.ItemsSource = conectar.DescargaTablaPersonalLaboratorio().DefaultView;
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
@@ -55,7 +56,7 @@ namespace MaquetaParaFinal.View
                 {
                     DataRowView row = (DataRowView)DataGridPersonal.SelectedItem;
                     conectar.EliminarPersonalLaboratorio(int.Parse(row["ID"].ToString()));
-                    DataGridPersonal.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+                    DataGridPersonal.ItemsSource = conectar.DescargaTablaPersonalLaboratorio().DefaultView;
                 }
             }
         }
