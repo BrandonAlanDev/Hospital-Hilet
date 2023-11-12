@@ -31,8 +31,12 @@ namespace MaquetaParaFinal.View
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = (DataRowView)DataGridPersonal.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
             ModificarPersonal mp = new ModificarPersonal();
             mp.ShowDialog();
+            DataGridPersonal.ItemsSource = conectar.BuscarEnTablaPersonalLaboratorio(txtBuscar.Text).DefaultView;
+            DataGridPersonal.SelectedValue = id;
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)

@@ -87,12 +87,14 @@ namespace MaquetaParaFinal.View
             AgregarPaciente agregarPaciente = new AgregarPaciente();
             agregarPaciente.ShowDialog();
             DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
+
         }
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
-            ModificarPaciente modificarPaciente = new ModificarPaciente(); 
-            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem; // Lo hice con Row
-            modificarPaciente.Id = int.Parse(row["ID"].ToString());
+            ModificarPaciente modificarPaciente = new ModificarPaciente();
+            DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
+            modificarPaciente.Id = id;
             modificarPaciente.txtNombre.Text = row["Nombre"].ToString();
             modificarPaciente.txtApellido.Text = row["Apellido"].ToString();
             modificarPaciente.txtDni.Text = row["Dni"].ToString();
@@ -106,6 +108,7 @@ namespace MaquetaParaFinal.View
             modificarPaciente.txtPiso.Text = row["Piso"].ToString();
             modificarPaciente.ShowDialog();
             DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
+            DataGridPacientes.SelectedValue = id;
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)

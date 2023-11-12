@@ -80,10 +80,12 @@ namespace MaquetaParaFinal.View
         }
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView) DataGridMedicos.SelectedItem;
-            ModificarMedicos modificarMedico = new ModificarMedicos(int.Parse(row["ID"].ToString()),txtNombre.Text,txtApellido.Text,txtMatricula.Text,txtServicio.Text);
+            DataRowView row = (DataRowView)DataGridMedicos.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
+            ModificarMedicos modificarMedico = new ModificarMedicos(id, txtNombre.Text,txtApellido.Text,txtMatricula.Text,txtServicio.Text);
             modificarMedico.ShowDialog();
             DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+            DataGridMedicos.SelectedValue = id;
         }
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {

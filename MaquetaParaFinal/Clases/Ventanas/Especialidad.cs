@@ -97,7 +97,7 @@ namespace MaquetaParaFinal.View
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
             DataRowView row = (DataRowView)DataGridEspecialidad.SelectedItem;
-            MessageBoxResult resultado = MessageBox.Show($"Esta Seguro que desea Eliminar la Especialidad {txtNombre.Text}.","Confirmación",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            MessageBoxResult resultado = MessageBox.Show($"¿Esta Seguro que desea Eliminar la Especialidad {txtNombre.Text}?","Confirmación",MessageBoxButton.YesNo,MessageBoxImage.Question);
             if (resultado == MessageBoxResult.Yes) 
             {
                 int id = int.Parse(row["ID"].ToString());
