@@ -1057,6 +1057,7 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
+
         public int ObtenerId_Categorias(string categoria)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
@@ -1070,6 +1071,27 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
+
+        public int ObtenerId_Practica(string nombre)
+        {
+            using (SqlConnection conectar = new SqlConnection(contrasenia))
+            {
+                conectar.Open();
+                string consulta = $"SELECT Pk_Id_Practicas FROM Practicas WHERE Nombre_Practica = {nombre}";
+                using (SqlCommand cmd = new SqlCommand(consulta, conectar))
+                {
+                    if (cmd.ExecuteScalar() != null)
+                    {
+                        return Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+                }
+            }
+        }
+
         public int ObtenerId_TiposDeMuestras(string muestra)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))

@@ -1,5 +1,6 @@
 ﻿using MaquetaParaFinal.Clases;
 using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -65,5 +66,20 @@ namespace MaquetaParaFinal.View
             }else DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
         }
 
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPractica agregarPractica = new AgregarPractica();
+            agregarPractica.ShowDialog();
+        }
+
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
+            BajaPractica bp = new BajaPractica(id, row["Nombre"].ToString());
+            bp.ShowDialog();
+            DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+            DataGridPracticas.SelectedValue = id;
+        }
     }
 }

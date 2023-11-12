@@ -20,8 +20,8 @@
                     <ComboBox x:Name="txtPractica" Margin="0,3,0,0"  HorizontalAlignment="Left" Width="225" Text="Nombre" VerticalAlignment="Top" Style="{StaticResource Combos}" />
                 </DockPanel>
                 <DockPanel Width="250" Height="35" Margin="0,25,0,5">
-                    <Button x:Name="btnAceptarAgServicio" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarAgServicio_Click"/>
-                    <Button x:Name="btnCancelarAgServicio" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarAgServicio_Click"/>
+                    <Button x:Name="btnAceptarBrPractica" Content="Aceptar" Width="140" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="btnAceptarBrPractica_Click"/>
+                    <Button x:Name="btnCancelarBrPractica" Content="Cancelar" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="btnCancelarBrPractica_Click"/>
                 </DockPanel>
 
             </StackPanel>
