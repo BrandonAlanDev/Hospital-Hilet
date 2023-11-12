@@ -79,7 +79,7 @@ namespace MaquetaParaFinal.View.Agregar
             // Patrón para permitir solo números
             string regEx = @"^[0-9]{1,20}$";
 
-            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20))
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20) && input != "Dni" && input != "Teléfono" && input != "Nro")
             {
                 textBox.Text = Regex.Replace(input, @"[^0-9]", "");
                 textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length));
