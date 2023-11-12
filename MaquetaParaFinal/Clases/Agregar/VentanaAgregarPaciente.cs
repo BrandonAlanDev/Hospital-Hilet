@@ -63,7 +63,7 @@ namespace MaquetaParaFinal.View.Agregar
 
             if (!Regex.IsMatch(input, regEx))
             {
-                MessageBox.Show("Correo electrónico inválido. Por favor, ingrese un correo electrónico válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (input != "") MessageBox.Show("Correo electrónico inválido. Por favor, ingrese un correo electrónico válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 email = false;
             }else email = true;
         }
