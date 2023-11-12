@@ -52,11 +52,6 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
-        private void Principal_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ControlarNombre(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -215,6 +210,30 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void BuscarCodigoPostal(object sender, SelectionChangedEventArgs e) => CargarCodigoPostal();
 
+        private void AgregarNuevaLocalidad(object sender, RoutedEventArgs e)
+        {
+            AgregarLocalidad al = new AgregarLocalidad();
+            al.ShowDialog();
+            CargarLocalidades();
+            btnEliminarLocalidad.IsEnabled = false;
+        }
+
+        private void EliminarLocalidad(object sender, RoutedEventArgs e)
+        {
+            System.Media.SystemSounds.Beep.Play();
+            MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar la Localidad {txtLocalidad.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (resultado == MessageBoxResult.Yes)
+            {
+                int id = conectar.ObtenerId_Localidades(txtLocalidad.Text);
+                conectar.EliminarLocalidades(id);
+                CargarLocalidades();
+            }
+        }
+
+        private void HabilitarEliminar(object sender, SelectionChangedEventArgs e)
+        {
+            btnEliminarLocalidad.IsEnabled = true;
+        }
 
     }
 }
