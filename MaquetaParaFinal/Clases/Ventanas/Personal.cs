@@ -34,6 +34,12 @@ namespace MaquetaParaFinal.View
             DataRowView row = (DataRowView)DataGridPersonal.SelectedItem;
             int id = int.Parse(row["ID"].ToString());
             ModificarPersonal mp = new ModificarPersonal();
+            mp.id = id;
+            mp.txtNombre.Text = row["Nombre"].ToString();
+            mp.txtApellido.Text = row["Apellido"].ToString();
+            mp.txtDni.Text = row["Dni"].ToString();
+            mp.txtEspecialidad.SelectedValue = row["Especialidad"];
+            mp.txtCategoria.SelectedValue = row["Categoria"];
             mp.ShowDialog();
             DataGridPersonal.ItemsSource = conectar.BuscarEnTablaPersonalLaboratorio(txtBuscar.Text).DefaultView;
             DataGridPersonal.SelectedValue = id;

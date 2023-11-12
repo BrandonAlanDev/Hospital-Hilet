@@ -103,8 +103,8 @@ namespace MaquetaParaFinal.View
             modificarPaciente.txtTelefono.Text = row["Telefono"].ToString();
             modificarPaciente.txtCalle.Text = row["Calle"].ToString();
             modificarPaciente.txtNro.Text = row["Numero"].ToString();
-            modificarPaciente.txtLocalidad.Text = row["Localidad"].ToString();
-            modificarPaciente.txtCodPostas.Text = row["Codigo Postal"].ToString();
+            modificarPaciente.Localidad = row["Localidad"].ToString();
+            modificarPaciente.txtCodPostas.SelectedValue = row["Codigo Postal"];
             modificarPaciente.txtPiso.Text = row["Piso"].ToString();
             modificarPaciente.ShowDialog();
             DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;

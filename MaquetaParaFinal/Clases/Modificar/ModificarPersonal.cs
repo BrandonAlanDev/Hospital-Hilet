@@ -22,6 +22,8 @@ namespace MaquetaParaFinal.View.Modificar
     {
         Conectar conectar = new Conectar();
 
+        public int id { get; set; }
+
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string>
         {
             { "Nombre", "txtNombre" },
