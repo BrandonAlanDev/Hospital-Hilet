@@ -1196,28 +1196,19 @@ namespace MaquetaParaFinal.Clases
 
         public int ObtenerUltimaIDIngresos()
         {
-            int ultimaID = 0;
-
             using (SqlConnection connection = new SqlConnection(contrasenia))
             {
                 connection.Open();
-
-                // Ejecuta la consulta SQL para obtener la última ID de la tabla Ingresos
                 string query = "SELECT MAX(Pk_Id_Ingresos) AS UltimaID FROM Ingresos";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    if (command.ExecuteScalar() != null)
                     {
-                        if (reader.Read() && !reader.IsDBNull(0))
-                        {
-                            // Obtiene el valor de la última ID
-                            ultimaID = Convert.ToInt32(reader["UltimaID"]);
-                        }
+                        return Convert.ToInt32(command.ExecuteScalar());
                     }
+                    else return 0;
                 }
             }
-
-            return ultimaID;
         }
 
         public void AgregarSinCategoria()
