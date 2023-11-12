@@ -1,6 +1,7 @@
 ﻿using MaquetaParaFinal.Clases;
 using MaquetaParaFinal.Clases.Ventanas;
 using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -96,7 +97,15 @@ namespace MaquetaParaFinal.View
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                DataRowView row = (DataRowView)DataGridIngresos.SelectedItem;
+                int id = int.Parse(row["ID"].ToString());
+                ModificarIngreso mi = new ModificarIngreso(id); // seleccionar la id
+                mi.ShowDialog();
+                DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
+            }
+            catch { }
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
