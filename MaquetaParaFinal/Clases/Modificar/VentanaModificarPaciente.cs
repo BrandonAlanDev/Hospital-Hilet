@@ -20,6 +20,8 @@ namespace MaquetaParaFinal.View.Modificar
 
         public int Id { get; set; }
 
+        public string Localidad { get; set; }
+
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
             { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.
@@ -126,6 +128,12 @@ namespace MaquetaParaFinal.View.Modificar
             {
                 DragMove();
             }
+        }
+
+        private void Principal_Loaded(object sender, RoutedEventArgs e)
+        {
+            CargarLocalidades();
+            txtLocalidad.SelectedValue = Localidad;
         }
 
         private void btnAceptarAgPaciente_Click(object sender, RoutedEventArgs e)

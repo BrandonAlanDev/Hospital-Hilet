@@ -191,7 +191,7 @@ namespace MaquetaParaFinal
             btnEspecialidades.Foreground = new SolidColorBrush(Color.FromRgb(240, 240, 240));
             btnCategorias.Foreground = new SolidColorBrush(Color.FromRgb(79, 112, 156));
 
-            FrameNavegacion.NavigationService.Navigate(new Uri("View/Especialidad.xaml", UriKind.Relative));
+            FrameNavegacion.NavigationService.Navigate(new Uri("View/Categorias.xaml", UriKind.Relative));
         }
 
         private void btnSalir_Click(object sender, RoutedEventArgs e)

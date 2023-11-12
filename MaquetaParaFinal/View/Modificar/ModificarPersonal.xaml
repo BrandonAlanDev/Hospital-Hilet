@@ -10,7 +10,7 @@
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
         Title="ModificarMedico" Height="280" Width="350">
-    <Grid x:Name="Principal" MouseLeftButtonDown="Principal_MouseLeftButtonDown" >
+    <Grid x:Name="Principal" MouseLeftButtonDown="Principal_MouseLeftButtonDown" Loaded="Principal_Loaded">
         <Image x:Name="Logo" Width="40" Height="40" HorizontalAlignment="Left" Margin="-7,-7,0,0"  VerticalAlignment="Top" Source="/View/Agregar/logo.png"/>
         <Border Margin="5,5,0,0" CornerRadius="45" Background="#4F709C" BorderBrush="#8fc643" BorderThickness="5" Grid.ColumnSpan="2">
             <StackPanel>

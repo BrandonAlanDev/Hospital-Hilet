@@ -24,7 +24,8 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT Nombre_Servicio AS Servicio FROM Servicios " +
+                string consulta = "SELECT Pk_Id_Servicios AS ID, " +
+                                    "Nombre_Servicio AS Servicio FROM Servicios " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -32,12 +33,27 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+        public DataTable DescargarTablaEspecialidades()
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                conexion.Open();
+                string consulta = "SELECT Pk_Id_Especialidades AS ID, Nombre_Especialidad AS Especialidad FROM Especialidades " +
+                                    "WHERE (Fecha_Baja IS NULL)";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+
         public DataTable DescargarTablaLocalidades()
         {
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT DISTINCT Nombre_Localidad AS Localidad FROM Localidades " +
+                string consulta = "SELECT DISTINCT Pk_Id_Localidades AS ID, " +
+                                    "Nombre_Localidad AS Localidad FROM Localidades " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -59,26 +75,13 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public DataTable DescargaTablaEspecialidades()
-        {
-            using(SqlConnection conexion = new SqlConnection (contrasenia)) 
-            {
-                conexion.Open ();
-                string consulta = "SELECT Nombre_Especialidad AS Especialidad FROM Especialidades " +
-                                    "WHERE (Fecha_Baja IS NULL)";
-                SqlDataAdapter command = new SqlDataAdapter (consulta,conexion);
-                DataTable tabla = new DataTable();
-                command.Fill(tabla);
-                return tabla;
-            }
-        }
-
         public DataTable DescargaTablaTiposDeMuestra() 
         {
             using(SqlConnection conexion = new SqlConnection (contrasenia))
             {
                 conexion.Open ();
-                string consulta = "SELECT Nombre_Tipo_De_Muestra AS 'Tipo de Muestra' FROM TiposDeMuestras " +
+                string consulta = "SELECT Pk_Id_Tipos_De_Muestra AS ID, " +
+                                    "Nombre_Tipo_De_Muestra AS 'Tipo de Muestra' FROM TiposDeMuestras " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -92,7 +95,8 @@ namespace MaquetaParaFinal.Clases
             using( SqlConnection conexion = new SqlConnection (contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT Nombre_Categoria AS Categoria FROM Categorias " +
+                string consulta = "SELECT Pk_Id_Categorias AS ID, " +
+                                    "Nombre_Categoria AS Categoria FROM Categorias " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter ( consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -306,6 +310,23 @@ namespace MaquetaParaFinal.Clases
                 return tabla;
             }
         }
+        public DataTable BuscarEnTablaCategorias(string buscar)
+        {
+            buscar = buscar.ToLower();
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT " +
+                            $"Pk_Id_Categorias AS ID, " +
+                            $"Nombre_Categoria AS Categoria " +
+                        $"FROM Categorias " +
+                        $"WHERE " +
+                            $"LOWER(Nombre_Categoria) LIKE '%{buscar}%' AND (Fecha_Baja IS NULL)";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
 
         public DataTable BuscarEnTablaPersonalLaboratorio(string buscar)
         {
@@ -352,17 +373,36 @@ namespace MaquetaParaFinal.Clases
             buscar = buscar.ToLower();
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
-                string consulta = $"SELECT Pk_Id_Profesionales AS ID, " +
+                string consulta = $"SELECT " +
+                    $"Pk_Id_Profesionales AS ID, " +
                     $"Nombre_Profesional AS Nombre, " +
-                    $"Apellido_Profesional AS Apellido," +
+                    $"Apellido_Profesional AS Apellido, " +
                     $"Matricula, " +
-                    $"Nombre_Servicio AS Servicio FROM Profesionales " +
+                    $"Nombre_Servicio AS Servicio " +
+                    $"FROM Profesionales " +
                         $"INNER JOIN Servicios ON Fk_Id_Servicios = Pk_Id_Servicios " +
-                            $"WHERE LOWER(Nombre_Profesional) LIKE '%{buscar}%' OR " +
-                                $"LOWER(Apellido_Profesional) LIKE '%{buscar}%' OR " +
-                                $"LOWER(Matricula) LIKE '%{buscar}%' OR " +
-                                $"LOWER(Nombre_Servicio) LIKE '%{buscar}%' AND " +
-                                $"(Baja_Profesional IS NULL)";
+                    $"WHERE " +
+                        $"LOWER(Nombre_Profesional) LIKE '%{buscar}%' OR " +
+                        $"LOWER(Apellido_Profesional) LIKE '%{buscar}%' OR " +
+                        $"LOWER(Matricula) LIKE '%{buscar}%' OR " +
+                        $"LOWER(Nombre_Servicio) LIKE '%{buscar}%' AND " +
+                        $"(Baja_Profesional IS NULL)";
+                SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
+                DataTable tabla = new DataTable();
+                command.Fill(tabla);
+                return tabla;
+            }
+        }
+        public DataTable BuscarEnTablaEspecialidades(string buscar)
+        {
+            buscar = buscar.ToLower();
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                string consulta = $"SELECT Pk_Id_Especialidades AS ID, " +
+                                    $"Nombre_Especialidad AS Especialidad " +
+                                    $"FROM Especialidades " +
+                                    $"WHERE LOWER(Nombre_Especialidad) LIKE '%{buscar}%' AND " +
+                                    $"(Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -584,18 +624,19 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void AgregarPersonalLaboratorio(string nombre_personal, string apellido_personal, int fk_id_categorias, int fk_id_especialidades)
+        public void AgregarPersonalLaboratorio(string nombre_personal,string Dni, string apellido_personal, int fk_id_categorias, int fk_id_especialidades)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "INSERT INTO PersonalLaboratorio (Nombre_Personal, Apellido_Personal, Fk_Id_Categorias, Fk_Id_Especialidades) " +
-                    "VALUES (@nombre_personal, @apellido_personal, @fk_id_categorias, @fk_id_especialidades);";
+                string consulta = "INSERT INTO PersonalLaboratorio (Nombre_Personal, Apellido_Personal,Dni ,Fk_Id_Categorias, Fk_Id_Especialidades) " +
+                    "VALUES (@nombre_personal, @apellido_personal,@Dni ,@fk_id_categorias, @fk_id_especialidades);";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@nombre_personal", nombre_personal);
                     cmd.Parameters.AddWithValue("@apellido_personal", apellido_personal);
+                    cmd.Parameters.AddWithValue("@Dni", Dni);
                     cmd.Parameters.AddWithValue("@fk_id_categorias", fk_id_categorias);
                     cmd.Parameters.AddWithValue("@fk_id_especialidades", fk_id_especialidades);
                     cmd.ExecuteNonQuery();
@@ -764,12 +805,12 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public void ModificarPersonalLaboratorio(int id, string nombre, string apellido, int fk_id_categoria, int fk_id_especialidad)
+        public void ModificarPersonalLaboratorio(int id, string nombre,string dni ,string apellido, int fk_id_categoria, int fk_id_especialidad)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
             {
                 conectar.Open();
-                string consulta = "UPDATE PersonalLaboratorio SET Nombre_Personal = @nombre_personal, Apellido_Personal = @apellido_personal, Fk_Id_Categorias = @fk_id_categoria, " +
+                string consulta = "UPDATE PersonalLaboratorio SET Nombre_Personal = @nombre_personal, Apellido_Personal = @apellido_personal,Dni =@Dni, Fk_Id_Categorias = @fk_id_categoria, " +
                     "Fk_Id_Especialidades = @fk_id_especialidad WHERE Pk_Id_Personal_Laboratorio = @pk_id_personal_laboratorio;";
 
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
@@ -777,6 +818,7 @@ namespace MaquetaParaFinal.Clases
                     cmd.Parameters.AddWithValue("@pk_id_personal_laboratorio", id);
                     cmd.Parameters.AddWithValue("@nombre_personal", nombre);
                     cmd.Parameters.AddWithValue("@Apellido_Personal", apellido);
+                    cmd.Parameters.AddWithValue("@Dni", dni);
                     cmd.Parameters.AddWithValue("@fk_id_categoria", fk_id_categoria);
                     cmd.Parameters.AddWithValue("@fk_id_especialidad", fk_id_especialidad);
                     cmd.ExecuteNonQuery();
@@ -1065,7 +1107,14 @@ namespace MaquetaParaFinal.Clases
                 using (SqlCommand cmd = new SqlCommand(consulta, conectar))
                 {
                     cmd.Parameters.AddWithValue("@dni", dni);
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    if (cmd.ExecuteScalar() != null) 
+                    { 
+                        return Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                    else
+                    {
+                        return -1;
+                    }
                 }
             }
         }

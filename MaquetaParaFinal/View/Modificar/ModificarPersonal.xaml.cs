@@ -22,6 +22,13 @@ namespace MaquetaParaFinal.View.Modificar
         public ModificarPersonal()
         {
             InitializeComponent();
+            txtNombre.GotFocus += LimpiarTxt;
+            txtApellido.GotFocus += LimpiarTxt;
+            txtDni.GotFocus += LimpiarTxt;
+
+            txtNombre.LostFocus += RestaurarNombrePorDefecto;
+            txtApellido.LostFocus += RestaurarNombrePorDefecto;
+            txtDni.LostFocus += RestaurarNombrePorDefecto;
         }
     }
 }

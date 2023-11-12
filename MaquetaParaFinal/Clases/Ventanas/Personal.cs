@@ -31,18 +31,38 @@ namespace MaquetaParaFinal.View
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = (DataRowView)DataGridPersonal.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
             ModificarPersonal mp = new ModificarPersonal();
+            mp.id = id;
+            mp.txtNombre.Text = row["Nombre"].ToString();
+            mp.txtApellido.Text = row["Apellido"].ToString();
+            mp.txtDni.Text = row["Dni"].ToString();
+            mp.categoria = row["Categoria"].ToString();
+            mp.especialidad = row["Especialidad"].ToString();
             mp.ShowDialog();
+            DataGridPersonal.ItemsSource = conectar.BuscarEnTablaPersonalLaboratorio(txtBuscar.Text).DefaultView;
+            DataGridPersonal.SelectedValue = id;
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
-            //TO-DO
+            if (txtNombre.Text != "Nombre")
+            {
+                System.Media.SystemSounds.Beep.Play();
+                MessageBoxResult resultado = MessageBox.Show($"¿Estás seguro de que deseas eliminar a {txtNombre.Text} {txtApellido.Text}?", "Confirmar Eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (resultado == MessageBoxResult.Yes)
+                {
+                    DataRowView row = (DataRowView)DataGridPersonal.SelectedItem;
+                    conectar.EliminarPersonalLaboratorio(int.Parse(row["ID"].ToString()));
+                    DataGridPersonal.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+                }
+            }
         }
 
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            if (txtBuscar.Text.Length > 0)
+            if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
                 if (e.Key == Key.Enter)
                 {
@@ -53,7 +73,7 @@ namespace MaquetaParaFinal.View
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
         {
-            if (txtBuscar.Text.Length > 0)
+            if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
                 DataGridPersonal.ItemsSource = conectar.BuscarEnTablaPersonalLaboratorio(txtBuscar.Text).DefaultView;
             }

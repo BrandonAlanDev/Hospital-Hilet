@@ -34,9 +34,28 @@ namespace MaquetaParaFinal.View
             }
         }
 
+        private void DataGridMedicos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGridMedicos.SelectedItem != null)
+            {
+                DataRowView row = (DataRowView)DataGridMedicos.SelectedItem;
+                txtNombre.Text = row["Nombre"].ToString();
+                txtApellido.Text = row["Apellido"].ToString();
+                txtMatricula.Text = row["Matricula"].ToString();
+                txtServicio.Text = row["Servicio"].ToString();
+                btModificar.IsEnabled = true;
+                btEliminar.IsEnabled = true;
+            }
+            else
+            {
+                btModificar.IsEnabled = false;
+                btEliminar.IsEnabled = false;
+            }
+        }
+
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
-            if (txtBuscar.Text.Length >0) 
+            if (!string.IsNullOrWhiteSpace(txtBuscar.Text)) 
             { 
                 if (e.Key == Key.Enter)
                 {
@@ -47,7 +66,7 @@ namespace MaquetaParaFinal.View
 
         private void ClickBuscar(object sender, RoutedEventArgs e)
         {
-            if (txtBuscar.Text.Length > 0)
+            if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
                 DataGridMedicos.ItemsSource = conectar.BuscarEnTablaProfesionales(txtBuscar.Text).DefaultView;
             }else DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
@@ -61,10 +80,12 @@ namespace MaquetaParaFinal.View
         }
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView) DataGridMedicos.SelectedItem;
-            ModificarMedicos modificarMedico = new ModificarMedicos(int.Parse(row["ID"].ToString()),txtNombre.Text,txtApellido.Text,txtMatricula.Text,txtServicio.Text);
+            DataRowView row = (DataRowView)DataGridMedicos.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
+            ModificarMedicos modificarMedico = new ModificarMedicos(id, txtNombre.Text,txtApellido.Text,txtMatricula.Text,txtServicio.Text);
             modificarMedico.ShowDialog();
             DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+            DataGridMedicos.SelectedValue = id;
         }
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {

@@ -1,4 +1,5 @@
 ﻿using MaquetaParaFinal.Clases;
+using MaquetaParaFinal.Clases.Ventanas;
 using MaquetaParaFinal.View.Agregar;
 using System;
 using System.Collections.Generic;
@@ -61,7 +62,7 @@ namespace MaquetaParaFinal.View
 
         private void Buscar_Click(object sender, RoutedEventArgs e)
         {
-            if (txtBuscar.Text.Length > 0)
+            if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
                 DataGridIngresos.ItemsSource = conectar.BuscarEnTablaIngresos(txtBuscar.Text).DefaultView;
             }else DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
@@ -69,7 +70,7 @@ namespace MaquetaParaFinal.View
 
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            if (txtBuscar.Text.Length > 0)
+            if (!string.IsNullOrWhiteSpace(txtBuscar.Text))
             {
                 if (e.Key == Key.Enter)
                 {

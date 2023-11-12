@@ -22,6 +22,13 @@ namespace MaquetaParaFinal.View.Agregar
         public AgregarPersonal()
         {
             InitializeComponent();
+            txtNombre.GotFocus += LimpiarTxt;
+            txtApellido.GotFocus += LimpiarTxt;
+            txtDni.GotFocus += LimpiarTxt;
+
+            txtNombre.LostFocus += RestaurarNombrePorDefecto;
+            txtApellido.LostFocus += RestaurarNombrePorDefecto;
+            txtDni.LostFocus += RestaurarNombrePorDefecto;
         }
     }
 }

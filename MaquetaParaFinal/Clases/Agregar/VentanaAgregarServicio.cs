@@ -41,11 +41,11 @@ namespace MaquetaParaFinal.View.Agregar
             TextBox textBox = (TextBox)sender;
             string input = textBox.Text;
 
-            string regEx = @"^[A-Za-z ']{1,20}$";
+            string regEx = @"^[A-Za-zÁ-Úá-ú ']{1,20}$";
 
             if (!(Regex.IsMatch(input, regEx) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
             {
-                textBox.Text = Regex.Replace(input, @"[^A-Za-z ']", "");
+                textBox.Text = Regex.Replace(input, @"[^A-Za-zÁ-Úá-ú ']", "");
                 textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
                 textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
             }

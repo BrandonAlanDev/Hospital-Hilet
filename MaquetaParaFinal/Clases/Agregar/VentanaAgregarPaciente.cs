@@ -41,19 +41,33 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
+        private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
+        {
+            if (sender is TextBox textBox)
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
+                }
+            }
+        }
+
+        private void Principal_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void ControlarNombre(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
             string input = textBox.Text;
+            string regEx = @"^[A-Za-zÁ-Úá-ú ']{1,20}$";
 
-            // Patrón para permitir letras, espacios y comilla simple
-            string regEx = @"^[A-Za-z ']{1,20}$";
-
-            if (!(Regex.IsMatch(input, regEx ) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
+            if (!(Regex.IsMatch(input, regEx ) && input.Length <= 20))
             {
-                textBox.Text = Regex.Replace(input, @"[^A-Za-z ']", "");
-                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
-                textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
+                textBox.Text = Regex.Replace(input, @"[^A-Za-zÁ-Úá-ú ']", "");
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length));
+                textBox.Select(textBox.Text.Length, 0);
             }
         }
 
@@ -65,7 +79,7 @@ namespace MaquetaParaFinal.View.Agregar
             // Patrón para permitir solo números
             string regEx = @"^[0-9]{1,20}$";
 
-            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20))
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20) && input != "Dni" && input != "Teléfono" && input != "Nro")
             {
                 textBox.Text = Regex.Replace(input, @"[^0-9]", "");
                 textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length));
@@ -109,17 +123,6 @@ namespace MaquetaParaFinal.View.Agregar
             BotonFecha.Content = "Ingresar Fecha";
             datePickerPopup.IsOpen = false;
             BotonFecha.Focus();
-        }
-
-        private void RestaurarNombrePorDefecto(object sender, RoutedEventArgs e) // Para cuando se pierde el focus y queda vacio
-        {
-            if (sender is TextBox textBox)
-            {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                {
-                    textBox.Text = Dicpacientes.FirstOrDefault(nom => nom.Value == textBox.Name).Key; // Busca el nombre del campo en el diccionario
-                }
-            }
         }
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
