@@ -20,7 +20,6 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarPracticaPorIngreso : Window
     {
-        Conectar conectar=new Conectar();
         int idIngreso;
         public AgregarPracticaPorIngreso(int idIngreso)
         {
@@ -29,11 +28,5 @@ namespace MaquetaParaFinal.View.Agregar
             CargarPracticas();
         }
 
-        private void txtAgregarPractica_Click(object sender, RoutedEventArgs e)
-        {
-            AgregarPractica agregarPractica = new AgregarPractica();
-            agregarPractica.ShowDialog();
-
-        }
     }
 }

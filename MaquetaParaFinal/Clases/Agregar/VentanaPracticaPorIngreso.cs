@@ -64,12 +64,6 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
-        private void ModificarPractica(object sender, RoutedEventArgs e) 
-        {
-
-            ActualizarPracticas(idIngreso);
-        }
-
         private void AgregarPractica(object sender, RoutedEventArgs e)
         {
             AgregarPracticaPorIngreso agregar = new AgregarPracticaPorIngreso(idIngreso);

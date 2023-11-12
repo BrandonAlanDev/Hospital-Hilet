@@ -1,5 +1,6 @@
 ﻿using MaquetaParaFinal.Clases;
 using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -65,5 +66,26 @@ namespace MaquetaParaFinal.View
             }else DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
         }
 
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPractica agregarPractica = new AgregarPractica();
+            agregarPractica.ShowDialog();
+        }
+
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult resultado = MessageBox.Show($"¿Seguro que Desea Eliminar la Practica {txtNombre.Text}?","Confirmación",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            if (resultado == MessageBoxResult.Yes) 
+            {
+                DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
+                conectar.EliminarPracticas(int.Parse(row["ID"].ToString()));
+                DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
+                txtNombre.Text = "Nombre";
+                txtEspecialidades.Text = "Especialidades";
+                txtTiempo_Demora.Text = "Tiempo De Demora";
+                txtTipo_De_Muestra.Text = "Tipo De Muestra";
+                txtTiempo_Demora.Text = "Fecha";
+            }
+        }
     }
 }

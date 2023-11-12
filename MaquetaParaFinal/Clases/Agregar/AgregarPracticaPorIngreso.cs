@@ -12,6 +12,8 @@ namespace MaquetaParaFinal.View.Agregar
 {
     public partial class AgregarPracticaPorIngreso : Window
     {
+        Conectar conectar = new Conectar();
+
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -19,13 +21,22 @@ namespace MaquetaParaFinal.View.Agregar
                 DragMove();
             }
         }
+
         private void btnCancelarAgServicio_Click(object sender, RoutedEventArgs e) => this.Close();
+
+        private void txtAgregarPractica_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPractica agregarPractica = new AgregarPractica();
+            agregarPractica.ShowDialog();
+
+        }
 
         private void btnAceptarAgServicio_Click(object sender, RoutedEventArgs e)
         {
             if(txtPractica.Text !=null) conectar.AgregarPracticasxIngresos(idIngreso,conectar.BuscarPractica(txtPractica.Text));
             this.Close();
         }
+
         private void CargarPracticas()
         {
             DataTable dtPractica = conectar.DescargarTablaPracticas();

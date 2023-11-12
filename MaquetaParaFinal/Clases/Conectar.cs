@@ -1057,6 +1057,7 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
+
         public int ObtenerId_Categorias(string categoria)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
@@ -1070,6 +1071,7 @@ namespace MaquetaParaFinal.Clases
                 }
             }
         }
+
         public int ObtenerId_TiposDeMuestras(string muestra)
         {
             using (SqlConnection conectar = new SqlConnection(contrasenia))
