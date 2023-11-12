@@ -1,4 +1,5 @@
 ﻿using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,5 +28,16 @@ namespace MaquetaParaFinal.View
             InitializeComponent();
         }
 
+        private void btAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            AgregarPractica agregarPractica = new AgregarPractica();
+            agregarPractica.ShowDialog();
+        }
+
+        private void btEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            BajaPractica bp = new BajaPractica();
+            bp.ShowDialog();
+        }
     }
 }

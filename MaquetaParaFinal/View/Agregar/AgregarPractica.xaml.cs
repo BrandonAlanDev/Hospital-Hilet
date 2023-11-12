@@ -25,5 +25,12 @@ namespace MaquetaParaFinal.View.Agregar
         {
             InitializeComponent();
         }
+
+        private void AgregarEsp(object sender, RoutedEventArgs e)
+        {
+            AgregarEspecialidad ae = new AgregarEspecialidad();
+            ae.ShowDialog();
+            CargarEnBoxEspecilidad();
+        }
     }
 }

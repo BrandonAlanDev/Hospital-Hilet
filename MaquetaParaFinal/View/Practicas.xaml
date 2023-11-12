@@ -55,9 +55,16 @@
                                 <Border Margin="-10,6,10,0"  HorizontalAlignment="Right" Width="120" Background="#213555" CornerRadius="9">
                                     <TextBox x:Name="txtEspecialidades" Margin="5,0,0,0" TextWrapping="Wrap" Text="Especialidades" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
                                 </Border>
-                            </DockPanel>
+                            </DockPanel> 
                         </StackPanel>
+                        
                     </StackPanel>
+                    <Grid VerticalAlignment="Bottom" Height="130" Background="#213555">
+                        <Label HorizontalAlignment="Center"  Content="Tipos de Practica" FontWeight="Bold" Foreground="#F0F0F0" FontSize="20" />
+                        <Button x:Name="btAgregar" Content="Dar de alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="180" Style="{StaticResource BotonPrimario}" Click="btAgregar_Click" />
+                        <Button x:Name="btEliminar" Content="Dar de baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="180" Style="{StaticResource BotonSalir}" Click="btEliminar_Click"/>
+
+                    </Grid>
                 </Grid>
             </Grid>
 

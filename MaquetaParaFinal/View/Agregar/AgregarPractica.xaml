@@ -30,8 +30,9 @@
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Especialidad*" Margin="0,3,0,0" Width="130" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
-                        <ComboBox x:Name="txtEspecialidad" Margin="0,6,10,0"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}">
+                        <ComboBox x:Name="txtEspecialidad" Width="120" Margin="0,2,10,2"  HorizontalAlignment="Stretch" Style="{StaticResource Combos}">
                         </ComboBox>
+                        <Button Style="{StaticResource BotonPrimario}" Content="+" Width="25" HorizontalAlignment="Right" Margin="0,0,10,0" Click="AgregarEsp"/>
                     </DockPanel>
                     <DockPanel>
                         <Label Content="Tipo De Muestra*" Margin="0,3,0,0" Width="130" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
