@@ -40,6 +40,16 @@ namespace MaquetaParaFinal.View.Agregar
             }
         }
 
+        private void txtTiempoResultado_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtTiempoResultado.Text == "") txtTiempoResultado.Text = "Tiempo";
+        }
+
+        private void txtTiempoResultado_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txtTiempoResultado.Text == "Tiempo") txtTiempoResultado.Text = "";
+        }
+
         private void btnCancelar_Click(object sender, RoutedEventArgs e) => this.Close();
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -128,14 +138,13 @@ namespace MaquetaParaFinal.View.Agregar
             TextBox textBox = (TextBox)sender;
             string input = textBox.Text;
 
-            // Patrón para permitir solo números
             string regEx = @"^[0-9]{1,20}$";
 
-            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20)) // La entrada no cumple con el patrón, elimina caracteres no válidos
+            if (!(Regex.IsMatch(input, regEx) && input.Length <= 20) && input != "Tiempo")
             {
                 textBox.Text = Regex.Replace(input, @"[^0-9]", "");
-                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length)); // Limita a 20 caracteres
-                textBox.Select(textBox.Text.Length, 0); // Coloca el cursor al final del texto
+                textBox.Text = textBox.Text.Substring(0, Math.Min(20, textBox.Text.Length));
+                textBox.Select(textBox.Text.Length, 0);
             }
         }
 
