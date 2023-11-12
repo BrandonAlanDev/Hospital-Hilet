@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Index">
 
-    <StackPanel x:Name="Contenedor" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <StackPanel x:Name="Contenedor" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Image x:Name="Logo" Source="/View/logo.png" MaxHeight="250"/>
         <Label Content="Bienvenido al Hospital HILET" HorizontalAlignment="Center" Foreground="#F0F0F0" FontSize="25" FontWeight="Bold"/>
         <Label Content="Servicio de primera calidad desde 1993" HorizontalAlignment="Center" Foreground="#F0F0F0" FontSize="16" FontWeight="SemiBold"/>

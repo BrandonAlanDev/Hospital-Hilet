@@ -321,7 +321,8 @@ namespace MaquetaParaFinal.Clases
                             $"Nombre_Categoria AS Categoria " +
                         $"FROM Categorias " +
                         $"WHERE " +
-                            $"LOWER(Nombre_Categoria) LIKE '%{buscar}%' AND (Fecha_Baja IS NULL)";
+                            $"LOWER(Nombre_Categoria) LIKE '%{buscar}%' AND (Fecha_Baja IS NULL) " +
+                            $"AND (Nombre_Categoria) NOT LIKE '%Sin Categoría%'";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -403,7 +404,7 @@ namespace MaquetaParaFinal.Clases
                                     $"Nombre_Especialidad AS Especialidad " +
                                     $"FROM Especialidades " +
                                     $"WHERE LOWER(Nombre_Especialidad) LIKE '%{buscar}%' AND " +
-                                    $"(Fecha_Baja IS NULL)";
+                                    $"(Fecha_Baja IS NULL) AND (Nombre_Especialidad) NOT LIKE '%Sin Especialidad%' ";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
                 command.Fill(tabla);
@@ -1195,28 +1196,44 @@ namespace MaquetaParaFinal.Clases
 
         public int ObtenerUltimaIDIngresos()
         {
-            int ultimaID = 0;
-
             using (SqlConnection connection = new SqlConnection(contrasenia))
             {
                 connection.Open();
-
-                // Ejecuta la consulta SQL para obtener la última ID de la tabla Ingresos
                 string query = "SELECT MAX(Pk_Id_Ingresos) AS UltimaID FROM Ingresos";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    if (command.ExecuteScalar() != null)
                     {
-                        if (reader.Read() && !reader.IsDBNull(0))
-                        {
-                            // Obtiene el valor de la última ID
-                            ultimaID = Convert.ToInt32(reader["UltimaID"]);
-                        }
+                        return Convert.ToInt32(command.ExecuteScalar());
                     }
+                    else return 0;
                 }
             }
+        }
 
-            return ultimaID;
+        public void AgregarSinCategoria()
+        {
+            using(SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                conexion.Open();
+                string consulta = "INSERT INTO Categorias (Nombre_Categoria) VALUES ('Sin Categoría')";
+                using ( SqlCommand cmd = new SqlCommand ( consulta, conexion)) 
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void AgregarSinEspecialidad()
+        {
+            using (SqlConnection conexion = new SqlConnection(contrasenia))
+            {
+                conexion.Open();
+                string consulta = "INSERT INTO Especialidades (Nombre_Especialidad) VALUES ('Sin Especialidad')";
+                using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
     }
