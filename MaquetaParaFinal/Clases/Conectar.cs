@@ -24,7 +24,8 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT Nombre_Servicio AS Servicio FROM Servicios " +
+                string consulta = "SELECT Pk_Id_Servicios AS ID " +
+                                    "Nombre_Servicio AS Servicio FROM Servicios " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -51,7 +52,8 @@ namespace MaquetaParaFinal.Clases
             using (SqlConnection conexion = new SqlConnection(contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT DISTINCT Nombre_Localidad AS Localidad FROM Localidades " +
+                string consulta = "SELECT DISTINCT Pk_Id_Localidades AS ID " +
+                                    "Nombre_Localidad AS Localidad FROM Localidades " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -73,26 +75,13 @@ namespace MaquetaParaFinal.Clases
             }
         }
 
-        public DataTable DescargaTablaEspecialidades()
-        {
-            using(SqlConnection conexion = new SqlConnection (contrasenia)) 
-            {
-                conexion.Open ();
-                string consulta = "SELECT Nombre_Especialidad AS Especialidad FROM Especialidades " +
-                                    "WHERE (Fecha_Baja IS NULL)";
-                SqlDataAdapter command = new SqlDataAdapter (consulta,conexion);
-                DataTable tabla = new DataTable();
-                command.Fill(tabla);
-                return tabla;
-            }
-        }
-
         public DataTable DescargaTablaTiposDeMuestra() 
         {
             using(SqlConnection conexion = new SqlConnection (contrasenia))
             {
                 conexion.Open ();
-                string consulta = "SELECT Nombre_Tipo_De_Muestra AS 'Tipo de Muestra' FROM TiposDeMuestras " +
+                string consulta = "SELECT Pk_Id_Tipos_De_Muestra AS ID " +
+                                    "Nombre_Tipo_De_Muestra AS 'Tipo de Muestra' FROM TiposDeMuestras " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                 DataTable tabla = new DataTable();
@@ -106,7 +95,8 @@ namespace MaquetaParaFinal.Clases
             using( SqlConnection conexion = new SqlConnection (contrasenia))
             {
                 conexion.Open();
-                string consulta = "SELECT Nombre_Categoria AS Categoria FROM Categorias " +
+                string consulta = "SELECT Pk_Id_Categorias AS ID " +
+                                    "Nombre_Categoria AS Categoria FROM Categorias " +
                                     "WHERE (Fecha_Baja IS NULL)";
                 SqlDataAdapter command = new SqlDataAdapter ( consulta, conexion);
                 DataTable tabla = new DataTable();
