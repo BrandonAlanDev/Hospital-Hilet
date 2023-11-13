@@ -318,7 +318,8 @@ namespace MaquetaParaFinal.Clases
                         "p.Nombre_Practica AS Nombre, " +
                         "CONVERT(varchar,p.Tiempo_Demora,120) AS 'Horas de Demora', " +
                         "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
-                        "e.Nombre_Especialidad AS Especialidades " +
+                        "e.Nombre_Especialidad AS Especialidades, " +
+                        "pxi.Resultado_Practica AS Resultado " +
                         "FROM Practicas AS p " +
                             "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
                             "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +

@@ -20,6 +20,9 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class VentanaPracticaPorIngreso : Window
     {
+        private void AgregarResultado(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

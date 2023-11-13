@@ -30,7 +30,8 @@
                 <Grid>
 
                     <Button x:Name="btnAgregar" Content="Agregar" Width="100" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="AgregarPractica" Margin="15,0,110,15"/>
-                    <Button x:Name="btnEliminar" Content="Eliminar" Width="90" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonSalir}" Click="EliminarPractica" Margin="125,0,15,15"/>
+                    <Button x:Name="btnResultado" Content="Resultado" Width="90" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="AgregarResultado" Margin="125,0,15,15"/>
+                    <Button x:Name="btnEliminar" Content="Eliminar" Width="90" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonSalir}" Click="EliminarPractica" Margin="225,0,15,15"/>
                     
                     <Button x:Name="btnSalir" Content="Salir" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="Salir" Margin="0,0,15,15"/>
 
