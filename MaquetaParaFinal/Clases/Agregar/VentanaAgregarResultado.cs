@@ -23,6 +23,7 @@ namespace MaquetaParaFinal.View.Agregar
             this.id = idPxi;
             InitializeComponent();
             txtResultado.Text = resultado;
+            txtResultado.Focus();
         }
 
         private void txtResultado_GotFocus(object sender, RoutedEventArgs e)
