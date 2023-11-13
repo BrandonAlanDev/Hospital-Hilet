@@ -13,12 +13,12 @@
         <DockPanel x:Name="Body" Background="Pink" >
             <Grid x:Name="MenuCategoria">
                 <Grid Background="#213555" Margin="0,0,225,0" >
-                    <Label Content="Buscar" Foreground="#F0F0F0" FontFamily="Roboto" FontSize="15"/>
-                    <TextBox x:Name="txtBuscar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,6,0,0" TextWrapping="Wrap" Text="" Width="120" PreviewKeyDown="EnterBuscar" />
-                    <Button x:Name="btAceptarBusqueda" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,5,0,0" Content="Buscar" Height="20" Width="62" Style="{StaticResource BotonSecundario}" PreviewKeyDown="EnterBuscar" Click="ClickBuscar"/>
+                    <Label Content="Buscar" Foreground="#F0F0F0" FontFamily="Roboto" FontSize="15" />
+                    <TextBox x:Name="txtBuscar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,6,0,0" TextWrapping="Wrap" Text="" Width="120" PreviewKeyDown="EnterBuscar" TabIndex="1"/>
+                    <Button x:Name="btAceptarBusqueda" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,5,0,0" Content="Buscar" Height="20" Width="62" Style="{StaticResource BotonSecundario}" TabIndex="2" PreviewKeyDown="EnterBuscar" Click="ClickBuscar"/>
                 </Grid>
                 <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,225,0" >
-                    <DataGrid x:Name="DataGridCategoria" SelectedValuePath="ID" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Loaded="DataGridCategoria_Loaded" Background="#213555"
+                    <DataGrid x:Name="DataGridCategoria" SelectedValuePath="ID" TabIndex="6" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Loaded="DataGridCategoria_Loaded" Background="#213555"
                               RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" AutoGeneratingColumn="DataGridCategoria_AutoGeneratingColumn" SelectionChanged="DataGridCategoria_SelectionChanged" >
                         <DataGrid.ColumnHeaderStyle>
                             <StaticResource ResourceKey="HeaderGrilla" />
@@ -41,9 +41,9 @@
                         </StackPanel>
                     </StackPanel>
                     <Grid>
-                        <Button x:Name="btAgregar" Content="+ Alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,50" Height="30" Width="70" Style="{StaticResource BotonPrimario}" Click="btAgregar_Click" />
-                        <Button x:Name="btModificar" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False" Click="btModificar_Click"/>
-                        <Button x:Name="btEliminar" Content="- Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="180" Style="{StaticResource BotonSalir}" Click="btEliminar_Click" IsEnabled="False"/>
+                        <Button x:Name="btAgregar" TabIndex="3" Content="+ Alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,130,50" Height="30" Width="70" Style="{StaticResource BotonPrimario}" Click="btAgregar_Click" />
+                        <Button x:Name="btModificar" TabIndex="4" Content="Modificar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="100" Style="{StaticResource BotonPrimario}" IsEnabled="False" Click="btModificar_Click"/>
+                        <Button x:Name="btEliminar" TabIndex="5" Content="- Baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="180" Style="{StaticResource BotonSalir}" Click="btEliminar_Click" IsEnabled="False"/>
 
                     </Grid>
                 </Grid>

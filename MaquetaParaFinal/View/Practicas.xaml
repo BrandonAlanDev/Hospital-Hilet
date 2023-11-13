@@ -18,7 +18,7 @@
                     <Button x:Name="btAceptarBusqueda" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,5,0,0" Content="Buscar" Height="20" Width="62" Style="{StaticResource BotonSecundario}" TabIndex="2" PreviewKeyDown="EnterBuscar" Click="ClickBuscar"/>
                 </Grid>
                 <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,225,0" >
-                    <DataGrid x:Name="DataGridPracticas" SelectedValuePath="ID" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Background="#213555"
+                    <DataGrid x:Name="DataGridPracticas" TabIndex="5" SelectedValuePath="ID" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Background="#213555"
                               RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" Loaded="DataGridPacticas_Loaded" SelectionChanged="DataGridPracticas_SelectionChanged" AutoGeneratingColumn="DataGridPracticas_AutoGeneratingColumn" >
                         <DataGrid.ColumnHeaderStyle>
                             <StaticResource ResourceKey="HeaderGrilla" />
@@ -61,8 +61,8 @@
                     </StackPanel>
                     <Grid VerticalAlignment="Bottom" Height="130" Background="#213555">
                         <Label HorizontalAlignment="Center"  Content="Tipos de Practica" FontWeight="Bold" Foreground="#F0F0F0" FontSize="20" />
-                        <Button x:Name="btAgregar" Content="Dar de alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="180" Style="{StaticResource BotonPrimario}" Click="btAgregar_Click" />
-                        <Button x:Name="btEliminar" IsEnabled="False" Content="Dar de baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="180" Style="{StaticResource BotonSalir}" Click="btEliminar_Click"/>
+                        <Button x:Name="btAgregar" TabIndex="3" Content="Dar de alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="180" Style="{StaticResource BotonPrimario}" Click="btAgregar_Click" />
+                        <Button x:Name="btEliminar" TabIndex="4" IsEnabled="False" Content="Dar de baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="180" Style="{StaticResource BotonSalir}" Click="btEliminar_Click"/>
 
                     </Grid>
                 </Grid>
