@@ -74,10 +74,12 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = (DataRowView)DataGridMedicos.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
             AgregarMedico agregarMedico = new AgregarMedico();
             agregarMedico.ShowDialog();
             DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
-            Limpiar();
+            DataGridMedicos.SelectedValue = id;
         }
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
