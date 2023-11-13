@@ -17,7 +17,7 @@ namespace MaquetaParaFinal.Clases
 {
     class Conectar
     {
-        string contrasenia2 = File.ReadAllText(@"D:\Sql.txt");
+        //string contrasenia2 = File.ReadAllText(@"D:\Sql.txt");
         string contrasenia = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
                 "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
 

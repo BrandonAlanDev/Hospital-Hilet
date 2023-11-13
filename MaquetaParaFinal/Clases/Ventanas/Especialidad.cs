@@ -78,12 +78,16 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView)DataGridEspecialidad.SelectedItem;
-            int id = int.Parse(row["ID"].ToString());
+            int id = 0;
+            if (DataGridEspecialidad.SelectedItem != null) 
+            { 
+                DataRowView row = (DataRowView)DataGridEspecialidad.SelectedItem;
+                id = int.Parse(row["ID"].ToString());
+            }
             AgregarEspecialidad ag = new AgregarEspecialidad();
             ag.ShowDialog();
             DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidadesParaElDataGrid().DefaultView;
-            DataGridEspecialidad.SelectedValue = id;
+            if (DataGridEspecialidad.SelectedItem != null) DataGridEspecialidad.SelectedValue = id;
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)

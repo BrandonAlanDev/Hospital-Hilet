@@ -49,12 +49,17 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
-            int id = int.Parse(row["ID"].ToString());
+            int id = 0;
+            if (DataGridCategoria.SelectedItem != null) 
+            { 
+                DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
+                id = int.Parse(row["ID"].ToString());
+             
+            }
             AgregarCategorias ac = new AgregarCategorias();
             ac.ShowDialog();
             DataGridCategoria.ItemsSource = conectar.DescargaTablaCategoriasParaElDataGrid().DefaultView;
-            DataGridCategoria.SelectedValue= id;
+            if (DataGridCategoria.SelectedItem != null) DataGridCategoria.SelectedValue= id;
         }
 
         private void DataGridCategoria_Loaded(object sender, RoutedEventArgs e)

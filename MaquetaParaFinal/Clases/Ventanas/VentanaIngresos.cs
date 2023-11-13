@@ -95,12 +95,16 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView)DataGridIngresos.SelectedItem;
-            int id = int.Parse(row["ID"].ToString());
+            int id = 0;
+            if (DataGridIngresos.SelectedItem != null) 
+            { 
+                DataRowView row = (DataRowView)DataGridIngresos.SelectedItem;
+                id = int.Parse(row["ID"].ToString());          
+            }
             AgregarIngreso agregarIngreso = new AgregarIngreso();
             agregarIngreso.ShowDialog();
             DataGridIngresos.ItemsSource = conectar.DescargarTablaIngresos().DefaultView;
-            DataGridIngresos.SelectedValue = id;
+            if (DataGridIngresos.SelectedItem != null) DataGridIngresos.SelectedValue = id;
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)

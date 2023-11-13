@@ -69,12 +69,16 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
-            int id = int.Parse(row.Row["id"].ToString());
+            int id = 0;
+            if (DataGridPracticas.SelectedItem != null)
+            {
+                DataRowView row = (DataRowView)DataGridPracticas.SelectedItem;
+               id = int.Parse(row.Row["id"].ToString());
+            }
             AgregarPractica agregarPractica = new AgregarPractica();
             agregarPractica.ShowDialog();
             DataGridPracticas.ItemsSource = conectar.DescargarTablaPracticas().DefaultView;
-            DataGridPracticas.SelectedValue = id;
+            if (DataGridPracticas.SelectedItem != null) DataGridPracticas.SelectedValue = id;
         }
 
         private void btEliminar_Click(object sender, RoutedEventArgs e)
