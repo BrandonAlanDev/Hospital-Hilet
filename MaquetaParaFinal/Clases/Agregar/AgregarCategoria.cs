@@ -19,6 +19,12 @@ namespace MaquetaParaFinal.View.Agregar
     public partial class AgregarCategorias : Window
     {
         Conectar conectar = new Conectar();
+
+        public AgregarCategorias()
+        {
+            InitializeComponent();
+        }
+
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if(e.LeftButton == MouseButtonState.Pressed) 

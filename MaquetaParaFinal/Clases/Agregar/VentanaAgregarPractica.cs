@@ -16,6 +16,19 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
 
+        public AgregarPractica()
+        {
+            InitializeComponent();
+        }
+
+        private void AgregarEsp(object sender, RoutedEventArgs e)
+        {
+            AgregarEspecialidad ae = new AgregarEspecialidad();
+            ae.ShowDialog();
+            CargarEnBoxEspecilidad();
+            txtEspecialidad.SelectedValue = ae.especialidad;
+        }
+
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (Mouse.LeftButton == MouseButtonState.Pressed)

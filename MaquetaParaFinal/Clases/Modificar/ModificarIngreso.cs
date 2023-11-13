@@ -20,6 +20,21 @@ namespace MaquetaParaFinal.View.Modificar
     public partial class ModificarIngreso : Window
     {
         Conectar conectar = new Conectar();
+
+        int ID;
+
+        string pacientedni;
+
+        string medico;
+
+        public ModificarIngreso(int idIngreso, string pacientedni, string medico)
+        {
+            InitializeComponent();
+            this.ID = idIngreso;
+            this.pacientedni = pacientedni;
+            this.medico = medico;
+        }
+
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -113,6 +128,7 @@ namespace MaquetaParaFinal.View.Modificar
             AgregarPaciente agregarPaciente = new AgregarPaciente();
             agregarPaciente.ShowDialog();
             ActualizarDNI();
+            txtComboboxDni.SelectedValue = agregarPaciente.Dni;
         }
 
         private void btnCancelarAgPaciente_Click(object sender, RoutedEventArgs e) => this.Close();

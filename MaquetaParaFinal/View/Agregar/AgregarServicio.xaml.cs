@@ -20,11 +20,7 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarServicio : Window
     {
-        Conectar conectar = new Conectar();
-        public AgregarServicio()
-        {
-            InitializeComponent();
-        }
+
 
     }
 }

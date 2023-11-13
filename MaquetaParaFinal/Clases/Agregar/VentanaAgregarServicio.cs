@@ -16,6 +16,13 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarServicio : Window
     {
+        Conectar conectar = new Conectar();
+
+        public AgregarServicio()
+        {
+            InitializeComponent();
+        }
+
         private void btnAceptarAgServicio_Click(object sender, RoutedEventArgs e)
         {
             if (conectar.ValidarSiexisteServicio(txtNombreServicio.Text) != 1)

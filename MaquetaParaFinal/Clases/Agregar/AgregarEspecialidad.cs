@@ -20,6 +20,13 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
 
+        public string especialidad { get; set; }
+
+        public AgregarEspecialidad()
+        {
+            InitializeComponent();
+        }
+
         private void txtNombreEspecialidad_LostFocus(object sender, RoutedEventArgs e)
         {
             if (txtNombreEspecialidad.Text == "")
@@ -55,6 +62,7 @@ namespace MaquetaParaFinal.View.Agregar
             if (txtNombreEspecialidad.Text != "Nombre") 
             {
                 conectar.AgregarEspecialidades(txtNombreEspecialidad.Text);
+                especialidad = txtNombreEspecialidad.Text;
                 this.Close();
             }
         }

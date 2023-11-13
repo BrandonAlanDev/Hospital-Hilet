@@ -21,6 +21,18 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
 
+        public AgregarPersonal()
+        {
+            InitializeComponent();
+            txtNombre.GotFocus += LimpiarTxt;
+            txtApellido.GotFocus += LimpiarTxt;
+            txtDni.GotFocus += LimpiarTxt;
+
+            txtNombre.LostFocus += RestaurarNombrePorDefecto;
+            txtApellido.LostFocus += RestaurarNombrePorDefecto;
+            txtDni.LostFocus += RestaurarNombrePorDefecto;
+        }
+
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string>
         {
             { "Nombre", "txtNombre" },

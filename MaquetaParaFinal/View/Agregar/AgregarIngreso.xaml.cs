@@ -20,9 +20,6 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarIngreso : Window
     {
-        public AgregarIngreso()
-        {
-            InitializeComponent();
-        }
+
     }
 }

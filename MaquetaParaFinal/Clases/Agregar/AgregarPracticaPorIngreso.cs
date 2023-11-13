@@ -14,6 +14,15 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
 
+        int idIngreso;
+
+        public AgregarPracticaPorIngreso(int idIngreso)
+        {
+            this.idIngreso = idIngreso;
+            InitializeComponent();
+            CargarPracticas();
+        }
+
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

@@ -19,6 +19,11 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
 
+        public AgregarIngreso()
+        {
+            InitializeComponent();
+        }
+
         public string fecha { get; set; }
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
