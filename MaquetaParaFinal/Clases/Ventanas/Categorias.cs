@@ -38,8 +38,8 @@ namespace MaquetaParaFinal.View
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
             DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
-            ModificarCategoria mc = new ModificarCategoria();
             int id = int.Parse(row["ID"].ToString());
+            ModificarCategoria mc = new ModificarCategoria();
             mc.id = id;
             mc.txtNombreCategoria.Text = row["Categoria"].ToString();
             mc.ShowDialog();
@@ -49,9 +49,12 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
             AgregarCategorias ac = new AgregarCategorias();
             ac.ShowDialog();
             DataGridCategoria.ItemsSource = conectar.DescargaTablaCategoriasParaElDataGrid().DefaultView;
+            DataGridCategoria.SelectedValue= id;
         }
 
         private void DataGridCategoria_Loaded(object sender, RoutedEventArgs e)
@@ -76,13 +79,11 @@ namespace MaquetaParaFinal.View
             {
                 DataRowView row = (DataRowView)DataGridCategoria.SelectedItem;
                 txtNombre.Text = row["Categoria"].ToString();
-                btAgregar.IsEnabled = true;
                 btModificar.IsEnabled = true;
                 btEliminar.IsEnabled = true;
             }
             else
             {
-                btAgregar.IsEnabled = false;
                 btModificar.IsEnabled = false;
                 btEliminar.IsEnabled = false;
             }

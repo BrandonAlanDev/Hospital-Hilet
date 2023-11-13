@@ -57,13 +57,11 @@ namespace MaquetaParaFinal.View
             { 
                 DataRowView row = (DataRowView)DataGridEspecialidad.SelectedItem;
                 txtNombre.Text = row["Especialidad"].ToString();
-                btAgregar.IsEnabled = true;
                 btModificar.IsEnabled = true;
                 btEliminar.IsEnabled = true;
             }
             else
             {
-                btAgregar.IsEnabled = false;
                 btModificar.IsEnabled = false;
                 btEliminar.IsEnabled = false;
             }
@@ -80,10 +78,12 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = (DataRowView)DataGridEspecialidad.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
             AgregarEspecialidad ag = new AgregarEspecialidad();
             ag.ShowDialog();
             DataGridEspecialidad.ItemsSource = conectar.DescargarTablaEspecialidadesParaElDataGrid().DefaultView;
-
+            DataGridEspecialidad.SelectedValue = id;
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)

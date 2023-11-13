@@ -77,6 +77,7 @@ namespace MaquetaParaFinal.View
             AgregarMedico agregarMedico = new AgregarMedico();
             agregarMedico.ShowDialog();
             DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+            Limpiar();
         }
         private void btModificar_Click(object sender, RoutedEventArgs e)
         {
@@ -98,12 +99,17 @@ namespace MaquetaParaFinal.View
                     DataRowView row = (DataRowView)DataGridMedicos.SelectedItem;
                     conectar.EliminarProfesional(int.Parse(row["ID"].ToString()));
                     DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
-                    txtNombre.Text = "Nombre";
-                    txtApellido.Text = "Apellido";
-                    txtMatricula.Text = "Matricula";
-                    txtServicio.Text = "Servicio";
+                    Limpiar();
                 }
             }
+        }
+
+        private void Limpiar() 
+        {
+            txtNombre.Text = "Nombre";
+            txtApellido.Text = "Apellido";
+            txtMatricula.Text = "Matricula";
+            txtServicio.Text = "Servicio";
         }
 
     }

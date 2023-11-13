@@ -87,6 +87,7 @@ namespace MaquetaParaFinal.View
             AgregarPaciente agregarPaciente = new AgregarPaciente();
             agregarPaciente.ShowDialog();
             DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
+            Limpiar();
 
         }
         private void btModificar_Click(object sender, RoutedEventArgs e)
@@ -122,19 +123,24 @@ namespace MaquetaParaFinal.View
                     DataRowView row = (DataRowView)DataGridPacientes.SelectedItem;
                     conectar.EliminarPacientes(int.Parse(row["ID"].ToString()));
                     DataGridPacientes.ItemsSource = conectar.DescargaTablaPaciente().DefaultView;
-                    txtNombre.Text = "Nombre";
-                    txtApellido.Text = "Apellido";
-                    txtDni.Text = "Dni";
-                    txtEmail.Text = "Email";
-                    txtFecha_De_Nacimiento.Text = "Fecha De Nacimiento";
-                    txtTelefono.Text = "Telefono";
-                    txtCalle.Text = "Calle";
-                    txtNro.Text = "Numero";
-                    txtLocalidad.Text = "Localidad";
-                    txtCodPostas.Text = "Codigo Postal";
-                    txtPiso.Text = "Piso";
+                    Limpiar();
                 }
             }
+        }
+
+        private void Limpiar() 
+        {
+            txtNombre.Text = "Nombre";
+            txtApellido.Text = "Apellido";
+            txtDni.Text = "Dni";
+            txtEmail.Text = "Email";
+            txtFecha_De_Nacimiento.Text = "Fecha De Nacimiento";
+            txtTelefono.Text = "Telefono";
+            txtCalle.Text = "Calle";
+            txtNro.Text = "Numero";
+            txtLocalidad.Text = "Localidad";
+            txtCodPostas.Text = "Codigo Postal";
+            txtPiso.Text = "Piso";
         }
 
         private void btnImprimirPaciente_Click(object sender, RoutedEventArgs e)

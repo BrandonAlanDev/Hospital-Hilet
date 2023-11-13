@@ -28,6 +28,7 @@ namespace MaquetaParaFinal.View
             AgregarPersonal ap = new AgregarPersonal();
             ap.ShowDialog();
             DataGridPersonal.ItemsSource = conectar.DescargaTablaPersonalLaboratorio().DefaultView;
+            Limpiar();
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
@@ -56,14 +57,19 @@ namespace MaquetaParaFinal.View
                 {
                     DataRowView row = (DataRowView)DataGridPersonal.SelectedItem;
                     conectar.EliminarPersonalLaboratorio(int.Parse(row["ID"].ToString()));
-                    txtNombre.Text = "Nombre";
-                    txtApellido.Text = "Apellido";
-                    txtDni.Text = "Dni";
-                    txtEspecialidad.Text = "Especialidad";
-                    txtCategoria.Text = "Categoria";
+                    Limpiar();
                     DataGridPersonal.ItemsSource = conectar.DescargaTablaPersonalLaboratorio().DefaultView;
                 }
             }
+        }
+
+        private void Limpiar() 
+        {
+            txtNombre.Text = "Nombre";
+            txtApellido.Text = "Apellido";
+            txtDni.Text = "Dni";
+            txtEspecialidad.Text = "Especialidad";
+            txtCategoria.Text = "Categoria";
         }
 
         private void EnterBuscar(object sender, KeyEventArgs e)
