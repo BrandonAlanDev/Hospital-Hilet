@@ -15,16 +15,20 @@ using MaquetaParaFinal.View;
 
 namespace MaquetaParaFinal.Clases
 {
-    class Conectar
+    public class Conectar
     {
-        private string contrasenia;
+        private string contrasenia = "";
 
-        Conectar() 
-        { 
-            if(!File.Exists(@"D:\Sql.txt")) contrasenia = File.ReadAllText(@"D:\Sql.txt");
-            if(!File.Exists(@"C:\Sql.txt")) contrasenia = File.ReadAllText(@"C:\Sql.txt");
+        public Conectar()
+        {
+            //if (!File.Exists(@"D:\Sql.txt")) contrasenia = File.ReadAllText(@"D:\Sql.txt");
+            //else contrasenia = File.ReadAllText(@"C:\Sql.txt");
+
+            //El visual no crea ni lee los archivos usar esta si no esta creado en ejecutable
+            contrasenia = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
+                    "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
         }
-        
+
         public DataTable DescargarTablaServicios()
         {
             try
