@@ -18,6 +18,9 @@ namespace MaquetaParaFinal.View.Agregar
 {
     public partial class VentanaPracticaPorIngreso : Window
     {
-
+        private void HabilitarResultado(object sender, SelectionChangedEventArgs e)
+        {
+            btnResultado.IsEnabled = true;
+        }
     }
 }

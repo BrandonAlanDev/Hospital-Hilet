@@ -17,7 +17,7 @@
                 <Label Content="Practicas a Realizar" FontSize="25" FontFamily="Roboto" FontWeight="Medium" Foreground="#F0F0F0" Margin="20,5,0,0"/>
 
                 <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20" Height="245" >
-                    <DataGrid x:Name="DataGridPracticasxIngreso" SelectedValuePath="ID" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Background="#213555"
+                    <DataGrid x:Name="DataGridPracticasxIngreso" SelectedValuePath="ID" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" SelectionChanged="HabilitarResultado" IsReadOnly="True" Background="#213555"
                               RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" AutoGeneratingColumn="DataGridPracticasxIngreso_AutoGeneratingColumn" >
                         <DataGrid.ColumnHeaderStyle>
                             <StaticResource ResourceKey="HeaderGrilla" />
@@ -30,7 +30,7 @@
                 <Grid>
 
                     <Button x:Name="btnAgregar" Content="Agregar" Width="100" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="AgregarPractica" Margin="15,0,110,15"/>
-                    <Button x:Name="btnResultado" Content="Resultado" Width="90" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="AgregarResultados" Margin="125,0,15,15"/>
+                    <Button x:Name="btnResultado" Content="Resultado" Width="90" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonPrimario}" Click="AgregarResultados" Margin="125,0,15,15" IsEnabled="False"/>
                     <Button x:Name="btnEliminar" Content="Eliminar" Width="90" HorizontalAlignment="Left" Height="35" Style="{StaticResource BotonSalir}" Click="EliminarPractica" Margin="225,0,15,15"/>
                     
                     <Button x:Name="btnSalir" Content="Salir" Width="90" HorizontalAlignment="Right" Height="35" Style="{StaticResource BotonSalir}" Click="Salir" Margin="0,0,15,15"/>
