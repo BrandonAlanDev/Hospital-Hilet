@@ -23,6 +23,11 @@ namespace MaquetaParaFinal.View
     {
         Conectar conectar = new Conectar();
 
+        public Personal()
+        {
+            InitializeComponent();
+        }
+
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
             int id = 0;

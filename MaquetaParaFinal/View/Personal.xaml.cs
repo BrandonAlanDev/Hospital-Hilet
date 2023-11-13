@@ -20,9 +20,6 @@ namespace MaquetaParaFinal.View
     /// </summary>
     public partial class Personal : Page
     {
-        public Personal()
-        {
-            InitializeComponent();
-        }
+
     }
 }

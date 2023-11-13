@@ -20,6 +20,11 @@ namespace MaquetaParaFinal.View.Modificar
     {
         Conectar conectar = new Conectar();
 
+        public ModificarCategoria()
+        {
+            InitializeComponent();
+        }
+
         public int id { get; set; }
 
         private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -23,9 +23,6 @@ namespace MaquetaParaFinal.View
     /// </summary>
     public partial class Practicas : Page
     {
-        public Practicas()
-        {
-            InitializeComponent();
-        }
+
     }
 }

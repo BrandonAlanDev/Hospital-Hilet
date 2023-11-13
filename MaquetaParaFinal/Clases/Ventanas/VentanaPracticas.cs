@@ -17,6 +17,11 @@ namespace MaquetaParaFinal.View
     {
         Conectar conectar = new Conectar();
 
+        public Practicas()
+        {
+            InitializeComponent();
+        }
+
         private void DataGridPacticas_Loaded(object sender, RoutedEventArgs e)
         {
             txtBuscar.Focus();

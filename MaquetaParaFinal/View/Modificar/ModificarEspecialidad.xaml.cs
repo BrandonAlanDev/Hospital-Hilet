@@ -19,9 +19,6 @@ namespace MaquetaParaFinal.View.Modificar
     /// </summary>
     public partial class ModificarEspecialidad : Window
     {
-        public ModificarEspecialidad()
-        {
-            InitializeComponent();
-        }
+
     }
 }

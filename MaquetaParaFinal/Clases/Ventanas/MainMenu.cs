@@ -14,6 +14,13 @@ namespace MaquetaParaFinal
     public partial class MainWindow : Window
     {
         Conectar conectar = new Conectar();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            Loaded += LoadHome; //Esta en la clase "Navegacion"
+        }
+
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

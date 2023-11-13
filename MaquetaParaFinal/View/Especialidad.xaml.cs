@@ -20,9 +20,6 @@ namespace MaquetaParaFinal.View
     /// </summary>
     public partial class Especialidad : Page
     {
-        public Especialidad()
-        {
-            InitializeComponent();
-        }
+
     }
 }

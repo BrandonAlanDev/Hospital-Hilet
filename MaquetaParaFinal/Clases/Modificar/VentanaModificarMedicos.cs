@@ -17,6 +17,25 @@ namespace MaquetaParaFinal.View.Modificar
     {
         Conectar conectar = new Conectar();
 
+        int idmedico;
+
+        public ModificarMedicos(int id, string nombre, string apellido, string matricula, string servicios)
+        {
+            InitializeComponent();
+            txtNombre.GotFocus += LimpiarTxt;
+            txtApellido.GotFocus += LimpiarTxt;
+            txtMatricula.GotFocus += LimpiarTxt;
+            txtNombre.LostFocus += RestaurarNombrePorDefecto;
+            txtApellido.LostFocus += RestaurarNombrePorDefecto;
+            txtMatricula.LostFocus += RestaurarNombrePorDefecto;
+            CargarServicios();
+            txtNombre.Text = nombre;
+            txtApellido.Text = apellido;
+            txtMatricula.Text = matricula;
+            txtServicio.Text = servicios;
+            idmedico = id;
+        }
+
         private readonly Dictionary<string, string> Dicmedicos = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.
         {
             { "Nombre", "txtNombre" }, //txtNombre es el nombre del textbox.

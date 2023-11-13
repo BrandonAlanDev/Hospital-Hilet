@@ -23,9 +23,6 @@ namespace MaquetaParaFinal.View
     /// </summary>
     public partial class Pacientes : Page
     {
-        public Pacientes()
-        {
-            InitializeComponent();
-        }
+
     }
 }
