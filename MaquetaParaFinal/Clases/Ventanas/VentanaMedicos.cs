@@ -98,6 +98,10 @@ namespace MaquetaParaFinal.View
                     DataRowView row = (DataRowView)DataGridMedicos.SelectedItem;
                     conectar.EliminarProfesional(int.Parse(row["ID"].ToString()));
                     DataGridMedicos.ItemsSource = conectar.DescargaTablaProfesinales().DefaultView;
+                    txtNombre.Text = "Nombre";
+                    txtApellido.Text = "Apellido";
+                    txtMatricula.Text = "Matricula";
+                    txtServicio.Text = "Servicio";
                 }
             }
         }

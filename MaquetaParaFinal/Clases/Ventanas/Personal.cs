@@ -56,6 +56,11 @@ namespace MaquetaParaFinal.View
                 {
                     DataRowView row = (DataRowView)DataGridPersonal.SelectedItem;
                     conectar.EliminarPersonalLaboratorio(int.Parse(row["ID"].ToString()));
+                    txtNombre.Text = "Nombre";
+                    txtApellido.Text = "Apellido";
+                    txtDni.Text = "Dni";
+                    txtEspecialidad.Text = "Especialidad";
+                    txtCategoria.Text = "Categoria";
                     DataGridPersonal.ItemsSource = conectar.DescargaTablaPersonalLaboratorio().DefaultView;
                 }
             }
@@ -113,7 +118,6 @@ namespace MaquetaParaFinal.View
             }
             else
             {
-                btAgregar.IsEnabled = false;
                 btModificar.IsEnabled = false;
                 btEliminar.IsEnabled = false;
             }
