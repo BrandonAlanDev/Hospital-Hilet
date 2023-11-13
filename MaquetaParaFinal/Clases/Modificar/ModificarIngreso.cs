@@ -69,6 +69,7 @@ namespace MaquetaParaFinal.View.Modificar
             AgregarMedico agregarMedico = new AgregarMedico();
             agregarMedico.ShowDialog();
             ActualizarMedicos();
+            txtMedico.SelectedValue = agregarMedico.medico;
         }
 
         private void ActualizarDNI()

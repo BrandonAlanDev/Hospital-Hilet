@@ -15,53 +15,8 @@ using System.Windows.Shapes;
 
 namespace MaquetaParaFinal.View.Agregar
 {
-    /// <summary>
-    /// Lógica de interacción para AgregarResultado.xaml
-    /// </summary>
     public partial class AgregarResultado : Window
     {
-        int id;
-        Conectar conectar = new Conectar();
-        public AgregarResultado(int idPxi,string resultado)
-        {
-            this.id = idPxi;
-            InitializeComponent();
-            txtResultado.Text = resultado;
-        }
 
-        private void txtResultado_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtResultado.Text == "Resultado")
-            {
-                txtResultado.Text = "";
-            }
-        }
-
-        private void txtResultado_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtResultado.Text == "")
-            {
-                txtResultado.Text = "Resultado";
-            }
-        }
-
-        private void Principal_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton==MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-        }
-
-        private void btnAceptarAgEspecialidad_Click(object sender, RoutedEventArgs e)
-        {
-            if (txtResultado.Text != "" && txtResultado.Text != "Resultado") try { conectar.ActualizarResultado(id, txtResultado.Text); } catch { }
-            this.Close();
-        }
-
-        private void btnCancelarAgEspecialidad_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
     }
 }

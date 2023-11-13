@@ -17,6 +17,18 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
 
+        public AgregarMedico()
+        {
+            InitializeComponent();
+            txtNombre.GotFocus += LimpiarTxt;
+            txtApellido.GotFocus += LimpiarTxt;
+            txtMatricula.GotFocus += LimpiarTxt;
+            txtNombre.LostFocus += RestaurarNombrePorDefecto;
+            txtApellido.LostFocus += RestaurarNombrePorDefecto;
+            txtMatricula.LostFocus += RestaurarNombrePorDefecto;
+            CargarServicios();
+        }
+
         public string medico { get; set; }
 
         private readonly Dictionary<string, string> Dicmedicos = new Dictionary<string, string> //Seria la forma de hacerlo una const, con el readonly.

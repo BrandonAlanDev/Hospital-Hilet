@@ -19,10 +19,6 @@ namespace MaquetaParaFinal.View
 {
     public partial class Ingresos : Page
     {
-        public Ingresos()
-        {
-            InitializeComponent();
-        }
 
     }
 }

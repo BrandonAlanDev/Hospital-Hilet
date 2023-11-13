@@ -19,15 +19,5 @@ namespace MaquetaParaFinal.View.Agregar
     public partial class VentanaPracticaPorIngreso : Window
     {
 
-
-        private void AgregarResultados(object sender, RoutedEventArgs e)
-        {
-            DataRowView row = (DataRowView)DataGridPracticasxIngreso.SelectedItem;
-            int id = int.Parse(row["ID"].ToString());
-            string resultado = row["Resultado"].ToString();
-            AgregarResultado ar = new AgregarResultado(id,resultado);
-            ar.ShowDialog();
-            ActualizarPracticas(this.idIngreso);
-        }
     }
 }
