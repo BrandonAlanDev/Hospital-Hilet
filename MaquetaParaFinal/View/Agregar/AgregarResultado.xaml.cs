@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,17 @@ namespace MaquetaParaFinal.View.Agregar
     public partial class AgregarResultado : Window
     {
         int id;
-        public AgregarResultado(int idPxi)
+        Conectar conectar = new Conectar();
+        public AgregarResultado(int idPxi,string resultado)
         {
             this.id = idPxi;
             InitializeComponent();
+            txtResultado.Text = resultado;
         }
 
         private void txtResultado_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (txtResultado.Text == "Nombre")
+            if (txtResultado.Text == "Resultado")
             {
                 txtResultado.Text = "";
             }
@@ -38,7 +41,7 @@ namespace MaquetaParaFinal.View.Agregar
         {
             if (txtResultado.Text == "")
             {
-                txtResultado.Text = "Nombre";
+                txtResultado.Text = "Resultado";
             }
         }
 
@@ -52,7 +55,8 @@ namespace MaquetaParaFinal.View.Agregar
 
         private void btnAceptarAgEspecialidad_Click(object sender, RoutedEventArgs e)
         {
-
+            if (txtResultado.Text != "" && txtResultado.Text != "Resultado") try { conectar.ActualizarResultado(id, txtResultado.Text); } catch { }
+            this.Close();
         }
 
         private void btnCancelarAgEspecialidad_Click(object sender, RoutedEventArgs e)
