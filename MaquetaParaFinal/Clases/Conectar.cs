@@ -360,7 +360,7 @@ namespace MaquetaParaFinal.Clases
                             "i.Pk_Id_Ingresos, CONCAT(p.Apellido_Paciente,' ',p.Nombre_Paciente), p.Dni, " +
                             "CONCAT(pro.Apellido_Profesional,' ',pro.Nombre_Profesional), i.Fecha_Ingreso, i.Retirado " +
                         "ORDER BY " +
-                            "Paciente, Dni, Medico, 'Fecha De Ingreso', 'Fecha De Retiro';";
+                            "'Fecha De Ingreso' DESC,Paciente, Dni, Medico, 'Fecha De Retiro';";
                     SqlDataAdapter command = new SqlDataAdapter(consulta, conexion);
                     DataTable tabla = new DataTable();
                     command.Fill(tabla);
