@@ -20,7 +20,8 @@ namespace MaquetaParaFinal.Clases
         //string contrasenia2 = File.ReadAllText(@"D:\Sql.txt");
         string contrasenia = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
                 "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
-
+        
+        
         public DataTable DescargarTablaServicios()
         {
             try
@@ -1392,6 +1393,24 @@ namespace MaquetaParaFinal.Clases
             }
             catch  { }
         }
-
+        public void ActualizarResultado(int id, string resultado)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(contrasenia))
+                {
+                    conexion.Open();
+                    string consulta = $"UPDATE PracticasxIngresos SET Resultado_Practica = @resultado " +
+                                        $"WHERE Pk_Id_PracticasxIngresos = @id";
+                    using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.Parameters.AddWithValue("@resultado",resultado);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch{ }
+        }
     }
 }
