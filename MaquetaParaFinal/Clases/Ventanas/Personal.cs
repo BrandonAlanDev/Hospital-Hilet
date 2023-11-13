@@ -25,10 +25,12 @@ namespace MaquetaParaFinal.View
 
         private void btAgregar_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView row = (DataRowView)DataGridPersonal.SelectedItem;
+            int id = int.Parse(row["ID"].ToString());
             AgregarPersonal ap = new AgregarPersonal();
             ap.ShowDialog();
             DataGridPersonal.ItemsSource = conectar.DescargaTablaPersonalLaboratorio().DefaultView;
-            Limpiar();
+            DataGridPersonal.SelectedValue = id;
         }
 
         private void btModificar_Click(object sender, RoutedEventArgs e)
