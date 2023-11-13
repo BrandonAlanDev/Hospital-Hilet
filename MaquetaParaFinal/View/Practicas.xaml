@@ -8,7 +8,68 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Practicas">
 
-    <Grid x:Name="Principal" Background="pink">
-        
+    <Grid x:Name="Principal" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+        <DockPanel x:Name="Body" Background="Pink" >
+            <Grid x:Name="MenuPracticas">
+                <Grid Background="#213555" Margin="0,0,225,0" >
+                    <Label Content="Buscar" Foreground="#F0F0F0" FontFamily="Roboto" FontSize="15"/>
+                    <TextBox x:Name="txtBuscar" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,6,0,0" TextWrapping="Wrap" Text="" Width="120" PreviewKeyDown="EnterBuscar" TabIndex="1"/>
+                    <Button x:Name="btAceptarBusqueda" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="200,5,0,0" Content="Buscar" Height="20" Width="62" Style="{StaticResource BotonSecundario}" TabIndex="2" PreviewKeyDown="EnterBuscar" Click="ClickBuscar"/>
+                </Grid>
+                <Grid x:Name="GridData" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,30,225,0" >
+                    <DataGrid x:Name="DataGridPracticas" TabIndex="5" SelectedValuePath="ID" d:ItemsSource="{d:SampleData ItemCount=5}" ColumnWidth="*" IsReadOnly="True" Background="#213555"
+                              RowBackground="#213555" Foreground="#F0F0F0" AutoGenerateColumns="True" BorderBrush="#F0F0F0" RowHeight="25" VerticalContentAlignment="Center" Loaded="DataGridPacticas_Loaded" SelectionChanged="DataGridPracticas_SelectionChanged" AutoGeneratingColumn="DataGridPracticas_AutoGeneratingColumn" >
+                        <DataGrid.ColumnHeaderStyle>
+                            <StaticResource ResourceKey="HeaderGrilla" />
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.CellStyle>
+                            <StaticResource ResourceKey="CeldaSeleccionada" />
+                        </DataGrid.CellStyle>
+                    </DataGrid>
+                </Grid>
+
+                <Grid x:Name="Botones" Width="225" HorizontalAlignment="Right" Background="#4F709C">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Width="225" Margin="0,10,0,60">
+                        <StackPanel x:Name="TxtBoxes" IsEnabled="False" Width="225" HorizontalAlignment="Left" Background="Transparent">
+                            <DockPanel>
+                                <Label Content="Nombre" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <Border Margin="0,6,10,0"  HorizontalAlignment="Right" Width="120" Background="#213555" CornerRadius="9">
+                                    <TextBox x:Name="txtNombre" Margin="5,0,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                                </Border>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Tiempo De Demora" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <Border Margin="0,6,10,0"  HorizontalAlignment="Right" Width="100" Background="#213555" CornerRadius="9">
+                                    <TextBox x:Name="txtTiempo_Demora" Margin="5,0,0,0" TextWrapping="Wrap" Text="Fecha" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                                </Border>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Muestra" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <Border Margin="0,6,10,0"  HorizontalAlignment="Right" Width="120" Background="#213555" CornerRadius="9">
+                                    <TextBox x:Name="txtTipo_De_Muestra" Margin="5,0,0,0" TextWrapping="Wrap" Text="Tipo De Muestra" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                                </Border>
+                            </DockPanel>
+                            <DockPanel>
+                                <Label Content="Especialidades" Background="Transparent" Margin="0,3,0,0" FontWeight="Medium" FontFamily="Roboto" Foreground="#F0F0F0"/>
+                                <Border Margin="-10,6,10,0"  HorizontalAlignment="Right" Width="120" Background="#213555" CornerRadius="9">
+                                    <TextBox x:Name="txtEspecialidades" Margin="5,0,0,0" TextWrapping="Wrap" Text="Especialidades" VerticalAlignment="Top" Background="Transparent" Foreground="#F0F0F0" BorderBrush="Transparent" />
+                                </Border>
+                            </DockPanel> 
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    <Grid VerticalAlignment="Bottom" Height="130" Background="#213555">
+                        <Label HorizontalAlignment="Center"  Content="Tipos de Practica" FontWeight="Bold" Foreground="#F0F0F0" FontSize="20" />
+                        <Button x:Name="btAgregar" TabIndex="3" Content="Dar de alta" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,50" Height="30" Width="180" Style="{StaticResource BotonPrimario}" Click="btAgregar_Click" />
+                        <Button x:Name="btEliminar" TabIndex="4" IsEnabled="False" Content="Dar de baja" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,10" Height="30" Width="180" Style="{StaticResource BotonSalir}" Click="btEliminar_Click"/>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+
+
+        </DockPanel>
+
     </Grid>
 </Page>

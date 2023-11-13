@@ -23,8 +23,7 @@ namespace MaquetaParaFinal
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += LoadHome;
         }
-
-   
     }
 }

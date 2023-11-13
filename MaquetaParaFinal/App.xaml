@@ -9,6 +9,8 @@
                 <ResourceDictionary Source="Resources/Style/BotonPrimario.xaml" />
                 <ResourceDictionary Source="Resources/Style/BotonSecundario.xaml" />
                 <ResourceDictionary Source="Resources/Style/BotonSalir.xaml" />
+                <ResourceDictionary Source="Resources/Style/Grillas.xaml" />
+                <ResourceDictionary Source="Resources/Style/ComboBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

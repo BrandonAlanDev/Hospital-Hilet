@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style x:Key="BotonPrimario" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Background" Value="#E5D283"/>
-        <Setter Property="Foreground" Value="#213555"/>
+        <Setter Property="Background" Value="#8fc643"/>
+        <Setter Property="Foreground" Value="#F0F0F0"/>
         <Setter Property="Width" Value="117"/>
         <Setter Property="Height" Value="25"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -17,6 +17,10 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="BordeBoton" Property="Background" Value="#F0F0F0"/>
                             <Setter Property="Foreground" Value="#213555"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="BordeBoton" Property="Background" Value="#888888"/>
+                            <Setter Property="Foreground" Value="#CCCCCC"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

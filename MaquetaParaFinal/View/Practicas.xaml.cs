@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MaquetaParaFinal.View.Agregar;
+using MaquetaParaFinal.View.Modificar;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
