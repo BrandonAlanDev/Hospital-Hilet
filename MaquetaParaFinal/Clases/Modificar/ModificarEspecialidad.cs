@@ -22,6 +22,11 @@ namespace MaquetaParaFinal.View.Modificar
 
         public int id { get; set; }
 
+        public ModificarEspecialidad()
+        {
+            InitializeComponent();
+        }
+
         private void txtNombreEspecialidad_LostFocus(object sender, RoutedEventArgs e)
         {
             if (txtNombreEspecialidad.Text == "Nombre") 

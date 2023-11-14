@@ -1,6 +1,7 @@
 ﻿using MaquetaParaFinal.Clases;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +16,11 @@ using System.Windows.Shapes;
 
 namespace MaquetaParaFinal.View.Agregar
 {
-    /// <summary>
-    /// Lógica de interacción para VentanaPracticaPorIngreso.xaml
-    /// </summary>
     public partial class VentanaPracticaPorIngreso : Window
     {
-
+        private void HabilitarResultado(object sender, SelectionChangedEventArgs e)
+        {
+            btnResultado.IsEnabled = true;
+        }
     }
 }

@@ -23,8 +23,22 @@ namespace MaquetaParaFinal.View.Modificar
         Conectar conectar = new Conectar();
 
         public int id { get; set; }
+
         public string categoria { get; set; }
+
         public string especialidad { get; set; }
+
+        public ModificarPersonal()
+        {
+            InitializeComponent();
+            txtNombre.GotFocus += LimpiarTxt;
+            txtApellido.GotFocus += LimpiarTxt;
+            txtDni.GotFocus += LimpiarTxt;
+
+            txtNombre.LostFocus += RestaurarNombrePorDefecto;
+            txtApellido.LostFocus += RestaurarNombrePorDefecto;
+            txtDni.LostFocus += RestaurarNombrePorDefecto;
+        }
 
         private readonly Dictionary<string, string> Dicpacientes = new Dictionary<string, string>
         {

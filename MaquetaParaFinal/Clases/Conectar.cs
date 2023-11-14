@@ -15,11 +15,19 @@ using MaquetaParaFinal.View;
 
 namespace MaquetaParaFinal.Clases
 {
-    class Conectar
+    public class Conectar
     {
-        //string contrasenia2 = File.ReadAllText(@"D:\Sql.txt");
-        string contrasenia = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
-                "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
+        private string contrasenia = "";
+
+        public Conectar()
+        {
+            //if (!File.Exists(@"D:\Sql.txt")) contrasenia = File.ReadAllText(@"D:\Sql.txt");
+            //else contrasenia = File.ReadAllText(@"C:\Sql.txt");
+
+            //El visual no crea ni lee los archivos usar esta si no esta creado en ejecutable
+            contrasenia = "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
+                    "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1";
+        }
 
         public DataTable DescargarTablaServicios()
         {
@@ -318,7 +326,8 @@ namespace MaquetaParaFinal.Clases
                         "p.Nombre_Practica AS Nombre, " +
                         "CONVERT(varchar,p.Tiempo_Demora,120) AS 'Horas de Demora', " +
                         "t.Nombre_Tipo_De_Muestra AS 'Tipo De Muestra', " +
-                        "e.Nombre_Especialidad AS Especialidades " +
+                        "e.Nombre_Especialidad AS Especialidades, " +
+                        "pxi.Resultado_Practica AS Resultado " +
                         "FROM Practicas AS p " +
                             "INNER JOIN TiposDeMuestras AS t ON t.Pk_Id_Tipos_De_Muestra = p.Fk_Id_Tipos_De_Muestra " +
                             "INNER JOIN Especialidades AS e ON e.Pk_Id_Especialidades = p.Fk_Id_Especialidades " +
@@ -1392,6 +1401,24 @@ namespace MaquetaParaFinal.Clases
             }
             catch  { }
         }
-
+        public void ActualizarResultado(int id, string resultado)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(contrasenia))
+                {
+                    conexion.Open();
+                    string consulta = $"UPDATE PracticasxIngresos SET Resultado_Practica = @resultado " +
+                                        $"WHERE Pk_Id_PracticasxIngresos = @id";
+                    using (SqlCommand cmd = new SqlCommand(consulta, conexion))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.Parameters.AddWithValue("@resultado",resultado);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch{ }
+        }
     }
 }

@@ -19,6 +19,11 @@ namespace MaquetaParaFinal.View
     {
         Conectar conectar = new Conectar();
 
+        public Pacientes()
+        {
+            InitializeComponent();
+        }
+
         private void DataGridPacientes_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "ID")

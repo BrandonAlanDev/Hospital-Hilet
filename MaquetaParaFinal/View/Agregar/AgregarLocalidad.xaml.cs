@@ -19,10 +19,7 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarLocalidad : Window
     {
-        public AgregarLocalidad()
-        {
-            InitializeComponent();
-        }
+
 
     }
 }

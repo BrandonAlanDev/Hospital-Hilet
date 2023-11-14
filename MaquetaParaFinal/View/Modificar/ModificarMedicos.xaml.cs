@@ -20,24 +20,6 @@ namespace MaquetaParaFinal.View.Modificar
     /// </summary>
     public partial class ModificarMedicos : Window
     {
-        string MatriculaInicial;
-        int idmedico;
-        public ModificarMedicos(int id,string nombre, string apellido, string matricula, string servicios)
-        {
-            InitializeComponent();
-            txtNombre.GotFocus += LimpiarTxt;
-            txtApellido.GotFocus += LimpiarTxt;
-            txtMatricula.GotFocus += LimpiarTxt;
-            txtNombre.LostFocus += RestaurarNombrePorDefecto;
-            txtApellido.LostFocus += RestaurarNombrePorDefecto;
-            txtMatricula.LostFocus += RestaurarNombrePorDefecto;
-            CargarServicios();
-            txtNombre.Text = nombre;
-            txtApellido.Text = apellido;
-            txtMatricula.Text = matricula;
-            txtServicio.Text = servicios;
-            MatriculaInicial = matricula;
-            idmedico = id;
-        }
+
     }
 }

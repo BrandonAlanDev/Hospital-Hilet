@@ -18,6 +18,11 @@ namespace MaquetaParaFinal.View
     {
         Conectar conectar = new Conectar();
 
+        public Medicos()
+        {
+            InitializeComponent();
+        }
+
         private void DataGridMedicos_Loaded(object sender, RoutedEventArgs e)
         {
             txtBuscar.Focus();

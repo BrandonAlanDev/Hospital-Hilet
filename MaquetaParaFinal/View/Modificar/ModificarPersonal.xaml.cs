@@ -19,16 +19,6 @@ namespace MaquetaParaFinal.View.Modificar
     /// </summary>
     public partial class ModificarPersonal : Window
     {
-        public ModificarPersonal()
-        {
-            InitializeComponent();
-            txtNombre.GotFocus += LimpiarTxt;
-            txtApellido.GotFocus += LimpiarTxt;
-            txtDni.GotFocus += LimpiarTxt;
 
-            txtNombre.LostFocus += RestaurarNombrePorDefecto;
-            txtApellido.LostFocus += RestaurarNombrePorDefecto;
-            txtDni.LostFocus += RestaurarNombrePorDefecto;
-        }
     }
 }

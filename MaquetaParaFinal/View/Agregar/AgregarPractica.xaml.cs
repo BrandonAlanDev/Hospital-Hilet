@@ -21,16 +21,6 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarPractica : Window
     {
-        public AgregarPractica()
-        {
-            InitializeComponent();
-        }
 
-        private void AgregarEsp(object sender, RoutedEventArgs e)
-        {
-            AgregarEspecialidad ae = new AgregarEspecialidad();
-            ae.ShowDialog();
-            CargarEnBoxEspecilidad();
-        }
     }
 }

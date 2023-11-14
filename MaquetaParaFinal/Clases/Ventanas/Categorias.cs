@@ -23,6 +23,11 @@ namespace MaquetaParaFinal.View
     {
         Conectar conectar = new Conectar();
 
+        public Categorias()
+        {
+            InitializeComponent();
+        }
+
         private void btEliminar_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult resultado = MessageBox.Show($"¿Seguro que Desea Eliminar la Categoria {txtNombre.Text}?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);

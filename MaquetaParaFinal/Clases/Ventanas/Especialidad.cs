@@ -23,6 +23,11 @@ namespace MaquetaParaFinal.View
     {
         Conectar conectar = new Conectar();
 
+        public Especialidad()
+        {
+            InitializeComponent();
+        }
+
         private void EnterBuscar(object sender, KeyEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(txtBuscar.Text))

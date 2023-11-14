@@ -14,6 +14,13 @@ namespace MaquetaParaFinal
     public partial class MainWindow : Window
     {
         Conectar conectar = new Conectar();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            Loaded += LoadHome; //Esta en la clase "Navegacion"
+        }
+
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -24,10 +31,22 @@ namespace MaquetaParaFinal
 
         private void Principal_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!File.Exists(@"D:\Sql.txt")) 
-            { 
-                  File.WriteAllText(@"D:\Sql.txt", "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
-                "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1");
+            try
+            {
+                if (!File.Exists(@"D:\Sql.txt")) 
+                { 
+                      File.WriteAllText(@"D:\Sql.txt", "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
+                    "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1");
+                }
+
+            }
+            catch
+            {
+                if (!File.Exists(@"C:\Sql.txt"))
+                {
+                    File.WriteAllText(@"C:\Sql.txt", "workstation id=SegundoCuatriTp1.mssql.somee.com;packet size=4096;user id=Lucho_SQLLogin_2;pwd=66e99i24sw;data " +
+                  "source=SegundoCuatriTp1.mssql.somee.com;persist security info=False;initial catalog=SegundoCuatriTp1");
+                }
             }
             if (conectar.ObtenerId_Categorias("Sin Categoría") == -1) conectar.AgregarSinCategoria();
 

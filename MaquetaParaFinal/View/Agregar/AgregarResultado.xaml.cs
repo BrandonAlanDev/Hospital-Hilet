@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaquetaParaFinal.Clases;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MaquetaParaFinal.View.Modificar
+namespace MaquetaParaFinal.View.Agregar
 {
-    /// <summary>
-    /// Lógica de interacción para ModificarPaciente.xaml
-    /// </summary>
-    public partial class ModificarPaciente : Window
+    public partial class AgregarResultado : Window
     {
 
     }

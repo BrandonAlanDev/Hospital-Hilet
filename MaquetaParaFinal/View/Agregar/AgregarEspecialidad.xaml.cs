@@ -16,9 +16,6 @@ namespace MaquetaParaFinal.View.Agregar
 {
     public partial class AgregarEspecialidad : Window
     {
-        public AgregarEspecialidad()
-        {
-            InitializeComponent();
-        }
+
     }
 }

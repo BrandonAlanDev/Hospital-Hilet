@@ -24,6 +24,20 @@ namespace MaquetaParaFinal.View.Agregar
             ActualizarPracticas(idIngreso);
         }
 
+        private void AgregarResultados(object sender, RoutedEventArgs e)
+        {
+            if (DataGridPracticasxIngreso.SelectedItem != null)
+            {
+                DataRowView row = (DataRowView)DataGridPracticasxIngreso.SelectedItem;
+                int id = int.Parse(row["ID"].ToString());
+                string resultado = row["Resultado"].ToString();
+                AgregarResultado ar = new AgregarResultado(id, resultado);
+                ar.ShowDialog();
+                ActualizarPracticas(this.idIngreso);
+                DataGridPracticasxIngreso.SelectedValue = id;
+            }
+        }
+
         private void DataGridPracticasxIngreso_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.Column.Header.ToString() == "ID")
@@ -58,7 +72,7 @@ namespace MaquetaParaFinal.View.Agregar
                 if (resultado == MessageBoxResult.Yes)
                 {
                     conectar.EliminarPracticaXIngreso(int.Parse(row["ID"].ToString()));
-                    conectar.ActualizarFecha_Retiro(idIngreso, "1111-11-11");
+                    conectar.ActualizarFecha_Retiro(idIngreso, "1111-11-11"); //No dejaba poner null la fecha, cambie el metodo que trae la fecha y si es esta fecha lo hace null
                     ActualizarPracticas(idIngreso);
                 }
             }

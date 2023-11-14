@@ -19,10 +19,7 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarCategorias : Window
     {
-        public AgregarCategorias()
-        {
-            InitializeComponent();
-        }
+
 
     }
 }

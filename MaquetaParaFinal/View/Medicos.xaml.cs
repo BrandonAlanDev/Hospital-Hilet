@@ -19,9 +19,6 @@ namespace MaquetaParaFinal.View
 {
     public partial class Medicos : Page
     {
-        public Medicos()
-        {
-            InitializeComponent();
-        }
+
     }
 }

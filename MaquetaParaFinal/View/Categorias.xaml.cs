@@ -17,9 +17,6 @@ namespace MaquetaParaFinal.View
 {
     public partial class Categorias : Page
     {
-        public Categorias()
-        {
-            InitializeComponent();
-        }
+
     }
 }

@@ -15,6 +15,11 @@ namespace MaquetaParaFinal.View.Agregar
     {
         Conectar conectar = new Conectar();
 
+        public AgregarLocalidad()
+        {
+            InitializeComponent();
+        }
+
         private void txtCodLocal_GotFocus(object sender, RoutedEventArgs e)
         {
             if (txtCodPostal.Text == "Codigo Postal")

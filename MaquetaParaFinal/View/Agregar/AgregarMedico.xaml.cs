@@ -19,17 +19,6 @@ namespace MaquetaParaFinal.View.Agregar
     /// </summary>
     public partial class AgregarMedico : Window
     {
-        public AgregarMedico()
-        {
-            InitializeComponent();
-            txtNombre.GotFocus += LimpiarTxt;
-            txtApellido.GotFocus += LimpiarTxt;
-            txtMatricula.GotFocus += LimpiarTxt;
-            txtNombre.LostFocus += RestaurarNombrePorDefecto;
-            txtApellido.LostFocus += RestaurarNombrePorDefecto;
-            txtMatricula.LostFocus += RestaurarNombrePorDefecto;
-            CargarServicios();
-        }
 
     }
 }

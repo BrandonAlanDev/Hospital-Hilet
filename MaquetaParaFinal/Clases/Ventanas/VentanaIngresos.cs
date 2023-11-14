@@ -21,6 +21,11 @@ namespace MaquetaParaFinal.View
     {
         Conectar conectar = new Conectar();
 
+        public Ingresos()
+        {
+            InitializeComponent();
+        }
+
         private void DataGridIngresos_Loaded(object sender, RoutedEventArgs e)
         {
             txtBuscar.Focus();
